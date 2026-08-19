@@ -1,0 +1,52 @@
+{
+  "node_id": "09_Amundsen_Crater",
+  "node_name": "Amundsen Crater (Site I)",
+  "coordinates": {
+    "latitude": -84.5,
+    "longitude": 82.8,
+    "bbox_delta_degrees": 0.1
+  },
+  "timestamp_utc": "2026-08-18T11:47:02.532592Z",
+  "status": "Failed",
+  "validation_criteria": {
+    "min_file_size_bytes": 5120,
+    "required_layers_count": 3,
+    "expected_mime_types": [
+      "image/png",
+      "image/tiff"
+    ]
+  },
+  "layers": {
+    "wac_global": {
+      "layer": "wac_global",
+      "filename": "wac_global.png",
+      "url": "https://wms.lroc.asu.edu/lroc/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=wac_global&STYLES=&SRS=EPSG%3A4326&BBOX=82.700000%2C-84.600000%2C82.900000%2C-84.400000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
+      "status": "Failed",
+      "http_code": 404,
+      "content_type": null,
+      "file_size_bytes": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    "lola_sldem2015": {
+      "layer": "lola_sldem2015",
+      "filename": "lola_sldem2015.tif",
+      "url": "https://wms.lroc.asu.edu/lroc/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=lola_sldem2015&STYLES=&SRS=EPSG%3A4326&BBOX=82.700000%2C-84.600000%2C82.900000%2C-84.400000&WIDTH=512&HEIGHT=512&FORMAT=image%2Ftiff",
+      "status": "Failed",
+      "http_code": 404,
+      "content_type": null,
+      "file_size_bytes": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    "lola_sldem2015_slope": {
+      "layer": "lola_sldem2015_slope",
+      "filename": "lola_sldem2015_slope.png",
+      "url": "https://wms.lroc.asu.edu/lroc/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=lola_sldem2015_slope&STYLES=&SRS=EPSG%3A4326&BBOX=82.700000%2C-84.600000%2C82.900000%2C-84.400000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
+      "status": "Failed",
+      "http_code": 404,
+      "content_type": null,
+      "file_size_bytes": 0,
+      "error": "HTTP Error 404: Not Found"
+    }
+  },
+  "summary": "One or more layers failed validation (HTTP error, XML exception, or under 5KB threshold)."
+}

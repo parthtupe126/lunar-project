@@ -1,0 +1,126 @@
+{
+  "pipeline_name": "Lunar GIS Automated ETL Pipeline",
+  "execution_timestamp_utc": "2026-08-18T11:47:08.758438Z",
+  "total_nodes_processed": 23,
+  "nodes_approved": 0,
+  "nodes_failed": 23,
+  "elapsed_seconds": 17.48,
+  "target_endpoint": "https://wms.lroc.asu.edu/lroc/wms",
+  "nodes": [
+    {
+      "id": "01_Shackleton_Crater",
+      "name": "Shackleton Crater Rim",
+      "status": "Failed"
+    },
+    {
+      "id": "02_Mons_Malapert",
+      "name": "Mons Malapert Plateau",
+      "status": "Failed"
+    },
+    {
+      "id": "03_Faustini_Rim_A",
+      "name": "Faustini Rim A",
+      "status": "Failed"
+    },
+    {
+      "id": "04_Connecting_Ridge",
+      "name": "Connecting Ridge (Shackleton-de Gerlache)",
+      "status": "Failed"
+    },
+    {
+      "id": "05_de_Gerlache_Rim",
+      "name": "de Gerlache Rim",
+      "status": "Failed"
+    },
+    {
+      "id": "06_Haworth_Crater_Rim",
+      "name": "Haworth Crater Rim North",
+      "status": "Failed"
+    },
+    {
+      "id": "07_Mons_Mouton",
+      "name": "Mons Mouton (Leibnitz Beta)",
+      "status": "Failed"
+    },
+    {
+      "id": "08_Nobile_Crater_Rim",
+      "name": "Nobile Crater Rim",
+      "status": "Failed"
+    },
+    {
+      "id": "09_Amundsen_Crater",
+      "name": "Amundsen Crater (Site I)",
+      "status": "Failed"
+    },
+    {
+      "id": "10_Marius_Hills_Lava_Tube",
+      "name": "Marius Hills Lava Tube Skylight",
+      "status": "Failed"
+    },
+    {
+      "id": "11_Cabeus_Crater",
+      "name": "Cabeus Crater (LCROSS Site)",
+      "status": "Failed"
+    },
+    {
+      "id": "12_Shoemaker_Crater_Rim",
+      "name": "Shoemaker Crater Rim South",
+      "status": "Failed"
+    },
+    {
+      "id": "13_Chandrayaan3_Shiv_Shakti",
+      "name": "Chandrayaan-3 (Shiv Shakti Point)",
+      "status": "Failed"
+    },
+    {
+      "id": "14_Chandrayaan1_Jawahar",
+      "name": "Chandrayaan-1 (Jawahar Point)",
+      "status": "Failed"
+    },
+    {
+      "id": "15_Chandrayaan2_Tiranga",
+      "name": "Chandrayaan-2 (Tiranga Point)",
+      "status": "Failed"
+    },
+    {
+      "id": "16_Chandrayaan4_LUPEX",
+      "name": "Chandrayaan-4 / LUPEX Candidate",
+      "status": "Failed"
+    },
+    {
+      "id": "17_Apollo11_Tranquility_Base",
+      "name": "Apollo 11 (Statio Tranquillitatis)",
+      "status": "Failed"
+    },
+    {
+      "id": "18_Apollo12_Ocean_of_Storms",
+      "name": "Apollo 12 (Ocean of Storms)",
+      "status": "Failed"
+    },
+    {
+      "id": "19_Apollo14_Fra_Mauro",
+      "name": "Apollo 14 (Fra Mauro Highlands)",
+      "status": "Failed"
+    },
+    {
+      "id": "20_Apollo15_Hadley_Apennine",
+      "name": "Apollo 15 (Hadley-Apennine)",
+      "status": "Failed"
+    },
+    {
+      "id": "21_Apollo16_Descartes_Highlands",
+      "name": "Apollo 16 (Descartes Highlands)",
+      "status": "Failed"
+    },
+    {
+      "id": "22_Apollo17_Taurus_Littrow",
+      "name": "Apollo 17 (Taurus-Littrow Valley)",
+      "status": "Failed"
+    },
+    {
+      "id": "23_Artemis3_Ridge_Target",
+      "name": "Artemis III Target (Shackleton Ridge)",
+      "status": "Failed"
+    }
+  ]
+}

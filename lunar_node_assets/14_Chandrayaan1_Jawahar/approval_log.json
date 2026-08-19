@@ -1,0 +1,52 @@
+{
+  "node_id": "14_Chandrayaan1_Jawahar",
+  "node_name": "Chandrayaan-1 (Jawahar Point)",
+  "coordinates": {
+    "latitude": -89.9,
+    "longitude": 0.0,
+    "bbox_delta_degrees": 0.1
+  },
+  "timestamp_utc": "2026-08-18T11:47:02.668671Z",
+  "status": "Failed",
+  "validation_criteria": {
+    "min_file_size_bytes": 5120,
+    "required_layers_count": 3,
+    "expected_mime_types": [
+      "image/png",
+      "image/tiff"
+    ]
+  },
+  "layers": {
+    "wac_global": {
+      "layer": "wac_global",
+      "filename": "wac_global.png",
+      "url": "https://wms.lroc.asu.edu/lroc/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=wac_global&STYLES=&SRS=EPSG%3A4326&BBOX=-0.100000%2C-90.000000%2C0.100000%2C-89.800000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
+      "status": "Failed",
+      "http_code": 404,
+      "content_type": null,
+      "file_size_bytes": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    "lola_sldem2015": {
+      "layer": "lola_sldem2015",
+      "filename": "lola_sldem2015.tif",
+      "url": "https://wms.lroc.asu.edu/lroc/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=lola_sldem2015&STYLES=&SRS=EPSG%3A4326&BBOX=-0.100000%2C-90.000000%2C0.100000%2C-89.800000&WIDTH=512&HEIGHT=512&FORMAT=image%2Ftiff",
+      "status": "Failed",
+      "http_code": 404,
+      "content_type": null,
+      "file_size_bytes": 0,
+      "error": "HTTP Error 404: Not Found"
+    },
+    "lola_sldem2015_slope": {
+      "layer": "lola_sldem2015_slope",
+      "filename": "lola_sldem2015_slope.png",
+      "url": "https://wms.lroc.asu.edu/lroc/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=lola_sldem2015_slope&STYLES=&SRS=EPSG%3A4326&BBOX=-0.100000%2C-90.000000%2C0.100000%2C-89.800000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
+      "status": "Failed",
+      "http_code": 404,
+      "content_type": null,
+      "file_size_bytes": 0,
+      "error": "HTTP Error 404: Not Found"
+    }
+  },
+  "summary": "One or more layers failed validation (HTTP error, XML exception, or under 5KB threshold)."
+}
