@@ -56,7 +56,10 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy tethered autonomous cryo-rover into Shackleton PSR for water ice mining',
       'Install Ka-band optical communication direct Earth relay terminal'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / GSFC / Arizona State University (LROC NAC)'
   },
 
   // 2. Mons Malapert Plateau
@@ -101,7 +104,10 @@ export const INITIAL_LUNAR_SITES = [
       'Construct initial surface basecamp on eastern plateau shelf',
       'Establish automated rover haulage road to southern ice deposits'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / LRO / Intuitive Machines IM-1'
   },
 
   // 3. Faustini Rim A
@@ -144,7 +150,10 @@ export const INITIAL_LUNAR_SITES = [
       'Designate as industrial mining zone for Commercial Lunar Payload Services',
       'Deploy thermal mining solar reflectors and sublimator domes'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / Diviner Science Team / UCLA'
   },
 
   // 4. Connecting Ridge
@@ -188,7 +197,10 @@ export const INITIAL_LUNAR_SITES = [
       'Construct sintered regolith landing pad with blast deflection walls',
       'Deploy mobile power generation rovers'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / GSFC / LROC (Artemis III Target Survey)'
   },
 
   // 5. de Gerlache Rim
@@ -230,7 +242,10 @@ export const INITIAL_LUNAR_SITES = [
       'Install compact Kilopower nuclear reactor (10 kWe) as baseline power',
       'Deploy autonomous ISRU water refinery pilot plant'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / GSFC / ASU Lunaserv WMS'
   },
 
   // 6. Haworth Crater Rim
@@ -272,7 +287,10 @@ export const INITIAL_LUNAR_SITES = [
       'Establish science laboratory for volatile age dating and isotope analysis',
       'Integrate solar tower arrays on highest crest points'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / LRO LOLA Altimetry Team'
   },
 
   // 7. Mons Mouton (Leibnitz Beta Plateau)
@@ -316,7 +334,10 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy deep-space optical telescope array benefiting from atmospheric absence',
       'Establish permanent astronaut habitat complex'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / VIPER Science Team / Ames Research Center'
   },
 
   // 8. Nobile Crater Rim
@@ -358,7 +379,10 @@ export const INITIAL_LUNAR_SITES = [
       'Install Artemis Base Camp Core Habitation Module',
       'Establish pressurized rover charging garage and airlocks'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / GSFC / ASU / LRO ShadowCam'
   },
 
   // 9. Amundsen Crater Floor & Rim
@@ -400,7 +424,10 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy autonomous drone/hopper for vertical wall sampling',
       'Construct remote science sensor grid'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / Southwest Research Institute (LAMP Team)'
   },
 
   // 10. Marius Hills Lava Tube Skylight
@@ -445,7 +472,10 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy heavy winched elevator down 50m skylight shaft',
       'Surface nuclear / solar umbilical power feed'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'JAXA / SELENE (Kaguya) Terrain Camera & LROC NAC'
   },
 
   // 11. Cabeus Crater (LCROSS Ground Zero)
@@ -487,7 +517,10 @@ export const INITIAL_LUNAR_SITES = [
       'Commercial rocket propellant (LH2/LOX) plant',
       'Cryogenic volatile distillation pipeline'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / LCROSS Science Team / ARC'
   },
 
   // 12. Shoemaker Crater Rim South
@@ -528,7 +561,10 @@ export const INITIAL_LUNAR_SITES = [
       'Autonomous mining rover testing grounds',
       'Regolith sintering construction demonstration'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / GSFC / ASU / LRO Narrow Angle Camera'
   },
 
   // 13. Chandrayaan-3 (Shiv Shakti Point)
@@ -570,7 +606,10 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy stationary long-term seismological observatory',
       'Establish regolith plasma charging research station'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'ISRO / ISTRAC / Pragyan Rover NavCam & Chandrayaan-2 OHRC'
   },
 
   // 14. Chandrayaan-1 (Jawahar Point)
@@ -611,7 +650,10 @@ export const INITIAL_LUNAR_SITES = [
       'Construct deep-space volatile monitoring station',
       'Install commemorative international scientific marker'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'ISRO / Moon Impact Probe & NASA M3 Team'
   },
 
   // 15. Chandrayaan-2 (Tiranga Point)
@@ -652,7 +694,10 @@ export const INITIAL_LUNAR_SITES = [
       'Install surface radar calibration transponder',
       'Deploy autonomous meteorological outpost'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'ISRO / Chandrayaan-2 Dual-Frequency SAR & OHRC'
   },
 
   // 16. Chandrayaan-4 / LUPEX
@@ -693,7 +738,10 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy 1.5m subsurface drill sampling core',
       'Establish volatile mass spectrometry laboratory'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'ISRO / JAXA Lunar Polar Exploration Mission Concept'
   },
 
   // 17. Apollo 11 (Statio Tranquillitatis)
@@ -735,7 +783,10 @@ export const INITIAL_LUNAR_SITES = [
       'Maintain international historical preservation perimeter',
       'Install laser ranging calibration monitor'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / Neil Armstrong & Buzz Aldrin / LROC NAC (M102360879R)'
   },
 
   // 18. Apollo 12 (Ocean of Storms)
@@ -775,7 +826,10 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Conduct long-duration material degradation studies on retrieved components'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / Pete Conrad & Alan Bean / Surveyor 3 Survey'
   },
 
   // 19. Apollo 14 (Fra Mauro Highlands)
@@ -814,7 +868,10 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Establish regional seismic and geology field station'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / Alan Shepard & Edgar Mitchell / Cone Crater Traverses'
   },
 
   // 20. Apollo 15 (Hadley-Apennine)
@@ -853,7 +910,10 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Construct robotic canyon exploration crane into Hadley Rille'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / David Scott & James Irwin / Lunar Roving Vehicle LRV-1'
   },
 
   // 21. Apollo 16 (Descartes Highlands)
@@ -892,7 +952,10 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Deploy ISRU regolith glass fiber sintering facility'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / John Young & Charles Duke / Cayley Formation'
   },
 
   // 22. Apollo 17 (Taurus-Littrow Valley)
@@ -931,7 +994,10 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Install automated pyroclastic glass extraction plant'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / Gene Cernan & Harrison Schmitt (Shorty Crater)'
   },
 
   // 23. Artemis III Target (Shackleton-Malapert Ridge)
@@ -974,7 +1040,10 @@ export const INITIAL_LUNAR_SITES = [
       'Install Artemis Base Camp foundation habitat and mobile power cart',
       'Establish ISRU water purification pipeline'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=400&q=80'
+    thumbnail: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=400&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / SpaceX / Axiom Space / LROC NAC High-Res Mosaic'
   }
 ];
 

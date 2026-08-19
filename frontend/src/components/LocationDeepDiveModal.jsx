@@ -253,45 +253,68 @@ export const LocationDeepDiveModal = ({
         {/* Modal Body (Scrollable Report View) */}
         <div className="p-6 overflow-y-auto space-y-6 text-slate-200 font-sans text-xs">
           
-          {/* Visual Optical Reconnaissance Banner */}
-          {site.thumbnail && (
-            <div className="relative h-48 rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group shadow-2xl">
+          {/* Dual Surface & Orbital Satellite Reconnaissance Imagery Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* 1. Surface In-Situ Imagery */}
+            <div className="relative h-52 rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group shadow-xl flex flex-col justify-between p-3">
               <img 
-                src={site.thumbnail} 
-                alt={site.name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src={site.surfaceImageUrl || site.thumbnail} 
+                alt={`${site.name} Surface`}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-black/40" />
               
-              <div className="absolute top-3 left-3 flex items-center gap-2">
+              <div className="relative z-10 flex items-center justify-between">
                 <span className="flex items-center gap-1.5 bg-black/80 px-2.5 py-1 rounded-lg backdrop-blur-md border border-slate-700 text-[10px] font-mono text-cyan-300">
                   <Camera className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>NASA LROC Orbital Reconnaissance Survey</span>
+                  <span>Surface Photographic View</span>
                 </span>
-                <span className="bg-purple-950/80 text-purple-300 border border-purple-500/50 px-2.5 py-1 rounded-lg backdrop-blur-md text-[10px] font-mono font-bold">
+                <span className="bg-purple-950/80 text-purple-300 border border-purple-500/50 px-2 py-0.5 rounded backdrop-blur-md text-[9px] font-mono font-bold">
                   {site.tier}
                 </span>
               </div>
 
-              <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
-                <div>
-                  <div className="text-xl font-bold font-mono text-white tracking-tight">
-                    {site.code} Altimetry Profile
-                  </div>
-                  <div className="text-xs font-mono text-slate-300 mt-0.5">
-                    Datum: {site.elevationMeters > 0 ? `+${site.elevationMeters}m` : `${site.elevationMeters}m`} • Slope: {site.slopeDegrees}°
-                  </div>
+              <div className="relative z-10 space-y-0.5">
+                <div className="text-sm font-bold font-mono text-white tracking-tight">
+                  {site.code} Surface In-Situ Profile
                 </div>
-                <div className="text-right bg-black/80 p-2.5 rounded-xl border border-slate-700 backdrop-blur-md font-mono">
-                  <div className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                    {site.suitabilityScore}
-                  </div>
-                  <div className="text-[10px] text-emerald-400 font-bold">Suitability Score / 100</div>
+                <div className="text-[10px] font-mono text-slate-300 truncate">
+                  Attribution: <span className="text-cyan-300 font-semibold">{site.imageAttribution || 'NASA / PDS Ground Truth'}</span>
                 </div>
               </div>
             </div>
-          )}
+
+            {/* 2. Orbital Satellite Reconnaissance Imagery */}
+            <div className="relative h-52 rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group shadow-xl flex flex-col justify-between p-3">
+              <img 
+                src={site.orbitalImageUrl || site.thumbnail} 
+                alt={`${site.name} Orbital Satellite`}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-black/40" />
+              
+              <div className="relative z-10 flex items-center justify-between">
+                <span className="flex items-center gap-1.5 bg-black/80 px-2.5 py-1 rounded-lg backdrop-blur-md border border-slate-700 text-[10px] font-mono text-indigo-300">
+                  <Layers className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Orbital Satellite Reconnaissance (LRO / WMS)</span>
+                </span>
+                <span className="bg-black/80 text-emerald-400 border border-emerald-500/40 px-2 py-0.5 rounded backdrop-blur-md text-[9px] font-mono font-bold">
+                  {site.suitabilityScore} / 100
+                </span>
+              </div>
+
+              <div className="relative z-10 space-y-0.5">
+                <div className="text-sm font-bold font-mono text-white tracking-tight">
+                  {site.code} Orbital Altimetry & Texture Map
+                </div>
+                <div className="text-[10px] font-mono text-slate-300 truncate">
+                  Satellite Credit: <span className="text-indigo-300 font-semibold">{site.imageAttribution || 'NASA / GSFC / ASU (LROC)'}</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Section 1: Lunar Terrain / DEM */}
           {(activeSubTab === 'all' || activeSubTab === 'terrain') && (

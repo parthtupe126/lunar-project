@@ -45,6 +45,9 @@ export interface LunarSite {
   whyThisSite: WhyThisSiteItem[];
   missionRecommendations: string[];
   thumbnail: string;
+  surfaceImageUrl?: string;
+  orbitalImageUrl?: string;
+  imageAttribution?: string;
   
   // 3D Cartesian coordinates on unit sphere for globe rendering
   sphereX?: number;

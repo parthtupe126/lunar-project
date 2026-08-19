@@ -60,7 +60,10 @@
       "temp_min_k": 180,
       "temp_max_k": 220,
       "diurnal_temperature_swing_k": 40
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)"
   },
   {
     "id": "site-malapert",
@@ -123,7 +126,10 @@
       "temp_min_k": 195,
       "temp_max_k": 235,
       "diurnal_temperature_swing_k": 40
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / LRO / Intuitive Machines IM-1"
   },
   {
     "id": "site-faustini",
@@ -186,7 +192,10 @@
       "temp_min_k": 110,
       "temp_max_k": 200,
       "diurnal_temperature_swing_k": 90
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Diviner Science Team / UCLA"
   },
   {
     "id": "site-connecting-ridge",
@@ -249,7 +258,10 @@
       "temp_min_k": 160,
       "temp_max_k": 220,
       "diurnal_temperature_swing_k": 60
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / LROC (Artemis III Target Survey)"
   },
   {
     "id": "site-de-gerlache",
@@ -312,7 +324,10 @@
       "temp_min_k": 140,
       "temp_max_k": 210,
       "diurnal_temperature_swing_k": 70
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / ASU Lunaserv WMS"
   },
   {
     "id": "site-haworth",
@@ -375,7 +390,10 @@
       "temp_min_k": 130,
       "temp_max_k": 215,
       "diurnal_temperature_swing_k": 85
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / LRO LOLA Altimetry Team"
   },
   {
     "id": "site-mons-mouton",
@@ -438,7 +456,10 @@
       "temp_min_k": 200,
       "temp_max_k": 240,
       "diurnal_temperature_swing_k": 40
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / VIPER Science Team / Ames Research Center"
   },
   {
     "id": "site-nobile",
@@ -501,7 +522,10 @@
       "temp_min_k": 165,
       "temp_max_k": 225,
       "diurnal_temperature_swing_k": 60
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / ASU / LRO ShadowCam"
   },
   {
     "id": "site-i",
@@ -564,7 +588,10 @@
       "temp_min_k": 120,
       "temp_max_k": 210,
       "diurnal_temperature_swing_k": 90
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Southwest Research Institute (LAMP Team)"
   },
   {
     "id": "site-j",
@@ -627,7 +654,10 @@
       "temp_min_k": 253,
       "temp_max_k": 256,
       "diurnal_temperature_swing_k": 3
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "JAXA / SELENE (Kaguya) Terrain Camera & LROC NAC"
   },
   {
     "id": "site-k",
@@ -690,7 +720,10 @@
       "temp_min_k": 90,
       "temp_max_k": 210,
       "diurnal_temperature_swing_k": 120
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / LCROSS Science Team / ARC"
   },
   {
     "id": "site-l",
@@ -753,7 +786,10 @@
       "temp_min_k": 150,
       "temp_max_k": 220,
       "diurnal_temperature_swing_k": 70
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / ASU / LRO Narrow Angle Camera"
   },
   {
     "id": "ch3_shiv_shakti",
@@ -816,7 +852,10 @@
       "temp_min_k": 130,
       "temp_max_k": 333,
       "diurnal_temperature_swing_k": 203
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "ISRO / ISTRAC / Pragyan Rover NavCam & Chandrayaan-2 OHRC"
   },
   {
     "id": "ch1_jawahar",
@@ -879,7 +918,10 @@
       "temp_min_k": 160,
       "temp_max_k": 220,
       "diurnal_temperature_swing_k": 60
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "ISRO / Moon Impact Probe & NASA M3 Team"
   },
   {
     "id": "ch2_tiranga",
@@ -942,7 +984,10 @@
       "temp_min_k": 135,
       "temp_max_k": 330,
       "diurnal_temperature_swing_k": 195
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "ISRO / Chandrayaan-2 Dual-Frequency SAR & OHRC"
   },
   {
     "id": "lupex_ch4",
@@ -1005,7 +1050,10 @@
       "temp_min_k": 170,
       "temp_max_k": 225,
       "diurnal_temperature_swing_k": 55
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "ISRO / JAXA Lunar Polar Exploration Mission Concept"
   },
   {
     "id": "apollo_11",
@@ -1068,7 +1116,10 @@
       "temp_min_k": 100,
       "temp_max_k": 385,
       "diurnal_temperature_swing_k": 285
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Neil Armstrong & Buzz Aldrin / LROC NAC (M102360879R)"
   },
   {
     "id": "apollo_12",
@@ -1131,7 +1182,10 @@
       "temp_min_k": 100,
       "temp_max_k": 387,
       "diurnal_temperature_swing_k": 287
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Pete Conrad & Alan Bean / Surveyor 3 Survey"
   },
   {
     "id": "apollo_14",
@@ -1194,7 +1248,10 @@
       "temp_min_k": 102,
       "temp_max_k": 384,
       "diurnal_temperature_swing_k": 282
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Alan Shepard & Edgar Mitchell / Cone Crater Traverses"
   },
   {
     "id": "apollo_15",
@@ -1257,7 +1314,10 @@
       "temp_min_k": 100,
       "temp_max_k": 382,
       "diurnal_temperature_swing_k": 282
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / David Scott & James Irwin / Lunar Roving Vehicle LRV-1"
   },
   {
     "id": "apollo_16",
@@ -1320,7 +1380,10 @@
       "temp_min_k": 105,
       "temp_max_k": 383,
       "diurnal_temperature_swing_k": 278
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / John Young & Charles Duke / Cayley Formation"
   },
   {
     "id": "apollo_17",
@@ -1383,7 +1446,10 @@
       "temp_min_k": 100,
       "temp_max_k": 384,
       "diurnal_temperature_swing_k": 284
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Gene Cernan & Harrison Schmitt (Shorty Crater)"
   },
   {
     "id": "artemis_3",
@@ -1446,6 +1512,9 @@
       "temp_min_k": 175,
       "temp_max_k": 222,
       "diurnal_temperature_swing_k": 47
-    }
+    },
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / SpaceX / Axiom Space / LROC NAC High-Res Mosaic"
   }
 ]
