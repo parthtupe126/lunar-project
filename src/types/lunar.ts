@@ -16,6 +16,12 @@ export interface WhyThisSiteItem {
   type: 'positive' | 'warning' | 'neutral';
 }
 
+export interface GalleryImage {
+  url: string;
+  alt_text: string;
+  overlayText?: string;
+}
+
 export interface LunarSite {
   id: string;
   code: string;              // e.g. 'Site A', 'Site B'
@@ -48,6 +54,7 @@ export interface LunarSite {
   surfaceImageUrl?: string;
   orbitalImageUrl?: string;
   imageAttribution?: string;
+  galleryImages?: GalleryImage[];
   
   // 3D Cartesian coordinates on unit sphere for globe rendering
   sphereX?: number;

@@ -66,8 +66,8 @@ export const Scoreboard = ({
             </span>
           </div>
 
-          {/* Quick Coordinates Mini-List */}
-          <div className="grid grid-cols-3 gap-1.5 mb-3">
+          {/* Top Candidates Ranked List with Image Previews matching image_11.png */}
+          <div className="space-y-1.5 mb-3">
             {sites.slice(0, 3).map((s, idx) => {
               const isSelected = topSite.id === s.id;
               return (
@@ -77,23 +77,32 @@ export const Scoreboard = ({
                     soundManager.playSelect();
                     onSelectSite(s);
                   }}
-                  className={`p-2 rounded-xl border text-left transition-all ${
+                  className={`w-full p-2 rounded-xl border text-left transition-all flex items-center justify-between gap-2 cursor-pointer ${
                     isSelected
-                      ? 'bg-purple-950/40 border-purple-500 shadow-glow-purple'
-                      : 'bg-[#0B1120] border-slate-800 hover:border-slate-700'
+                      ? 'bg-purple-950/40 border-purple-500/80 shadow-glow-purple'
+                      : 'bg-[#0B1120] border-slate-800/80 hover:border-slate-700 hover:bg-slate-900/60'
                   }`}
                 >
-                  <div className="flex items-center justify-between font-mono text-[10px] mb-1">
-                    <span className="font-bold text-slate-400">#{idx + 1}</span>
-                    <span className={`font-bold ${idx === 0 ? 'text-purple-400' : idx === 1 ? 'text-emerald-400' : 'text-amber-400'}`}>
-                      {s.suitabilityScore.toFixed(1)}
-                    </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[10px] font-mono font-bold text-slate-400">
+                      Site #{idx + 1}
+                    </div>
+                    <div className="font-mono font-bold text-xs text-white truncate">
+                      {s.code || s.shortName}
+                    </div>
+                    <div className="font-mono text-[10px] text-cyan-300 font-semibold mt-0.5">
+                      {s.suitabilityScore.toFixed(1)}%
+                    </div>
                   </div>
-                  <div className="font-mono font-bold text-xs text-white truncate">
-                    {s.code}
-                  </div>
-                  <div className="font-mono text-[9px] text-slate-400">
-                    {s.latitude.toFixed(1)}°S
+
+                  {/* Thumbnail Preview */}
+                  <div className="w-16 h-10 rounded-lg overflow-hidden border border-slate-700/60 shrink-0 bg-black">
+                    <img 
+                      src={s.surfaceImageUrl || s.thumbnail} 
+                      alt={s.code}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
                 </button>
               );

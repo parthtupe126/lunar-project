@@ -6,6 +6,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { SiteModal } from './components/SiteModal';
 import { LocationDeepDiveModal } from './components/LocationDeepDiveModal';
+import { PhotoGalleryGrid } from './components/PhotoGalleryGrid';
 import { INITIAL_LUNAR_SITES } from './data/lunarSites';
 import { rankSites } from './utils/aiEngine';
 import { ApiService } from './api';
@@ -138,17 +139,30 @@ export function App() {
           setFilter={setFilter}
         />
 
-        {/* Center Column: 3D Lunar Surface & Polar Orbit Visualization Canvas */}
+        {/* Center Column: 3D Lunar Surface & Polar Orbit Visualization Canvas + 4-Panel Gallery */}
         <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-          <Map3D
-            sites={visibleSites}
-            selectedSite={selectedSite}
-            onSelectSite={handleSelectSite}
-            layers={layers}
-            searchQuery={filter.searchQuery}
-            setSearchQuery={(q) => setFilter(prev => ({ ...prev, searchQuery: q }))}
-            onOpenDeepDive={() => setIsDeepDiveOpen(true)}
-          />
+          <div className="flex-1 relative min-h-0">
+            <Map3D
+              sites={visibleSites}
+              selectedSite={selectedSite}
+              onSelectSite={handleSelectSite}
+              layers={layers}
+              searchQuery={filter.searchQuery}
+              setSearchQuery={(q) => setFilter(prev => ({ ...prev, searchQuery: q }))}
+              onOpenDeepDive={() => setIsDeepDiveOpen(true)}
+            />
+          </div>
+
+          {/* Bottom 4-Panel Surface & Lander Photo Gallery Grid matching image_11.png */}
+          {selectedSite && (
+            <div className="p-2.5 bg-[#070B14]/95 border-t border-slate-800/90 backdrop-blur-xl shrink-0 z-20">
+              <PhotoGalleryGrid
+                images={selectedSite.galleryImages}
+                siteName={selectedSite.name}
+                onViewLander={() => setIsDeepDiveOpen(true)}
+              />
+            </div>
+          )}
         </div>
 
         {/* Right Column: Top Habitat Coordinates & AI Scoreboard */}
