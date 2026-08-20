@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { LunarSite } from '../../types/lunar';
 import { 
   X, 
@@ -27,6 +27,15 @@ import {
 } from 'lucide-react';
 import scientificDataset from '../../data/lunar_scientific_dataset.json';
 import { soundManager } from '../../utils/audio';
+import {
+  generateTerrainMesh,
+  generateRoughnessProfile,
+  generateSlopeDistribution,
+  generateSolarIlluminationCurve,
+  generateRadiationModel,
+  generateIcePSRModel,
+  generateCraterContours
+} from '../../utils/scientificVisualizers';
 
 interface LocationDeepDiveModalProps {
   isOpen?: boolean;
@@ -42,71 +51,117 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
   const [activeSubTab, setActiveSubTab] = useState<'all' | 'terrain' | 'ice' | 'solar' | 'radiation' | 'comms' | 'ml' | 'tactical'>('all');
   const [copied, setCopied] = useState(false);
 
-  if (!isOpen || !site) return null;
+  const safeSite = site || ({} as any);
 
   // Find exact enriched record from lunar_scientific_dataset.json
   const enriched = scientificDataset.find(
-    (d: any) => d.id === site.id || d.code.toLowerCase() === site.code.toLowerCase() || site.name.toLowerCase().includes(d.code.toLowerCase())
+    (d: any) => (safeSite.id && d.id === safeSite.id) || (safeSite.code && d.code?.toLowerCase() === safeSite.code?.toLowerCase()) || (safeSite.name && d.code && safeSite.name.toLowerCase().includes(d.code.toLowerCase()))
   ) || null;
 
   // Fallback structures if enriched is partially missing
   const terrain = enriched?.terrain_dem || {
-    elevation_m: site.elevationMeters,
-    slope_deg: site.slopeDegrees,
+    elevation_m: safeSite.elevationMeters || 0,
+    slope_deg: safeSite.slopeDegrees || 0,
     roughness_rms_m: 0.85,
     crater_diameter_km: 25.0,
     rim_depth_m: 3500,
     landing_corridor_rating: 'Standard Highland Corridor',
-    accessibility_index_100: site.factors.accessibility
+    accessibility_index_100: safeSite.factors?.accessibility || 80
   };
 
   const waterIce = enriched?.water_ice || {
-    ice_probability_pct: site.waterIcePurityPercent * 4.5,
-    hydrogen_content_ppm: Math.round(site.waterIcePurityPercent * 80),
+    ice_probability_pct: (safeSite.waterIcePurityPercent || 15) * 4.5,
+    hydrogen_content_ppm: Math.round((safeSite.waterIcePurityPercent || 15) * 80),
     radar_cpr: 0.72,
     spectroscopy_band_3um_depth: 0.075,
-    distance_to_psr_m: site.distanceToPsrMeters,
+    distance_to_psr_m: safeSite.distanceToPsrMeters || 400,
     estimated_ice_depth_m: 1.2,
-    psr_name: `${site.shortName} Shadow Basin`
+    psr_name: `${safeSite.shortName || safeSite.code || 'Target'} Shadow Basin`
   };
 
   const solar = enriched?.solar_illumination || {
-    annual_sunlight_pct: site.illuminationPercent,
-    max_continuous_light_days: Math.round(site.illuminationPercent * 1.6),
-    max_continuous_dark_days: Math.max(3.5, Math.round((100 - site.illuminationPercent) * 0.4)),
+    annual_sunlight_pct: safeSite.illuminationPercent || 85,
+    max_continuous_light_days: Math.round((safeSite.illuminationPercent || 85) * 1.6),
+    max_continuous_dark_days: Math.max(3.5, Math.round((100 - (safeSite.illuminationPercent || 85)) * 0.4)),
     avg_solar_elevation_deg: 1.45,
     seasonal_variance_pct: 6.5
   };
 
   const radiation = enriched?.radiation_environment || {
-    gcr_dose_msv_yr: site.radiationLevelMsvPerYear,
+    gcr_dose_msv_yr: safeSite.radiationLevelMsvPerYear || 300,
     spe_hazard_tier: 'Moderate (Solar Polar Exposure)',
-    dose_rate_usv_h: Number((site.radiationLevelMsvPerYear / 8760 * 1000).toFixed(1)),
+    dose_rate_usv_h: Number(((safeSite.radiationLevelMsvPerYear || 300) / 8760 * 1000).toFixed(1)),
     solar_cycle_phase: 'Cycle 25 Maximum Modulation',
-    terrain_shielding_factor_pct: site.factors.radiationSafety
+    terrain_shielding_factor_pct: safeSite.factors?.radiationSafety || 80
   };
 
   const comms = enriched?.geographic_communications || {
     geological_unit: 'Anorthositic Impact Melt Breccia & Regolith',
-    crater_boundary: `${site.shortName} Geological Margin`,
-    earth_direct_los_pct: site.earthLineOfSightPercent,
-    relay_satellite_required: site.earthLineOfSightPercent < 90,
-    near_or_far_side: site.latitude < -80 ? 'South Polar Region' : 'Near Side'
+    crater_boundary: `${safeSite.shortName || safeSite.code || 'Target'} Geological Margin`,
+    earth_direct_los_pct: safeSite.earthLineOfSightPercent || 95,
+    relay_satellite_required: (safeSite.earthLineOfSightPercent || 95) < 90,
+    near_or_far_side: (safeSite.latitude || 0) < -80 ? 'South Polar Region' : 'Near Side'
   };
 
   const mlMatrix = enriched?.ai_ml_matrix || {
-    ground_truth_label: `${site.tier} Habitation Candidate`,
+    ground_truth_label: `${safeSite.tier || 'SUITABLE'} Habitation Candidate`,
     mission_ground_truth_reference: 'NASA LRO LOLA / Diviner / Chandrayaan M3',
-    mcda_suitability_score: site.suitabilityScore,
-    ai_confidence_pct: site.aiConfidence,
-    suitability_tier: site.tier
+    mcda_suitability_score: safeSite.suitabilityScore || 85,
+    ai_confidence_pct: safeSite.aiConfidence || 90,
+    suitability_tier: safeSite.tier || 'SUITABLE'
   };
 
   const temps = enriched?.environmental_temperatures || {
-    temp_min_k: site.tempMinKelvin,
-    temp_max_k: site.tempMaxKelvin,
-    diurnal_temperature_swing_k: site.tempMaxKelvin - site.tempMinKelvin
+    temp_min_k: safeSite.tempMinKelvin || 150,
+    temp_max_k: safeSite.tempMaxKelvin || 220,
+    diurnal_temperature_swing_k: (safeSite.tempMaxKelvin || 220) - (safeSite.tempMinKelvin || 150)
   };
+
+  // Pure data-driven visualizations calculated reactively for the selected node
+  const terrainVisuals = useMemo(() => {
+    return generateTerrainMesh(terrain.slope_deg, terrain.elevation_m, terrain.roughness_rms_m);
+  }, [terrain.slope_deg, terrain.elevation_m, terrain.roughness_rms_m]);
+
+  const roughnessVisuals = useMemo(() => {
+    return generateRoughnessProfile(terrain.roughness_rms_m, terrain.elevation_m, terrain.crater_diameter_km);
+  }, [terrain.roughness_rms_m, terrain.elevation_m, terrain.crater_diameter_km]);
+
+  const slopeVisuals = useMemo(() => {
+    return generateSlopeDistribution(terrain.slope_deg, terrain.roughness_rms_m);
+  }, [terrain.slope_deg, terrain.roughness_rms_m]);
+
+  const solarVisuals = useMemo(() => {
+    return generateSolarIlluminationCurve(
+      solar.annual_sunlight_pct,
+      solar.max_continuous_light_days,
+      solar.max_continuous_dark_days,
+      solar.seasonal_variance_pct
+    );
+  }, [solar.annual_sunlight_pct, solar.max_continuous_light_days, solar.max_continuous_dark_days, solar.seasonal_variance_pct]);
+
+  const radiationVisuals = useMemo(() => {
+    return generateRadiationModel(
+      radiation.gcr_dose_msv_yr,
+      radiation.dose_rate_usv_h,
+      radiation.terrain_shielding_factor_pct
+    );
+  }, [radiation.gcr_dose_msv_yr, radiation.dose_rate_usv_h, radiation.terrain_shielding_factor_pct]);
+
+  const iceVisuals = useMemo(() => {
+    return generateIcePSRModel(
+      waterIce.ice_probability_pct,
+      waterIce.hydrogen_content_ppm,
+      waterIce.distance_to_psr_m
+    );
+  }, [waterIce.ice_probability_pct, waterIce.hydrogen_content_ppm, waterIce.distance_to_psr_m]);
+
+  const craterContours = useMemo(() => {
+    return generateCraterContours(
+      terrain.crater_diameter_km,
+      terrain.rim_depth_m,
+      terrain.slope_deg
+    );
+  }, [terrain.crater_diameter_km, terrain.rim_depth_m, terrain.slope_deg]);
 
   const handlePrint = () => {
     soundManager.playSelect();
@@ -117,9 +172,9 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
     soundManager.playSelect();
     const exportData = {
       export_timestamp_utc: new Date().toISOString(),
-      site_id: site.id,
-      name: site.name,
-      coordinates: { latitude: site.latitude, longitude: site.longitude },
+      site_id: safeSite.id,
+      name: safeSite.name,
+      coordinates: { latitude: safeSite.latitude, longitude: safeSite.longitude },
       scientific_metrics: {
         terrain_dem: terrain,
         water_ice: waterIce,
@@ -129,15 +184,15 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
         environmental_temperatures: temps,
         ai_ml_decision_matrix: mlMatrix
       },
-      why_this_site: site.whyThisSite,
-      mission_recommendations: site.missionRecommendations
+      why_this_site: safeSite.whyThisSite,
+      mission_recommendations: safeSite.missionRecommendations
     };
 
     const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `Lunar_Scientific_Telemetry_${site.code.replace(/\s+/g, '_')}.json`;
+    a.download = `Lunar_Scientific_Telemetry_${(safeSite.code || 'Site').replace(/\s+/g, '_')}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -145,6 +200,8 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  if (!isOpen || !site) return null;
 
   return (
     <div className="fixed inset-0 bg-black/85 backdrop-blur-xl z-50 flex items-center justify-center p-2 sm:p-4 select-none animate-in fade-in duration-200">
@@ -535,28 +592,42 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                 <div className="space-y-2">
                   <div className="text-xs font-mono font-bold text-slate-300">Key Site Advantages & Trade-Offs</div>
                   <div className="space-y-1.5">
-                    {site.whyThisSite.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-300 bg-slate-900/50 p-2 rounded-lg border border-slate-800/80">
-                        {item.type === 'positive' ? (
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                        ) : (
-                          <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                        )}
-                        <span>{item.text}</span>
-                      </div>
-                    ))}
+                    {(site.whyThisSite || [
+                      { text: 'Optimal local landing corridor and low slope terrain', type: 'positive' },
+                      { text: 'Direct adjacent access to permanent light and volatile traps', type: 'positive' },
+                      { text: 'Precision touchdown navigation required for rock/hazard avoidance', type: 'warning' }
+                    ]).map((item: any, idx: number) => {
+                      const isPositive = typeof item === 'string' 
+                        ? !item.toLowerCase().includes('warning') && !item.toLowerCase().includes('hazard') && !item.toLowerCase().includes('steep')
+                        : item.type === 'positive';
+                      const text = typeof item === 'string' ? item : item.text || JSON.stringify(item);
+                      return (
+                        <div key={idx} className="flex items-start gap-2 text-xs text-slate-300 bg-slate-900/50 p-2 rounded-lg border border-slate-800/80">
+                          {isPositive ? (
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                          ) : (
+                            <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                          )}
+                          <span>{text}</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <div className="text-xs font-mono font-bold text-slate-300">Habitat Deployment Recommendations</div>
                   <div className="space-y-1.5">
-                    {site.missionRecommendations.map((rec, idx) => (
+                    {(site.missionRecommendations || [
+                      'Deploy 100kW photovoltaic array along crest peak',
+                      'Establish primary pressurized habitat modules in micro-depression zone',
+                      'Deploy autonomous rover into local PSR for water ice mining'
+                    ]).map((rec: any, idx: number) => (
                       <div key={idx} className="flex items-start gap-2 text-xs text-slate-300 bg-slate-900/50 p-2 rounded-lg border border-slate-800/80">
                         <span className="text-[10px] font-mono font-bold text-cyan-400 bg-cyan-950/80 px-1.5 py-0.5 rounded border border-cyan-500/30">
                           {idx + 1}
                         </span>
-                        <span>{rec}</span>
+                        <span>{typeof rec === 'string' ? rec : rec.text || rec}</span>
                       </div>
                     ))}
                   </div>
@@ -588,9 +659,7 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                   <span>•</span>
                   <span>Grid Datum: LOLA SLDEM2015 118m</span>
                 </div>
-              </div>
-
-              {/* 3-Column Tactical Instrument Grid matching Image 2 */}
+                    {/* 3-Column Tactical Instrument Grid matching Image 2 */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5">
                 
                 {/* LEFT COLUMN: Terrain Flatness & Water Ice Detection (3 cols) */}
@@ -605,7 +674,7 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                       </span>
                     </div>
 
-                    {/* 3D Slope Mesh Graphic */}
+                    {/* Dynamic 3D Slope Mesh Graphic driven by slope_deg & elevation_m */}
                     <div className="relative h-28 rounded-lg overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center p-2">
                       <svg viewBox="0 0 160 90" className="w-full h-full">
                         <defs>
@@ -616,47 +685,61 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                             <stop offset="100%" stopColor="#ef4444" />
                           </linearGradient>
                         </defs>
-                        {/* 3D Wireframe Landscape Iso-Grid */}
-                        <path d="M 10 70 L 60 30 L 110 45 L 150 75 L 100 85 Z" fill="url(#topoMeshGradTs)" opacity="0.85" />
-                        <path d="M 10 70 L 60 30 M 35 75 L 85 35 M 60 80 L 110 40 M 100 85 L 150 45" stroke="#ffffff" strokeWidth="0.5" opacity="0.4" fill="none" />
-                        <path d="M 60 30 L 150 45 M 40 45 L 130 60 M 20 60 L 110 75" stroke="#ffffff" strokeWidth="0.5" opacity="0.4" fill="none" />
-                        <circle cx="85" cy="48" r="14" stroke="#10b981" strokeWidth="1.5" strokeDasharray="3,2" fill="#10b981" fillOpacity="0.2" />
-                        <circle cx="85" cy="48" r="3" fill="#10b981" />
+                        {/* Dynamic 3D Wireframe Landscape Iso-Grid */}
+                        <path d={terrainVisuals.basePolygon} fill="url(#topoMeshGradTs)" opacity="0.85" />
+                        {terrainVisuals.wirelines.map((d: string, idx: number) => (
+                          <path key={idx} d={d} stroke="#ffffff" strokeWidth="0.6" opacity="0.45" fill="none" />
+                        ))}
+                        {/* Dynamic Landing Stability Node */}
+                        <circle 
+                          cx={terrainVisuals.peakX} 
+                          cy={terrainVisuals.peakY} 
+                          r={terrainVisuals.stabilityRadius} 
+                          stroke={terrainVisuals.stabilityColor} 
+                          strokeWidth="1.5" 
+                          strokeDasharray="3,2" 
+                          fill={terrainVisuals.stabilityColor} 
+                          fillOpacity="0.22" 
+                        />
+                        <circle cx={terrainVisuals.peakX} cy={terrainVisuals.peakY} r="3" fill={terrainVisuals.stabilityColor} />
                       </svg>
 
                       <div className="absolute top-1.5 left-2 text-[9px] text-cyan-300 font-bold">
-                        3D Slope Analysis
+                        3D Slope Analysis ({terrain.slope_deg}°)
                       </div>
-                      <div className="absolute bottom-1.5 left-2 text-[9px] text-emerald-400 bg-black/80 px-1.5 py-0.5 rounded border border-emerald-500/40 font-bold">
-                        High Stability: 94%
+                      <div 
+                        className="absolute bottom-1.5 left-2 text-[9px] bg-black/80 px-1.5 py-0.5 rounded border font-bold"
+                        style={{ color: terrainVisuals.stabilityColor, borderColor: `${terrainVisuals.stabilityColor}60` }}
+                      >
+                        Stability: {terrainVisuals.stabilityPct}%
                       </div>
                       {/* Hypsometric Bar */}
                       <div className="absolute top-2 right-2 bottom-2 w-2 rounded-full bg-gradient-to-t from-blue-600 via-emerald-500 via-yellow-400 to-red-500 flex flex-col justify-between py-0.5 text-[7px] text-white font-bold items-center">
-                        <span>94%</span>
-                        <span>44%</span>
+                        <span>{terrain.elevation_m > 0 ? `+${terrain.elevation_m}m` : `${terrain.elevation_m}m`}</span>
+                        <span>{terrain.slope_deg}°</span>
                       </div>
                     </div>
 
                     {/* Dual Distribution Curves */}
                     <div className="grid grid-cols-2 gap-2 text-[9px]">
-                      {/* Surface Roughness */}
+                      {/* Dynamic Surface Roughness Curve */}
                       <div className="p-1.5 bg-slate-900/80 rounded-lg border border-slate-800 space-y-1">
                         <div className="text-slate-400">Surface Roughness</div>
                         <svg viewBox="0 0 60 25" className="w-full h-6">
-                          <path d="M 2 22 Q 10 5, 20 18 T 35 8 T 50 16 L 58 22" fill="none" stroke="#06b6d4" strokeWidth="1.5" />
-                          <path d="M 2 22 Q 10 5, 20 18 T 35 8 T 50 16 L 58 22 Z" fill="#06b6d4" fillOpacity="0.2" />
+                          <path d={roughnessVisuals.path} fill="none" stroke="#06b6d4" strokeWidth="1.5" />
+                          <path d={roughnessVisuals.fillPath} fill="#06b6d4" fillOpacity="0.2" />
                         </svg>
-                        <div className="text-slate-300">RMS: <strong className="text-white">{terrain.roughness_rms_m}m</strong></div>
+                        <div className="text-slate-300">RMS: <strong className="text-white">{roughnessVisuals.rms}m</strong></div>
                       </div>
 
-                      {/* Slope Distribution */}
+                      {/* Dynamic Slope Distribution Curve */}
                       <div className="p-1.5 bg-slate-900/80 rounded-lg border border-slate-800 space-y-1">
                         <div className="text-slate-400">Slope Distribution</div>
                         <svg viewBox="0 0 60 25" className="w-full h-6">
-                          <path d="M 2 22 Q 15 2, 28 20 T 58 22" fill="none" stroke="#10b981" strokeWidth="1.5" />
-                          <path d="M 2 22 Q 15 2, 28 20 T 58 22 Z" fill="#10b981" fillOpacity="0.2" />
+                          <path d={slopeVisuals.path} fill="none" stroke="#10b981" strokeWidth="1.5" />
+                          <path d={slopeVisuals.fillPath} fill="#10b981" fillOpacity="0.2" />
                         </svg>
-                        <div className="text-emerald-400">&lt;3° construction</div>
+                        <div className="text-emerald-400">&lt;3°: <strong className="text-white">{slopeVisuals.constructionPct}%</strong></div>
                       </div>
                     </div>
                   </div>
@@ -671,24 +754,30 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                     </div>
 
                     <div className="grid grid-cols-2 gap-2">
-                      {/* Heatmap */}
+                      {/* Dynamic Volatiles Heatmap */}
                       <div className="relative h-24 rounded-lg overflow-hidden bg-slate-950 border border-slate-800 flex flex-col justify-between p-1.5">
                         <div className="absolute inset-0 bg-gradient-to-br from-blue-700 via-cyan-500 via-amber-500 to-rose-600 opacity-80" />
-                        <div className="absolute inset-2 rounded-full border-2 border-dashed border-white/60 bg-blue-950/80 backdrop-blur-xs flex items-center justify-center">
-                          <span className="text-[10px] font-bold text-white drop-shadow">PSR Trap</span>
+                        <div 
+                          className="absolute inset-2 rounded-full border-2 border-dashed border-white/60 bg-blue-950/80 backdrop-blur-xs flex items-center justify-center transition-all"
+                          style={{ transform: `scale(${Math.max(0.4, Math.min(1.0, Number(iceVisuals.iceProb) / 100))})` }}
+                        >
+                          <span className="text-[9px] font-bold text-white drop-shadow">{iceVisuals.coldTrapTempK} K</span>
                         </div>
-                        <span className="relative z-10 text-[8px] text-white font-bold bg-black/60 px-1 rounded">
+                        <span className="relative z-10 text-[8px] text-white font-bold bg-black/60 px-1 rounded truncate">
                           {site.code} PSR
                         </span>
                       </div>
 
-                      {/* PSR Monochrome Mask */}
+                      {/* Dynamic PSR Monochrome Mask */}
                       <div className="relative h-24 rounded-lg overflow-hidden bg-black border border-slate-800 flex flex-col justify-between p-1.5">
-                        <div className="absolute inset-3 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center">
-                          <span className="text-[8px] text-slate-400 text-center font-bold">Permanently Shadowed</span>
+                        <div 
+                          className="absolute inset-3 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center transition-all"
+                          style={{ transform: `scale(${Math.max(0.3, Math.min(1.0, (waterIce.distance_to_psr_m < 1000 ? 0.9 : 0.45)))})` }}
+                        >
+                          <span className="text-[7px] text-slate-400 text-center font-bold">{waterIce.psr_name || 'PSR Basin'}</span>
                         </div>
                         <span className="relative z-10 text-[8px] text-slate-300 font-bold bg-slate-900/90 px-1 rounded">
-                          PSR Mask
+                          {waterIce.distance_to_psr_m}m to Cold Trap
                         </span>
                       </div>
                     </div>
@@ -696,7 +785,7 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                     {/* Scale bar */}
                     <div className="p-1.5 bg-slate-900/80 rounded-lg border border-slate-800 text-[9px] flex items-center justify-between">
                       <span className="text-slate-400">Ice Probability:</span>
-                      <strong className="text-blue-300">{waterIce.ice_probability_pct}% ({waterIce.hydrogen_content_ppm} ppm)</strong>
+                      <strong className="text-blue-300">{iceVisuals.iceProb}% ({iceVisuals.hydrogenPpm} ppm)</strong>
                     </div>
                   </div>
 
@@ -716,9 +805,9 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                     </div>
 
                     <div className="flex items-center gap-1.5">
-                      <span className="px-2 py-1 rounded bg-slate-800/80 text-slate-300">South Pole</span>
-                      <span className="px-2 py-1 rounded bg-slate-800/80 text-slate-300">Topomap</span>
-                      <span className="px-2 py-1 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/30">Layers: 3 Active</span>
+                      <span className="px-2 py-1 rounded bg-slate-800/80 text-slate-300">Lat: {site.latitude?.toFixed(2)}°</span>
+                      <span className="px-2 py-1 rounded bg-slate-800/80 text-slate-300">Lon: {site.longitude?.toFixed(2)}°</span>
+                      <span className="px-2 py-1 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/30">Diam: {terrain.crater_diameter_km}km</span>
                     </div>
                   </div>
 
@@ -731,30 +820,28 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-black/30" />
 
-                    {/* Vector Topographic Contour Overlays */}
+                    {/* Dynamic Vector Topographic Contour Overlays scaled to actual crater dimensions */}
                     <svg viewBox="0 0 400 300" className="absolute inset-0 w-full h-full pointer-events-none">
-                      {/* Contour Rings */}
-                      <ellipse cx="200" cy="150" rx="140" ry="75" fill="none" stroke="#ffffff" strokeWidth="0.75" strokeDasharray="4,4" opacity="0.5" />
-                      <ellipse cx="200" cy="150" rx="110" ry="58" fill="none" stroke="#ffffff" strokeWidth="0.75" opacity="0.6" />
-                      <ellipse cx="200" cy="150" rx="80" ry="42" fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.7" />
-                      <ellipse cx="200" cy="150" rx="55" ry="28" fill="#10b981" fillOpacity="0.25" stroke="#10b981" strokeWidth="2" />
+                      {/* Dynamic Contour Rings */}
+                      <ellipse cx="200" cy="150" rx={craterContours.outer.rx} ry={craterContours.outer.ry} fill="none" stroke="#ffffff" strokeWidth="0.75" strokeDasharray="4,4" opacity="0.5" />
+                      <ellipse cx="200" cy="150" rx={craterContours.mid.rx} ry={craterContours.mid.ry} fill="none" stroke="#ffffff" strokeWidth="0.75" opacity="0.6" />
+                      <ellipse cx="200" cy="150" rx={craterContours.inner.rx} ry={craterContours.inner.ry} fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.7" />
+                      <ellipse cx="200" cy="150" rx={craterContours.center.rx} ry={craterContours.center.ry} fill="#10b981" fillOpacity="0.25" stroke="#10b981" strokeWidth="2" />
                       
                       {/* Radial Landing Boundary Nodes */}
-                      <circle cx="155" cy="138" r="3" fill="#06b6d4" />
-                      <circle cx="245" cy="142" r="3" fill="#06b6d4" />
-                      <circle cx="180" cy="168" r="3" fill="#06b6d4" />
-                      <circle cx="220" cy="162" r="3" fill="#06b6d4" />
+                      <circle cx={200 - craterContours.center.rx + 5} cy="142" r="3" fill="#06b6d4" />
+                      <circle cx={200 + craterContours.center.rx - 5} cy="158" r="3" fill="#06b6d4" />
                       <circle cx="200" cy="150" r="4.5" fill="#10b981" stroke="#ffffff" strokeWidth="1" />
                     </svg>
 
-                    {/* Tactical Site Badge Callout Tag matching Image 2 */}
+                    {/* Tactical Site Badge Callout Tag */}
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-16 pointer-events-none">
                       <div className="bg-[#050811]/95 border-2 border-emerald-400 text-white px-3 py-1.5 rounded-xl shadow-2xl backdrop-blur-md flex flex-col items-center animate-bounce duration-1000">
                         <span className="text-xs font-mono font-black text-emerald-400 tracking-wider">
-                          {site.code.toUpperCase()}-A
+                          {(site.code || 'SITE').toUpperCase()}-A
                         </span>
                         <span className="text-[10px] font-mono text-slate-200">
-                          Optimal Location ({(site.suitabilityScore / 10).toFixed(1)}/10)
+                          Suitability: {(site.suitabilityScore / 10).toFixed(1)} / 10
                         </span>
                       </div>
                     </div>
@@ -763,22 +850,22 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                     <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-md p-2 rounded-xl border border-slate-700 font-mono text-[9px] space-y-1">
                       <div className="flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                        <span className="text-slate-300">Terrain (LOLA Altimetry)</span>
+                        <span className="text-slate-300">Slope: {terrain.slope_deg}°</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                        <span className="text-slate-300">Ice (High Probability)</span>
+                        <span className="text-slate-300">Ice: {iceVisuals.iceProb}%</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-yellow-400" />
-                        <span className="text-slate-300">Sun (Continuous Peak)</span>
+                        <span className="text-slate-300">Sun: {solar.annual_sunlight_pct}%</span>
                       </div>
                     </div>
 
                     {/* Bottom-Right LROC Timestamp */}
                     <div className="absolute bottom-3 right-3 bg-black/80 px-2.5 py-1 rounded-lg border border-slate-700 font-mono text-[9px] text-slate-300 flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>NASA LRO Data Active • High-Res Orthomosaic</span>
+                      <span>{site.imageAttribution || 'NASA LRO Data Active'}</span>
                     </div>
                   </div>
 
@@ -797,25 +884,25 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                     </div>
 
                     <div className="text-[9px] text-slate-400">Annual Sunlight Duration Profile</div>
-                    {/* Solar Peak Curve SVG */}
+                    {/* Dynamic Solar Peak Curve SVG */}
                     <div className="h-20 bg-slate-950 rounded-lg p-1.5 border border-slate-800 flex items-center justify-center">
                       <svg viewBox="0 0 160 50" className="w-full h-full">
                         <defs>
-                          <linearGradient id="sunCurveGradTs" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <linearGradient id="sunCurveGradTs" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.8" />
                             <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.0" />
                           </linearGradient>
                         </defs>
-                        <path d="M 5 45 Q 40 40, 60 15 Q 80 8, 100 15 Q 120 40, 155 45 L 155 48 L 5 48 Z" fill="url(#sunCurveGradTs)" />
-                        <path d="M 5 45 Q 40 40, 60 15 Q 80 8, 100 15 Q 120 40, 155 45" fill="none" stroke="#fbbf24" strokeWidth="2" />
+                        <path d={solarVisuals.fillD} fill="url(#sunCurveGradTs)" />
+                        <path d={solarVisuals.pathD} fill="none" stroke="#fbbf24" strokeWidth="2" />
                         <line x1="80" y1="5" x2="80" y2="48" stroke="#ffffff" strokeWidth="1" strokeDasharray="2,2" opacity="0.6" />
-                        <circle cx="80" cy="8" r="3" fill="#fbbf24" stroke="#ffffff" strokeWidth="1" />
+                        <circle cx="80" cy={solarVisuals.peakY} r="3" fill="#fbbf24" stroke="#ffffff" strokeWidth="1" />
                       </svg>
                     </div>
 
                     <div className="p-1.5 bg-slate-900/80 rounded-lg border border-slate-800 text-[9px] flex items-center justify-between">
                       <span>Peak Sun Coverage:</span>
-                      <strong className="text-amber-300 font-bold">{solar.annual_sunlight_pct}% ({solar.max_continuous_light_days} Days Continuous)</strong>
+                      <strong className="text-amber-300 font-bold">{solarVisuals.sunPct}% ({solarVisuals.lightDays}d Sun)</strong>
                     </div>
                   </div>
 
@@ -828,21 +915,24 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                       </span>
                     </div>
 
-                    {/* Radiation Risk Colormap */}
+                    {/* Dynamic Radiation Risk Colormap */}
                     <div className="relative h-20 rounded-lg overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center p-1.5">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-blue-700 via-emerald-500 via-yellow-400 to-rose-600 opacity-80" />
+                      <div className={`absolute inset-0 bg-gradient-to-tr ${radiationVisuals.badgeGradient} opacity-80`} />
                       <div className="absolute top-2 left-2 text-[8px] font-bold text-white bg-black/60 px-1 rounded">
-                        GCR/SEP Colormap
+                        GCR/SEP ({radiationVisuals.riskTier})
                       </div>
-                      <div className="absolute bottom-2 left-2 text-[9px] font-bold text-white bg-black/80 px-1.5 py-0.5 rounded border border-slate-600">
-                        Dose: {(radiation.gcr_dose_msv_yr / 1000).toFixed(2)} mSv/yr (Low Risk)
+                      <div 
+                        className="absolute bottom-2 left-2 text-[9px] font-bold bg-black/80 px-1.5 py-0.5 rounded border"
+                        style={{ color: radiationVisuals.riskColor, borderColor: `${radiationVisuals.riskColor}60` }}
+                      >
+                        Dose: {radiationVisuals.annualDoseMsv} mSv/yr
                       </div>
                       <div className="absolute top-2 right-2 bottom-2 w-1.5 rounded-full bg-gradient-to-t from-blue-600 via-green-400 to-red-500" />
                     </div>
 
                     <div className="p-1.5 bg-slate-900/80 rounded-lg border border-slate-800 text-[9px] flex items-center justify-between">
                       <span className="text-slate-400">Hourly Flux Rate:</span>
-                      <strong className="text-purple-300 font-bold">{radiation.dose_rate_usv_h} µSv/h</strong>
+                      <strong className="text-purple-300 font-bold">{radiationVisuals.hourlyFluxUsv} µSv/h</strong>
                     </div>
                   </div>
 
@@ -855,10 +945,10 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                       <div>
                         <div className="flex justify-between text-slate-300 mb-0.5">
                           <span>Terrain Crest Shielding</span>
-                          <strong className="text-emerald-400">{radiation.terrain_shielding_factor_pct}%</strong>
+                          <strong className="text-emerald-400">{radiationVisuals.shieldingPct}%</strong>
                         </div>
                         <div className="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
-                          <div className="bg-emerald-400 h-full rounded-full" style={{ width: `${radiation.terrain_shielding_factor_pct}%` }} />
+                          <div className="bg-emerald-400 h-full rounded-full transition-all duration-500" style={{ width: `${radiationVisuals.shieldingPct}%` }} />
                         </div>
                       </div>
                       <div>
@@ -867,7 +957,7 @@ export const LocationDeepDiveModal: React.FC<LocationDeepDiveModalProps> = ({
                           <strong className="text-cyan-400">{comms.earth_direct_los_pct}%</strong>
                         </div>
                         <div className="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
-                          <div className="bg-cyan-400 h-full rounded-full" style={{ width: `${comms.earth_direct_los_pct}%` }} />
+                          <div className="bg-cyan-400 h-full rounded-full transition-all duration-500" style={{ width: `${comms.earth_direct_los_pct}%` }} />
                         </div>
                       </div>
                     </div>

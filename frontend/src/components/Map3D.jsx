@@ -1449,14 +1449,36 @@ export const Map3D = ({
             <button
               onClick={() => {
                 soundManager.playSelect();
-                const matchedSite = sites.find(s => 
+                // Robust multi-tier site resolution from mission
+                let matchedSite = sites.find(s => 
                   s.id === selectedMission.id || 
-                  s.name?.toLowerCase().includes(selectedMission.name.toLowerCase().split('(')[0].trim()) ||
-                  selectedMission.name.toLowerCase().includes(s.code?.toLowerCase() || '')
+                  (s.name && selectedMission.name && s.name.toLowerCase().includes(selectedMission.name.toLowerCase().split('(')[0].trim())) ||
+                  (s.code && selectedMission.name && selectedMission.name.toLowerCase().includes(s.code.toLowerCase()))
                 );
+
+                if (!matchedSite) {
+                  // Keyword matching against crater / region names (e.g., Cabeus, Shackleton, Malapert, Apollo, Shiv Shakti)
+                  const missionText = `${selectedMission.name} ${selectedMission.discovery || ''}`.toLowerCase();
+                  matchedSite = sites.find(s => 
+                    (s.name && missionText.includes(s.name.toLowerCase())) ||
+                    (s.code && missionText.includes(s.code.toLowerCase())) ||
+                    (s.shortName && missionText.includes(s.shortName.toLowerCase()))
+                  );
+                }
+
+                if (!matchedSite && sites.length > 0 && selectedMission.lat !== undefined && selectedMission.lon !== undefined) {
+                  // Closest site by spherical distance
+                  matchedSite = sites.reduce((closest, s) => {
+                    const dCurrent = Math.hypot((s.latitude || 0) - selectedMission.lat, (s.longitude || 0) - selectedMission.lon);
+                    const dClosest = Math.hypot((closest.latitude || 0) - selectedMission.lat, (closest.longitude || 0) - selectedMission.lon);
+                    return dCurrent < dClosest ? s : closest;
+                  }, sites[0]);
+                }
+
                 if (matchedSite) {
                   onSelectSite(matchedSite);
                 }
+                setSelectedMission(null);
                 onOpenDeepDive();
               }}
               className="w-full py-2.5 px-3 bg-gradient-to-r from-purple-700 via-indigo-600 to-cyan-600 hover:from-purple-600 hover:to-cyan-500 text-white rounded-xl font-mono text-xs font-bold transition-all shadow-glow-cyan flex items-center justify-center gap-2 border border-cyan-400/40 mt-1 cursor-pointer"

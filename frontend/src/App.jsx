@@ -110,7 +110,9 @@ export function App() {
   }, [rankedSites, filter]);
 
   const handleSelectSite = (site) => {
-    setSelectedSiteId(site.id);
+    if (site && site.id) {
+      setSelectedSiteId(site.id);
+    }
   };
 
   return (
