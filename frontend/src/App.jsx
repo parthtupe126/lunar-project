@@ -6,6 +6,7 @@ import { Header } from './components/Header';
 import { SiteModal } from './components/SiteModal';
 import { LocationDeepDiveModal } from './components/LocationDeepDiveModal';
 import { MissionsExplorerModal } from './components/MissionsExplorerModal';
+import { TeamModal } from './components/TeamModal';
 import { OpeningAnimation } from './components/OpeningAnimation';
 import { INITIAL_LUNAR_SITES } from './data/lunarSites';
 import { rankSites } from './utils/aiEngine';
@@ -19,6 +20,7 @@ export function App() {
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isDeepDiveOpen, setIsDeepDiveOpen] = useState(false);
   const [isMissionsOpen, setIsMissionsOpen] = useState(false);
+  const [isTeamOpen, setIsTeamOpen] = useState(false);
   const [isBackendConnected, setIsBackendConnected] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -164,6 +166,7 @@ export function App() {
           setIsMuted={setIsMuted}
           onOpenReport={() => setIsReportOpen(true)}
           onOpenMissions={() => setIsMissionsOpen(true)}
+          onOpenTeam={() => setIsTeamOpen(true)}
           spaceWeather={spaceWeather}
           isBackendConnected={isBackendConnected}
           isFullscreen={isFullscreen}
@@ -258,7 +261,13 @@ export function App() {
         }}
       />
 
-      {/* 7. Cinematic Opening / Initialization Sequence */}
+      {/* 7. Project Contributors & Team Members Modal */}
+      <TeamModal
+        isOpen={isTeamOpen}
+        onClose={() => setIsTeamOpen(false)}
+      />
+
+      {/* 8. Cinematic Opening / Initialization Sequence */}
       {showIntro && (
         <OpeningAnimation onComplete={() => setShowIntro(false)} />
       )}

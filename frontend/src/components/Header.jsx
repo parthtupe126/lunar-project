@@ -11,7 +11,8 @@ import {
   BarChart3,
   Server,
   Maximize2,
-  Minimize2
+  Minimize2,
+  Users
 } from 'lucide-react';
 import { soundManager } from '../utils/audio';
 
@@ -22,6 +23,7 @@ export const Header = ({
   setIsMuted = () => {},
   onOpenReport = () => {},
   onOpenMissions = () => {},
+  onOpenTeam = () => {},
   spaceWeather = {},
   isBackendConnected = false,
   isFullscreen = false,
@@ -70,6 +72,20 @@ export const Header = ({
           <Rocket className="w-3.5 h-3.5 text-orange-400" />
           <span className="hidden sm:inline">Missions Catalogue</span>
           <span className="sm:hidden">Missions</span>
+        </button>
+
+        {/* Project Team & Members Button */}
+        <button
+          onClick={() => {
+            soundManager.playSelect();
+            onOpenTeam();
+          }}
+          title="View GitHub Repository Contributors & Team Members"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-purple-500/30 text-purple-300 hover:text-white text-xs font-mono font-semibold transition-all shadow-glow-purple"
+        >
+          <Users className="w-3.5 h-3.5 text-purple-400" />
+          <span className="hidden sm:inline">Repo Team</span>
+          <span className="sm:hidden">Team</span>
         </button>
 
         {/* Fullscreen Toggle Button */}
