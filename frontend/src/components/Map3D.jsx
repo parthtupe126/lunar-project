@@ -2,13 +2,13 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { latLonToVector3, LUNAR_MISSIONS, LUNAR_LANDMARKS } from '../data/lunarSites';
-import { 
-  Search, 
-  RotateCcw, 
-  Plus, 
-  Minus, 
-  Crosshair, 
-  Globe, 
+import {
+  Search,
+  RotateCcw,
+  Plus,
+  Minus,
+  Crosshair,
+  Globe,
   Sparkles,
   MapPin,
   Sun,
@@ -23,9 +23,12 @@ import {
   X,
   Compass,
   Layers,
-  Activity
+  Activity,
+  Maximize2,
+  Minimize2
 } from 'lucide-react';
 import { soundManager } from '../utils/audio';
+import { MissionsExplorerModal } from './MissionsExplorerModal';
 
 const MOON_RADIUS = 1.5;
 
@@ -208,7 +211,7 @@ function getEstimatedElevation(lat, lon) {
   // South Pole - Aitken Basin (-53° S, 169° E)
   const dSPA = Math.hypot(lat - (-53), lon - 169);
   if (dSPA < 35) return Math.round(-8500 + dSPA * 180);
-  
+
   // South Pole (Shackleton / Amundsen)
   if (lat < -80) return Math.round(-4200 + (lat + 90) * 320);
 
@@ -228,7 +231,7 @@ function getEstimatedElevation(lat, lon) {
 export const Map3D = ({
   sites = [],
   selectedSite = null,
-  onSelectSite = () => {},
+  onSelectSite = () => { },
   layers = {
     terrain: true,
     elevation: true,
@@ -240,8 +243,10 @@ export const Map3D = ({
     aiSuitability: true
   },
   searchQuery = '',
-  setSearchQuery = () => {},
-  onOpenDeepDive = () => {}
+  setSearchQuery = () => { },
+  onOpenDeepDive = () => { },
+  isFullscreen = false,
+  onToggleFullscreen = () => { }
 }) => {
   const containerRef = useRef(null);
 
@@ -254,11 +259,12 @@ export const Map3D = ({
   const [ambientIntensity, setAmbientIntensity] = useState(0.28);
   const [contrastBoost, setContrastBoost] = useState(1.05);
   const [microDetailScale, setMicroDetailScale] = useState(1.0);
-  const [isAutoSpin, setIsAutoSpin] = useState(false);
+  const [isAutoSpin, setIsAutoSpin] = useState(true);
   const [spinSpeed] = useState(0.001);
   const [showMissions, setShowMissions] = useState(true);
   const [activeMissionFilter, setActiveMissionFilter] = useState('all'); // 'all' | 'isro' | 'nasa' | 'spacex' | 'sides'
   const [selectedMission, setSelectedMission] = useState(null);
+  const [isMissionsModalOpen, setIsMissionsModalOpen] = useState(false);
   const [isControlsExpanded, setIsControlsExpanded] = useState(false);
   const [cursorCoords, setCursorCoords] = useState({ lat: -89.20, lon: 15.40, elevation: -3850 });
   const [hoveredObject, setHoveredObject] = useState(null);
@@ -279,17 +285,26 @@ export const Map3D = ({
   const textureCacheRef = useRef({});
   const targetCameraPosRef = useRef(null);
   const targetControlsTargetRef = useRef(null);
+  const isAutoSpinRef = useRef(true);
+
+  useEffect(() => {
+    isAutoSpinRef.current = isAutoSpin;
+    if (controlsRef.current) {
+      controlsRef.current.autoRotate = isAutoSpin;
+      controlsRef.current.autoRotateSpeed = 0.45;
+    }
+  }, [isAutoSpin]);
 
   // Filtered search list
   const searchResults = useMemo(() => {
     if (!searchQuery.trim()) return [];
     const q = searchQuery.toLowerCase();
-    const siteMatches = sites.filter(s => 
+    const siteMatches = sites.filter(s =>
       s.name.toLowerCase().includes(q) ||
       s.code.toLowerCase().includes(q) ||
       s.shortName.toLowerCase().includes(q)
     );
-    const missionMatches = LUNAR_MISSIONS.filter(m => 
+    const missionMatches = LUNAR_MISSIONS.filter(m =>
       m.name.toLowerCase().includes(q) ||
       m.agency.toLowerCase().includes(q) ||
       m.site.toLowerCase().includes(q)
@@ -391,12 +406,14 @@ export const Map3D = ({
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.06;
-    controls.rotateSpeed = 0.6;
-    controls.zoomSpeed = 1.0;
+    controls.dampingFactor = 0.08;
+    controls.rotateSpeed = 0.45;
+    controls.zoomSpeed = 0.85;
     controls.minDistance = 1.72; // Close-up orbital clearance above 1.50 radius moon surface
     controls.maxDistance = 5.50; // Overview boundary preventing moon from becoming tiny speck
     controls.enablePan = false;  // Keep Moon locked to center
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.45;
     controlsRef.current = controls;
 
     // 3. 6-Sided Starfield Skybox
@@ -602,8 +619,10 @@ export const Map3D = ({
       }
 
       // Auto-rotation
-      if (isAutoSpin && globeGroupRef.current) {
-        globeGroupRef.current.rotation.y += spinSpeed;
+      if (isAutoSpinRef.current) {
+        if (globeGroupRef.current) {
+          globeGroupRef.current.rotation.y += 0.0004;
+        }
       }
 
       // Update shader camera world position uniform
@@ -642,14 +661,21 @@ export const Map3D = ({
       if (!containerRef.current || !renderer || !camera) return;
       const w = containerRef.current.clientWidth;
       const h = containerRef.current.clientHeight;
+      if (w === 0 || h === 0) return;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
     window.addEventListener('resize', handleResize);
 
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    resizeObserver.observe(container);
+
     return () => {
       window.removeEventListener('resize', handleResize);
+      resizeObserver.disconnect();
       cancelAnimationFrame(animId);
       renderer.dispose();
     };
@@ -729,61 +755,6 @@ export const Map3D = ({
     }
   }, [activeTextureMode, contrastBoost]);
 
-  // Synchronize 3D Map Layers checkboxes with WebGL shaders & physical overlays
-  useEffect(() => {
-    if (!moonMaterialRef.current) return;
-    const mat = moonMaterialRef.current;
-
-    // 1. Slope hazard relief depth toggle
-    mat.uniforms.reliefScale.value = layers.slope ? reliefScale : 0.6;
-
-    // 2. Terrain physical 3D elevation displacement toggle
-    mat.uniforms.displacementScale.value = layers.terrain ? displacementScale : 0.0;
-
-    // 3. Solar Illumination lighting toggle
-    mat.uniforms.ambientIntensity.value = layers.illumination ? ambientIntensity : 0.08;
-
-    // 4. Overlays group: Radiation shielding & Elevation contour fields
-    if (overlaysGroupRef.current) {
-      const group = overlaysGroupRef.current;
-      group.clear();
-
-      if (layers.radiation) {
-        // Render magnetic & cosmic ray shielding contour field rings
-        const radMat = new THREE.LineBasicMaterial({ color: 0xa855f7, transparent: true, opacity: 0.4 });
-        [-89, -87, -84, -80].forEach(lat => {
-          const radius = (MOON_RADIUS + 0.016) * Math.cos((lat * Math.PI) / 180);
-          const y = (MOON_RADIUS + 0.016) * Math.sin((lat * Math.PI) / 180);
-          const ringGeo = new THREE.BufferGeometry();
-          const points = [];
-          for (let i = 0; i <= 64; i++) {
-            const theta = (i / 64) * Math.PI * 2;
-            points.push(new THREE.Vector3(Math.cos(theta) * radius, y, Math.sin(theta) * radius));
-          }
-          ringGeo.setFromPoints(points);
-          group.add(new THREE.Line(ringGeo, radMat));
-        });
-      }
-
-      if (layers.elevation) {
-        // Render laser altimeter elevation contour rings
-        const elevMat = new THREE.LineBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.35 });
-        [-88.5, -86.5, -83.5, -78.5].forEach(lat => {
-          const radius = (MOON_RADIUS + 0.012) * Math.cos((lat * Math.PI) / 180);
-          const y = (MOON_RADIUS + 0.012) * Math.sin((lat * Math.PI) / 180);
-          const ringGeo = new THREE.BufferGeometry();
-          const points = [];
-          for (let i = 0; i <= 64; i++) {
-            const theta = (i / 64) * Math.PI * 2;
-            points.push(new THREE.Vector3(Math.cos(theta) * radius, y, Math.sin(theta) * radius));
-          }
-          ringGeo.setFromPoints(points);
-          group.add(new THREE.Line(ringGeo, elevMat));
-        });
-      }
-    }
-  }, [layers, reliefScale, displacementScale, ambientIntensity]);
-
   // Render Mission Landmark Markers
   useEffect(() => {
     if (!missionsGroupRef.current) return;
@@ -836,7 +807,7 @@ export const Map3D = ({
     });
   }, [showMissions, visibleMissions, selectedMission]);
 
-  // Render AI Suitability Habitat Site Markers (High-precision reticles with pulse rings for selected site)
+  // Render AI Suitability Habitat Site Markers (High-precision subtle reticles, only when selected or active)
   useEffect(() => {
     if (!markersGroupRef.current) return;
     const group = markersGroupRef.current;
@@ -846,25 +817,28 @@ export const Map3D = ({
 
     sites.forEach((site) => {
       const isSelected = selectedSite && selectedSite.id === site.id;
+      // Only render subtle marker if selected or if specifically inspecting
+      if (!isSelected) return;
+
       const pos = latLonToVector3(site.latitude, site.longitude, MOON_RADIUS + 0.008);
 
       const marker = new THREE.Group();
       marker.position.set(pos.x, pos.y, pos.z);
       marker.lookAt(pos.x * 2, pos.y * 2, pos.z * 2);
 
-      const ringGeo = new THREE.RingGeometry(isSelected ? 0.020 : 0.012, isSelected ? 0.030 : 0.018, 32);
+      const ringGeo = new THREE.RingGeometry(0.016, 0.024, 32);
       const ringMat = new THREE.MeshBasicMaterial({
-        color: isSelected ? 0x00f0ff : 0xa855f7,
+        color: 0x00f0ff,
         transparent: true,
-        opacity: isSelected ? 0.95 : 0.70,
+        opacity: 0.90,
         side: THREE.DoubleSide
       });
       const ringMesh = new THREE.Mesh(ringGeo, ringMat);
       marker.add(ringMesh);
 
-      const crossGeo = new THREE.RingGeometry(0.004, 0.008, 16);
+      const crossGeo = new THREE.RingGeometry(0.006, 0.010, 16);
       const crossMat = new THREE.MeshBasicMaterial({
-        color: isSelected ? 0xffffff : 0x38bdf8,
+        color: 0xffffff,
         side: THREE.DoubleSide
       });
       const crossMesh = new THREE.Mesh(crossGeo, crossMat);
@@ -879,6 +853,12 @@ export const Map3D = ({
       group.add(marker);
     });
   }, [sites, selectedSite, layers.aiSuitability]);
+
+  // Clean overlays group (No fake translucent discs over authentic lunar surface)
+  useEffect(() => {
+    if (!overlaysGroupRef.current) return;
+    overlaysGroupRef.current.clear();
+  }, [sites, layers]);
 
   // Smooth Camera Fly-To function
   const flyToCoords = (latDeg, lonDeg, distance = 2.4) => {
@@ -984,7 +964,7 @@ export const Map3D = ({
   };
 
   return (
-    <div 
+    <div
       className="relative w-full h-full bg-[#030712] overflow-hidden select-none"
       onMouseMove={handlePointerMove}
       onClick={handleClick}
@@ -1001,7 +981,7 @@ export const Map3D = ({
             Initializing high-precision NASA LOLA laser altimeter digital elevation model & Hapke regolith shaders ({loadingPercent}%)...
           </div>
           <div className="w-64 h-1.5 bg-slate-800 rounded-full overflow-hidden mt-4 border border-slate-700">
-            <div 
+            <div
               className="h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 transition-all duration-300"
               style={{ width: `${loadingPercent}%` }}
             />
@@ -1012,345 +992,376 @@ export const Map3D = ({
       {/* 2. WebGL Canvas Container */}
       <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
-      {/* 3. Top Search & Filter Bar */}
-      <div className="absolute top-4 left-4 z-20 w-80 max-w-[calc(100%-2rem)]">
-        <div className="relative flex items-center bg-[#0B1120]/90 backdrop-blur-md rounded-xl border border-slate-700/80 shadow-lg px-3 py-2">
-          <Search className="w-4 h-4 text-cyan-400 mr-2 shrink-0" />
-          <input
-            type="text"
-            placeholder="Search Chandrayaan, Apollo, Artemis, crater..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-transparent text-xs font-mono text-white placeholder-slate-400 focus:outline-none w-full"
-          />
-          {searchQuery && (
-            <button 
-              onClick={() => setSearchQuery('')}
-              className="text-slate-400 hover:text-white text-xs font-mono px-1"
+      {/* 3. Top HUD Area: Search, Surface Modes, Telemetry & Controls */}
+      <div className="absolute top-4 left-4 right-4 z-20 pointer-events-none flex flex-col md:flex-row items-start md:items-center justify-between gap-2.5">
+
+        {/* Left Side: Search Bar & Texture Map Mode Switcher */}
+        <div className="pointer-events-auto flex flex-wrap items-center gap-2 max-w-full">
+          {/* Search Box */}
+          <div className="relative w-56 sm:w-64 md:w-72 shrink-0">
+            <div className="relative flex items-center bg-[#0B1120]/90 backdrop-blur-md rounded-xl border border-slate-700/80 shadow-lg px-3 py-2">
+              <Search className="w-4 h-4 text-cyan-400 mr-2 shrink-0" />
+              <input
+                type="text"
+                placeholder="Search crater, Apollo, Artemis..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="bg-transparent text-xs font-mono text-white placeholder-slate-400 focus:outline-none w-full"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="text-slate-400 hover:text-white text-xs font-mono px-1"
+                >
+                  ×
+                </button>
+              )}
+            </div>
+
+            {/* Search Results Dropdown */}
+            {searchResults.length > 0 && (
+              <div className="absolute top-full left-0 right-0 mt-1 bg-[#0B1120]/95 backdrop-blur-xl border border-cyan-500/40 rounded-xl overflow-hidden shadow-2xl z-30">
+                {searchResults.map(item => (
+                  <div
+                    key={item.id}
+                    onClick={() => {
+                      if (item.isMission) {
+                        handleSelectMissionInternal(item.missionData);
+                      } else {
+                        handleSelectSiteInternal(item);
+                      }
+                      setSearchQuery('');
+                    }}
+                    className="px-3 py-2 hover:bg-slate-800/80 cursor-pointer border-b border-slate-800/60 last:border-0 flex items-center justify-between"
+                  >
+                    <div>
+                      <div className="text-xs font-mono font-bold text-white flex items-center gap-1.5">
+                        {item.isMission ? <Rocket className="w-3 h-3 text-orange-400" /> : <MapPin className="w-3 h-3 text-cyan-400" />}
+                        <span>{item.name}</span>
+                      </div>
+                      <div className="text-[10px] font-mono text-slate-400">
+                        {item.latitude.toFixed(2)}°, {item.longitude.toFixed(2)}° • {item.siteType}
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold text-cyan-400 bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-500/30">
+                      FLY TO
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Texture Map & Surface Mode Switcher Pills */}
+          <div className="flex items-center gap-1 bg-[#0B1120]/90 backdrop-blur-md p-1 rounded-xl border border-slate-800 shadow-xl overflow-x-auto max-w-full no-scrollbar">
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                setActiveTextureMode('lroc_8k');
+              }}
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'lroc_8k'
+                  ? 'bg-cyan-600 text-white shadow-glow-cyan'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
             >
-              ×
+              <Globe className="w-3.5 h-3.5 text-cyan-300" />
+              <span>NASA 8K Moon</span>
             </button>
+
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                setActiveTextureMode('crater_contrast');
+              }}
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'crater_contrast'
+                  ? 'bg-amber-600 text-white shadow-glow-amber'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+            >
+              <Camera className="w-3.5 h-3.5 text-amber-300" />
+              <span>High-Contrast</span>
+            </button>
+
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                setActiveTextureMode('lola_dem');
+              }}
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'lola_dem'
+                  ? 'bg-emerald-600 text-white shadow-glow-emerald'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+            >
+              <Mountain className="w-3.5 h-3.5 text-emerald-300" />
+              <span>LOLA Topo</span>
+            </button>
+
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                setActiveTextureMode('ice_spectrometry');
+              }}
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'ice_spectrometry'
+                  ? 'bg-blue-600 text-white shadow-glow-cyan'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+            >
+              <Droplets className="w-3.5 h-3.5 text-blue-300" />
+              <span>Water Ice</span>
+            </button>
+
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                setActiveTextureMode('thermal_diviner');
+              }}
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'thermal_diviner'
+                  ? 'bg-purple-600 text-white shadow-glow-purple'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+            >
+              <Thermometer className="w-3.5 h-3.5 text-purple-300" />
+              <span>Diviner IR</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Center: Fullscreen Active Indicator Badge */}
+        {isFullscreen && (
+          <div className="pointer-events-auto shrink-0 self-center">
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                onToggleFullscreen();
+              }}
+              className="bg-[#0B1120]/90 hover:bg-[#131b2e] backdrop-blur-md px-3.5 py-1.5 rounded-full border border-cyan-500/40 text-[11px] font-mono text-cyan-300 shadow-2xl flex items-center gap-2 transition-all cursor-pointer group hover:border-cyan-400"
+            >
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span>Full Screen Active • Press <strong>ESC</strong> or <strong>F</strong> to exit</span>
+              <Minimize2 className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
+            </button>
+          </div>
+        )}
+
+        {/* Right Side: Moon Phase, Telemetry & Controls Toolbox */}
+        <div className="pointer-events-auto flex flex-col items-end gap-2 shrink-0 self-end md:self-auto">
+          {/* Real-time Telemetry & LOLA Elevation readout */}
+          <div className="bg-[#0B1120]/85 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-800 text-[11px] font-mono text-slate-300 shadow-lg flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
+              <Crosshair className="w-3.5 h-3.5 text-cyan-400 animate-spin" style={{ animationDuration: '10s' }} />
+              <span>Target: <strong className="text-white">Lunar South Pole</strong></span>
+            </div>
+            <span className="text-slate-600">|</span>
+            <div>
+              Lat: <span className="text-cyan-300 font-bold">{cursorCoords.lat.toFixed(2)}°</span>
+            </div>
+            <div>
+              Lon: <span className="text-cyan-300 font-bold">{cursorCoords.lon.toFixed(2)}°</span>
+            </div>
+            <span className="text-slate-600">|</span>
+            <div className="text-emerald-400 font-bold flex items-center gap-1">
+              <Activity className="w-3 h-3 text-emerald-400" />
+              <span>Elev: {cursorCoords.elevation > 0 ? `+${cursorCoords.elevation}` : cursorCoords.elevation} m</span>
+            </div>
+          </div>
+
+          {/* View Controls Toolbox */}
+          <div className="bg-[#0B1120]/90 backdrop-blur-md rounded-xl border border-slate-800 p-1 flex items-center gap-1 shadow-lg">
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                if (cameraRef.current && controlsRef.current) {
+                  const target = controlsRef.current.target || new THREE.Vector3(0, 0, 0);
+                  const offset = new THREE.Vector3().subVectors(cameraRef.current.position, target);
+                  const currentDist = offset.length();
+                  const newDist = Math.max(controlsRef.current.minDistance, currentDist * 0.84);
+                  offset.setLength(newDist);
+                  cameraRef.current.position.copy(target).add(offset);
+                  controlsRef.current.update();
+                }
+              }}
+              title="Zoom In"
+              className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                if (cameraRef.current && controlsRef.current) {
+                  const target = controlsRef.current.target || new THREE.Vector3(0, 0, 0);
+                  const offset = new THREE.Vector3().subVectors(cameraRef.current.position, target);
+                  const currentDist = offset.length();
+                  const newDist = Math.min(controlsRef.current.maxDistance, currentDist * 1.18);
+                  offset.setLength(newDist);
+                  cameraRef.current.position.copy(target).add(offset);
+                  controlsRef.current.update();
+                }
+              }}
+              title="Zoom Out"
+              className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            >
+              <Minus className="w-4 h-4" />
+            </button>
+            <button
+              onClick={resetView}
+              title="Reset Polar View"
+              className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            >
+              <RotateCcw className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                setIsAutoSpin(prev => !prev);
+              }}
+              title={isAutoSpin ? 'Freeze Moon' : 'Start Auto-Spin'}
+              className={`p-1.5 rounded-lg transition-colors ${
+                isAutoSpin ? 'text-cyan-400 bg-cyan-950/80 shadow-glow-cyan' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              {isAutoSpin ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+            </button>
+            <button
+              onClick={() => {
+                soundManager.playClick();
+                onToggleFullscreen();
+              }}
+              title={isFullscreen ? 'Exit Full Screen (Esc / F)' : 'Full Screen Moon View (F)'}
+              className={`p-1.5 rounded-lg transition-colors ${isFullscreen ? 'text-cyan-400 bg-cyan-950/80 shadow-glow-cyan' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+            >
+              {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+            </button>
+            <button
+              onClick={() => setIsControlsExpanded(!isControlsExpanded)}
+              title="Lighting & Relief Controls"
+              className={`p-1.5 rounded-lg transition-colors ${isControlsExpanded ? 'text-amber-400 bg-amber-950/80' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }`}
+            >
+              <Sliders className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Expanded Topography & Lighting Sliders */}
+          {isControlsExpanded && (
+            <div className="bg-[#0B1120]/95 backdrop-blur-xl p-3 rounded-xl border border-slate-700 text-xs font-mono shadow-2xl w-64 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
+              {/* Even Lighting Mode Toggle */}
+              <div className="flex items-center justify-between bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                <span className="flex items-center gap-1.5 text-cyan-300 font-bold">
+                  <Sun className="w-3.5 h-3.5 text-amber-400" /> Even Global Light
+                </span>
+                <button
+                  onClick={() => {
+                    soundManager.playClick();
+                    setIsEvenLighting(!isEvenLighting);
+                  }}
+                  className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all ${isEvenLighting
+                      ? 'bg-cyan-600 text-white shadow-glow-cyan'
+                      : 'bg-slate-800 text-slate-400 hover:text-white'
+                    }`}
+                >
+                  {isEvenLighting ? 'ON' : 'OFF'}
+                </button>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between text-slate-300 mb-1">
+                  <span className="flex items-center gap-1.5 text-amber-400 font-bold">
+                    <Sun className="w-3.5 h-3.5" /> Sun Angle / Phase
+                  </span>
+                  <span className="text-[11px] text-amber-300">{getPhaseName(sunAngle)}</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="360"
+                  value={sunAngle}
+                  onChange={(e) => setSunAngle(Number(e.target.value))}
+                  className="w-full h-1 bg-slate-800 rounded accent-amber-400 cursor-pointer"
+                />
+                <div className="flex justify-between text-[10px] text-slate-500 mt-1">
+                  <button onClick={() => setSunAngle(0)} className="hover:text-amber-400">New</button>
+                  <button onClick={() => setSunAngle(90)} className="hover:text-amber-400">1st Qtr</button>
+                  <button onClick={() => setSunAngle(180)} className="hover:text-amber-400 font-bold text-amber-400">Full</button>
+                  <button onClick={() => setSunAngle(270)} className="hover:text-amber-400">3rd Qtr</button>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between text-slate-300 mb-1">
+                  <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
+                    <Mountain className="w-3.5 h-3.5" /> LOLA Crater Relief Depth
+                  </span>
+                  <span className="text-cyan-300 font-bold">{reliefScale.toFixed(1)}x</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.5"
+                  max="5.0"
+                  step="0.1"
+                  value={reliefScale}
+                  onChange={(e) => setReliefScale(Number(e.target.value))}
+                  className="w-full h-1 bg-slate-800 rounded accent-cyan-400 cursor-pointer"
+                />
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between text-slate-300 mb-1">
+                  <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+                    <Activity className="w-3.5 h-3.5" /> 3D Elevation Displacement
+                  </span>
+                  <span className="text-emerald-300 font-bold">{(displacementScale * 100).toFixed(1)}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.0"
+                  max="0.06"
+                  step="0.002"
+                  value={displacementScale}
+                  onChange={(e) => setDisplacementScale(Number(e.target.value))}
+                  className="w-full h-1 bg-slate-800 rounded accent-emerald-400 cursor-pointer"
+                />
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between text-slate-300 mb-1">
+                  <span className="flex items-center gap-1.5 text-blue-400 font-bold">
+                    <Globe className="w-3.5 h-3.5" /> Earthshine / Ambient Fill
+                  </span>
+                  <span className="text-blue-300 font-bold">{Math.round(ambientIntensity * 100)}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.02"
+                  max="0.30"
+                  step="0.01"
+                  value={ambientIntensity}
+                  onChange={(e) => setAmbientIntensity(Number(e.target.value))}
+                  className="w-full h-1 bg-slate-800 rounded accent-blue-400 cursor-pointer"
+                />
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between text-slate-300 mb-1">
+                  <span className="flex items-center gap-1.5 text-purple-400 font-bold">
+                    <Camera className="w-3.5 h-3.5" /> Regolith Photographic Contrast
+                  </span>
+                  <span className="text-purple-300 font-bold">{contrastBoost.toFixed(2)}x</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.8"
+                  max="1.6"
+                  step="0.05"
+                  value={contrastBoost}
+                  onChange={(e) => setContrastBoost(Number(e.target.value))}
+                  className="w-full h-1 bg-slate-800 rounded accent-purple-400 cursor-pointer"
+                />
+              </div>
+            </div>
           )}
         </div>
-
-        {/* Search Results Dropdown */}
-        {searchResults.length > 0 && (
-          <div className="mt-1 bg-[#0B1120]/95 backdrop-blur-xl border border-cyan-500/40 rounded-xl overflow-hidden shadow-2xl">
-            {searchResults.map(item => (
-              <div
-                key={item.id}
-                onClick={() => {
-                  if (item.isMission) {
-                    handleSelectMissionInternal(item.missionData);
-                  } else {
-                    handleSelectSiteInternal(item);
-                  }
-                  setSearchQuery('');
-                }}
-                className="px-3 py-2 hover:bg-slate-800/80 cursor-pointer border-b border-slate-800/60 last:border-0 flex items-center justify-between"
-              >
-                <div>
-                  <div className="text-xs font-mono font-bold text-white flex items-center gap-1.5">
-                    {item.isMission ? <Rocket className="w-3 h-3 text-orange-400" /> : <MapPin className="w-3 h-3 text-cyan-400" />}
-                    <span>{item.name}</span>
-                  </div>
-                  <div className="text-[10px] font-mono text-slate-400">
-                    {item.latitude.toFixed(2)}°, {item.longitude.toFixed(2)}° • {item.siteType}
-                  </div>
-                </div>
-                <span className="text-[10px] font-mono font-bold text-cyan-400 bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-500/30">
-                  FLY TO
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* 4. Top Center: Texture Map & Surface Mode Switcher */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-20 hidden md:flex items-center gap-1 bg-[#0B1120]/90 backdrop-blur-md p-1 rounded-xl border border-slate-800 shadow-xl overflow-x-auto max-w-[90vw] no-scrollbar">
-        <button
-          onClick={() => {
-            soundManager.playClick();
-            setActiveTextureMode('lroc_8k');
-          }}
-          className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${
-            activeTextureMode === 'lroc_8k'
-              ? 'bg-cyan-600 text-white shadow-glow-cyan'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
-        >
-          <Globe className="w-3.5 h-3.5" />
-          <span>NASA 8K Real Moon</span>
-        </button>
-
-        <button
-          onClick={() => {
-            soundManager.playClick();
-            setActiveTextureMode('crater_contrast');
-          }}
-          className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${
-            activeTextureMode === 'crater_contrast'
-              ? 'bg-amber-600 text-white shadow-glow-amber'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
-        >
-          <Camera className="w-3.5 h-3.5" />
-          <span>High-Contrast Surface</span>
-        </button>
-
-        <button
-          onClick={() => {
-            soundManager.playClick();
-            setActiveTextureMode('lola_dem');
-          }}
-          className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${
-            activeTextureMode === 'lola_dem'
-              ? 'bg-emerald-600 text-white shadow-glow-emerald'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
-        >
-          <Mountain className="w-3.5 h-3.5" />
-          <span>LOLA 8K Topography (118m LDEM)</span>
-        </button>
-
-        <button
-          onClick={() => {
-            soundManager.playClick();
-            setActiveTextureMode('ice_spectrometry');
-          }}
-          className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${
-            activeTextureMode === 'ice_spectrometry'
-              ? 'bg-blue-600 text-white'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
-        >
-          <Droplets className="w-3.5 h-3.5" />
-          <span>Water Ice Neutron</span>
-        </button>
-
-        <button
-          onClick={() => {
-            soundManager.playClick();
-            setActiveTextureMode('thermal_diviner');
-          }}
-          className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${
-            activeTextureMode === 'thermal_diviner'
-              ? 'bg-purple-600 text-white shadow-glow-purple'
-              : 'text-slate-400 hover:text-white hover:bg-slate-800'
-          }`}
-        >
-          <Thermometer className="w-3.5 h-3.5" />
-          <span>Diviner Thermal IR</span>
-        </button>
-      </div>
-
-      {/* 5. Top Right: Moon Phase & Lighting HUD */}
-      <div className="absolute top-4 right-4 z-20 flex flex-col items-end gap-2">
-        {/* Real-time Telemetry & LOLA Elevation readout */}
-        <div className="bg-[#0B1120]/85 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-800 text-[11px] font-mono text-slate-300 shadow-lg flex items-center gap-3">
-          <div className="flex items-center gap-1.5">
-            <Crosshair className="w-3.5 h-3.5 text-cyan-400 animate-spin" style={{ animationDuration: '10s' }} />
-            <span>Target: <strong className="text-white">Lunar South Pole</strong></span>
-          </div>
-          <span className="text-slate-600">|</span>
-          <div>
-            Lat: <span className="text-cyan-300 font-bold">{cursorCoords.lat.toFixed(2)}°</span>
-          </div>
-          <div>
-            Lon: <span className="text-cyan-300 font-bold">{cursorCoords.lon.toFixed(2)}°</span>
-          </div>
-          <span className="text-slate-600">|</span>
-          <div className="text-emerald-400 font-bold flex items-center gap-1">
-            <Activity className="w-3 h-3 text-emerald-400" />
-            <span>Elev: {cursorCoords.elevation > 0 ? `+${cursorCoords.elevation}` : cursorCoords.elevation} m</span>
-          </div>
-        </div>
-
-        {/* View Controls Toolbox */}
-        <div className="bg-[#0B1120]/90 backdrop-blur-md rounded-xl border border-slate-800 p-1 flex items-center gap-1 shadow-lg">
-          <button
-            onClick={() => {
-              soundManager.playClick();
-              if (cameraRef.current && controlsRef.current) {
-                const target = controlsRef.current.target || new THREE.Vector3(0, 0, 0);
-                const offset = new THREE.Vector3().subVectors(cameraRef.current.position, target);
-                const currentDist = offset.length();
-                const newDist = Math.max(controlsRef.current.minDistance, currentDist * 0.84);
-                offset.setLength(newDist);
-                cameraRef.current.position.copy(target).add(offset);
-                controlsRef.current.update();
-              }
-            }}
-            title="Zoom In"
-            className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-          </button>
-          <button
-            onClick={() => {
-              soundManager.playClick();
-              if (cameraRef.current && controlsRef.current) {
-                const target = controlsRef.current.target || new THREE.Vector3(0, 0, 0);
-                const offset = new THREE.Vector3().subVectors(cameraRef.current.position, target);
-                const currentDist = offset.length();
-                const newDist = Math.min(controlsRef.current.maxDistance, currentDist * 1.18);
-                offset.setLength(newDist);
-                cameraRef.current.position.copy(target).add(offset);
-                controlsRef.current.update();
-              }
-            }}
-            title="Zoom Out"
-            className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
-          >
-            <Minus className="w-4 h-4" />
-          </button>
-          <button
-            onClick={resetView}
-            title="Reset Polar View"
-            className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
-          >
-            <RotateCcw className="w-4 h-4" />
-          </button>
-          <button
-            onClick={() => setIsAutoSpin(!isAutoSpin)}
-            title={isAutoSpin ? 'Freeze Moon' : 'Start Auto-Spin'}
-            className={`p-1.5 rounded-lg transition-colors ${
-              isAutoSpin ? 'text-cyan-400 bg-cyan-950/80' : 'text-slate-400 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            {isAutoSpin ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          </button>
-          <button
-            onClick={() => setIsControlsExpanded(!isControlsExpanded)}
-            title="Lighting & Relief Controls"
-            className={`p-1.5 rounded-lg transition-colors ${
-              isControlsExpanded ? 'text-amber-400 bg-amber-950/80' : 'text-slate-400 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            <Sliders className="w-4 h-4" />
-          </button>
-        </div>
-
-        {/* Expanded Topography & Lighting Sliders */}
-        {isControlsExpanded && (
-          <div className="bg-[#0B1120]/95 backdrop-blur-xl p-3 rounded-xl border border-slate-700 text-xs font-mono shadow-2xl w-64 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-200">
-            {/* Even Lighting Mode Toggle */}
-            <div className="flex items-center justify-between bg-slate-900/80 p-2 rounded-xl border border-slate-800">
-              <span className="flex items-center gap-1.5 text-cyan-300 font-bold">
-                <Sun className="w-3.5 h-3.5 text-amber-400" /> Even Global Light
-              </span>
-              <button
-                onClick={() => {
-                  soundManager.playClick();
-                  setIsEvenLighting(!isEvenLighting);
-                }}
-                className={`px-2 py-0.5 rounded text-[10px] font-bold transition-all ${
-                  isEvenLighting 
-                    ? 'bg-cyan-600 text-white shadow-glow-cyan' 
-                    : 'bg-slate-800 text-slate-400 hover:text-white'
-                }`}
-              >
-                {isEvenLighting ? 'ON' : 'OFF'}
-              </button>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between text-slate-300 mb-1">
-                <span className="flex items-center gap-1.5 text-amber-400 font-bold">
-                  <Sun className="w-3.5 h-3.5" /> Sun Angle / Phase
-                </span>
-                <span className="text-[11px] text-amber-300">{getPhaseName(sunAngle)}</span>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="360"
-                value={sunAngle}
-                onChange={(e) => setSunAngle(Number(e.target.value))}
-                className="w-full h-1 bg-slate-800 rounded accent-amber-400 cursor-pointer"
-              />
-              <div className="flex justify-between text-[10px] text-slate-500 mt-1">
-                <button onClick={() => setSunAngle(0)} className="hover:text-amber-400">New</button>
-                <button onClick={() => setSunAngle(90)} className="hover:text-amber-400">1st Qtr</button>
-                <button onClick={() => setSunAngle(180)} className="hover:text-amber-400 font-bold text-amber-400">Full</button>
-                <button onClick={() => setSunAngle(270)} className="hover:text-amber-400">3rd Qtr</button>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between text-slate-300 mb-1">
-                <span className="flex items-center gap-1.5 text-cyan-400 font-bold">
-                  <Mountain className="w-3.5 h-3.5" /> LOLA Crater Relief Depth
-                </span>
-                <span className="text-cyan-300 font-bold">{reliefScale.toFixed(1)}x</span>
-              </div>
-              <input
-                type="range"
-                min="0.5"
-                max="5.0"
-                step="0.1"
-                value={reliefScale}
-                onChange={(e) => setReliefScale(Number(e.target.value))}
-                className="w-full h-1 bg-slate-800 rounded accent-cyan-400 cursor-pointer"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between text-slate-300 mb-1">
-                <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
-                  <Activity className="w-3.5 h-3.5" /> 3D Elevation Displacement
-                </span>
-                <span className="text-emerald-300 font-bold">{(displacementScale * 100).toFixed(1)}%</span>
-              </div>
-              <input
-                type="range"
-                min="0.0"
-                max="0.06"
-                step="0.002"
-                value={displacementScale}
-                onChange={(e) => setDisplacementScale(Number(e.target.value))}
-                className="w-full h-1 bg-slate-800 rounded accent-emerald-400 cursor-pointer"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between text-slate-300 mb-1">
-                <span className="flex items-center gap-1.5 text-blue-400 font-bold">
-                  <Globe className="w-3.5 h-3.5" /> Earthshine / Ambient Fill
-                </span>
-                <span className="text-blue-300 font-bold">{Math.round(ambientIntensity * 100)}%</span>
-              </div>
-              <input
-                type="range"
-                min="0.02"
-                max="0.30"
-                step="0.01"
-                value={ambientIntensity}
-                onChange={(e) => setAmbientIntensity(Number(e.target.value))}
-                className="w-full h-1 bg-slate-800 rounded accent-blue-400 cursor-pointer"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between text-slate-300 mb-1">
-                <span className="flex items-center gap-1.5 text-purple-400 font-bold">
-                  <Camera className="w-3.5 h-3.5" /> Regolith Photographic Contrast
-                </span>
-                <span className="text-purple-300 font-bold">{contrastBoost.toFixed(2)}x</span>
-              </div>
-              <input
-                type="range"
-                min="0.8"
-                max="1.6"
-                step="0.05"
-                value={contrastBoost}
-                onChange={(e) => setContrastBoost(Number(e.target.value))}
-                className="w-full h-1 bg-slate-800 rounded accent-purple-400 cursor-pointer"
-              />
-            </div>
-          </div>
-        )}
       </div>
 
       {/* 6. LOLA LDEM Hypsometric Elevation Legend (Shown in LOLA DEM mode) */}
@@ -1371,7 +1382,7 @@ export const Map3D = ({
 
       {/* 7. Bottom Missions & Exploration Toolbar */}
       <div className="absolute bottom-4 left-4 right-4 z-20 pointer-events-none flex flex-col gap-2">
-        
+
         {/* Mission Quick-Jump Pills */}
         <div className="pointer-events-auto flex items-center gap-2 overflow-x-auto pb-1 max-w-full no-scrollbar">
           <div className="bg-[#0B1120]/90 backdrop-blur-md p-1 rounded-xl border border-slate-800 flex items-center gap-1 shrink-0 shadow-xl">
@@ -1379,62 +1390,84 @@ export const Map3D = ({
               <Rocket className="w-3 h-3 text-orange-400" /> EXPLORE:
             </span>
             <button
-              onClick={() => setActiveMissionFilter('all')}
-              className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold transition-colors ${
-                activeMissionFilter === 'all' ? 'bg-slate-700 text-white shadow-sm' : 'text-slate-400 hover:text-white'
-              }`}
+              onClick={() => {
+                soundManager.playClick();
+                setActiveMissionFilter('all');
+                setIsMissionsModalOpen(true);
+              }}
+              title="Open Full Structured Missions Catalogue (All 23 Missions)"
+              className={`px-3 py-1 rounded-lg text-[11px] font-mono font-bold transition-all flex items-center gap-1 cursor-pointer ${activeMissionFilter === 'all'
+                  ? 'bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-glow-cyan'
+                  : 'bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700'
+                }`}
             >
-              All ({LUNAR_MISSIONS.length})
+              <span>All ({LUNAR_MISSIONS.length})</span>
+              <span className="text-[9px] opacity-75">↗</span>
             </button>
+
             <button
-              onClick={() => setActiveMissionFilter('isro')}
-              className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1 transition-colors ${
-                activeMissionFilter === 'isro' ? 'bg-orange-600 text-white shadow-glow-orange' : 'text-slate-400 hover:text-orange-400'
-              }`}
+              onClick={() => {
+                soundManager.playClick();
+                setActiveMissionFilter('isro');
+                setIsMissionsModalOpen(true);
+              }}
+              title="View Structured ISRO Chandrayaan Missions Catalogue"
+              className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1 transition-all cursor-pointer ${activeMissionFilter === 'isro'
+                  ? 'bg-orange-600 text-white shadow-glow-orange'
+                  : 'text-slate-400 hover:text-orange-400 hover:bg-orange-950/40'
+                }`}
             >
               <span>🇮🇳 ISRO ({LUNAR_MISSIONS.filter(m => m.category === 'isro').length})</span>
+              <span className="text-[9px] opacity-75">↗</span>
             </button>
+
             <button
-              onClick={() => setActiveMissionFilter('nasa')}
-              className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1 transition-colors ${
-                activeMissionFilter === 'nasa' ? 'bg-blue-600 text-white shadow-glow-cyan' : 'text-slate-400 hover:text-blue-400'
-              }`}
+              onClick={() => {
+                soundManager.playClick();
+                setActiveMissionFilter('nasa');
+                setIsMissionsModalOpen(true);
+              }}
+              title="View Structured NASA Apollo, Artemis & LRO Missions Catalogue"
+              className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1 transition-all cursor-pointer ${activeMissionFilter === 'nasa'
+                  ? 'bg-blue-600 text-white shadow-glow-cyan'
+                  : 'text-slate-400 hover:text-blue-400 hover:bg-blue-950/40'
+                }`}
             >
               <span>🇺🇸 NASA ({LUNAR_MISSIONS.filter(m => m.category === 'nasa').length})</span>
+              <span className="text-[9px] opacity-75">↗</span>
             </button>
+
             <button
-              onClick={() => setActiveMissionFilter('spacex')}
-              className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1 transition-colors ${
-                activeMissionFilter === 'spacex' ? 'bg-emerald-600 text-white shadow-glow-emerald' : 'text-slate-400 hover:text-emerald-400'
-              }`}
+              onClick={() => {
+                soundManager.playClick();
+                setActiveMissionFilter('spacex');
+                setIsMissionsModalOpen(true);
+              }}
+              title="View Structured SpaceX CLPS & Commercial Missions Catalogue"
+              className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1 transition-all cursor-pointer ${activeMissionFilter === 'spacex'
+                  ? 'bg-emerald-600 text-white shadow-glow-emerald'
+                  : 'text-slate-400 hover:text-emerald-400 hover:bg-emerald-950/40'
+                }`}
             >
               <span>🚀 SpaceX / CLPS ({LUNAR_MISSIONS.filter(m => m.category === 'spacex').length})</span>
+              <span className="text-[9px] opacity-75">↗</span>
             </button>
+
             <button
-              onClick={() => setActiveMissionFilter('sides')}
-              className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1 transition-colors ${
-                activeMissionFilter === 'sides' ? 'bg-purple-600 text-white' : 'text-slate-400 hover:text-purple-400'
-              }`}
+              onClick={() => {
+                soundManager.playClick();
+                setActiveMissionFilter('sides');
+                setIsMissionsModalOpen(true);
+              }}
+              title="View Structured Lunar Hemispheres & Polar Exploration Axes"
+              className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1 transition-all cursor-pointer ${activeMissionFilter === 'sides'
+                  ? 'bg-purple-600 text-white shadow-glow-purple'
+                  : 'text-slate-400 hover:text-purple-400 hover:bg-purple-950/40'
+                }`}
             >
               <span>🌑 Sides & Poles</span>
+              <span className="text-[9px] opacity-75">↗</span>
             </button>
-          </div>
-
-          {/* Individual Mission Quick-Jump Chips */}
-          <div className="flex items-center gap-1.5 overflow-x-auto py-0.5 no-scrollbar">
-            {visibleMissions.map(m => (
-              <button
-                key={m.id}
-                onClick={() => handleSelectMissionInternal(m)}
-                className={`shrink-0 px-2.5 py-1 rounded-xl text-[11px] font-mono border backdrop-blur-md transition-all flex items-center gap-1.5 ${
-                  selectedMission?.id === m.id
-                    ? 'bg-cyan-500/25 border-cyan-400 text-cyan-100 shadow-glow-cyan font-bold'
-                    : 'bg-[#0B1120]/80 border-slate-800 text-slate-300 hover:border-slate-600 hover:text-white'
-                }`}
-              >
-                <span>{m.name.split('(')[0]}</span>
-              </button>
-            ))}
           </div>
         </div>
 
@@ -1462,7 +1495,7 @@ export const Map3D = ({
 
             {/* Mission / Site Reconnaissance Image */}
             <div className="relative h-28 rounded-xl overflow-hidden border border-slate-800 bg-slate-950">
-              <img 
+              <img
                 src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80"
                 alt={selectedMission.name}
                 className="w-full h-full object-cover"
@@ -1495,14 +1528,36 @@ export const Map3D = ({
             <button
               onClick={() => {
                 soundManager.playSelect();
-                const matchedSite = sites.find(s => 
+                // Robust multi-tier site resolution from mission
+                let matchedSite = sites.find(s => 
                   s.id === selectedMission.id || 
-                  s.name?.toLowerCase().includes(selectedMission.name.toLowerCase().split('(')[0].trim()) ||
-                  selectedMission.name.toLowerCase().includes(s.code?.toLowerCase() || '')
+                  (s.name && selectedMission.name && s.name.toLowerCase().includes(selectedMission.name.toLowerCase().split('(')[0].trim())) ||
+                  (s.code && selectedMission.name && selectedMission.name.toLowerCase().includes(s.code.toLowerCase()))
                 );
+
+                if (!matchedSite) {
+                  // Keyword matching against crater / region names (e.g., Cabeus, Shackleton, Malapert, Apollo, Shiv Shakti)
+                  const missionText = `${selectedMission.name} ${selectedMission.discovery || ''}`.toLowerCase();
+                  matchedSite = sites.find(s => 
+                    (s.name && missionText.includes(s.name.toLowerCase())) ||
+                    (s.code && missionText.includes(s.code.toLowerCase())) ||
+                    (s.shortName && missionText.includes(s.shortName.toLowerCase()))
+                  );
+                }
+
+                if (!matchedSite && sites.length > 0 && selectedMission.lat !== undefined && selectedMission.lon !== undefined) {
+                  // Closest site by spherical distance
+                  matchedSite = sites.reduce((closest, s) => {
+                    const dCurrent = Math.hypot((s.latitude || 0) - selectedMission.lat, (s.longitude || 0) - selectedMission.lon);
+                    const dClosest = Math.hypot((closest.latitude || 0) - selectedMission.lat, (closest.longitude || 0) - selectedMission.lon);
+                    return dCurrent < dClosest ? s : closest;
+                  }, sites[0]);
+                }
+
                 if (matchedSite) {
                   onSelectSite(matchedSite);
                 }
+                setSelectedMission(null);
                 onOpenDeepDive();
               }}
               className="w-full py-2.5 px-3 bg-gradient-to-r from-purple-700 via-indigo-600 to-cyan-600 hover:from-purple-600 hover:to-cyan-500 text-white rounded-xl font-mono text-xs font-bold transition-all shadow-glow-cyan flex items-center justify-center gap-2 border border-cyan-400/40 mt-1 cursor-pointer"
@@ -1513,13 +1568,7 @@ export const Map3D = ({
           </div>
         )}
 
-        {/* NASA Provenance Footer Badge */}
-        <div className="flex items-center justify-between pointer-events-none">
-          <div className="bg-[#0B1120]/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-800/80 text-[10px] font-mono text-slate-400 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>NASA LOLA Global LDEM (118m Laser Altimetry) + LROC 8K Regolith Mosaic</span>
-          </div>
-        </div>
+
       </div>
 
       {/* 8. Hovered Tooltip */}
@@ -1542,6 +1591,14 @@ export const Map3D = ({
           </div>
         </div>
       )}
+
+      {/* 9. Full Structured Lunar Missions Directory Modal */}
+      <MissionsExplorerModal
+        isOpen={isMissionsModalOpen}
+        onClose={() => setIsMissionsModalOpen(false)}
+        onFlyToMission={handleSelectMissionInternal}
+        initialCategory={activeMissionFilter}
+      />
     </div>
   );
 };

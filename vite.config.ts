@@ -6,9 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
-    host: true,
-    watch: {
-      ignored: ['**/dist/**', '**/*.tif', '**/ml_pipeline/**', '**/scripts/**']
-    }
+    host: true
   }
 });

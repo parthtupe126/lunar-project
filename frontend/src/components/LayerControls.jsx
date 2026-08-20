@@ -22,12 +22,11 @@ import { soundManager } from '../utils/audio';
  */
 export const LayerControls = ({
   weights = {
-    waterIce: 20,
-    solarEnergy: 20,
+    waterIce: 25,
+    solarEnergy: 25,
     terrain: 20,
-    temperature: 15,
     radiation: 15,
-    access: 10
+    access: 15
   },
   setWeights = () => {},
   layers = {
@@ -48,31 +47,26 @@ export const LayerControls = ({
   },
   setFilter = () => {}
 }) => {
-  // Preset Mission Profiles (Balanced 100% weights including thermal equilibrium)
+  // Preset Mission Profiles
   const presets = [
     {
       name: 'Artemis Baseline',
-      weights: { waterIce: 20, solarEnergy: 20, terrain: 20, temperature: 15, radiation: 15, access: 10 },
+      weights: { waterIce: 25, solarEnergy: 25, terrain: 20, radiation: 15, access: 15 },
       icon: <Sparkles className="w-3 h-3 text-cyan-400" />
     },
     {
       name: 'ISRU Water Mining',
-      weights: { waterIce: 40, solarEnergy: 15, terrain: 15, temperature: 10, radiation: 10, access: 10 },
+      weights: { waterIce: 45, solarEnergy: 20, terrain: 15, radiation: 10, access: 10 },
       icon: <Droplets className="w-3 h-3 text-blue-400" />
     },
     {
       name: 'Solar Power Station',
-      weights: { waterIce: 15, solarEnergy: 45, terrain: 10, temperature: 15, radiation: 10, access: 5 },
+      weights: { waterIce: 15, solarEnergy: 50, terrain: 15, radiation: 10, access: 10 },
       icon: <Sun className="w-3 h-3 text-amber-400" />
     },
     {
-      name: 'Thermal & Cryo Base',
-      weights: { waterIce: 15, solarEnergy: 15, terrain: 15, temperature: 35, radiation: 10, access: 10 },
-      icon: <Thermometer className="w-3 h-3 text-rose-400" />
-    },
-    {
       name: 'Radiation Safe Base',
-      weights: { waterIce: 15, solarEnergy: 15, terrain: 15, temperature: 15, radiation: 30, access: 10 },
+      weights: { waterIce: 20, solarEnergy: 20, terrain: 15, radiation: 35, access: 10 },
       icon: <ShieldCheck className="w-3 h-3 text-purple-400" />
     }
   ];
@@ -101,12 +95,11 @@ export const LayerControls = ({
   const resetWeights = () => {
     soundManager.playClick();
     setWeights({
-      waterIce: 20,
-      solarEnergy: 20,
+      waterIce: 25,
+      solarEnergy: 25,
       terrain: 20,
-      temperature: 15,
       radiation: 15,
-      access: 10
+      access: 15
     });
   };
 
@@ -235,32 +228,7 @@ export const LayerControls = ({
               </div>
             </div>
 
-            {/* 4. Temperature / Thermal Stability Slider */}
-            <div>
-              <div className="flex justify-between items-center text-xs font-mono mb-1">
-                <span className="flex items-center gap-1.5 text-rose-300">
-                  <Thermometer className="w-3.5 h-3.5 text-rose-400" />
-                  <span>Temperature (Thermal Stability)</span>
-                </span>
-                <span className="font-bold text-rose-400 bg-rose-950/60 px-1.5 py-0.5 rounded border border-rose-500/30 text-[11px]">
-                  {weights.temperature || 0}%
-                </span>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="60"
-                value={weights.temperature || 0}
-                onChange={(e) => handleWeightChange('temperature', e.target.value)}
-                className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-rose-400"
-              />
-              <div className="flex justify-between text-[9px] font-mono text-slate-500 mt-0.5">
-                <span>0% (Ignore Temp)</span>
-                <span>60% (Max Thermal Balance)</span>
-              </div>
-            </div>
-
-            {/* 5. Radiation Shielding Slider */}
+            {/* 4. Radiation Shielding Slider */}
             <div>
               <div className="flex justify-between items-center text-xs font-mono mb-1">
                 <span className="flex items-center gap-1.5 text-purple-300">
@@ -281,7 +249,7 @@ export const LayerControls = ({
               />
             </div>
 
-            {/* 6. Landing Access Slider */}
+            {/* 5. Landing Access Slider */}
             <div>
               <div className="flex justify-between items-center text-xs font-mono mb-1">
                 <span className="flex items-center gap-1.5 text-sky-300">

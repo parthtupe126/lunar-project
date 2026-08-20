@@ -180,7 +180,7 @@ export const SiteModal = ({
           {/* Active Applied Weights Used */}
           <div className="p-3 bg-[#070B14] rounded-xl border border-slate-800 text-[11px] text-slate-400">
             <strong className="text-white">Active Evaluation Weights: </strong>
-            Slope/Terrain ({weights.terrain}%) • Solar Energy ({weights.solarEnergy}%) • Water Ice ({weights.waterIce}%) • Temp/Thermal ({weights.temperature || 0}%) • Radiation ({weights.radiation}%) • Access ({weights.access}%)
+            Slope/Terrain ({weights.terrain}%) • Solar Energy ({weights.solarEnergy}%) • Water Ice ({weights.waterIce}%) • Radiation ({weights.radiation}%) • Access ({weights.access}%)
           </div>
 
         </div>

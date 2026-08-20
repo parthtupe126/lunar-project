@@ -46,21 +46,3 @@ env/
 venv/
 ENV/
 .venv/
-
-# ML Pipeline — large binary / generated files
-# 8 GB LOLA DEM — download separately via scripts/download_lola_dem.py
-*.tif
-*.tiff
-
-# Auto-generated backup datasets created by apply_predictions.py
-ml_pipeline/lunar_scientific_dataset_backup_*.json
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-**/.ipynb_checkpoints/
-
-# ML model artifacts (if you export .pkl / .joblib / .json model files locally)
-*.pkl
-*.joblib
-*.h5
-*.onnx

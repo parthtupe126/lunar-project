@@ -56,29 +56,29 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy tethered autonomous cryo-rover into Shackleton PSR for water ice mining',
       'Install Ka-band optical communication direct Earth relay terminal'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / GSFC / Arizona State University (LROC NAC)',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Shackleton Rim Crest & Ridge Descent Zone",
+            "alt_text": "Shackleton Crater Rim Crest Illuminated Ridge",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Artemis III Polar Human Landing System (HLS)",
+            "alt_text": "Artemis Polar Human Landing System (HLS)",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Lunar Terrain Vehicle (LTV) Polar Traverse",
+            "alt_text": "Polar Terrain Rover Ice Prospecting Traverse",
             "overlayText": ""
       },
       {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Foundation Habitat & Solar Tower Array",
+            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "LOLA SLDEM2015 Laser Altimetry Topography",
             "overlayText": ""
       }
 ]
@@ -126,29 +126,29 @@ export const INITIAL_LUNAR_SITES = [
       'Construct initial surface basecamp on eastern plateau shelf',
       'Establish automated rover haulage road to southern ice deposits'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / LRO / Intuitive Machines IM-1',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Mons Malapert 5km High Ridge Plateau",
+            "alt_text": "Mons Malapert 5,000m Peak of Eternal Light",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Intuitive Machines Nova-C (IM-1 Odysseus)",
+            "alt_text": "Intuitive Machines IM-1 Odysseus Lander",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Radio Astronomy High-Gain Antenna Setup",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "Surface Prospecting Rover on Malapert Plateau",
             "overlayText": ""
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Permanent Polar Base Multi-Dome Cluster",
+            "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "LROC Peak Solar Illumination Map",
             "overlayText": ""
       }
 ]
@@ -194,7 +194,7 @@ export const INITIAL_LUNAR_SITES = [
       'Designate as industrial mining zone for Commercial Lunar Payload Services',
       'Deploy thermal mining solar reflectors and sublimator domes'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / Diviner Science Team / UCLA',
@@ -205,18 +205,18 @@ export const INITIAL_LUNAR_SITES = [
             "overlayText": ""
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Cryogenic Volatile Sampling Landcraft",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Subsurface Cold-Trap Cryo-Drill Rig",
             "overlayText": ""
       },
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Thermal Radiator Shroud & Power Depot",
+            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "Diviner Thermal Channel 38K Cold Basin",
             "overlayText": ""
       }
 ]
@@ -263,29 +263,29 @@ export const INITIAL_LUNAR_SITES = [
       'Construct sintered regolith landing pad with blast deflection walls',
       'Deploy mobile power generation rovers'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / GSFC / LROC (Artemis III Target Survey)',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-connecting-ridge Surface Touchdown Zone",
+            "alt_text": "site-connecting-ridge Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-connecting-ridge Lunar Landing Craft & Ascent Stage",
+            "alt_text": "site-connecting-ridge Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-connecting-ridge Autonomous Scout Rover Traverse",
+            "alt_text": "site-connecting-ridge Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-connecting-ridge Pressurized Base & Power Grid",
+            "alt_text": "site-connecting-ridge Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -330,29 +330,29 @@ export const INITIAL_LUNAR_SITES = [
       'Install compact Kilopower nuclear reactor (10 kWe) as baseline power',
       'Deploy autonomous ISRU water refinery pilot plant'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / GSFC / ASU Lunaserv WMS',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-de-gerlache Surface Touchdown Zone",
+            "alt_text": "site-de-gerlache Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-de-gerlache Lunar Landing Craft & Ascent Stage",
+            "alt_text": "site-de-gerlache Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-de-gerlache Autonomous Scout Rover Traverse",
+            "alt_text": "site-de-gerlache Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-de-gerlache Pressurized Base & Power Grid",
+            "alt_text": "site-de-gerlache Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -397,29 +397,29 @@ export const INITIAL_LUNAR_SITES = [
       'Establish science laboratory for volatile age dating and isotope analysis',
       'Integrate solar tower arrays on highest crest points'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / LRO LOLA Altimetry Team',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-haworth Surface Touchdown Zone",
+            "alt_text": "site-haworth Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-haworth Lunar Landing Craft & Ascent Stage",
+            "alt_text": "site-haworth Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-haworth Autonomous Scout Rover Traverse",
+            "alt_text": "site-haworth Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-haworth Pressurized Base & Power Grid",
+            "alt_text": "site-haworth Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -466,29 +466,29 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy deep-space optical telescope array benefiting from atmospheric absence',
       'Establish permanent astronaut habitat complex'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / VIPER Science Team / Ames Research Center',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Mons Mouton Flat High-Altitude Mesa",
+            "alt_text": "Mons Mouton High-Altitude Flat Mesa Plateau",
             "overlayText": ""
       },
       {
-            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Commercial Lunar Payload Services (CLPS) Lander",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "VIPER Spectrometer Drill Mapping Regolith",
+            "alt_text": "VIPER Neutron Spectrometer Volatiles Drill",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Mesa Solar Farm & Relay Terminal",
+            "alt_text": "Mesa Solar Illumination Coverage",
             "overlayText": ""
       }
 ]
@@ -533,29 +533,29 @@ export const INITIAL_LUNAR_SITES = [
       'Install Artemis Base Camp Core Habitation Module',
       'Establish pressurized rover charging garage and airlocks'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / GSFC / ASU / LRO ShadowCam',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-nobile Surface Touchdown Zone",
+            "alt_text": "site-nobile Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-nobile Lunar Landing Craft & Ascent Stage",
+            "alt_text": "site-nobile Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-nobile Autonomous Scout Rover Traverse",
+            "alt_text": "site-nobile Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-nobile Pressurized Base & Power Grid",
+            "alt_text": "site-nobile Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -600,29 +600,29 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy autonomous drone/hopper for vertical wall sampling',
       'Construct remote science sensor grid'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / Southwest Research Institute (LAMP Team)',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-i Surface Touchdown Zone",
+            "alt_text": "site-i Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-i Lunar Landing Craft & Ascent Stage",
+            "alt_text": "site-i Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-i Autonomous Scout Rover Traverse",
+            "alt_text": "site-i Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-i Pressurized Base & Power Grid",
+            "alt_text": "site-i Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -670,29 +670,29 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy heavy winched elevator down 50m skylight shaft',
       'Surface nuclear / solar umbilical power feed'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'JAXA / SELENE (Kaguya) Terrain Camera & LROC NAC',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-j Surface Touchdown Zone",
+            "alt_text": "Marius Hills Lava Tube Skylight Pit Opening",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-j Lunar Landing Craft & Ascent Stage",
+            "alt_text": "Volcanic Dome Touchdown Platform",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-j Autonomous Scout Rover Traverse",
+            "alt_text": "Subsurface Cave Rappelling Explorer",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-j Pressurized Base & Power Grid",
+            "alt_text": "SELENE Lunar Radar Sounder (LRS) Void Echo",
             "overlayText": ""
       }
 ]
@@ -737,29 +737,29 @@ export const INITIAL_LUNAR_SITES = [
       'Commercial rocket propellant (LH2/LOX) plant',
       'Cryogenic volatile distillation pipeline'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / LCROSS Science Team / ARC',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-k Surface Touchdown Zone",
+            "alt_text": "site-k Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-k Lunar Landing Craft & Ascent Stage",
+            "alt_text": "site-k Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-k Autonomous Scout Rover Traverse",
+            "alt_text": "site-k Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-k Pressurized Base & Power Grid",
+            "alt_text": "site-k Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -803,29 +803,29 @@ export const INITIAL_LUNAR_SITES = [
       'Autonomous mining rover testing grounds',
       'Regolith sintering construction demonstration'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / GSFC / ASU / LRO Narrow Angle Camera',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-l Surface Touchdown Zone",
+            "alt_text": "site-l Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-l Lunar Landing Craft & Ascent Stage",
+            "alt_text": "site-l Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-l Autonomous Scout Rover Traverse",
+            "alt_text": "site-l Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-l Pressurized Base & Power Grid",
+            "alt_text": "site-l Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -870,29 +870,29 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy stationary long-term seismological observatory',
       'Establish regolith plasma charging research station'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'ISRO / ISTRAC / Pragyan Rover NavCam & Chandrayaan-2 OHRC',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Vikram Lander Touchdown at 69.37\u00b0S Regolith",
+            "alt_text": "Pragyan Rover on Lunar South Pole Regolith",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ISRO Vikram Lander & Ramp Deployment",
+            "alt_text": "ISRO Vikram Lander Photographed by Pragyan NavCam",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Pragyan Rover Wheel Tracks & Sulfur Detection",
+            "alt_text": "NASA LRO Orbital Photo of Vikram Lander at Shiv Shakti",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ChaSTE Subsurface Thermal Penetrometer Profile",
+            "alt_text": "ChaSTE In-Situ Regolith Thermal Profile Record",
             "overlayText": ""
       }
 ]
@@ -936,29 +936,29 @@ export const INITIAL_LUNAR_SITES = [
       'Construct deep-space volatile monitoring station',
       'Install commemorative international scientific marker'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'ISRO / Moon Impact Probe & NASA M3 Team',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch1_jawahar Surface Touchdown Zone",
+            "alt_text": "ch1_jawahar Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch1_jawahar Lunar Landing Craft & Ascent Stage",
+            "alt_text": "ch1_jawahar Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch1_jawahar Autonomous Scout Rover Traverse",
+            "alt_text": "ch1_jawahar Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch1_jawahar Pressurized Base & Power Grid",
+            "alt_text": "ch1_jawahar Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1002,29 +1002,29 @@ export const INITIAL_LUNAR_SITES = [
       'Install surface radar calibration transponder',
       'Deploy autonomous meteorological outpost'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'ISRO / Chandrayaan-2 Dual-Frequency SAR & OHRC',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch2_tiranga Surface Touchdown Zone",
+            "alt_text": "ch2_tiranga Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch2_tiranga Lunar Landing Craft & Ascent Stage",
+            "alt_text": "ch2_tiranga Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch2_tiranga Autonomous Scout Rover Traverse",
+            "alt_text": "ch2_tiranga Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch2_tiranga Pressurized Base & Power Grid",
+            "alt_text": "ch2_tiranga Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1068,29 +1068,29 @@ export const INITIAL_LUNAR_SITES = [
       'Deploy 1.5m subsurface drill sampling core',
       'Establish volatile mass spectrometry laboratory'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'ISRO / JAXA Lunar Polar Exploration Mission Concept',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "LUPEX Extreme Polar Drill Target Site",
+            "alt_text": "lupex_ch4 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ISRO-JAXA Heavy Polar Landing Craft",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "lupex_ch4 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "350kg JAXA Autonomous Polar Prospecting Rover",
+            "alt_text": "lupex_ch4 Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Hydrogen Extraction & ISRU Processing Facility",
+            "alt_text": "lupex_ch4 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1135,29 +1135,29 @@ export const INITIAL_LUNAR_SITES = [
       'Maintain international historical preservation perimeter',
       'Install laser ranging calibration monitor'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / Neil Armstrong & Buzz Aldrin / LROC NAC (M102360879R)',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Apollo 11 Tranquility Base Historical Touchdown",
+            "alt_text": "Buzz Aldrin on Mare Tranquillitatis by Neil Armstrong",
             "overlayText": ""
       },
       {
-            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Apollo Lunar Module (LM-5 Eagle)",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "Apollo Lunar Module LM-5 Eagle on Lunar Surface",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "EASEP Passive Seismic Experiment Package",
+            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "LROC NAC Orbital View of Tranquility Base & Descent Stage",
             "overlayText": ""
       },
       {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Heritage Monument & Mare Tranquillitatis Museum Base",
+            "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "Iconic Apollo 11 First Lunar Regolith Bootprint",
             "overlayText": ""
       }
 ]
@@ -1200,29 +1200,29 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Conduct long-duration material degradation studies on retrieved components'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728423169-3f65fd722b7e?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / Pete Conrad & Alan Bean / Surveyor 3 Survey',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_12 Surface Touchdown Zone",
+            "alt_text": "apollo_12 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_12 Lunar Landing Craft & Ascent Stage",
+            "alt_text": "apollo_12 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_12 Autonomous Scout Rover Traverse",
+            "alt_text": "apollo_12 Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_12 Pressurized Base & Power Grid",
+            "alt_text": "apollo_12 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1264,29 +1264,29 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Establish regional seismic and geology field station'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / Alan Shepard & Edgar Mitchell / Cone Crater Traverses',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_14 Surface Touchdown Zone",
+            "alt_text": "apollo_14 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_14 Lunar Landing Craft & Ascent Stage",
+            "alt_text": "apollo_14 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_14 Autonomous Scout Rover Traverse",
+            "alt_text": "apollo_14 Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_14 Pressurized Base & Power Grid",
+            "alt_text": "apollo_14 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1328,29 +1328,29 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Construct robotic canyon exploration crane into Hadley Rille'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / David Scott & James Irwin / Lunar Roving Vehicle LRV-1',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_15 Surface Touchdown Zone",
+            "alt_text": "apollo_15 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_15 Lunar Landing Craft & Ascent Stage",
+            "alt_text": "apollo_15 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_15 Autonomous Scout Rover Traverse",
+            "alt_text": "apollo_15 Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_15 Pressurized Base & Power Grid",
+            "alt_text": "apollo_15 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1392,29 +1392,29 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Deploy ISRU regolith glass fiber sintering facility'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / John Young & Charles Duke / Cayley Formation',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_16 Surface Touchdown Zone",
+            "alt_text": "apollo_16 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_16 Lunar Landing Craft & Ascent Stage",
+            "alt_text": "apollo_16 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_16 Autonomous Scout Rover Traverse",
+            "alt_text": "apollo_16 Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_16 Pressurized Base & Power Grid",
+            "alt_text": "apollo_16 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1456,29 +1456,29 @@ export const INITIAL_LUNAR_SITES = [
     missionRecommendations: [
       'Install automated pyroclastic glass extraction plant'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / Gene Cernan & Harrison Schmitt (Shorty Crater)',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_17 Surface Touchdown Zone",
+            "alt_text": "apollo_17 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_17 Lunar Landing Craft & Ascent Stage",
+            "alt_text": "apollo_17 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
             "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_17 Autonomous Scout Rover Traverse",
+            "alt_text": "apollo_17 Surface Exploration Rover",
             "overlayText": ""
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_17 Pressurized Base & Power Grid",
+            "alt_text": "apollo_17 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1524,18 +1524,18 @@ export const INITIAL_LUNAR_SITES = [
       'Install Artemis Base Camp foundation habitat and mobile power cart',
       'Establish ISRU water purification pipeline'
     ],
-    thumbnail: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=400&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
     orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / SpaceX / Axiom Space / LROC NAC High-Res Mosaic',
     galleryImages: [
       {
             "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Astronauts on Artemis III South Pole Ridge",
+            "alt_text": "Astronauts on Artemis III South Pole Ridge Touchdown",
             "overlayText": ""
       },
       {
-            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "SpaceX Starship HLS Lunar Touchdown Vehicle",
             "overlayText": "View Lander"
       },
@@ -1546,7 +1546,7 @@ export const INITIAL_LUNAR_SITES = [
       },
       {
             "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Inflatable Surface Habitat & Airlock Module",
+            "alt_text": "NASA Artemis III 13 Candidate Landing Zones",
             "overlayText": ""
       }
 ]

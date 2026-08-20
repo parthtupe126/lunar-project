@@ -3,7 +3,7 @@
     "id": "site-shackleton",
     "node_id": "01_Shackleton_Crater",
     "code": "Shackleton",
-    "name": "Shackleton Crater Rim — Peak of Eternal Light",
+    "name": "Shackleton Crater Rim \u2014 Peak of Eternal Light",
     "coordinates": {
       "latitude": -89.28,
       "longitude": 15.4,
@@ -52,37 +52,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "High-Yield Volatiles / Permanent Light Ridge",
       "mission_ground_truth_reference": "LRO LOLA / Chandrayaan-1 M3 / Artemis III Target",
-      "mcda_suitability_score": 77.83000183105469,
-      "ai_confidence_pct": 84.2,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 2,
-      "score_delta_from_mcda": -16.37,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.5221
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 4.3353
-        },
-        {
-          "feature": "diurnal_swing_k",
-          "shap_value": 2.0094
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.6741
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.6262
-        }
-      ]
+      "mcda_suitability_score": 94.2,
+      "ai_confidence_pct": 94.0,
+      "suitability_tier": "HIGHLY SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 180,
@@ -95,33 +67,26 @@
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Shackleton Rim Crest & Ridge Descent Zone",
+        "alt_text": "Shackleton Crater Rim Crest Illuminated Ridge",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Artemis III Polar Human Landing System (HLS)",
+        "alt_text": "Artemis Polar Human Landing System (HLS)",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Lunar Terrain Vehicle (LTV) Polar Traverse",
+        "alt_text": "Polar Terrain Rover Ice Prospecting Traverse",
         "overlayText": ""
       },
       {
-        "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Foundation Habitat & Solar Tower Array",
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "LOLA SLDEM2015 Laser Altimetry Topography",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 78,
-      "waterIce": 81,
-      "solarIllumination": 80,
-      "radiationSafety": 79,
-      "temperature": 78,
-      "accessibility": 79
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-malapert",
@@ -176,37 +141,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Continuous Comms Relay / Surface Basecamp",
       "mission_ground_truth_reference": "IM-1 Odysseus / LRO Altimetry Survey",
-      "mcda_suitability_score": 71.5999984741211,
-      "ai_confidence_pct": 80.7,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 8,
-      "score_delta_from_mcda": -20.2,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 4.6258
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 3.9682
-        },
-        {
-          "feature": "diurnal_swing_k",
-          "shap_value": 2.1255
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": -2.0279
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.9333
-        }
-      ]
+      "mcda_suitability_score": 91.8,
+      "ai_confidence_pct": 91.0,
+      "suitability_tier": "HIGHLY SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 195,
@@ -219,39 +156,32 @@
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Mons Malapert 5km High Ridge Plateau",
+        "alt_text": "Mons Malapert 5,000m Peak of Eternal Light",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Intuitive Machines Nova-C (IM-1 Odysseus)",
+        "alt_text": "Intuitive Machines IM-1 Odysseus Lander",
         "overlayText": "View Lander"
       },
       {
-        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Radio Astronomy High-Gain Antenna Setup",
+        "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Surface Prospecting Rover on Malapert Plateau",
         "overlayText": ""
       },
       {
-        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Permanent Polar Base Multi-Dome Cluster",
+        "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "LROC Peak Solar Illumination Map",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 70,
-      "waterIce": 74,
-      "solarIllumination": 73,
-      "radiationSafety": 73,
-      "temperature": 72,
-      "accessibility": 72
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-faustini",
     "node_id": "03_Faustini_Rim_A",
     "code": "Faustini A",
-    "name": "Faustini Crater Rim — Ridge A",
+    "name": "Faustini Crater Rim \u2014 Ridge A",
     "coordinates": {
       "latitude": -87.15,
       "longitude": 77.0,
@@ -300,37 +230,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Industrial Cryogenic Mining / Volatiles Prospect",
       "mission_ground_truth_reference": "NASA Diviner Cold Trap / LEND Spectrometry",
-      "mcda_suitability_score": 62.70000076293945,
-      "ai_confidence_pct": 79.8,
-      "suitability_tier": "MODERATE",
-      "ai_rank": 14,
-      "score_delta_from_mcda": -20.7,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 6.6108
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": -4.5018
-        },
-        {
-          "feature": "hydrogen_ppm",
-          "shap_value": 3.1218
-        },
-        {
-          "feature": "max_continuous_dark_days",
-          "shap_value": -2.5883
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 1.7498
-        }
-      ]
+      "mcda_suitability_score": 83.4,
+      "ai_confidence_pct": 85.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 110,
@@ -347,29 +249,22 @@
         "overlayText": ""
       },
       {
-        "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
         "alt_text": "Cryogenic Volatile Sampling Landcraft",
         "overlayText": "View Lander"
       },
       {
-        "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+        "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
         "alt_text": "Subsurface Cold-Trap Cryo-Drill Rig",
         "overlayText": ""
       },
       {
-        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Thermal Radiator Shroud & Power Depot",
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Diviner Thermal Channel 38K Cold Basin",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 60,
-      "waterIce": 68,
-      "solarIllumination": 62,
-      "radiationSafety": 63,
-      "temperature": 63,
-      "accessibility": 62
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-connecting-ridge",
@@ -424,37 +319,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Primary Human Lander Touchdown Corridor",
       "mission_ground_truth_reference": "NASA HLS Designated / LUPEX Candidate",
-      "mcda_suitability_score": 73.91999816894531,
-      "ai_confidence_pct": 84.9,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 6,
-      "score_delta_from_mcda": -15.68,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.2115
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 3.4394
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.9672
-        },
-        {
-          "feature": "diurnal_swing_k",
-          "shap_value": 1.5047
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.253
-        }
-      ]
+      "mcda_suitability_score": 89.6,
+      "ai_confidence_pct": 89.0,
+      "suitability_tier": "HIGHLY SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 160,
@@ -463,43 +330,36 @@
     },
     "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
     "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / GSFC / LROC (Artemis III Target Survey)",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Connecting Ridge (Shackleton-de Gerlache) Surface Touchdown Zone",
+        "alt_text": "Connecting Ridge (Shackleton-de Gerlache) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Connecting Ridge (Shackleton-de Gerlache) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Connecting Ridge (Shackleton-de Gerlache) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Connecting Ridge (Shackleton-de Gerlache) Autonomous Scout Rover Traverse",
+        "alt_text": "Connecting Ridge (Shackleton-de Gerlache) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Connecting Ridge (Shackleton-de Gerlache) Pressurized Base & Power Grid",
+        "alt_text": "Connecting Ridge (Shackleton-de Gerlache) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 74,
-      "waterIce": 77,
-      "solarIllumination": 75,
-      "radiationSafety": 75,
-      "temperature": 74,
-      "accessibility": 74
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-de-gerlache",
     "node_id": "05_de_Gerlache_Rim",
     "code": "de Gerlache",
-    "name": "de Gerlache Rim — Mons Peak Alpha",
+    "name": "de Gerlache Rim \u2014 Mons Peak Alpha",
     "coordinates": {
       "latitude": -85.9,
       "longitude": 76.3,
@@ -548,76 +408,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "High-Yield Volatiles / Nuclear ISRU Pilot",
       "mission_ground_truth_reference": "LRO Neutron Spectrometer & LOLA",
-      "mcda_suitability_score": 66.95999908447266,
-      "ai_confidence_pct": 83.4,
-      "suitability_tier": "MODERATE",
-      "ai_rank": 11,
-      "score_delta_from_mcda": -17.14,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.6528
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": -2.9139
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 2.4713
-        },
-        {
-          "feature": "hydrogen_ppm",
-          "shap_value": 1.815
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.52
-        }
-      ]
+      "mcda_suitability_score": 84.1,
+      "ai_confidence_pct": 86.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 140,
       "temp_max_k": 210,
       "diurnal_temperature_swing_k": 70
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / GSFC / ASU Lunaserv WMS",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "de Gerlache Rim — Mons Peak Alpha Surface Touchdown Zone",
+        "alt_text": "de Gerlache Rim \u2014 Mons Peak Alpha Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "de Gerlache Rim — Mons Peak Alpha Lunar Landing Craft & Ascent Stage",
+        "alt_text": "de Gerlache Rim \u2014 Mons Peak Alpha Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "de Gerlache Rim — Mons Peak Alpha Autonomous Scout Rover Traverse",
+        "alt_text": "de Gerlache Rim \u2014 Mons Peak Alpha Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "de Gerlache Rim — Mons Peak Alpha Pressurized Base & Power Grid",
+        "alt_text": "de Gerlache Rim \u2014 Mons Peak Alpha Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 65,
-      "waterIce": 71,
-      "solarIllumination": 67,
-      "radiationSafety": 67,
-      "temperature": 67,
-      "accessibility": 67
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-haworth",
@@ -672,76 +497,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Multi-Basin Geological Science Station",
       "mission_ground_truth_reference": "NASA Diviner Cryogenic Benchmark",
-      "mcda_suitability_score": 70.06999969482422,
-      "ai_confidence_pct": 84.7,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 10,
-      "score_delta_from_mcda": -15.73,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.8091
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 2.5922
-        },
-        {
-          "feature": "hydrogen_ppm",
-          "shap_value": 1.9464
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.6655
-        },
-        {
-          "feature": "max_continuous_dark_days",
-          "shap_value": -1.5779
-        }
-      ]
+      "mcda_suitability_score": 85.8,
+      "ai_confidence_pct": 87.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 130,
       "temp_max_k": 215,
       "diurnal_temperature_swing_k": 85
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / LRO LOLA Altimetry Team",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Haworth Crater Rim North Surface Touchdown Zone",
+        "alt_text": "Haworth Crater Rim North Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Haworth Crater Rim North Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Haworth Crater Rim North Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Haworth Crater Rim North Autonomous Scout Rover Traverse",
+        "alt_text": "Haworth Crater Rim North Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Haworth Crater Rim North Pressurized Base & Power Grid",
+        "alt_text": "Haworth Crater Rim North Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 70,
-      "waterIce": 74,
-      "solarIllumination": 70,
-      "radiationSafety": 71,
-      "temperature": 70,
-      "accessibility": 71
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-mons-mouton",
@@ -796,37 +586,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Civil Spaceport / Long-Term Basecamp Complex",
       "mission_ground_truth_reference": "NASA VIPER Primary Science Target",
-      "mcda_suitability_score": 77.19000244140625,
-      "ai_confidence_pct": 85.1,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 3,
-      "score_delta_from_mcda": -15.41,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 4.4769
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 4.2256
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": 2.3052
-        },
-        {
-          "feature": "diurnal_swing_k",
-          "shap_value": 2.2405
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 2.073
-        }
-      ]
+      "mcda_suitability_score": 92.6,
+      "ai_confidence_pct": 95.0,
+      "suitability_tier": "HIGHLY SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 200,
@@ -839,39 +601,32 @@
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Mons Mouton Flat High-Altitude Mesa",
+        "alt_text": "Mons Mouton High-Altitude Flat Mesa Plateau",
         "overlayText": ""
       },
       {
-        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
         "alt_text": "Commercial Lunar Payload Services (CLPS) Lander",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "VIPER Spectrometer Drill Mapping Regolith",
+        "alt_text": "VIPER Neutron Spectrometer Volatiles Drill",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Mesa Solar Farm & Relay Terminal",
+        "alt_text": "Mesa Solar Illumination Coverage",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 79,
-      "waterIce": 79,
-      "solarIllumination": 79,
-      "radiationSafety": 78,
-      "temperature": 78,
-      "accessibility": 78
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-nobile",
     "node_id": "08_Nobile_Crater_Rim",
     "code": "Nobile",
-    "name": "Nobile Crater Rim — Artemis Base Alpha",
+    "name": "Nobile Crater Rim \u2014 Artemis Base Alpha",
     "coordinates": {
       "latitude": -85.2,
       "longitude": 53.5,
@@ -920,76 +675,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Artemis Base Camp Core Habitation Zone",
       "mission_ground_truth_reference": "VIPER Rover Exploration Zone",
-      "mcda_suitability_score": 72.13999938964844,
-      "ai_confidence_pct": 85.2,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 7,
-      "score_delta_from_mcda": -15.36,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.4059
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 3.06
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.5554
-        },
-        {
-          "feature": "diurnal_swing_k",
-          "shap_value": 1.4943
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.4072
-        }
-      ]
+      "mcda_suitability_score": 87.5,
+      "ai_confidence_pct": 89.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 165,
       "temp_max_k": 225,
       "diurnal_temperature_swing_k": 60
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / GSFC / ASU / LRO ShadowCam",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Nobile Crater Rim — Artemis Base Alpha Surface Touchdown Zone",
+        "alt_text": "Nobile Crater Rim \u2014 Artemis Base Alpha Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Nobile Crater Rim — Artemis Base Alpha Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Nobile Crater Rim \u2014 Artemis Base Alpha Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Nobile Crater Rim — Artemis Base Alpha Autonomous Scout Rover Traverse",
+        "alt_text": "Nobile Crater Rim \u2014 Artemis Base Alpha Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Nobile Crater Rim — Artemis Base Alpha Pressurized Base & Power Grid",
+        "alt_text": "Nobile Crater Rim \u2014 Artemis Base Alpha Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 72,
-      "waterIce": 75,
-      "solarIllumination": 73,
-      "radiationSafety": 73,
-      "temperature": 72,
-      "accessibility": 73
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-i",
@@ -1044,76 +764,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Deep Catchment Geological & Organics Laboratory",
       "mission_ground_truth_reference": "LRO LAMP Spectral Survey",
-      "mcda_suitability_score": 61.0099983215332,
-      "ai_confidence_pct": 81.5,
-      "suitability_tier": "MODERATE",
-      "ai_rank": 16,
-      "score_delta_from_mcda": -19.19,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.6191
-        },
-        {
-          "feature": "max_continuous_dark_days",
-          "shap_value": -2.6544
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": -2.3642
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.4132
-        },
-        {
-          "feature": "hydrogen_ppm",
-          "shap_value": 1.379
-        }
-      ]
+      "mcda_suitability_score": 80.2,
+      "ai_confidence_pct": 82.0,
+      "suitability_tier": "MODERATE"
     },
     "environmental_temperatures": {
       "temp_min_k": 120,
       "temp_max_k": 210,
       "diurnal_temperature_swing_k": 90
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / Southwest Research Institute (LAMP Team)",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Amundsen Crater Floor & Rim (Site I) Surface Touchdown Zone",
+        "alt_text": "Amundsen Crater Floor & Rim (Site I) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Amundsen Crater Floor & Rim (Site I) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Amundsen Crater Floor & Rim (Site I) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Amundsen Crater Floor & Rim (Site I) Autonomous Scout Rover Traverse",
+        "alt_text": "Amundsen Crater Floor & Rim (Site I) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Amundsen Crater Floor & Rim (Site I) Pressurized Base & Power Grid",
+        "alt_text": "Amundsen Crater Floor & Rim (Site I) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 59,
-      "waterIce": 64,
-      "solarIllumination": 59,
-      "radiationSafety": 61,
-      "temperature": 61,
-      "accessibility": 61
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-j",
@@ -1168,37 +853,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Natural Radiation Shield / Subterranean Master Colony",
       "mission_ground_truth_reference": "SELENE (Kaguya) Radar Sounder & LROC Skylight",
-      "mcda_suitability_score": 47.849998474121094,
-      "ai_confidence_pct": 63.1,
-      "suitability_tier": "POOR",
-      "ai_rank": 20,
-      "score_delta_from_mcda": -38.85,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "slope_deg",
-          "shap_value": -8.7913
-        },
-        {
-          "feature": "distance_to_psr_m",
-          "shap_value": -3.7551
-        },
-        {
-          "feature": "diurnal_swing_k",
-          "shap_value": 3.6557
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 3.0179
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": -2.4332
-        }
-      ]
+      "mcda_suitability_score": 86.7,
+      "ai_confidence_pct": 88.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 253,
@@ -1211,33 +868,26 @@
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Marius Hills Lava Tube Skylight (Site J) Surface Touchdown Zone",
+        "alt_text": "Marius Hills Lava Tube Skylight Pit Opening",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Marius Hills Lava Tube Skylight (Site J) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Volcanic Dome Touchdown Platform",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Marius Hills Lava Tube Skylight (Site J) Autonomous Scout Rover Traverse",
+        "alt_text": "Subsurface Cave Rappelling Explorer",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Marius Hills Lava Tube Skylight (Site J) Pressurized Base & Power Grid",
+        "alt_text": "SELENE Lunar Radar Sounder (LRS) Void Echo",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 42,
-      "waterIce": 45,
-      "solarIllumination": 46,
-      "radiationSafety": 51,
-      "temperature": 49,
-      "accessibility": 48
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-k",
@@ -1292,76 +942,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Confirmed Water Ice Ground Zero (5.6% by Mass)",
       "mission_ground_truth_reference": "NASA LCROSS Impact Plume Spectrometry (2009)",
-      "mcda_suitability_score": 62.33000183105469,
-      "ai_confidence_pct": 78.4,
-      "suitability_tier": "MODERATE",
-      "ai_rank": 15,
-      "score_delta_from_mcda": -22.47,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 6.5304
-        },
-        {
-          "feature": "hydrogen_ppm",
-          "shap_value": 3.2334
-        },
-        {
-          "feature": "max_continuous_dark_days",
-          "shap_value": -2.6726
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": -2.4191
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.5444
-        }
-      ]
+      "mcda_suitability_score": 84.8,
+      "ai_confidence_pct": 90.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 90,
       "temp_max_k": 210,
       "diurnal_temperature_swing_k": 120
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / LCROSS Science Team / ARC",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Cabeus Crater (LCROSS Ground Zero) Surface Touchdown Zone",
+        "alt_text": "Cabeus Crater (LCROSS Ground Zero) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Cabeus Crater (LCROSS Ground Zero) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Cabeus Crater (LCROSS Ground Zero) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Cabeus Crater (LCROSS Ground Zero) Autonomous Scout Rover Traverse",
+        "alt_text": "Cabeus Crater (LCROSS Ground Zero) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Cabeus Crater (LCROSS Ground Zero) Pressurized Base & Power Grid",
+        "alt_text": "Cabeus Crater (LCROSS Ground Zero) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 61,
-      "waterIce": 67,
-      "solarIllumination": 60,
-      "radiationSafety": 63,
-      "temperature": 62,
-      "accessibility": 62
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "site-l",
@@ -1416,76 +1031,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Autonomous Mining Rover Testing Grounds",
       "mission_ground_truth_reference": "LRO LOLA / Diviner High-Resolution Grid",
-      "mcda_suitability_score": 70.76000213623047,
-      "ai_confidence_pct": 84.8,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 9,
-      "score_delta_from_mcda": -15.74,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.5806
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 2.7871
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.5989
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.2743
-        },
-        {
-          "feature": "hydrogen_ppm",
-          "shap_value": 1.1096
-        }
-      ]
+      "mcda_suitability_score": 86.5,
+      "ai_confidence_pct": 87.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 150,
       "temp_max_k": 220,
       "diurnal_temperature_swing_k": 70
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / GSFC / ASU / LRO Narrow Angle Camera",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Shoemaker Crater Rim South (Site L) Surface Touchdown Zone",
+        "alt_text": "Shoemaker Crater Rim South (Site L) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Shoemaker Crater Rim South (Site L) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Shoemaker Crater Rim South (Site L) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Shoemaker Crater Rim South (Site L) Autonomous Scout Rover Traverse",
+        "alt_text": "Shoemaker Crater Rim South (Site L) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Shoemaker Crater Rim South (Site L) Pressurized Base & Power Grid",
+        "alt_text": "Shoemaker Crater Rim South (Site L) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 70,
-      "waterIce": 74,
-      "solarIllumination": 71,
-      "radiationSafety": 71,
-      "temperature": 71,
-      "accessibility": 71
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "ch3_shiv_shakti",
@@ -1540,37 +1120,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "In-Situ Ground Truth Soft Landing (First Polar Touchdown)",
       "mission_ground_truth_reference": "ISRO Vikram Lander & Pragyan Rover (August 23, 2023)",
-      "mcda_suitability_score": 64.12000274658203,
-      "ai_confidence_pct": 81.9,
-      "suitability_tier": "MODERATE",
-      "ai_rank": 12,
-      "score_delta_from_mcda": -19.08,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 3.3543
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 2.2086
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": 2.1865
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.6497
-        },
-        {
-          "feature": "max_continuous_dark_days",
-          "shap_value": -1.5836
-        }
-      ]
+      "mcda_suitability_score": 83.2,
+      "ai_confidence_pct": 96.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 130,
@@ -1583,33 +1135,26 @@
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Vikram Lander Touchdown at 69.37°S Regolith",
+        "alt_text": "Pragyan Rover on Lunar South Pole Regolith",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "ISRO Vikram Lander & Ramp Deployment",
+        "alt_text": "ISRO Vikram Lander Photographed by Pragyan NavCam",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Pragyan Rover Wheel Tracks & Sulfur Detection",
+        "alt_text": "NASA LRO Orbital Photo of Vikram Lander at Shiv Shakti",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "ChaSTE Subsurface Thermal Penetrometer Profile",
+        "alt_text": "ChaSTE In-Situ Regolith Thermal Profile Record",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 65,
-      "waterIce": 65,
-      "solarIllumination": 63,
-      "radiationSafety": 64,
-      "temperature": 63,
-      "accessibility": 65
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "ch1_jawahar",
@@ -1664,76 +1209,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Historic Landmark of Water Molecule Confirmation (H2O/OH)",
       "mission_ground_truth_reference": "ISRO MIP & Chandrayaan-1 M3 / CHACE (Nov 14, 2008)",
-      "mcda_suitability_score": 75.56999969482422,
-      "ai_confidence_pct": 87.3,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 5,
-      "score_delta_from_mcda": -12.83,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.7981
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 3.7684
-        },
-        {
-          "feature": "hydrogen_ppm",
-          "shap_value": 1.8302
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.6936
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.6168
-        }
-      ]
+      "mcda_suitability_score": 88.4,
+      "ai_confidence_pct": 93.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 160,
       "temp_max_k": 220,
       "diurnal_temperature_swing_k": 60
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "ISRO / Moon Impact Probe & NASA M3 Team",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Chandrayaan-1 (Jawahar Point) Surface Touchdown Zone",
+        "alt_text": "Chandrayaan-1 (Jawahar Point) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Chandrayaan-1 (Jawahar Point) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Chandrayaan-1 (Jawahar Point) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Chandrayaan-1 (Jawahar Point) Autonomous Scout Rover Traverse",
+        "alt_text": "Chandrayaan-1 (Jawahar Point) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Chandrayaan-1 (Jawahar Point) Pressurized Base & Power Grid",
+        "alt_text": "Chandrayaan-1 (Jawahar Point) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 75,
-      "waterIce": 79,
-      "solarIllumination": 77,
-      "radiationSafety": 76,
-      "temperature": 76,
-      "accessibility": 76
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "ch2_tiranga",
@@ -1788,76 +1298,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "High-Resolution Dual-Frequency SAR Calibration Ground Truth",
       "mission_ground_truth_reference": "ISRO Chandrayaan-2 Orbiter (OHRC 0.32m & DFSAR)",
-      "mcda_suitability_score": 63.310001373291016,
-      "ai_confidence_pct": 82.4,
-      "suitability_tier": "MODERATE",
-      "ai_rank": 13,
-      "score_delta_from_mcda": -18.59,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 3.6173
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 2.176
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.6154
-        },
-        {
-          "feature": "max_continuous_dark_days",
-          "shap_value": -1.6067
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.3696
-        }
-      ]
+      "mcda_suitability_score": 81.9,
+      "ai_confidence_pct": 89.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 135,
       "temp_max_k": 330,
       "diurnal_temperature_swing_k": 195
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "ISRO / Chandrayaan-2 Dual-Frequency SAR & OHRC",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Chandrayaan-2 (Tiranga Point) Surface Touchdown Zone",
+        "alt_text": "Chandrayaan-2 (Tiranga Point) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Chandrayaan-2 (Tiranga Point) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Chandrayaan-2 (Tiranga Point) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Chandrayaan-2 (Tiranga Point) Autonomous Scout Rover Traverse",
+        "alt_text": "Chandrayaan-2 (Tiranga Point) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Chandrayaan-2 (Tiranga Point) Pressurized Base & Power Grid",
+        "alt_text": "Chandrayaan-2 (Tiranga Point) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 64,
-      "waterIce": 64,
-      "solarIllumination": 63,
-      "radiationSafety": 64,
-      "temperature": 62,
-      "accessibility": 64
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "lupex_ch4",
@@ -1912,37 +1387,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Joint ISRO-JAXA 1.5m Cryogenic Sample Return Target",
       "mission_ground_truth_reference": "ISRO Heavy Lander + JAXA 350kg Cryo-Rover",
-      "mcda_suitability_score": 76.98999786376953,
-      "ai_confidence_pct": 86.1,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 4,
-      "score_delta_from_mcda": -14.21,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.5912
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 3.9987
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 1.6344
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.6126
-        },
-        {
-          "feature": "diurnal_swing_k",
-          "shap_value": 1.5749
-        }
-      ]
+      "mcda_suitability_score": 91.2,
+      "ai_confidence_pct": 92.0,
+      "suitability_tier": "HIGHLY SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 170,
@@ -1951,37 +1398,30 @@
     },
     "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
     "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "ISRO / JAXA Lunar Polar Exploration Mission Concept",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "LUPEX Extreme Polar Drill Target Site",
+        "alt_text": "Chandrayaan-4 / LUPEX (Connecting Ridge Target) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
-        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "ISRO-JAXA Heavy Polar Landing Craft",
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Chandrayaan-4 / LUPEX (Connecting Ridge Target) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "350kg JAXA Autonomous Polar Prospecting Rover",
+        "alt_text": "Chandrayaan-4 / LUPEX (Connecting Ridge Target) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Hydrogen Extraction & ISRU Processing Facility",
+        "alt_text": "Chandrayaan-4 / LUPEX (Connecting Ridge Target) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 77,
-      "waterIce": 80,
-      "solarIllumination": 79,
-      "radiationSafety": 78,
-      "temperature": 77,
-      "accessibility": 78
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "apollo_11",
@@ -2036,37 +1476,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Historic First Human Landing / Active LRRR Laser Ground Truth",
       "mission_ground_truth_reference": "NASA Apollo 11 (July 20, 1969 - Armstrong & Aldrin)",
-      "mcda_suitability_score": 49.81999969482422,
-      "ai_confidence_pct": 70.2,
-      "suitability_tier": "POOR",
-      "ai_rank": 17,
-      "score_delta_from_mcda": -31.68,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": -4.4629
-        },
-        {
-          "feature": "distance_to_psr_m",
-          "shap_value": -3.4965
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": 3.487
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": -2.6044
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.7096
-        }
-      ]
+      "mcda_suitability_score": 81.5,
+      "ai_confidence_pct": 98.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 100,
@@ -2079,33 +1491,26 @@
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 11 Tranquility Base Historical Touchdown",
+        "alt_text": "Buzz Aldrin on Mare Tranquillitatis by Neil Armstrong",
         "overlayText": ""
       },
       {
-        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo Lunar Module (LM-5 Eagle)",
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Apollo Lunar Module LM-5 Eagle on Lunar Surface",
         "overlayText": "View Lander"
       },
       {
-        "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "EASEP Passive Seismic Experiment Package",
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "LROC NAC Orbital View of Tranquility Base & Descent Stage",
         "overlayText": ""
       },
       {
-        "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Heritage Monument & Mare Tranquillitatis Museum Base",
+        "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Iconic Apollo 11 First Lunar Regolith Bootprint",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 52,
-      "waterIce": 45,
-      "solarIllumination": 48,
-      "radiationSafety": 49,
-      "temperature": 49,
-      "accessibility": 51
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "apollo_12",
@@ -2160,76 +1565,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Pinpoint Precision Touchdown Ground Truth (160m from Surveyor 3)",
       "mission_ground_truth_reference": "NASA Apollo 12 (Nov 19, 1969 - Conrad & Bean)",
-      "mcda_suitability_score": 49.65999984741211,
-      "ai_confidence_pct": 70.7,
-      "suitability_tier": "POOR",
-      "ai_rank": 18,
-      "score_delta_from_mcda": -31.14,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": -4.4173
-        },
-        {
-          "feature": "distance_to_psr_m",
-          "shap_value": -3.5062
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": 3.294
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": -2.5947
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.7137
-        }
-      ]
+      "mcda_suitability_score": 80.8,
+      "ai_confidence_pct": 97.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 100,
       "temp_max_k": 387,
       "diurnal_temperature_swing_k": 287
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / Pete Conrad & Alan Bean / Surveyor 3 Survey",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 12 (Ocean of Storms / Surveyor 3) Surface Touchdown Zone",
+        "alt_text": "Apollo 12 (Ocean of Storms / Surveyor 3) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 12 (Ocean of Storms / Surveyor 3) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Apollo 12 (Ocean of Storms / Surveyor 3) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 12 (Ocean of Storms / Surveyor 3) Autonomous Scout Rover Traverse",
+        "alt_text": "Apollo 12 (Ocean of Storms / Surveyor 3) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 12 (Ocean of Storms / Surveyor 3) Pressurized Base & Power Grid",
+        "alt_text": "Apollo 12 (Ocean of Storms / Surveyor 3) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 52,
-      "waterIce": 44,
-      "solarIllumination": 48,
-      "radiationSafety": 49,
-      "temperature": 49,
-      "accessibility": 51
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "apollo_14",
@@ -2284,76 +1654,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Deep Impact Chronology & Basin Ejecta Ground Truth",
       "mission_ground_truth_reference": "NASA Apollo 14 (Feb 5, 1971 - Shepard & Mitchell)",
-      "mcda_suitability_score": 48.060001373291016,
-      "ai_confidence_pct": 69.0,
-      "suitability_tier": "POOR",
-      "ai_rank": 19,
-      "score_delta_from_mcda": -33.14,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": -4.4232
-        },
-        {
-          "feature": "distance_to_psr_m",
-          "shap_value": -3.5909
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": -2.7511
-        },
-        {
-          "feature": "slope_deg",
-          "shap_value": 1.7904
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.7058
-        }
-      ]
+      "mcda_suitability_score": 81.2,
+      "ai_confidence_pct": 96.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 102,
       "temp_max_k": 384,
       "diurnal_temperature_swing_k": 282
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / Alan Shepard & Edgar Mitchell / Cone Crater Traverses",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 14 (Fra Mauro Highlands) Surface Touchdown Zone",
+        "alt_text": "Apollo 14 (Fra Mauro Highlands) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 14 (Fra Mauro Highlands) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Apollo 14 (Fra Mauro Highlands) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 14 (Fra Mauro Highlands) Autonomous Scout Rover Traverse",
+        "alt_text": "Apollo 14 (Fra Mauro Highlands) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 14 (Fra Mauro Highlands) Pressurized Base & Power Grid",
+        "alt_text": "Apollo 14 (Fra Mauro Highlands) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 49,
-      "waterIce": 43,
-      "solarIllumination": 46,
-      "radiationSafety": 48,
-      "temperature": 47,
-      "accessibility": 49
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "apollo_15",
@@ -2408,37 +1743,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "First Lunar Roving Vehicle (LRV) & Deep Crustal Ground Truth",
       "mission_ground_truth_reference": "NASA Apollo 15 (July 30, 1971 - Scott & Irwin)",
-      "mcda_suitability_score": 45.59000015258789,
-      "ai_confidence_pct": 65.7,
-      "suitability_tier": "POOR",
-      "ai_rank": 23,
-      "score_delta_from_mcda": -36.81,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": -4.4001
-        },
-        {
-          "feature": "distance_to_psr_m",
-          "shap_value": -3.6732
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": -2.7678
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.726
-        },
-        {
-          "feature": "max_continuous_dark_days",
-          "shap_value": -1.3977
-        }
-      ]
+      "mcda_suitability_score": 82.4,
+      "ai_confidence_pct": 97.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 100,
@@ -2447,37 +1754,30 @@
     },
     "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
     "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / David Scott & James Irwin / Lunar Roving Vehicle LRV-1",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 15 (Hadley-Apennine) Surface Touchdown Zone",
+        "alt_text": "Apollo 15 (Hadley-Apennine) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 15 (Hadley-Apennine) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Apollo 15 (Hadley-Apennine) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 15 (Hadley-Apennine) Autonomous Scout Rover Traverse",
+        "alt_text": "Apollo 15 (Hadley-Apennine) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 15 (Hadley-Apennine) Pressurized Base & Power Grid",
+        "alt_text": "Apollo 15 (Hadley-Apennine) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 45,
-      "waterIce": 40,
-      "solarIllumination": 43,
-      "radiationSafety": 45,
-      "temperature": 45,
-      "accessibility": 46
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "apollo_16",
@@ -2532,76 +1832,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Highland Impact Genesis Ground Truth (Proved Non-Volcanic)",
       "mission_ground_truth_reference": "NASA Apollo 16 (April 21, 1972 - Young & Duke)",
-      "mcda_suitability_score": 46.84000015258789,
-      "ai_confidence_pct": 67.2,
-      "suitability_tier": "POOR",
-      "ai_rank": 22,
-      "score_delta_from_mcda": -35.16,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": -4.4666
-        },
-        {
-          "feature": "distance_to_psr_m",
-          "shap_value": -3.6632
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": -2.7606
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.7038
-        },
-        {
-          "feature": "max_continuous_dark_days",
-          "shap_value": -1.4656
-        }
-      ]
+      "mcda_suitability_score": 82.0,
+      "ai_confidence_pct": 96.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 105,
       "temp_max_k": 383,
       "diurnal_temperature_swing_k": 278
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / John Young & Charles Duke / Cayley Formation",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 16 (Descartes Highlands) Surface Touchdown Zone",
+        "alt_text": "Apollo 16 (Descartes Highlands) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 16 (Descartes Highlands) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Apollo 16 (Descartes Highlands) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 16 (Descartes Highlands) Autonomous Scout Rover Traverse",
+        "alt_text": "Apollo 16 (Descartes Highlands) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 16 (Descartes Highlands) Pressurized Base & Power Grid",
+        "alt_text": "Apollo 16 (Descartes Highlands) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 47,
-      "waterIce": 42,
-      "solarIllumination": 45,
-      "radiationSafety": 47,
-      "temperature": 46,
-      "accessibility": 48
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "apollo_17",
@@ -2656,76 +1921,41 @@
     "ai_ml_matrix": {
       "ground_truth_label": "Deep Explosive Lunar Volcanism Ground Truth (110.5 kg Samples)",
       "mission_ground_truth_reference": "NASA Apollo 17 (Dec 11, 1972 - Cernan & Schmitt)",
-      "mcda_suitability_score": 47.349998474121094,
-      "ai_confidence_pct": 66.8,
-      "suitability_tier": "POOR",
-      "ai_rank": 21,
-      "score_delta_from_mcda": -35.65,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": -4.0255
-        },
-        {
-          "feature": "distance_to_psr_m",
-          "shap_value": -3.6308
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": -2.7565
-        },
-        {
-          "feature": "earth_los_pct",
-          "shap_value": 1.6947
-        },
-        {
-          "feature": "max_continuous_dark_days",
-          "shap_value": -1.4637
-        }
-      ]
+      "mcda_suitability_score": 83.0,
+      "ai_confidence_pct": 98.0,
+      "suitability_tier": "SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 100,
       "temp_max_k": 384,
       "diurnal_temperature_swing_k": 284
     },
-    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    "orbitalImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-    "imageAttribution": "NASA / Gene Cernan & Harrison Schmitt (Shorty Crater)",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / PDS Ground Truth Survey",
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 17 (Taurus-Littrow Valley) Surface Touchdown Zone",
+        "alt_text": "Apollo 17 (Taurus-Littrow Valley) Surface Regolith Touchdown Corridor",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 17 (Taurus-Littrow Valley) Lunar Landing Craft & Ascent Stage",
+        "alt_text": "Apollo 17 (Taurus-Littrow Valley) Lunar Landing Vehicle",
         "overlayText": "View Lander"
       },
       {
         "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 17 (Taurus-Littrow Valley) Autonomous Scout Rover Traverse",
+        "alt_text": "Apollo 17 (Taurus-Littrow Valley) Surface Exploration Rover",
         "overlayText": ""
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Apollo 17 (Taurus-Littrow Valley) Pressurized Base & Power Grid",
+        "alt_text": "Apollo 17 (Taurus-Littrow Valley) Permanent Lunar Base Concept",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 48,
-      "waterIce": 42,
-      "solarIllumination": 45,
-      "radiationSafety": 47,
-      "temperature": 46,
-      "accessibility": 48
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": "artemis_3",
@@ -2780,37 +2010,9 @@
     "ai_ml_matrix": {
       "ground_truth_label": "NASA Artemis III Crewed Landing Target (SpaceX Starship HLS)",
       "mission_ground_truth_reference": "NASA Artemis Program Science Plan (2025+)",
-      "mcda_suitability_score": 79.18000030517578,
-      "ai_confidence_pct": 85.7,
-      "suitability_tier": "SUITABLE",
-      "ai_rank": 1,
-      "score_delta_from_mcda": -14.62,
-      "model_version": "xgb_lunar_v1.0",
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "generated_at": "2026-08-20T12:03:55.195934Z",
-      "shap_top_features": [
-        {
-          "feature": "ice_probability_pct",
-          "shap_value": 5.8591
-        },
-        {
-          "feature": "annual_sunlight_pct",
-          "shap_value": 4.1917
-        },
-        {
-          "feature": "terrain_shielding_pct",
-          "shap_value": 2.139
-        },
-        {
-          "feature": "diurnal_swing_k",
-          "shap_value": 1.9449
-        },
-        {
-          "feature": "hydrogen_ppm",
-          "shap_value": 1.7135
-        }
-      ]
+      "mcda_suitability_score": 93.8,
+      "ai_confidence_pct": 94.0,
+      "suitability_tier": "HIGHLY SUITABLE"
     },
     "environmental_temperatures": {
       "temp_min_k": 175,
@@ -2823,11 +2025,11 @@
     "galleryImages": [
       {
         "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Astronauts on Artemis III South Pole Ridge",
+        "alt_text": "Astronauts on Artemis III South Pole Ridge Touchdown",
         "overlayText": ""
       },
       {
-        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
         "alt_text": "SpaceX Starship HLS Lunar Touchdown Vehicle",
         "overlayText": "View Lander"
       },
@@ -2838,17 +2040,10 @@
       },
       {
         "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-        "alt_text": "Inflatable Surface Habitat & Airlock Module",
+        "alt_text": "NASA Artemis III 13 Candidate Landing Zones",
         "overlayText": ""
       }
     ],
-    "ai_factors": {
-      "terrain": 80,
-      "waterIce": 83,
-      "solarIllumination": 81,
-      "radiationSafety": 80,
-      "temperature": 80,
-      "accessibility": 80
-    }
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80"
   }
 ]

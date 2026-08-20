@@ -7,9 +7,9 @@ import concurrent.futures
 from datetime import datetime
 
 BASE_OUTPUT_DIR = "lunar_node_assets"
-PRIMARY_WMS = "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/earth/moon_simp_cyl.map"
+PRIMARY_WMS = "https://wms.lroc.asu.edu/lroc/wms"
 DELTA = 0.1  # Dynamic bounding box delta in degrees
-MIN_FILE_SIZE_BYTES = 512  # 512 bytes validation threshold
+MIN_FILE_SIZE_BYTES = 5 * 1024  # 5 KB validation threshold
 
 # 23 Predefined Lunar Exploration & Habitat Nodes
 LUNAR_NODES = [
@@ -41,19 +41,19 @@ LUNAR_NODES = [
 # Three required map layers and specs
 TARGET_LAYERS = [
     {
-        "layer_name": "LROC_WAC",
+        "layer_name": "wac_global",
         "output_filename": "wac_global.png",
         "format": "image/png",
         "expected_mime_prefix": "image/"
     },
     {
-        "layer_name": "LOLA_color",
+        "layer_name": "lola_sldem2015",
         "output_filename": "lola_sldem2015.tif",
         "format": "image/tiff",
         "expected_mime_prefix": "image/"
     },
     {
-        "layer_name": "LOLA_bw",
+        "layer_name": "lola_sldem2015_slope",
         "output_filename": "lola_sldem2015_slope.png",
         "format": "image/png",
         "expected_mime_prefix": "image/"
@@ -87,8 +87,7 @@ def fetch_and_validate_layer(node_folder, lat, lon, layer_spec):
         "FORMAT": fmt
     }
     
-    separator = "&" if "?" in PRIMARY_WMS else "?"
-    url = f"{PRIMARY_WMS}{separator}{urllib.parse.urlencode(params)}"
+    url = f"{PRIMARY_WMS}?{urllib.parse.urlencode(params)}"
     
     result_meta = {
         "layer": layer_name,
