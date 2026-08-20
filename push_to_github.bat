@@ -1,6 +1,6 @@
 @echo off
 echo ===================================================
-echo   Lunar Habitat AI - Pushing Updates to GitHub
+echo   Lunar Habitat AI - Push Development to GitHub
 echo   Target: https://github.com/harshpenjarla-sys/Lunar-project
 echo ===================================================
 echo.
@@ -11,9 +11,9 @@ echo [1/3] Checking Git Status...
 git status
 
 echo.
-echo [2/3] Staging and committing all updates...
+echo [2/3] Staging all updates...
 git add -A
-git commit -m "feat: 3D high-fidelity spinning moon opening sequence, auto-navigation, UI refinements, and resilient real-photos sync" 2>nul
+git commit -m "feat: complete Lunar Habitat AI development update & repository team integration" 2>nul
 
 echo.
 echo [3/3] Pushing to GitHub (origin main)...
@@ -22,11 +22,11 @@ git push origin main
 echo.
 if %ERRORLEVEL% equ 0 (
     echo ===================================================
-    echo   SUCCESS: Changes successfully pushed to GitHub!
+    echo   SUCCESS: All development pushed to GitHub!
     echo ===================================================
 ) else (
     echo ===================================================
-    echo   NOTE: If prompted, please log in via GitHub browser popup
+    echo   NOTE: If prompted, please complete browser login
     echo   or verify write access permissions to this repo.
     echo ===================================================
 )
