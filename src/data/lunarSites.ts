@@ -57,28 +57,28 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Deploy tethered autonomous cryo-rover into Shackleton PSR for water ice mining',
       'Install Ka-band optical communication direct Earth relay terminal'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shackleton_crater_mosaic.jpg/800px-Shackleton_crater_mosaic.jpg',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / GSFC / Arizona State University (LROC NAC)',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shackleton_crater_mosaic.jpg/800px-Shackleton_crater_mosaic.jpg",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Shackleton Crater Rim Crest Illuminated Ridge",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Artemis Polar Human Landing System (HLS)",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Polar Terrain Rover Ice Prospecting Traverse",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
+            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
             "alt_text": "LOLA SLDEM2015 Laser Altimetry Topography",
             "overlayText": ""
       }
@@ -127,28 +127,28 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Construct initial surface basecamp on eastern plateau shelf',
       'Establish automated rover haulage road to southern ice deposits'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/LRO_South_Pole_Illumination_Map.jpg/800px-LRO_South_Pole_Illumination_Map.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/LRO_South_Pole_Illumination_Map.jpg/800px-LRO_South_Pole_Illumination_Map.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Malapert_Mountain_LROC.png/800px-Malapert_Mountain_LROC.png',
+    thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / LRO / Intuitive Machines IM-1',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Malapert_Mountain_LROC.png/800px-Malapert_Mountain_LROC.png",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Mons Malapert 5,000m Peak of Eternal Light",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/IM-1_Odysseus_on_the_Moon.png/800px-IM-1_Odysseus_on_the_Moon.png",
+            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Intuitive Machines IM-1 Odysseus Lander",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Surface Prospecting Rover on Malapert Plateau",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/LRO_South_Pole_Illumination_Map.jpg/800px-LRO_South_Pole_Illumination_Map.jpg",
+            "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
             "alt_text": "LROC Peak Solar Illumination Map",
             "overlayText": ""
       }
@@ -195,28 +195,28 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Designate as industrial mining zone for Commercial Lunar Payload Services',
       'Deploy thermal mining solar reflectors and sublimator domes'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Faustini_crater_LROC.jpg/800px-Faustini_crater_LROC.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Faustini_crater_LROC.jpg/800px-Faustini_crater_LROC.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
+    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / Diviner Science Team / UCLA',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Faustini_crater_LROC.jpg/800px-Faustini_crater_LROC.jpg",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Faustini Rim A Perennial Shadow Margin",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Cryogenic Volatile Sampling Landcraft",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Subsurface Cold-Trap Cryo-Drill Rig",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
+            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Diviner Thermal Channel 38K Cold Basin",
             "overlayText": ""
       }
@@ -264,29 +264,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Construct sintered regolith landing pad with blast deflection walls',
       'Deploy mobile power generation rovers'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shackleton_crater_mosaic.jpg/800px-Shackleton_crater_mosaic.jpg',
-    imageAttribution: 'NASA / GSFC / LROC (Artemis III Target Survey)',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg",
-            "alt_text": "Connecting Ridge High Saddle Elevation Corridor",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-connecting-ridge Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
-            "alt_text": "Starship HLS Ridge Touchdown Staging",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-connecting-ridge Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
-            "alt_text": "Autonomous Ridge Traversability Route",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-connecting-ridge Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shackleton_crater_mosaic.jpg/800px-Shackleton_crater_mosaic.jpg",
-            "alt_text": "LROC NAC Photometric Orthomosaic",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-connecting-ridge Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -331,29 +331,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Install compact Kilopower nuclear reactor (10 kWe) as baseline power',
       'Deploy autonomous ISRU water refinery pilot plant'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/De_Gerlache_Crater_LROC.jpg/800px-De_Gerlache_Crater_LROC.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/De_Gerlache_Crater_LROC.jpg/800px-De_Gerlache_Crater_LROC.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    imageAttribution: 'NASA / GSFC / ASU Lunaserv WMS',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/De_Gerlache_Crater_LROC.jpg/800px-De_Gerlache_Crater_LROC.jpg",
-            "alt_text": "de Gerlache Rim Peak Alpha",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-de-gerlache Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
-            "alt_text": "Artemis Human Landing System",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-de-gerlache Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
-            "alt_text": "Polar Volatile Surface Rover",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-de-gerlache Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "LOLA High-Resolution DEM Contour Map",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-de-gerlache Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -398,29 +398,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Establish science laboratory for volatile age dating and isotope analysis',
       'Integrate solar tower arrays on highest crest points'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Haworth_crater_LROC.jpg/800px-Haworth_crater_LROC.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Haworth_crater_LROC.jpg/800px-Haworth_crater_LROC.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    imageAttribution: 'NASA / LRO LOLA Altimetry Team',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Haworth_crater_LROC.jpg/800px-Haworth_crater_LROC.jpg",
-            "alt_text": "Haworth Crater North Rim Altimetry",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-haworth Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
-            "alt_text": "Cryogenic Landing Platform",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-haworth Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
-            "alt_text": "Extreme Cold Rover Prospector",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-haworth Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "Diviner Radiometer Cryogenic Channel Map",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-haworth Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -467,28 +467,28 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Deploy deep-space optical telescope array benefiting from atmospheric absence',
       'Establish permanent astronaut habitat complex'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / VIPER Science Team / Ames Research Center',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Mons Mouton High-Altitude Flat Mesa Plateau",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Commercial Lunar Payload Services (CLPS) Lander",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
             "alt_text": "VIPER Neutron Spectrometer Volatiles Drill",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Mesa Solar Illumination Coverage",
             "overlayText": ""
       }
@@ -534,29 +534,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Install Artemis Base Camp Core Habitation Module',
       'Establish pressurized rover charging garage and airlocks'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Nobile_crater_LROC.jpg/800px-Nobile_crater_LROC.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Nobile_crater_LROC.jpg/800px-Nobile_crater_LROC.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    imageAttribution: 'NASA / GSFC / ASU / LRO ShadowCam',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Nobile_crater_LROC.jpg/800px-Nobile_crater_LROC.jpg",
-            "alt_text": "Nobile Crater Rim Artemis Base Alpha Zone",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-nobile Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
-            "alt_text": "Artemis Base Camp Surface Lander",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-nobile Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
-            "alt_text": "VIPER Rover Traversing Nobile Rim",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-nobile Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "ShadowCam Low-Light Reflected Survey",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-nobile Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -601,29 +601,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Deploy autonomous drone/hopper for vertical wall sampling',
       'Construct remote science sensor grid'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Amundsen_crater_LROC.jpg/800px-Amundsen_crater_LROC.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Amundsen_crater_LROC.jpg/800px-Amundsen_crater_LROC.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    imageAttribution: 'NASA / Southwest Research Institute (LAMP Team)',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Amundsen_crater_LROC.jpg/800px-Amundsen_crater_LROC.jpg",
-            "alt_text": "Amundsen Crater Floor & Central Uplift Peak",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-i Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
-            "alt_text": "Autonomous Logistics Cargo Lander",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-i Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
-            "alt_text": "Central Uplift Mineralogical Rover",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-i Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "Lyman-Alpha Mapping Project (LAMP) Survey",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-i Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -671,28 +671,28 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Deploy heavy winched elevator down 50m skylight shaft',
       'Surface nuclear / solar umbilical power feed'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Marius_Hills_hole_LROC.jpg/800px-Marius_Hills_hole_LROC.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Marius_Hills_hole_LROC.jpg/800px-Marius_Hills_hole_LROC.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Marius_Hills_region_LROC.jpg/800px-Marius_Hills_region_LROC.jpg',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'JAXA / SELENE (Kaguya) Terrain Camera & LROC NAC',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Marius_Hills_hole_LROC.jpg/800px-Marius_Hills_hole_LROC.jpg",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Marius Hills Lava Tube Skylight Pit Opening",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Volcanic Dome Touchdown Platform",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Subsurface Cave Rappelling Explorer",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Marius_Hills_region_LROC.jpg/800px-Marius_Hills_region_LROC.jpg",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "SELENE Lunar Radar Sounder (LRS) Void Echo",
             "overlayText": ""
       }
@@ -738,29 +738,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Commercial rocket propellant (LH2/LOX) plant',
       'Cryogenic volatile distillation pipeline'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/LCROSS_impact_plume.jpg/800px-LCROSS_impact_plume.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/LCROSS_impact_plume.jpg/800px-LCROSS_impact_plume.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    imageAttribution: 'NASA / LCROSS Science Team / ARC',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/LCROSS_impact_plume.jpg/800px-LCROSS_impact_plume.jpg",
-            "alt_text": "Cabeus Crater LCROSS Water Plume Detection",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-k Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
-            "alt_text": "Heavy ISRU Extraction Lander",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-k Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
-            "alt_text": "Cryogenic Volatiles In-Situ Miner",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-k Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "LCROSS Kinetic Impact Ground Zero Map",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-k Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -804,29 +804,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Autonomous mining rover testing grounds',
       'Regolith sintering construction demonstration'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/LRO_South_Pole_Illumination_Map.jpg/800px-LRO_South_Pole_Illumination_Map.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/LRO_South_Pole_Illumination_Map.jpg/800px-LRO_South_Pole_Illumination_Map.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    imageAttribution: 'NASA / GSFC / ASU / LRO Narrow Angle Camera',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/LRO_South_Pole_Illumination_Map.jpg/800px-LRO_South_Pole_Illumination_Map.jpg",
-            "alt_text": "Shoemaker Crater Rim South Elevation Crest",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-l Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
-            "alt_text": "Polar Logistics Lander",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-l Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
-            "alt_text": "Hydrogen Anomaly Rover Scout",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-l Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "LRO LEND Epithermal Neutron Map",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "site-l Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -871,28 +871,28 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Deploy stationary long-term seismological observatory',
       'Establish regolith plasma charging research station'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg/800px-Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg/800px-Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Chandrayaan-3_landing_site_by_LRO.jpg/800px-Chandrayaan-3_landing_site_by_LRO.jpg',
+    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'ISRO / ISTRAC / Pragyan Rover NavCam & Chandrayaan-2 OHRC',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg/800px-Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Pragyan Rover on Lunar South Pole Regolith",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Vikram_Lander_from_Pragyan_Rover.jpg/800px-Vikram_Lander_from_Pragyan_Rover.jpg",
+            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
             "alt_text": "ISRO Vikram Lander Photographed by Pragyan NavCam",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Chandrayaan-3_landing_site_by_LRO.jpg/800px-Chandrayaan-3_landing_site_by_LRO.jpg",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
             "alt_text": "NASA LRO Orbital Photo of Vikram Lander at Shiv Shakti",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "ChaSTE In-Situ Regolith Thermal Profile Record",
             "overlayText": ""
       }
@@ -937,29 +937,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Construct deep-space volatile monitoring station',
       'Install commemorative international scientific marker'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shackleton_crater_mosaic.jpg/800px-Shackleton_crater_mosaic.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shackleton_crater_mosaic.jpg/800px-Shackleton_crater_mosaic.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    imageAttribution: 'ISRO / Moon Impact Probe & NASA M3 Team',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shackleton_crater_mosaic.jpg/800px-Shackleton_crater_mosaic.jpg",
-            "alt_text": "Jawahar Point Moon Impact Probe (MIP) Target",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "ch1_jawahar Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Vikram_Lander_from_Pragyan_Rover.jpg/800px-Vikram_Lander_from_Pragyan_Rover.jpg",
-            "alt_text": "ISRO Polar Impact Probe Vehicle",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "ch1_jawahar Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg/800px-Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg",
-            "alt_text": "Shackleton Cold Trap Volatile Signature",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "ch1_jawahar Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "Moon Mineralogy Mapper (M3) 3.0\u00b5m Hydroxyl Dip",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "ch1_jawahar Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1003,29 +1003,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Install surface radar calibration transponder',
       'Deploy autonomous meteorological outpost'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg/800px-Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg/800px-Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Chandrayaan-3_landing_site_by_LRO.jpg/800px-Chandrayaan-3_landing_site_by_LRO.jpg',
-    imageAttribution: 'ISRO / Chandrayaan-2 Dual-Frequency SAR & OHRC',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Chandrayaan-3_landing_site_by_LRO.jpg/800px-Chandrayaan-3_landing_site_by_LRO.jpg",
-            "alt_text": "Tiranga Point Highland Plain",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "ch2_tiranga Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Vikram_Lander_from_Pragyan_Rover.jpg/800px-Vikram_Lander_from_Pragyan_Rover.jpg",
-            "alt_text": "Chandrayaan-2 Vikram Landing Attempt Site",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "ch2_tiranga Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg/800px-Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg",
-            "alt_text": "Dual Frequency Synthetic Aperture Radar (DFSAR)",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "ch2_tiranga Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "Orbiter High Resolution Camera (OHRC) 0.32m Grid",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "ch2_tiranga Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1069,29 +1069,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Deploy 1.5m subsurface drill sampling core',
       'Establish volatile mass spectrometry laboratory'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg',
-    imageAttribution: 'ISRO / JAXA Lunar Polar Exploration Mission Concept',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg",
-            "alt_text": "LUPEX Extreme Polar Drill Target Site",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "lupex_ch4 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Vikram_Lander_from_Pragyan_Rover.jpg/800px-Vikram_Lander_from_Pragyan_Rover.jpg",
-            "alt_text": "ISRO-JAXA Heavy Polar Landing Craft",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "lupex_ch4 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg/800px-Pragyan_rover_on_the_Moon_%28Chandrayaan-3%29.jpg",
-            "alt_text": "350kg JAXA Autonomous Polar Prospecting Rover",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "lupex_ch4 Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "Hydrogen Extraction & ISRU Processing Facility",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "lupex_ch4 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1136,28 +1136,28 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Maintain international historical preservation perimeter',
       'Install laser ranging calibration monitor'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Aldrin_Apollo_11_original.jpg/800px-Aldrin_Apollo_11_original.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Aldrin_Apollo_11_original.jpg/800px-Aldrin_Apollo_11_original.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Apollo_11_landing_site.jpg/800px-Apollo_11_landing_site.jpg',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / Neil Armstrong & Buzz Aldrin / LROC NAC (M102360879R)',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Aldrin_Apollo_11_original.jpg/800px-Aldrin_Apollo_11_original.jpg",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Buzz Aldrin on Mare Tranquillitatis by Neil Armstrong",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Apollo_11_Lunar_Lander_-_5927_NASA.jpg/800px-Apollo_11_Lunar_Lander_-_5927_NASA.jpg",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Apollo Lunar Module LM-5 Eagle on Lunar Surface",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Apollo_11_landing_site.jpg/800px-Apollo_11_landing_site.jpg",
+            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
             "alt_text": "LROC NAC Orbital View of Tranquility Base & Descent Stage",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Apollo_11_bootprint.jpg/800px-Apollo_11_bootprint.jpg",
+            "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Iconic Apollo 11 First Lunar Regolith Bootprint",
             "overlayText": ""
       }
@@ -1201,29 +1201,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
     missionRecommendations: [
       'Conduct long-duration material degradation studies on retrieved components'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Apollo_12_Surveyor_3.jpg/800px-Apollo_12_Surveyor_3.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Apollo_12_Surveyor_3.jpg/800px-Apollo_12_Surveyor_3.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Apollo_12_landing_site_LROC.jpg/800px-Apollo_12_landing_site_LROC.jpg',
-    imageAttribution: 'NASA / Pete Conrad & Alan Bean / Surveyor 3 Survey',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Apollo_12_Surveyor_3.jpg/800px-Apollo_12_Surveyor_3.jpg",
-            "alt_text": "Pete Conrad Visiting Surveyor 3 Spacecraft",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_12 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Apollo_12_Intrepid.jpg/800px-Apollo_12_Intrepid.jpg",
-            "alt_text": "Apollo 12 Lunar Module LM-6 Intrepid",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_12 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Apollo_12_landing_site_LROC.jpg/800px-Apollo_12_landing_site_LROC.jpg",
-            "alt_text": "LROC NAC Orbital Image of Apollo 12 & Surveyor Crater",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_12 Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "ALSEP Ocean of Storms Geophysics Array",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_12 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1265,29 +1265,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
     missionRecommendations: [
       'Establish regional seismic and geology field station'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Apollo_14_Shepard.jpg/800px-Apollo_14_Shepard.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Apollo_14_Shepard.jpg/800px-Apollo_14_Shepard.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Apollo_14_landing_site_LROC.jpg/800px-Apollo_14_landing_site_LROC.jpg',
-    imageAttribution: 'NASA / Alan Shepard & Edgar Mitchell / Cone Crater Traverses',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Apollo_14_Shepard.jpg/800px-Apollo_14_Shepard.jpg",
-            "alt_text": "Alan Shepard Standing with US Flag at Fra Mauro",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_14 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Apollo_14_LM_Antares_on_Moon.jpg/800px-Apollo_14_LM_Antares_on_Moon.jpg",
-            "alt_text": "Apollo 14 Lunar Module LM-8 Antares",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_14 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Apollo_14_landing_site_LROC.jpg/800px-Apollo_14_landing_site_LROC.jpg",
-            "alt_text": "LROC NAC Orbital View of Cone Crater Traverses",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_14 Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "Imbrium Basin Impact Melt Ejecta Blanket",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_14 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1329,29 +1329,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
     missionRecommendations: [
       'Construct robotic canyon exploration crane into Hadley Rille'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Apollo_15_flag%2C_rover%2C_LM%2C_Irwin.jpg/800px-Apollo_15_flag%2C_rover%2C_LM%2C_Irwin.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Apollo_15_flag%2C_rover%2C_LM%2C_Irwin.jpg/800px-Apollo_15_flag%2C_rover%2C_LM%2C_Irwin.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Apollo_15_landing_site_LROC.jpg/800px-Apollo_15_landing_site_LROC.jpg',
-    imageAttribution: 'NASA / David Scott & James Irwin / Lunar Roving Vehicle LRV-1',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Apollo_15_flag%2C_rover%2C_LM%2C_Irwin.jpg/800px-Apollo_15_flag%2C_rover%2C_LM%2C_Irwin.jpg",
-            "alt_text": "Jim Irwin Saluting Flag with Lunar Roving Vehicle 1",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_15 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Apollo_15_Falcon_on_the_Moon.jpg/800px-Apollo_15_Falcon_on_the_Moon.jpg",
-            "alt_text": "Apollo 15 Lunar Module LM-10 Falcon at Hadley Base",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_15 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Apollo_15_landing_site_LROC.jpg/800px-Apollo_15_landing_site_LROC.jpg",
-            "alt_text": "LROC NAC Image of Hadley Rille & Rover Tracks",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_15 Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "Apennine Mountain Front & Genesis Rock Sample",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_15 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1393,29 +1393,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
     missionRecommendations: [
       'Deploy ISRU regolith glass fiber sintering facility'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/John_Young_Jumping_Apollo_16.jpg/800px-John_Young_Jumping_Apollo_16.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/John_Young_Jumping_Apollo_16.jpg/800px-John_Young_Jumping_Apollo_16.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Apollo_16_landing_site_LROC.jpg/800px-Apollo_16_landing_site_LROC.jpg',
-    imageAttribution: 'NASA / John Young & Charles Duke / Cayley Formation',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/John_Young_Jumping_Apollo_16.jpg/800px-John_Young_Jumping_Apollo_16.jpg",
-            "alt_text": "John Young Jumping Salute at Descartes Highlands",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_16 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Apollo_16_LM_Orion.jpg/800px-Apollo_16_LM_Orion.jpg",
-            "alt_text": "Apollo 16 Lunar Module LM-11 Orion",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_16 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Apollo_16_landing_site_LROC.jpg/800px-Apollo_16_landing_site_LROC.jpg",
-            "alt_text": "LROC NAC View of Stone Mountain & Rover Traverses",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_16 Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "Cayley Plains High-Albedo Anorthosite Regolith",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_16 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1457,29 +1457,29 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
     missionRecommendations: [
       'Install automated pyroclastic glass extraction plant'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Harrison_Schmitt_standing_next_to_boulder_during_Apollo_17_EVA.jpg/800px-Harrison_Schmitt_standing_next_to_boulder_during_Apollo_17_EVA.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Harrison_Schmitt_standing_next_to_boulder_during_Apollo_17_EVA.jpg/800px-Harrison_Schmitt_standing_next_to_boulder_during_Apollo_17_EVA.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Apollo_17_landing_site_LROC.jpg/800px-Apollo_17_landing_site_LROC.jpg',
-    imageAttribution: 'NASA / Gene Cernan & Harrison Schmitt (Shorty Crater)',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
+    imageAttribution: 'NASA / PDS Ground Truth Survey',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Harrison_Schmitt_standing_next_to_boulder_during_Apollo_17_EVA.jpg/800px-Harrison_Schmitt_standing_next_to_boulder_during_Apollo_17_EVA.jpg",
-            "alt_text": "Harrison Schmitt Beside Giant Split Boulder at Taurus-Littrow",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_17 Surface Regolith Touchdown Corridor",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Apollo_17_Challenger_on_Moon.jpg/800px-Apollo_17_Challenger_on_Moon.jpg",
-            "alt_text": "Apollo 17 Lunar Module LM-12 Challenger",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_17 Lunar Landing Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Apollo_17_landing_site_LROC.jpg/800px-Apollo_17_landing_site_LROC.jpg",
-            "alt_text": "LROC NAC Image of Taurus-Littrow Valley Floor",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_17 Surface Exploration Rover",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Moon_South_Pole_LOLA_2011.jpg/800px-Moon_South_Pole_LOLA_2011.jpg",
-            "alt_text": "Shorty Crater Orange Volcanic Pyroclastic Glass",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
+            "alt_text": "apollo_17 Permanent Lunar Base Concept",
             "overlayText": ""
       }
 ]
@@ -1525,28 +1525,28 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = [
       'Install Artemis Base Camp foundation habitat and mobile power cart',
       'Establish ISRU water purification pipeline'
     ],
-    thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg',
-    surfaceImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg',
-    orbitalImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg',
+    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
     imageAttribution: 'NASA / SpaceX / Axiom Space / LROC NAC High-Res Mosaic',
     galleryImages: [
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
+            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
             "alt_text": "Astronauts on Artemis III South Pole Ridge Touchdown",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Artemis_III_Starship_HLS_on_Moon.jpg/800px-Artemis_III_Starship_HLS_on_Moon.jpg",
+            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "SpaceX Starship HLS Lunar Touchdown Vehicle",
             "overlayText": "View Lander"
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/VIPER_rover_concept_art.jpg/800px-VIPER_rover_concept_art.jpg",
+            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
             "alt_text": "NASA VIPER Volatile Scout Rover Traverse",
             "overlayText": ""
       },
       {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Moon_South_Pole_Artemis_Candidate_Regions.jpg/800px-Moon_South_Pole_Artemis_Candidate_Regions.jpg",
+            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
             "alt_text": "NASA Artemis III 13 Candidate Landing Zones",
             "overlayText": ""
       }
