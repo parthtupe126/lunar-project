@@ -75,7 +75,7 @@ const MiniMoonGlobe = () => {
     let animId;
     const animate = () => {
       animId = requestAnimationFrame(animate);
-      moon.rotation.y += 0.008; // Smooth photorealistic lunar spin
+      moon.rotation.y += 0.0035; // Gentle, slow photorealistic lunar spin
       renderer.render(scene, camera);
     };
     animate();
@@ -240,56 +240,52 @@ export const OpeningAnimation = ({ onComplete = () => {} }) => {
       <div className="absolute w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-cyan-600/15 via-purple-600/10 to-transparent blur-3xl pointer-events-none animate-pulse" />
       <div className="absolute w-[300px] h-[300px] rounded-full bg-cyan-500/10 blur-2xl pointer-events-none" />
 
-      {/* Central Interactive HUD Modal */}
-      <div className="relative z-10 max-w-xl w-full mx-4 p-8 rounded-3xl bg-[#070B14]/85 border border-cyan-500/30 backdrop-blur-2xl shadow-[0_0_80px_rgba(6,182,212,0.15)] flex flex-col items-center text-center">
+      {/* Central Clean Aerospace Modal */}
+      <div className="relative z-10 max-w-md w-full mx-4 p-7 rounded-2xl bg-slate-900/95 border border-slate-800 backdrop-blur-xl shadow-2xl flex flex-col items-center text-center">
         
-        {/* Holographic 3D Spinning Moon Sphere */}
-        <div className="relative mb-6 flex items-center justify-center">
-          <div className="relative w-28 h-28 rounded-full overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(56,189,248,0.35)]">
+        {/* Photorealistic 3D Spinning Moon Sphere */}
+        <div className="relative mb-5 flex items-center justify-center">
+          <div className="relative w-26 h-26 rounded-full overflow-hidden flex items-center justify-center border border-slate-700 shadow-md">
             <MiniMoonGlobe />
           </div>
-          
-          {/* Pulsing Target Brackets & Orbital Rings */}
-          <div className="absolute -inset-3 border border-cyan-400/30 rounded-full animate-ping opacity-25 pointer-events-none" />
-          <div className="absolute -inset-1.5 border border-purple-500/40 rounded-full pointer-events-none" />
         </div>
 
         {/* Brand Titles */}
-        <div className="space-y-1.5 mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-[11px] font-mono text-cyan-300 tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>LUNAR EXPLORATION MISSION CONTROL</span>
+        <div className="space-y-1 mb-5">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-[10px] font-mono text-slate-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+            <span>MISSION STUDIO INITIALIZATION</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 tracking-tight">
-            LUNAR HABITAT AI
+          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight pt-1">
+            Lunar Habitat Intelligence
           </h1>
-          <p className="text-xs font-mono text-slate-400 max-w-md mx-auto">
-            Autonomous Site Selection, 3D Altimetry & Habitat Spatial Intelligence
+          <p className="text-xs text-slate-400 max-w-xs mx-auto">
+            Autonomous site assessment, 3D altimetry & spatial suitability modeling
           </p>
         </div>
 
         {/* Dynamic Telemetry Stage Card */}
-        <div className="w-full bg-[#030712]/90 border border-slate-800/90 rounded-2xl p-4 text-left">
-          <div className="flex items-center justify-between text-[11px] font-mono mb-2">
-            <span className="text-cyan-400 font-semibold flex items-center gap-1.5">
-              <Activity className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+        <div className="w-full bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 text-left">
+          <div className="flex items-center justify-between text-xs mb-1.5">
+            <span className="text-slate-300 font-medium flex items-center gap-1.5">
+              <Activity className="w-3.5 h-3.5 text-sky-400" />
               {BOOT_STAGES[stageIndex]?.tag || 'INITIALIZING'}
             </span>
-            <span className="text-slate-400">{Math.round(progress)}%</span>
+            <span className="font-mono text-xs text-slate-400">{Math.round(progress)}%</span>
           </div>
 
-          {/* Progress Bar */}
-          <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-[1px] border border-slate-800 mb-3">
+          {/* Precision Progress Bar */}
+          <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mb-2.5">
             <div
-              className="h-full bg-gradient-to-r from-purple-600 via-indigo-500 to-cyan-400 rounded-full transition-all duration-75 shadow-[0_0_12px_rgba(6,182,212,0.8)]"
+              className="h-full bg-blue-600 rounded-full transition-all duration-100 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>
 
           {/* Live Log readout */}
-          <div className="text-[11px] font-mono text-slate-300 truncate flex items-center gap-2">
-            <span className="text-cyan-500">❯</span>
-            <span className="typing-text">{BOOT_STAGES[stageIndex]?.label}</span>
+          <div className="text-[11px] font-mono text-slate-400 truncate flex items-center gap-1.5">
+            <span className="text-blue-400">❯</span>
+            <span>{BOOT_STAGES[stageIndex]?.label}</span>
           </div>
         </div>
       </div>

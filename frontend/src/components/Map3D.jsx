@@ -291,7 +291,7 @@ export const Map3D = ({
     isAutoSpinRef.current = isAutoSpin;
     if (controlsRef.current) {
       controlsRef.current.autoRotate = isAutoSpin;
-      controlsRef.current.autoRotateSpeed = 0.45;
+      controlsRef.current.autoRotateSpeed = 0.18;
     }
   }, [isAutoSpin]);
 
@@ -413,7 +413,7 @@ export const Map3D = ({
     controls.maxDistance = 5.50; // Overview boundary preventing moon from becoming tiny speck
     controls.enablePan = false;  // Keep Moon locked to center
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.45;
+    controls.autoRotateSpeed = 0.18;
     controlsRef.current = controls;
 
     // 3. 6-Sided Starfield Skybox
@@ -621,7 +621,7 @@ export const Map3D = ({
       // Auto-rotation
       if (isAutoSpinRef.current) {
         if (globeGroupRef.current) {
-          globeGroupRef.current.rotation.y += 0.0004;
+          globeGroupRef.current.rotation.y += 0.00015;
         }
       }
 
@@ -998,20 +998,20 @@ export const Map3D = ({
         {/* Left Side: Search Bar & Texture Map Mode Switcher */}
         <div className="pointer-events-auto flex flex-wrap items-center gap-2 max-w-full">
           {/* Search Box */}
-          <div className="relative w-56 sm:w-64 md:w-72 shrink-0">
-            <div className="relative flex items-center bg-[#0B1120]/90 backdrop-blur-md rounded-xl border border-slate-700/80 shadow-lg px-3 py-2">
-              <Search className="w-4 h-4 text-cyan-400 mr-2 shrink-0" />
+          <div className="relative w-56 sm:w-64 shrink-0">
+            <div className="relative flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg border border-slate-700/70 shadow-sm px-3 py-1.5">
+              <Search className="w-3.5 h-3.5 text-slate-400 mr-2 shrink-0" />
               <input
                 type="text"
                 placeholder="Search crater, Apollo, Artemis..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent text-xs font-mono text-white placeholder-slate-400 focus:outline-none w-full"
+                className="bg-transparent text-xs text-white placeholder-slate-400 focus:outline-none w-full"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="text-slate-400 hover:text-white text-xs font-mono px-1"
+                  className="text-slate-400 hover:text-white text-xs px-1 cursor-pointer"
                 >
                   ×
                 </button>
@@ -1020,7 +1020,7 @@ export const Map3D = ({
 
             {/* Search Results Dropdown */}
             {searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-[#0B1120]/95 backdrop-blur-xl border border-cyan-500/40 rounded-xl overflow-hidden shadow-2xl z-30">
+              <div className="absolute top-full left-0 right-0 mt-1 bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-lg overflow-hidden shadow-xl z-30">
                 {searchResults.map(item => (
                   <div
                     key={item.id}
@@ -1032,19 +1032,19 @@ export const Map3D = ({
                       }
                       setSearchQuery('');
                     }}
-                    className="px-3 py-2 hover:bg-slate-800/80 cursor-pointer border-b border-slate-800/60 last:border-0 flex items-center justify-between"
+                    className="px-3 py-2 hover:bg-slate-800 cursor-pointer border-b border-slate-800/80 last:border-0 flex items-center justify-between"
                   >
                     <div>
-                      <div className="text-xs font-mono font-bold text-white flex items-center gap-1.5">
-                        {item.isMission ? <Rocket className="w-3 h-3 text-orange-400" /> : <MapPin className="w-3 h-3 text-cyan-400" />}
+                      <div className="text-xs font-semibold text-white flex items-center gap-1.5">
+                        {item.isMission ? <Rocket className="w-3 h-3 text-amber-400" /> : <MapPin className="w-3 h-3 text-sky-400" />}
                         <span>{item.name}</span>
                       </div>
-                      <div className="text-[10px] font-mono text-slate-400">
+                      <div className="text-[11px] font-mono text-slate-400">
                         {item.latitude.toFixed(2)}°, {item.longitude.toFixed(2)}° • {item.siteType}
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono font-bold text-cyan-400 bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-500/30">
-                      FLY TO
+                    <span className="text-[10px] font-mono font-medium text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
+                      View
                     </span>
                   </div>
                 ))}
@@ -1053,19 +1053,19 @@ export const Map3D = ({
           </div>
 
           {/* Texture Map & Surface Mode Switcher Pills */}
-          <div className="flex items-center gap-1 bg-[#0B1120]/90 backdrop-blur-md p-1 rounded-xl border border-slate-800 shadow-xl overflow-x-auto max-w-full no-scrollbar">
+          <div className="flex items-center gap-1 bg-slate-900/90 backdrop-blur-md p-1 rounded-lg border border-slate-800 shadow-sm overflow-x-auto max-w-full no-scrollbar">
             <button
               onClick={() => {
                 soundManager.playClick();
                 setActiveTextureMode('lroc_8k');
               }}
-              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'lroc_8k'
-                  ? 'bg-cyan-600 text-white shadow-glow-cyan'
+              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'lroc_8k'
+                  ? 'bg-blue-600 text-white'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Globe className="w-3.5 h-3.5 text-cyan-300" />
-              <span>NASA 8K Moon</span>
+              <Globe className="w-3.5 h-3.5" />
+              <span>NASA 8K</span>
             </button>
 
             <button
@@ -1073,13 +1073,13 @@ export const Map3D = ({
                 soundManager.playClick();
                 setActiveTextureMode('crater_contrast');
               }}
-              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'crater_contrast'
-                  ? 'bg-amber-600 text-white shadow-glow-amber'
+              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'crater_contrast'
+                  ? 'bg-blue-600 text-white'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Camera className="w-3.5 h-3.5 text-amber-300" />
-              <span>High-Contrast</span>
+              <Camera className="w-3.5 h-3.5" />
+              <span>High Contrast</span>
             </button>
 
             <button
@@ -1087,12 +1087,12 @@ export const Map3D = ({
                 soundManager.playClick();
                 setActiveTextureMode('lola_dem');
               }}
-              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'lola_dem'
-                  ? 'bg-emerald-600 text-white shadow-glow-emerald'
+              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'lola_dem'
+                  ? 'bg-blue-600 text-white'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Mountain className="w-3.5 h-3.5 text-emerald-300" />
+              <Mountain className="w-3.5 h-3.5" />
               <span>LOLA Topo</span>
             </button>
 
@@ -1101,12 +1101,12 @@ export const Map3D = ({
                 soundManager.playClick();
                 setActiveTextureMode('ice_spectrometry');
               }}
-              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'ice_spectrometry'
-                  ? 'bg-blue-600 text-white shadow-glow-cyan'
+              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'ice_spectrometry'
+                  ? 'bg-blue-600 text-white'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Droplets className="w-3.5 h-3.5 text-blue-300" />
+              <Droplets className="w-3.5 h-3.5" />
               <span>Water Ice</span>
             </button>
 
@@ -1115,12 +1115,12 @@ export const Map3D = ({
                 soundManager.playClick();
                 setActiveTextureMode('thermal_diviner');
               }}
-              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'thermal_diviner'
-                  ? 'bg-purple-600 text-white shadow-glow-purple'
+              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'thermal_diviner'
+                  ? 'bg-blue-600 text-white'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Thermometer className="w-3.5 h-3.5 text-purple-300" />
+              <Thermometer className="w-3.5 h-3.5" />
               <span>Diviner IR</span>
             </button>
           </div>
@@ -1134,34 +1134,34 @@ export const Map3D = ({
                 soundManager.playClick();
                 onToggleFullscreen();
               }}
-              className="bg-[#0B1120]/90 hover:bg-[#131b2e] backdrop-blur-md px-3.5 py-1.5 rounded-full border border-cyan-500/40 text-[11px] font-mono text-cyan-300 shadow-2xl flex items-center gap-2 transition-all cursor-pointer group hover:border-cyan-400"
+              className="bg-slate-900/90 hover:bg-slate-800 backdrop-blur-md px-3 py-1 rounded-full border border-slate-700 text-xs font-mono text-slate-300 shadow-md flex items-center gap-2 transition-colors cursor-pointer group"
             >
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span>Full Screen Active • Press <strong>ESC</strong> or <strong>F</strong> to exit</span>
-              <Minimize2 className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+              <span>Full Screen • Press <strong>ESC</strong> to exit</span>
+              <Minimize2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
             </button>
           </div>
         )}
 
         {/* Right Side: Moon Phase, Telemetry & Controls Toolbox */}
-        <div className="pointer-events-auto flex flex-col items-end gap-2 shrink-0 self-end md:self-auto">
-          {/* Real-time Telemetry & LOLA Elevation readout */}
-          <div className="bg-[#0B1120]/85 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-800 text-[11px] font-mono text-slate-300 shadow-lg flex items-center gap-3">
-            <div className="flex items-center gap-1.5">
-              <Crosshair className="w-3.5 h-3.5 text-cyan-400 animate-spin" style={{ animationDuration: '10s' }} />
-              <span>Target: <strong className="text-white">Lunar South Pole</strong></span>
+        <div className="pointer-events-auto flex flex-col items-end gap-1.5 shrink-0 self-end md:self-auto">
+          {/* Telemetry & LOLA Elevation readout */}
+          <div className="bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800 text-[11px] font-mono text-slate-300 shadow-sm flex items-center gap-2.5">
+            <div className="flex items-center gap-1 text-slate-400">
+              <Crosshair className="w-3 h-3 text-sky-400" />
+              <span>Target: <span className="text-slate-200">South Pole</span></span>
             </div>
-            <span className="text-slate-600">|</span>
+            <span className="text-slate-700">|</span>
             <div>
-              Lat: <span className="text-cyan-300 font-bold">{cursorCoords.lat.toFixed(2)}°</span>
+              Lat: <span className="text-slate-100 font-semibold">{cursorCoords.lat.toFixed(2)}°</span>
             </div>
             <div>
-              Lon: <span className="text-cyan-300 font-bold">{cursorCoords.lon.toFixed(2)}°</span>
+              Lon: <span className="text-slate-100 font-semibold">{cursorCoords.lon.toFixed(2)}°</span>
             </div>
-            <span className="text-slate-600">|</span>
-            <div className="text-emerald-400 font-bold flex items-center gap-1">
+            <span className="text-slate-700">|</span>
+            <div className="text-slate-200 font-medium flex items-center gap-1">
               <Activity className="w-3 h-3 text-emerald-400" />
-              <span>Elev: {cursorCoords.elevation > 0 ? `+${cursorCoords.elevation}` : cursorCoords.elevation} m</span>
+              <span>{cursorCoords.elevation > 0 ? `+${cursorCoords.elevation}` : cursorCoords.elevation} m</span>
             </div>
           </div>
 
