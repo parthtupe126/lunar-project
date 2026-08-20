@@ -6,10 +6,10 @@
     "longitude": 15.4,
     "bbox_delta_degrees": 0.1
   },
-  "timestamp_utc": "2026-08-18T11:46:57.075530Z",
-  "status": "Failed",
+  "timestamp_utc": "2026-08-19T17:05:26.084501Z",
+  "status": "Approved",
   "validation_criteria": {
-    "min_file_size_bytes": 5120,
+    "min_file_size_bytes": 512,
     "required_layers_count": 3,
     "expected_mime_types": [
       "image/png",
@@ -17,36 +17,36 @@
     ]
   },
   "layers": {
-    "wac_global": {
-      "layer": "wac_global",
+    "LROC_WAC": {
+      "layer": "LROC_WAC",
       "filename": "wac_global.png",
-      "url": "https://wms.lroc.asu.edu/lroc/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=wac_global&STYLES=&SRS=EPSG%3A4326&BBOX=15.300000%2C-89.380000%2C15.500000%2C-89.180000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
-      "status": "Failed",
-      "http_code": 404,
-      "content_type": null,
-      "file_size_bytes": 0,
-      "error": "HTTP Error 404: Not Found"
+      "url": "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/earth/moon_simp_cyl.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=LROC_WAC&STYLES=&SRS=EPSG%3A4326&BBOX=15.300000%2C-89.380000%2C15.500000%2C-89.180000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
+      "status": "Approved",
+      "http_code": 200,
+      "content_type": "image/png",
+      "file_size_bytes": 1261,
+      "error": null
     },
-    "lola_sldem2015": {
-      "layer": "lola_sldem2015",
+    "LOLA_color": {
+      "layer": "LOLA_color",
       "filename": "lola_sldem2015.tif",
-      "url": "https://wms.lroc.asu.edu/lroc/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=lola_sldem2015&STYLES=&SRS=EPSG%3A4326&BBOX=15.300000%2C-89.380000%2C15.500000%2C-89.180000&WIDTH=512&HEIGHT=512&FORMAT=image%2Ftiff",
-      "status": "Failed",
-      "http_code": 404,
-      "content_type": null,
-      "file_size_bytes": 0,
-      "error": "HTTP Error 404: Not Found"
+      "url": "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/earth/moon_simp_cyl.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=LOLA_color&STYLES=&SRS=EPSG%3A4326&BBOX=15.300000%2C-89.380000%2C15.500000%2C-89.180000&WIDTH=512&HEIGHT=512&FORMAT=image%2Ftiff",
+      "status": "Approved",
+      "http_code": 200,
+      "content_type": "image/tiff",
+      "file_size_bytes": 787480,
+      "error": null
     },
-    "lola_sldem2015_slope": {
-      "layer": "lola_sldem2015_slope",
+    "LOLA_bw": {
+      "layer": "LOLA_bw",
       "filename": "lola_sldem2015_slope.png",
-      "url": "https://wms.lroc.asu.edu/lroc/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=lola_sldem2015_slope&STYLES=&SRS=EPSG%3A4326&BBOX=15.300000%2C-89.380000%2C15.500000%2C-89.180000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
-      "status": "Failed",
-      "http_code": 404,
-      "content_type": null,
-      "file_size_bytes": 0,
-      "error": "HTTP Error 404: Not Found"
+      "url": "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/earth/moon_simp_cyl.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=LOLA_bw&STYLES=&SRS=EPSG%3A4326&BBOX=15.300000%2C-89.380000%2C15.500000%2C-89.180000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
+      "status": "Approved",
+      "http_code": 200,
+      "content_type": "image/png",
+      "file_size_bytes": 10864,
+      "error": null
     }
   },
-  "summary": "One or more layers failed validation (HTTP error, XML exception, or under 5KB threshold)."
+  "summary": "All 3 layers verified and approved."
 }

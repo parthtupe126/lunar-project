@@ -6,6 +6,9 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { SiteModal } from './components/SiteModal';
 import { LocationDeepDiveModal } from './components/LocationDeepDiveModal';
+import { MissionsExplorerModal } from './components/MissionsExplorerModal';
+import { TeamModal } from './components/TeamModal';
+import { OpeningAnimation } from './components/OpeningAnimation';
 import { PhotoGalleryGrid } from './components/PhotoGalleryGrid';
 import { INITIAL_LUNAR_SITES } from './data/lunarSites';
 import { rankSites } from './utils/aiEngine';
@@ -13,11 +16,52 @@ import { ApiService } from './api';
 
 export function App() {
   // Navigation & UI State
+  const [showIntro, setShowIntro] = useState(false);
   const [activeTab, setActiveTab] = useState('map');
   const [isMuted, setIsMuted] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [isDeepDiveOpen, setIsDeepDiveOpen] = useState(false);
+  const [isMissionsOpen, setIsMissionsOpen] = useState(false);
+  const [isTeamOpen, setIsTeamOpen] = useState(false);
   const [isBackendConnected, setIsBackendConnected] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Toggle Full Screen View for Moon
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+      setIsFullscreen(true);
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+      setIsFullscreen(false);
+    }
+  };
+
+  // Keyboard shortcut (Press 'F' to toggle Fullscreen) & Event Listeners
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    const handleKeyDown = (e) => {
+      if ((e.key === 'f' || e.key === 'F') && !['INPUT', 'TEXTAREA'].includes(e.target?.tagName)) {
+        e.preventDefault();
+        toggleFullscreen();
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   // Mission Priority Weights (Defaults matching Artemis baseline)
   const [weights, setWeights] = useState({
@@ -116,34 +160,42 @@ export function App() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-[#030712] text-slate-100 overflow-hidden font-sans">
-      {/* 1. Header Navbar */}
-      <Header
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        isMuted={isMuted}
-        setIsMuted={setIsMuted}
-        onOpenReport={() => setIsReportOpen(true)}
-        spaceWeather={spaceWeather}
-        isBackendConnected={isBackendConnected}
-      />
+    <div className="flex flex-col h-screen w-screen bg-[#030712] text-slate-100 overflow-hidden font-sans select-none">
+      {/* 1. Header Navbar (Hidden in Fullscreen mode) */}
+      {!isFullscreen && (
+        <Header
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          isMuted={isMuted}
+          setIsMuted={setIsMuted}
+          onOpenReport={() => setIsReportOpen(true)}
+          onOpenMissions={() => setIsMissionsOpen(true)}
+          onOpenTeam={() => setIsTeamOpen(true)}
+          spaceWeather={spaceWeather}
+          isBackendConnected={isBackendConnected}
+          isFullscreen={isFullscreen}
+          onToggleFullscreen={toggleFullscreen}
+        />
+      )}
 
-      {/* 2. Main 3-Column Studio Viewport */}
+      {/* 2. Main Studio Viewport */}
       <main className="flex-1 min-h-0 relative overflow-hidden flex">
         
         {/* Left Column: UI Weight Sliders (Slope, Sun, Ice) & Layer Controls */}
-        <LayerControls
-          weights={weights}
-          setWeights={setWeights}
-          layers={layers}
-          setLayers={setLayers}
-          filter={filter}
-          setFilter={setFilter}
-        />
+        {!isFullscreen && (
+          <LayerControls
+            weights={weights}
+            setWeights={setWeights}
+            layers={layers}
+            setLayers={setLayers}
+            filter={filter}
+            setFilter={setFilter}
+          />
+        )}
 
         {/* Center Column: 3D Lunar Surface & Polar Orbit Visualization Canvas + 4-Panel Gallery */}
         <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-          <div className="flex-1 relative min-h-0">
+          <div className="flex-1 relative min-h-0 w-full h-full">
             <Map3D
               sites={visibleSites}
               selectedSite={selectedSite}
@@ -152,11 +204,13 @@ export function App() {
               searchQuery={filter.searchQuery}
               setSearchQuery={(q) => setFilter(prev => ({ ...prev, searchQuery: q }))}
               onOpenDeepDive={() => setIsDeepDiveOpen(true)}
+              isFullscreen={isFullscreen}
+              onToggleFullscreen={toggleFullscreen}
             />
           </div>
 
-          {/* Bottom 4-Panel Surface & Lander Photo Gallery Grid matching image_11.png */}
-          {selectedSite && (
+          {/* Bottom 4-Panel Surface & Lander Photo Gallery Grid */}
+          {selectedSite && !isFullscreen && (
             <div className="p-2.5 bg-[#070B14]/95 border-t border-slate-800/90 backdrop-blur-xl shrink-0 z-20">
               <PhotoGalleryGrid
                 images={selectedSite.galleryImages}
@@ -168,24 +222,28 @@ export function App() {
         </div>
 
         {/* Right Column: Top Habitat Coordinates & AI Scoreboard */}
-        <Scoreboard
-          sites={rankedSites}
-          selectedSite={selectedSite}
-          onSelectSite={handleSelectSite}
-          onOpenReport={() => setIsReportOpen(true)}
-          onOpenDeepDive={() => setIsDeepDiveOpen(true)}
-          weights={weights}
-        />
+        {!isFullscreen && (
+          <Scoreboard
+            sites={rankedSites}
+            selectedSite={selectedSite}
+            onSelectSite={handleSelectSite}
+            onOpenReport={() => setIsReportOpen(true)}
+            onOpenDeepDive={() => setIsDeepDiveOpen(true)}
+            weights={weights}
+          />
+        )}
 
       </main>
 
       {/* 3. Telemetry Footer Bar */}
-      <Footer
-        totalCandidateSites={rankedSites.length}
-        analyzedRegionsCount={1250}
-        bestScore={rankedSites[0]?.suitabilityScore || 92.4}
-        lastUpdated={spaceWeather.lastUpdated}
-      />
+      {!isFullscreen && (
+        <Footer
+          totalCandidateSites={rankedSites.length}
+          analyzedRegionsCount={1250}
+          bestScore={rankedSites[0]?.suitabilityScore || 92.4}
+          lastUpdated={spaceWeather.lastUpdated}
+        />
+      )}
 
       {/* 4. AI Mission Dossier Modal */}
       {selectedSite && (
@@ -206,6 +264,32 @@ export function App() {
           onClose={() => setIsDeepDiveOpen(false)}
           site={selectedSite}
         />
+      )}
+
+      {/* 6. Full Structured Lunar Missions Directory Modal */}
+      <MissionsExplorerModal
+        isOpen={isMissionsOpen}
+        onClose={() => setIsMissionsOpen(false)}
+        onFlyToMission={(mission) => {
+          const matchedSite = rankedSites.find(s => 
+            s.id === mission.id || 
+            (s.name && mission.name && s.name.toLowerCase().includes(mission.name.toLowerCase().split('(')[0].trim()))
+          );
+          if (matchedSite) {
+            handleSelectSite(matchedSite);
+          }
+        }}
+      />
+
+      {/* 7. Project Contributors & Team Members Modal */}
+      <TeamModal
+        isOpen={isTeamOpen}
+        onClose={() => setIsTeamOpen(false)}
+      />
+
+      {/* 8. Cinematic Opening / Initialization Sequence */}
+      {showIntro && (
+        <OpeningAnimation onComplete={() => setShowIntro(false)} />
       )}
     </div>
   );

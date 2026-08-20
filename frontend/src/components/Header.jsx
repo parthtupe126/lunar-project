@@ -9,7 +9,10 @@ import {
   Activity,
   Layers,
   BarChart3,
-  Server
+  Server,
+  Maximize2,
+  Minimize2,
+  Users
 } from 'lucide-react';
 import { soundManager } from '../utils/audio';
 
@@ -19,8 +22,12 @@ export const Header = ({
   isMuted = false,
   setIsMuted = () => {},
   onOpenReport = () => {},
+  onOpenMissions = () => {},
+  onOpenTeam = () => {},
   spaceWeather = {},
-  isBackendConnected = false
+  isBackendConnected = false,
+  isFullscreen = false,
+  onToggleFullscreen = () => {}
 }) => {
   const toggleMute = () => {
     const muted = soundManager.toggleMute();
@@ -77,11 +84,42 @@ export const Header = ({
 
       {/* Right Controls */}
       <div className="flex items-center gap-2">
+        {/* Project Team & Members Button */}
+        <button
+          onClick={() => {
+            soundManager.playSelect();
+            onOpenTeam();
+          }}
+          title="View GitHub Repository Contributors & Team Members"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-purple-500/30 text-purple-300 hover:text-white text-xs font-mono font-semibold transition-all shadow-glow-purple cursor-pointer"
+        >
+          <Users className="w-3.5 h-3.5 text-purple-400" />
+          <span className="hidden sm:inline">Repo Team</span>
+          <span className="sm:hidden">Team</span>
+        </button>
+
+        {/* Fullscreen Toggle Button */}
+        <button
+          onClick={() => {
+            soundManager.playClick();
+            onToggleFullscreen();
+          }}
+          title={isFullscreen ? 'Exit Full Screen' : 'Full Screen Moon View (F)'}
+          className={`p-2 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-mono cursor-pointer ${
+            isFullscreen 
+              ? 'bg-cyan-950/80 border-cyan-500/50 text-cyan-300 shadow-glow-cyan' 
+              : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border-slate-800'
+          }`}
+        >
+          {isFullscreen ? <Minimize2 className="w-4 h-4 text-cyan-400" /> : <Maximize2 className="w-4 h-4 text-cyan-400" />}
+          <span className="hidden sm:inline">{isFullscreen ? 'Exit Fullscreen' : 'Full Screen'}</span>
+        </button>
+
         {/* Mute Button */}
         <button
           onClick={toggleMute}
           title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-          className="p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition-colors"
+          className="p-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition-colors cursor-pointer"
         >
           {isMuted ? <VolumeX className="w-4 h-4 text-rose-400" /> : <Volume2 className="w-4 h-4 text-cyan-400" />}
         </button>
@@ -92,7 +130,7 @@ export const Header = ({
             soundManager.playSelect();
             onOpenReport();
           }}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-xs font-mono font-semibold transition-all shadow-glow-purple"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-xs font-mono font-semibold transition-all shadow-glow-purple cursor-pointer"
         >
           <FileText className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">AI Mission Dossier</span>
