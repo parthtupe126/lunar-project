@@ -1,0 +1,1451 @@
+[
+  {
+    "id": "site-shackleton",
+    "node_id": "01_Shackleton_Crater",
+    "code": "Shackleton",
+    "name": "Shackleton Crater Rim — Peak of Eternal Light",
+    "coordinates": {
+      "latitude": -89.28,
+      "longitude": 15.4,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-01-A"
+    },
+    "terrain_dem": {
+      "elevation_m": 4120,
+      "slope_deg": 4.2,
+      "roughness_rms_m": 0.85,
+      "crater_diameter_km": 21.0,
+      "rim_depth_m": 4200,
+      "landing_corridor_rating": "Optimal Crest Line",
+      "accessibility_index_100": 82
+    },
+    "water_ice": {
+      "ice_probability_pct": 89.0,
+      "hydrogen_content_ppm": 1450,
+      "radar_cpr": 0.78,
+      "spectroscopy_band_3um_depth": 0.082,
+      "distance_to_psr_m": 350,
+      "estimated_ice_depth_m": 1.2,
+      "psr_name": "Shackleton Interior Basin"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 95.2,
+      "max_continuous_light_days": 180,
+      "max_continuous_dark_days": 3.5,
+      "avg_solar_elevation_deg": 1.45,
+      "seasonal_variance_pct": 4.8
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 280,
+      "spe_hazard_tier": "Moderate (Elevated Ridge)",
+      "dose_rate_usv_h": 32.0,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 84.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Anorthositic Impact Melt Breccia (Pre-Nectarian)",
+      "crater_boundary": "South Pole-Aitken (SPA) Basin Margin",
+      "earth_direct_los_pct": 98.4,
+      "relay_satellite_required": false,
+      "near_or_far_side": "South Polar Axis"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "High-Yield Volatiles / Permanent Light Ridge",
+      "mission_ground_truth_reference": "LRO LOLA / Chandrayaan-1 M3 / Artemis III Target",
+      "mcda_suitability_score": 94.2,
+      "ai_confidence_pct": 94.0,
+      "suitability_tier": "HIGHLY SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 180,
+      "temp_max_k": 220,
+      "diurnal_temperature_swing_k": 40
+    }
+  },
+  {
+    "id": "site-malapert",
+    "node_id": "02_Mons_Malapert",
+    "code": "Malapert",
+    "name": "Mons Malapert (Malapert Mountain Plateau)",
+    "coordinates": {
+      "latitude": -85.99,
+      "longitude": 12.9,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-02-B"
+    },
+    "terrain_dem": {
+      "elevation_m": 5100,
+      "slope_deg": 6.1,
+      "roughness_rms_m": 1.1,
+      "crater_diameter_km": 69.0,
+      "rim_depth_m": 5100,
+      "landing_corridor_rating": "Expansive Plateau Shelf",
+      "accessibility_index_100": 86
+    },
+    "water_ice": {
+      "ice_probability_pct": 83.0,
+      "hydrogen_content_ppm": 980,
+      "radar_cpr": 0.62,
+      "spectroscopy_band_3um_depth": 0.054,
+      "distance_to_psr_m": 1100,
+      "estimated_ice_depth_m": 1.8,
+      "psr_name": "Malapert South Depressions"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 93.6,
+      "max_continuous_light_days": 150,
+      "max_continuous_dark_days": 5.0,
+      "avg_solar_elevation_deg": 1.8,
+      "seasonal_variance_pct": 6.4
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 290,
+      "spe_hazard_tier": "Moderate-High (High Massif Exposure)",
+      "dose_rate_usv_h": 33.1,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 88.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Highland Anorthosite Crustal Massif",
+      "crater_boundary": "Malapert Crater West Flank",
+      "earth_direct_los_pct": 99.6,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Near Side / Polar Rim"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Continuous Comms Relay / Surface Basecamp",
+      "mission_ground_truth_reference": "IM-1 Odysseus / LRO Altimetry Survey",
+      "mcda_suitability_score": 91.8,
+      "ai_confidence_pct": 91.0,
+      "suitability_tier": "HIGHLY SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 195,
+      "temp_max_k": 235,
+      "diurnal_temperature_swing_k": 40
+    }
+  },
+  {
+    "id": "site-faustini",
+    "node_id": "03_Faustini_Rim_A",
+    "code": "Faustini A",
+    "name": "Faustini Crater Rim — Ridge A",
+    "coordinates": {
+      "latitude": -87.15,
+      "longitude": 77.0,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-03-C"
+    },
+    "terrain_dem": {
+      "elevation_m": 2450,
+      "slope_deg": 8.5,
+      "roughness_rms_m": 1.45,
+      "crater_diameter_km": 39.0,
+      "rim_depth_m": 3100,
+      "landing_corridor_rating": "Rugged Terraced Rim",
+      "accessibility_index_100": 76
+    },
+    "water_ice": {
+      "ice_probability_pct": 95.0,
+      "hydrogen_content_ppm": 2100,
+      "radar_cpr": 0.92,
+      "spectroscopy_band_3um_depth": 0.115,
+      "distance_to_psr_m": 140,
+      "estimated_ice_depth_m": 0.6,
+      "psr_name": "Faustini Ultra-Cold Trap (40K)"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 77.5,
+      "max_continuous_light_days": 90,
+      "max_continuous_dark_days": 18.0,
+      "avg_solar_elevation_deg": 1.1,
+      "seasonal_variance_pct": 14.5
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 335,
+      "spe_hazard_tier": "Low-Moderate (Crater Wall Shielding)",
+      "dose_rate_usv_h": 38.2,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 80.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Ilmenite-Rich Polar Impact Regolith",
+      "crater_boundary": "Faustini-Shoemaker Inter-Crater Ridge",
+      "earth_direct_los_pct": 86.2,
+      "relay_satellite_required": true,
+      "near_or_far_side": "Far Side / Polar Margin"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Industrial Cryogenic Mining / Volatiles Prospect",
+      "mission_ground_truth_reference": "NASA Diviner Cold Trap / LEND Spectrometry",
+      "mcda_suitability_score": 83.4,
+      "ai_confidence_pct": 85.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 110,
+      "temp_max_k": 200,
+      "diurnal_temperature_swing_k": 90
+    }
+  },
+  {
+    "id": "site-connecting-ridge",
+    "node_id": "04_Connecting_Ridge",
+    "code": "Connecting Ridge",
+    "name": "Connecting Ridge (Shackleton-de Gerlache)",
+    "coordinates": {
+      "latitude": -88.6,
+      "longitude": -31.7,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-04-D"
+    },
+    "terrain_dem": {
+      "elevation_m": 3850,
+      "slope_deg": 3.8,
+      "roughness_rms_m": 0.7,
+      "crater_diameter_km": 15.0,
+      "rim_depth_m": 2200,
+      "landing_corridor_rating": "Wide Corridors (<4 deg Slope)",
+      "accessibility_index_100": 92
+    },
+    "water_ice": {
+      "ice_probability_pct": 86.0,
+      "hydrogen_content_ppm": 1250,
+      "radar_cpr": 0.71,
+      "spectroscopy_band_3um_depth": 0.075,
+      "distance_to_psr_m": 580,
+      "estimated_ice_depth_m": 1.4,
+      "psr_name": "de Gerlache Northern Shadow Corridor"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 89.5,
+      "max_continuous_light_days": 135,
+      "max_continuous_dark_days": 8.0,
+      "avg_solar_elevation_deg": 1.35,
+      "seasonal_variance_pct": 8.2
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 305,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 34.8,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 87.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Consolidated Sintered Regolith Saddle",
+      "crater_boundary": "Shackleton / de Gerlache Boundary",
+      "earth_direct_los_pct": 93.5,
+      "relay_satellite_required": false,
+      "near_or_far_side": "South Polar Ridge"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Primary Human Lander Touchdown Corridor",
+      "mission_ground_truth_reference": "NASA HLS Designated / LUPEX Candidate",
+      "mcda_suitability_score": 89.6,
+      "ai_confidence_pct": 89.0,
+      "suitability_tier": "HIGHLY SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 160,
+      "temp_max_k": 220,
+      "diurnal_temperature_swing_k": 60
+    }
+  },
+  {
+    "id": "site-de-gerlache",
+    "node_id": "05_de_Gerlache_Rim",
+    "code": "de Gerlache",
+    "name": "de Gerlache Rim — Mons Peak Alpha",
+    "coordinates": {
+      "latitude": -85.9,
+      "longitude": 76.3,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-05-E"
+    },
+    "terrain_dem": {
+      "elevation_m": 2900,
+      "slope_deg": 7.2,
+      "roughness_rms_m": 1.25,
+      "crater_diameter_km": 32.4,
+      "rim_depth_m": 2900,
+      "landing_corridor_rating": "Terraced Rim Crest",
+      "accessibility_index_100": 80
+    },
+    "water_ice": {
+      "ice_probability_pct": 91.0,
+      "hydrogen_content_ppm": 1650,
+      "radar_cpr": 0.82,
+      "spectroscopy_band_3um_depth": 0.092,
+      "distance_to_psr_m": 210,
+      "estimated_ice_depth_m": 0.9,
+      "psr_name": "de Gerlache Deep Floor Trap"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 83.5,
+      "max_continuous_light_days": 110,
+      "max_continuous_dark_days": 12.0,
+      "avg_solar_elevation_deg": 1.2,
+      "seasonal_variance_pct": 11.2
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 320,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 36.5,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 82.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Solid Anorthosite Bedrock / Impact Ejecta",
+      "crater_boundary": "de Gerlache Northern Crater Wall",
+      "earth_direct_los_pct": 89.2,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Near Side / Polar Margin"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "High-Yield Volatiles / Nuclear ISRU Pilot",
+      "mission_ground_truth_reference": "LRO Neutron Spectrometer & LOLA",
+      "mcda_suitability_score": 84.1,
+      "ai_confidence_pct": 86.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 140,
+      "temp_max_k": 210,
+      "diurnal_temperature_swing_k": 70
+    }
+  },
+  {
+    "id": "site-haworth",
+    "node_id": "06_Haworth_Crater_Rim",
+    "code": "Haworth",
+    "name": "Haworth Crater Rim North",
+    "coordinates": {
+      "latitude": -87.4,
+      "longitude": -5.1,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-06-F"
+    },
+    "terrain_dem": {
+      "elevation_m": 3100,
+      "slope_deg": 5.4,
+      "roughness_rms_m": 0.95,
+      "crater_diameter_km": 51.4,
+      "rim_depth_m": 3800,
+      "landing_corridor_rating": "Even Highland Ridge",
+      "accessibility_index_100": 85
+    },
+    "water_ice": {
+      "ice_probability_pct": 91.0,
+      "hydrogen_content_ppm": 1780,
+      "radar_cpr": 0.85,
+      "spectroscopy_band_3um_depth": 0.098,
+      "distance_to_psr_m": 280,
+      "estimated_ice_depth_m": 0.8,
+      "psr_name": "Haworth Deep Shadow Floor (38K)"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 82.8,
+      "max_continuous_light_days": 105,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 1.25,
+      "seasonal_variance_pct": 12.0
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 315,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 35.9,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 83.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Inter-Crater Highland Ejecta Blanket",
+      "crater_boundary": "Haworth / Shoemaker Divide",
+      "earth_direct_los_pct": 91.8,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Near Side Polar Rim"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Multi-Basin Geological Science Station",
+      "mission_ground_truth_reference": "NASA Diviner Cryogenic Benchmark",
+      "mcda_suitability_score": 85.8,
+      "ai_confidence_pct": 87.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 130,
+      "temp_max_k": 215,
+      "diurnal_temperature_swing_k": 85
+    }
+  },
+  {
+    "id": "site-mons-mouton",
+    "node_id": "07_Mons_Mouton",
+    "code": "Mons Mouton",
+    "name": "Mons Mouton (Leibnitz Beta Plateau)",
+    "coordinates": {
+      "latitude": -85.1,
+      "longitude": 31.5,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-07-G"
+    },
+    "terrain_dem": {
+      "elevation_m": 5900,
+      "slope_deg": 2.9,
+      "roughness_rms_m": 0.55,
+      "crater_diameter_km": 120.0,
+      "rim_depth_m": 5900,
+      "landing_corridor_rating": "Broad Tableland (15+ sq km)",
+      "accessibility_index_100": 93
+    },
+    "water_ice": {
+      "ice_probability_pct": 81.0,
+      "hydrogen_content_ppm": 890,
+      "radar_cpr": 0.58,
+      "spectroscopy_band_3um_depth": 0.048,
+      "distance_to_psr_m": 1650,
+      "estimated_ice_depth_m": 2.1,
+      "psr_name": "Leibnitz Beta Flank Shadow Traps"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 93.8,
+      "max_continuous_light_days": 160,
+      "max_continuous_dark_days": 4.5,
+      "avg_solar_elevation_deg": 1.95,
+      "seasonal_variance_pct": 5.9
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 275,
+      "spe_hazard_tier": "Moderate-High",
+      "dose_rate_usv_h": 31.4,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 91.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Pre-Nectarian Anorthositic Crustal Massive",
+      "crater_boundary": "Leibnitz Crater Rim Complex",
+      "earth_direct_los_pct": 99.3,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Near Side Polar Highland"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Civil Spaceport / Long-Term Basecamp Complex",
+      "mission_ground_truth_reference": "NASA VIPER Primary Science Target",
+      "mcda_suitability_score": 92.6,
+      "ai_confidence_pct": 95.0,
+      "suitability_tier": "HIGHLY SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 200,
+      "temp_max_k": 240,
+      "diurnal_temperature_swing_k": 40
+    }
+  },
+  {
+    "id": "site-nobile",
+    "node_id": "08_Nobile_Crater_Rim",
+    "code": "Nobile",
+    "name": "Nobile Crater Rim — Artemis Base Alpha",
+    "coordinates": {
+      "latitude": -85.2,
+      "longitude": 53.5,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-08-H"
+    },
+    "terrain_dem": {
+      "elevation_m": 3400,
+      "slope_deg": 4.8,
+      "roughness_rms_m": 0.88,
+      "crater_diameter_km": 79.2,
+      "rim_depth_m": 3700,
+      "landing_corridor_rating": "Rolling Highland Slopes",
+      "accessibility_index_100": 89
+    },
+    "water_ice": {
+      "ice_probability_pct": 88.0,
+      "hydrogen_content_ppm": 1380,
+      "radar_cpr": 0.74,
+      "spectroscopy_band_3um_depth": 0.08,
+      "distance_to_psr_m": 490,
+      "estimated_ice_depth_m": 1.1,
+      "psr_name": "Nobile Crater Shadow Pockets"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 86.8,
+      "max_continuous_light_days": 125,
+      "max_continuous_dark_days": 9.5,
+      "avg_solar_elevation_deg": 1.5,
+      "seasonal_variance_pct": 9.4
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 300,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 34.2,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 85.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Volatile-Rich Sinuous Ejecta Blanket",
+      "crater_boundary": "Nobile Crater Rim Crest",
+      "earth_direct_los_pct": 94.8,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Near Side / Polar Margin"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Artemis Base Camp Core Habitation Zone",
+      "mission_ground_truth_reference": "VIPER Rover Exploration Zone",
+      "mcda_suitability_score": 87.5,
+      "ai_confidence_pct": 89.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 165,
+      "temp_max_k": 225,
+      "diurnal_temperature_swing_k": 60
+    }
+  },
+  {
+    "id": "site-i",
+    "node_id": "09_Amundsen_Crater",
+    "code": "Amundsen",
+    "name": "Amundsen Crater Floor & Rim (Site I)",
+    "coordinates": {
+      "latitude": -84.5,
+      "longitude": 82.8,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-09-I"
+    },
+    "terrain_dem": {
+      "elevation_m": 1800,
+      "slope_deg": 6.8,
+      "roughness_rms_m": 1.3,
+      "crater_diameter_km": 105.0,
+      "rim_depth_m": 4800,
+      "landing_corridor_rating": "Terraced Wall / Peak Complex",
+      "accessibility_index_100": 78
+    },
+    "water_ice": {
+      "ice_probability_pct": 89.0,
+      "hydrogen_content_ppm": 1520,
+      "radar_cpr": 0.79,
+      "spectroscopy_band_3um_depth": 0.088,
+      "distance_to_psr_m": 380,
+      "estimated_ice_depth_m": 1.0,
+      "psr_name": "Amundsen Vast Central Shadow Basin"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 75.2,
+      "max_continuous_light_days": 85,
+      "max_continuous_dark_days": 21.0,
+      "avg_solar_elevation_deg": 1.15,
+      "seasonal_variance_pct": 16.5
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 330,
+      "spe_hazard_tier": "Low-Moderate (Basin Wall Berms)",
+      "dose_rate_usv_h": 37.6,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 78.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Impact Melt Sheet with Central Uplift",
+      "crater_boundary": "Amundsen Crater Interior Basin",
+      "earth_direct_los_pct": 82.5,
+      "relay_satellite_required": true,
+      "near_or_far_side": "Far Side / Polar Limb"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Deep Catchment Geological & Organics Laboratory",
+      "mission_ground_truth_reference": "LRO LAMP Spectral Survey",
+      "mcda_suitability_score": 80.2,
+      "ai_confidence_pct": 82.0,
+      "suitability_tier": "MODERATE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 120,
+      "temp_max_k": 210,
+      "diurnal_temperature_swing_k": 90
+    }
+  },
+  {
+    "id": "site-j",
+    "node_id": "10_Marius_Hills_Lava_Tube",
+    "code": "Marius Hills",
+    "name": "Marius Hills Lava Tube Skylight (Site J)",
+    "coordinates": {
+      "latitude": 14.2,
+      "longitude": -56.7,
+      "hemisphere": "Oceanus Procellarum",
+      "grid_cell": "EQ-10-J"
+    },
+    "terrain_dem": {
+      "elevation_m": -1200,
+      "slope_deg": 12.0,
+      "roughness_rms_m": 2.1,
+      "crater_diameter_km": 0.065,
+      "rim_depth_m": 50,
+      "landing_corridor_rating": "Volcanic Dome Plain (Skylight Shaft)",
+      "accessibility_index_100": 74
+    },
+    "water_ice": {
+      "ice_probability_pct": 46.0,
+      "hydrogen_content_ppm": 120,
+      "radar_cpr": 0.3,
+      "spectroscopy_band_3um_depth": 0.012,
+      "distance_to_psr_m": 45000,
+      "estimated_ice_depth_m": 0.0,
+      "psr_name": "None (Subterranean Void)"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 52.0,
+      "max_continuous_light_days": 14,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 75.8,
+      "seasonal_variance_pct": 1.2
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 15,
+      "spe_hazard_tier": "Zero (Complete Basalt Overburden Shielding)",
+      "dose_rate_usv_h": 1.7,
+      "solar_cycle_phase": "Protected from Solar Variability",
+      "terrain_shielding_factor_pct": 100.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Sinuous Rille / Subsurface Basalt Lava Tube",
+      "crater_boundary": "Marius Volcanic Complex",
+      "earth_direct_los_pct": 82.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Near Side / Western Oceanus"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Natural Radiation Shield / Subterranean Master Colony",
+      "mission_ground_truth_reference": "SELENE (Kaguya) Radar Sounder & LROC Skylight",
+      "mcda_suitability_score": 86.7,
+      "ai_confidence_pct": 88.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 253,
+      "temp_max_k": 256,
+      "diurnal_temperature_swing_k": 3
+    }
+  },
+  {
+    "id": "site-k",
+    "node_id": "11_Cabeus_Crater",
+    "code": "Cabeus",
+    "name": "Cabeus Crater (LCROSS Ground Zero)",
+    "coordinates": {
+      "latitude": -84.9,
+      "longitude": -35.5,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-11-K"
+    },
+    "terrain_dem": {
+      "elevation_m": 2100,
+      "slope_deg": 6.9,
+      "roughness_rms_m": 1.2,
+      "crater_diameter_km": 100.0,
+      "rim_depth_m": 4100,
+      "landing_corridor_rating": "Cryogenic Basin Margin",
+      "accessibility_index_100": 77
+    },
+    "water_ice": {
+      "ice_probability_pct": 97.0,
+      "hydrogen_content_ppm": 2400,
+      "radar_cpr": 0.95,
+      "spectroscopy_band_3um_depth": 0.14,
+      "distance_to_psr_m": 90,
+      "estimated_ice_depth_m": 0.4,
+      "psr_name": "Cabeus LCROSS Impact Plume Site"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 73.5,
+      "max_continuous_light_days": 80,
+      "max_continuous_dark_days": 24.0,
+      "avg_solar_elevation_deg": 1.1,
+      "seasonal_variance_pct": 18.0
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 335,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 38.2,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 80.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Cryogenic Volatiles / Hydrocarbon Rich Regolith",
+      "crater_boundary": "Cabeus Crater Floor Trap",
+      "earth_direct_los_pct": 86.8,
+      "relay_satellite_required": true,
+      "near_or_far_side": "Near Side Polar Limb"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Confirmed Water Ice Ground Zero (5.6% by Mass)",
+      "mission_ground_truth_reference": "NASA LCROSS Impact Plume Spectrometry (2009)",
+      "mcda_suitability_score": 84.8,
+      "ai_confidence_pct": 90.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 90,
+      "temp_max_k": 210,
+      "diurnal_temperature_swing_k": 120
+    }
+  },
+  {
+    "id": "site-l",
+    "node_id": "12_Shoemaker_Crater_Rim",
+    "code": "Shoemaker",
+    "name": "Shoemaker Crater Rim South (Site L)",
+    "coordinates": {
+      "latitude": -88.1,
+      "longitude": 44.9,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-12-L"
+    },
+    "terrain_dem": {
+      "elevation_m": 3300,
+      "slope_deg": 5.1,
+      "roughness_rms_m": 0.9,
+      "crater_diameter_km": 50.9,
+      "rim_depth_m": 3500,
+      "landing_corridor_rating": "Gentle Southern Rim Shelf",
+      "accessibility_index_100": 86
+    },
+    "water_ice": {
+      "ice_probability_pct": 89.0,
+      "hydrogen_content_ppm": 1420,
+      "radar_cpr": 0.77,
+      "spectroscopy_band_3um_depth": 0.081,
+      "distance_to_psr_m": 390,
+      "estimated_ice_depth_m": 1.3,
+      "psr_name": "Shoemaker Deep Trap"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 85.2,
+      "max_continuous_light_days": 120,
+      "max_continuous_dark_days": 11.0,
+      "avg_solar_elevation_deg": 1.4,
+      "seasonal_variance_pct": 10.5
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 310,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 35.4,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 84.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Highland Regolith / Shock Breccia",
+      "crater_boundary": "Shoemaker / Malapert Ridge",
+      "earth_direct_los_pct": 93.6,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Near Side Polar Rim"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Autonomous Mining Rover Testing Grounds",
+      "mission_ground_truth_reference": "LRO LOLA / Diviner High-Resolution Grid",
+      "mcda_suitability_score": 86.5,
+      "ai_confidence_pct": 87.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 150,
+      "temp_max_k": 220,
+      "diurnal_temperature_swing_k": 70
+    }
+  },
+  {
+    "id": "ch3_shiv_shakti",
+    "node_id": "13_Chandrayaan3_Shiv_Shakti",
+    "code": "Shiv Shakti",
+    "name": "Chandrayaan-3 (Shiv Shakti Point)",
+    "coordinates": {
+      "latitude": -69.373,
+      "longitude": 32.319,
+      "hemisphere": "South Pole Region",
+      "grid_cell": "SP-13-M"
+    },
+    "terrain_dem": {
+      "elevation_m": -2580,
+      "slope_deg": 3.1,
+      "roughness_rms_m": 0.65,
+      "crater_diameter_km": 110.0,
+      "rim_depth_m": 2600,
+      "landing_corridor_rating": "Highland Inter-Crater Plains",
+      "accessibility_index_100": 94
+    },
+    "water_ice": {
+      "ice_probability_pct": 72.0,
+      "hydrogen_content_ppm": 620,
+      "radar_cpr": 0.45,
+      "spectroscopy_band_3um_depth": 0.038,
+      "distance_to_psr_m": 4200,
+      "estimated_ice_depth_m": 3.5,
+      "psr_name": "Manzinus C Shadow Pocket"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 80.0,
+      "max_continuous_light_days": 14,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 6.2,
+      "seasonal_variance_pct": 18.0
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 340,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 38.8,
+      "solar_cycle_phase": "Cycle 25 In-Situ Validated (ISRO ChaSTE)",
+      "terrain_shielding_factor_pct": 79.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Highland Regolith / Basaltic Breccia (Sulfur/Fe/Ti Rich)",
+      "crater_boundary": "Manzinus C / Simpelius N Plains",
+      "earth_direct_los_pct": 96.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Near Side South Polar Highland"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "In-Situ Ground Truth Soft Landing (First Polar Touchdown)",
+      "mission_ground_truth_reference": "ISRO Vikram Lander & Pragyan Rover (August 23, 2023)",
+      "mcda_suitability_score": 83.2,
+      "ai_confidence_pct": 96.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 130,
+      "temp_max_k": 333,
+      "diurnal_temperature_swing_k": 203
+    }
+  },
+  {
+    "id": "ch1_jawahar",
+    "node_id": "14_Chandrayaan1_Jawahar",
+    "code": "Jawahar Point",
+    "name": "Chandrayaan-1 (Jawahar Point)",
+    "coordinates": {
+      "latitude": -89.9,
+      "longitude": 0.0,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-14-N"
+    },
+    "terrain_dem": {
+      "elevation_m": 3950,
+      "slope_deg": 5.0,
+      "roughness_rms_m": 0.88,
+      "crater_diameter_km": 21.0,
+      "rim_depth_m": 4200,
+      "landing_corridor_rating": "Prime Polar Axis Rim",
+      "accessibility_index_100": 82
+    },
+    "water_ice": {
+      "ice_probability_pct": 92.0,
+      "hydrogen_content_ppm": 1820,
+      "radar_cpr": 0.86,
+      "spectroscopy_band_3um_depth": 0.095,
+      "distance_to_psr_m": 250,
+      "estimated_ice_depth_m": 1.0,
+      "psr_name": "Shackleton Polar Trap"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 91.5,
+      "max_continuous_light_days": 140,
+      "max_continuous_dark_days": 6.5,
+      "avg_solar_elevation_deg": 1.3,
+      "seasonal_variance_pct": 7.5
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 290,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 33.1,
+      "solar_cycle_phase": "Cycle 24 In-Situ Altimetry Reference",
+      "terrain_shielding_factor_pct": 83.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Highland Anorthosite Crust",
+      "crater_boundary": "Shackleton Zero Longitude Rim",
+      "earth_direct_los_pct": 97.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "South Polar Axis (0 deg Longitude)"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Historic Landmark of Water Molecule Confirmation (H2O/OH)",
+      "mission_ground_truth_reference": "ISRO MIP & Chandrayaan-1 M3 / CHACE (Nov 14, 2008)",
+      "mcda_suitability_score": 88.4,
+      "ai_confidence_pct": 93.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 160,
+      "temp_max_k": 220,
+      "diurnal_temperature_swing_k": 60
+    }
+  },
+  {
+    "id": "ch2_tiranga",
+    "node_id": "15_Chandrayaan2_Tiranga",
+    "code": "Tiranga Point",
+    "name": "Chandrayaan-2 (Tiranga Point)",
+    "coordinates": {
+      "latitude": -70.83,
+      "longitude": 22.68,
+      "hemisphere": "South Pole Region",
+      "grid_cell": "SP-15-O"
+    },
+    "terrain_dem": {
+      "elevation_m": -2300,
+      "slope_deg": 4.0,
+      "roughness_rms_m": 0.8,
+      "crater_diameter_km": 72.0,
+      "rim_depth_m": 2400,
+      "landing_corridor_rating": "Highland Shelf Plains",
+      "accessibility_index_100": 91
+    },
+    "water_ice": {
+      "ice_probability_pct": 74.0,
+      "hydrogen_content_ppm": 680,
+      "radar_cpr": 0.48,
+      "spectroscopy_band_3um_depth": 0.042,
+      "distance_to_psr_m": 3800,
+      "estimated_ice_depth_m": 3.0,
+      "psr_name": "Simpelius N Shadow Shelf"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 81.0,
+      "max_continuous_light_days": 14,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 5.8,
+      "seasonal_variance_pct": 17.5
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 335,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 38.2,
+      "solar_cycle_phase": "Cycle 25 Active DFSAR Radar Observations",
+      "terrain_shielding_factor_pct": 80.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Highland Regolith (0.32m Camera Surveyed)",
+      "crater_boundary": "Simpelius Highland Complex",
+      "earth_direct_los_pct": 95.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Near Side South Polar Highland"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "High-Resolution Dual-Frequency SAR Calibration Ground Truth",
+      "mission_ground_truth_reference": "ISRO Chandrayaan-2 Orbiter (OHRC 0.32m & DFSAR)",
+      "mcda_suitability_score": 81.9,
+      "ai_confidence_pct": 89.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 135,
+      "temp_max_k": 330,
+      "diurnal_temperature_swing_k": 195
+    }
+  },
+  {
+    "id": "lupex_ch4",
+    "node_id": "16_Chandrayaan4_LUPEX",
+    "code": "LUPEX / CH-4",
+    "name": "Chandrayaan-4 / LUPEX (Connecting Ridge Target)",
+    "coordinates": {
+      "latitude": -89.4,
+      "longitude": 145.0,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-16-P"
+    },
+    "terrain_dem": {
+      "elevation_m": 4050,
+      "slope_deg": 4.1,
+      "roughness_rms_m": 0.75,
+      "crater_diameter_km": 18.0,
+      "rim_depth_m": 2500,
+      "landing_corridor_rating": "Optimal Rover Drill Platform",
+      "accessibility_index_100": 90
+    },
+    "water_ice": {
+      "ice_probability_pct": 90.0,
+      "hydrogen_content_ppm": 1600,
+      "radar_cpr": 0.81,
+      "spectroscopy_band_3um_depth": 0.089,
+      "distance_to_psr_m": 320,
+      "estimated_ice_depth_m": 0.8,
+      "psr_name": "Connecting Ridge Southern Shadow Pockets"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 92.8,
+      "max_continuous_light_days": 145,
+      "max_continuous_dark_days": 5.5,
+      "avg_solar_elevation_deg": 1.4,
+      "seasonal_variance_pct": 6.8
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 285,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 32.5,
+      "solar_cycle_phase": "Cycle 25 Maximum Target Campaign",
+      "terrain_shielding_factor_pct": 86.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Cryogenic Subsurface Volatiles (1.5m Core Target)",
+      "crater_boundary": "Shackleton-de Gerlache High Ridge",
+      "earth_direct_los_pct": 97.5,
+      "relay_satellite_required": false,
+      "near_or_far_side": "South Polar Axis"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Joint ISRO-JAXA 1.5m Cryogenic Sample Return Target",
+      "mission_ground_truth_reference": "ISRO Heavy Lander + JAXA 350kg Cryo-Rover",
+      "mcda_suitability_score": 91.2,
+      "ai_confidence_pct": 92.0,
+      "suitability_tier": "HIGHLY SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 170,
+      "temp_max_k": 225,
+      "diurnal_temperature_swing_k": 55
+    }
+  },
+  {
+    "id": "apollo_11",
+    "node_id": "17_Apollo11_Tranquility_Base",
+    "code": "Apollo 11",
+    "name": "Apollo 11 (Statio Tranquillitatis)",
+    "coordinates": {
+      "latitude": 0.674,
+      "longitude": 23.473,
+      "hemisphere": "Equatorial Near Side",
+      "grid_cell": "EQ-17-Q"
+    },
+    "terrain_dem": {
+      "elevation_m": -1440,
+      "slope_deg": 1.8,
+      "roughness_rms_m": 0.4,
+      "crater_diameter_km": 800.0,
+      "rim_depth_m": 1500,
+      "landing_corridor_rating": "Ultra-Flat Titanium Basalt Plain",
+      "accessibility_index_100": 98
+    },
+    "water_ice": {
+      "ice_probability_pct": 20.0,
+      "hydrogen_content_ppm": 50,
+      "radar_cpr": 0.22,
+      "spectroscopy_band_3um_depth": 0.005,
+      "distance_to_psr_m": 99000,
+      "estimated_ice_depth_m": 0.0,
+      "psr_name": "None (Equatorial Zone)"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 50.0,
+      "max_continuous_light_days": 14,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 89.2,
+      "seasonal_variance_pct": 0.5
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 380,
+      "spe_hazard_tier": "High (Zero Polar Shadowing)",
+      "dose_rate_usv_h": 43.4,
+      "solar_cycle_phase": "Historic Solar Cycle 20 In-Situ Benchmarks",
+      "terrain_shielding_factor_pct": 72.0
+    },
+    "geographic_communications": {
+      "geological_unit": "High-Ti Basalt Flow (Mare Tranquillitatis)",
+      "crater_boundary": "Tranquility Basin Floor",
+      "earth_direct_los_pct": 100.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Prime Meridian Near Side"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Historic First Human Landing / Active LRRR Laser Ground Truth",
+      "mission_ground_truth_reference": "NASA Apollo 11 (July 20, 1969 - Armstrong & Aldrin)",
+      "mcda_suitability_score": 81.5,
+      "ai_confidence_pct": 98.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 100,
+      "temp_max_k": 385,
+      "diurnal_temperature_swing_k": 285
+    }
+  },
+  {
+    "id": "apollo_12",
+    "node_id": "18_Apollo12_Ocean_of_Storms",
+    "code": "Apollo 12",
+    "name": "Apollo 12 (Ocean of Storms / Surveyor 3)",
+    "coordinates": {
+      "latitude": -3.012,
+      "longitude": -23.422,
+      "hemisphere": "Equatorial Near Side",
+      "grid_cell": "EQ-18-R"
+    },
+    "terrain_dem": {
+      "elevation_m": -1520,
+      "slope_deg": 2.1,
+      "roughness_rms_m": 0.45,
+      "crater_diameter_km": 200.0,
+      "rim_depth_m": 1200,
+      "landing_corridor_rating": "Smooth Basalt Regolith",
+      "accessibility_index_100": 97
+    },
+    "water_ice": {
+      "ice_probability_pct": 20.0,
+      "hydrogen_content_ppm": 55,
+      "radar_cpr": 0.24,
+      "spectroscopy_band_3um_depth": 0.006,
+      "distance_to_psr_m": 99000,
+      "estimated_ice_depth_m": 0.0,
+      "psr_name": "None (Equatorial Zone)"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 50.0,
+      "max_continuous_light_days": 14,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 86.9,
+      "seasonal_variance_pct": 0.6
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 380,
+      "spe_hazard_tier": "High",
+      "dose_rate_usv_h": 43.4,
+      "solar_cycle_phase": "Historic Solar Cycle 20 Reference",
+      "terrain_shielding_factor_pct": 72.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Oceanus Procellarum Low-Ti Basalt",
+      "crater_boundary": "Surveyor Crater Margin",
+      "earth_direct_los_pct": 100.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Western Near Side"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Pinpoint Precision Touchdown Ground Truth (160m from Surveyor 3)",
+      "mission_ground_truth_reference": "NASA Apollo 12 (Nov 19, 1969 - Conrad & Bean)",
+      "mcda_suitability_score": 80.8,
+      "ai_confidence_pct": 97.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 100,
+      "temp_max_k": 387,
+      "diurnal_temperature_swing_k": 287
+    }
+  },
+  {
+    "id": "apollo_14",
+    "node_id": "19_Apollo14_Fra_Mauro",
+    "code": "Apollo 14",
+    "name": "Apollo 14 (Fra Mauro Highlands)",
+    "coordinates": {
+      "latitude": -3.645,
+      "longitude": -17.471,
+      "hemisphere": "Equatorial Near Side",
+      "grid_cell": "EQ-19-S"
+    },
+    "terrain_dem": {
+      "elevation_m": -1100,
+      "slope_deg": 3.4,
+      "roughness_rms_m": 0.68,
+      "crater_diameter_km": 95.0,
+      "rim_depth_m": 1800,
+      "landing_corridor_rating": "Highland Ridge Corridor",
+      "accessibility_index_100": 94
+    },
+    "water_ice": {
+      "ice_probability_pct": 22.0,
+      "hydrogen_content_ppm": 65,
+      "radar_cpr": 0.28,
+      "spectroscopy_band_3um_depth": 0.008,
+      "distance_to_psr_m": 99000,
+      "estimated_ice_depth_m": 0.0,
+      "psr_name": "None (Equatorial Zone)"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 50.0,
+      "max_continuous_light_days": 14,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 86.3,
+      "seasonal_variance_pct": 0.7
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 375,
+      "spe_hazard_tier": "High",
+      "dose_rate_usv_h": 42.8,
+      "solar_cycle_phase": "Historic Solar Cycle 20 Reference",
+      "terrain_shielding_factor_pct": 73.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Fra Mauro Formation (Imbrium Basin Impact Ejecta)",
+      "crater_boundary": "Cone Crater Flank",
+      "earth_direct_los_pct": 100.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Central Near Side"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Deep Impact Chronology & Basin Ejecta Ground Truth",
+      "mission_ground_truth_reference": "NASA Apollo 14 (Feb 5, 1971 - Shepard & Mitchell)",
+      "mcda_suitability_score": 81.2,
+      "ai_confidence_pct": 96.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 102,
+      "temp_max_k": 384,
+      "diurnal_temperature_swing_k": 282
+    }
+  },
+  {
+    "id": "apollo_15",
+    "node_id": "20_Apollo15_Hadley_Apennine",
+    "code": "Apollo 15",
+    "name": "Apollo 15 (Hadley-Apennine)",
+    "coordinates": {
+      "latitude": 26.132,
+      "longitude": 3.634,
+      "hemisphere": "Northern Near Side",
+      "grid_cell": "NN-20-T"
+    },
+    "terrain_dem": {
+      "elevation_m": -1800,
+      "slope_deg": 4.8,
+      "roughness_rms_m": 0.92,
+      "crater_diameter_km": 1100.0,
+      "rim_depth_m": 4500,
+      "landing_corridor_rating": "Apennine Mountain Plain",
+      "accessibility_index_100": 92
+    },
+    "water_ice": {
+      "ice_probability_pct": 22.0,
+      "hydrogen_content_ppm": 70,
+      "radar_cpr": 0.32,
+      "spectroscopy_band_3um_depth": 0.009,
+      "distance_to_psr_m": 99000,
+      "estimated_ice_depth_m": 0.0,
+      "psr_name": "None (Northern Mid-Latitude)"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 50.0,
+      "max_continuous_light_days": 14,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 63.8,
+      "seasonal_variance_pct": 1.5
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 370,
+      "spe_hazard_tier": "High",
+      "dose_rate_usv_h": 42.2,
+      "solar_cycle_phase": "Historic Solar Cycle 20 Reference",
+      "terrain_shielding_factor_pct": 74.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Anorthosite Crust (4.1 Gyr Genesis Rock) & Basalt",
+      "crater_boundary": "Montes Apenninus / Hadley Rille Gorge",
+      "earth_direct_los_pct": 100.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Northern Near Side"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "First Lunar Roving Vehicle (LRV) & Deep Crustal Ground Truth",
+      "mission_ground_truth_reference": "NASA Apollo 15 (July 30, 1971 - Scott & Irwin)",
+      "mcda_suitability_score": 82.4,
+      "ai_confidence_pct": 97.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 100,
+      "temp_max_k": 382,
+      "diurnal_temperature_swing_k": 282
+    }
+  },
+  {
+    "id": "apollo_16",
+    "node_id": "21_Apollo16_Descartes_Highlands",
+    "code": "Apollo 16",
+    "name": "Apollo 16 (Descartes Highlands)",
+    "coordinates": {
+      "latitude": -8.973,
+      "longitude": 15.498,
+      "hemisphere": "Central Near Side",
+      "grid_cell": "EQ-21-U"
+    },
+    "terrain_dem": {
+      "elevation_m": 1400,
+      "slope_deg": 4.2,
+      "roughness_rms_m": 0.82,
+      "crater_diameter_km": 48.0,
+      "rim_depth_m": 2800,
+      "landing_corridor_rating": "Central Highland Plateau",
+      "accessibility_index_100": 93
+    },
+    "water_ice": {
+      "ice_probability_pct": 22.0,
+      "hydrogen_content_ppm": 60,
+      "radar_cpr": 0.3,
+      "spectroscopy_band_3um_depth": 0.007,
+      "distance_to_psr_m": 99000,
+      "estimated_ice_depth_m": 0.0,
+      "psr_name": "None (Equatorial Highlands)"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 50.0,
+      "max_continuous_light_days": 14,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 81.0,
+      "seasonal_variance_pct": 0.8
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 365,
+      "spe_hazard_tier": "High",
+      "dose_rate_usv_h": 41.7,
+      "solar_cycle_phase": "Historic Solar Cycle 20 Reference",
+      "terrain_shielding_factor_pct": 74.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Cayley Plains / Descartes Highland Anorthosite Breccia",
+      "crater_boundary": "Descartes Crater East Plain",
+      "earth_direct_los_pct": 100.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Central Near Side"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Highland Impact Genesis Ground Truth (Proved Non-Volcanic)",
+      "mission_ground_truth_reference": "NASA Apollo 16 (April 21, 1972 - Young & Duke)",
+      "mcda_suitability_score": 82.0,
+      "ai_confidence_pct": 96.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 105,
+      "temp_max_k": 383,
+      "diurnal_temperature_swing_k": 278
+    }
+  },
+  {
+    "id": "apollo_17",
+    "node_id": "22_Apollo17_Taurus_Littrow",
+    "code": "Apollo 17",
+    "name": "Apollo 17 (Taurus-Littrow Valley)",
+    "coordinates": {
+      "latitude": 20.191,
+      "longitude": 30.772,
+      "hemisphere": "Northern Near Side",
+      "grid_cell": "NN-22-V"
+    },
+    "terrain_dem": {
+      "elevation_m": -2500,
+      "slope_deg": 3.9,
+      "roughness_rms_m": 0.78,
+      "crater_diameter_km": 750.0,
+      "rim_depth_m": 2500,
+      "landing_corridor_rating": "Mountain Enclosed Valley",
+      "accessibility_index_100": 95
+    },
+    "water_ice": {
+      "ice_probability_pct": 24.0,
+      "hydrogen_content_ppm": 85,
+      "radar_cpr": 0.35,
+      "spectroscopy_band_3um_depth": 0.011,
+      "distance_to_psr_m": 99000,
+      "estimated_ice_depth_m": 0.0,
+      "psr_name": "None (Pyroclastic Deposit Zone)"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 50.0,
+      "max_continuous_light_days": 14,
+      "max_continuous_dark_days": 14.0,
+      "avg_solar_elevation_deg": 69.8,
+      "seasonal_variance_pct": 1.4
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 370,
+      "spe_hazard_tier": "High",
+      "dose_rate_usv_h": 42.2,
+      "solar_cycle_phase": "Historic Solar Cycle 20 Reference",
+      "terrain_shielding_factor_pct": 75.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Pyroclastic Orange Volcanic Glass Beads & Ilmenite Basalt",
+      "crater_boundary": "Taurus-Littrow Valley / Shorty Crater",
+      "earth_direct_los_pct": 100.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "Northern Near Side"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "Deep Explosive Lunar Volcanism Ground Truth (110.5 kg Samples)",
+      "mission_ground_truth_reference": "NASA Apollo 17 (Dec 11, 1972 - Cernan & Schmitt)",
+      "mcda_suitability_score": 83.0,
+      "ai_confidence_pct": 98.0,
+      "suitability_tier": "SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 100,
+      "temp_max_k": 384,
+      "diurnal_temperature_swing_k": 284
+    }
+  },
+  {
+    "id": "artemis_3",
+    "node_id": "23_Artemis3_Ridge_Target",
+    "code": "Artemis III",
+    "name": "Artemis III Target (Shackleton-Malapert Ridge)",
+    "coordinates": {
+      "latitude": -89.5,
+      "longitude": 130.0,
+      "hemisphere": "South Pole",
+      "grid_cell": "SP-23-W"
+    },
+    "terrain_dem": {
+      "elevation_m": 4200,
+      "slope_deg": 3.7,
+      "roughness_rms_m": 0.68,
+      "crater_diameter_km": 25.0,
+      "rim_depth_m": 4300,
+      "landing_corridor_rating": "Optimal Starship HLS Corridor",
+      "accessibility_index_100": 91
+    },
+    "water_ice": {
+      "ice_probability_pct": 92.0,
+      "hydrogen_content_ppm": 1720,
+      "radar_cpr": 0.84,
+      "spectroscopy_band_3um_depth": 0.091,
+      "distance_to_psr_m": 310,
+      "estimated_ice_depth_m": 0.9,
+      "psr_name": "Shackleton Connecting Shadow Depressions"
+    },
+    "solar_illumination": {
+      "annual_sunlight_pct": 94.5,
+      "max_continuous_light_days": 175,
+      "max_continuous_dark_days": 4.0,
+      "avg_solar_elevation_deg": 1.42,
+      "seasonal_variance_pct": 5.2
+    },
+    "radiation_environment": {
+      "gcr_dose_msv_yr": 280,
+      "spe_hazard_tier": "Moderate",
+      "dose_rate_usv_h": 32.0,
+      "solar_cycle_phase": "Cycle 25 Maximum Modulation",
+      "terrain_shielding_factor_pct": 87.0
+    },
+    "geographic_communications": {
+      "geological_unit": "Polar Ridge Regolith / High Sintering Potential",
+      "crater_boundary": "Shackleton-Malapert Saddle",
+      "earth_direct_los_pct": 98.0,
+      "relay_satellite_required": false,
+      "near_or_far_side": "South Polar Axis"
+    },
+    "ai_ml_matrix": {
+      "ground_truth_label": "NASA Artemis III Crewed Landing Target (SpaceX Starship HLS)",
+      "mission_ground_truth_reference": "NASA Artemis Program Science Plan (2025+)",
+      "mcda_suitability_score": 93.8,
+      "ai_confidence_pct": 94.0,
+      "suitability_tier": "HIGHLY SUITABLE"
+    },
+    "environmental_temperatures": {
+      "temp_min_k": 175,
+      "temp_max_k": 222,
+      "diurnal_temperature_swing_k": 47
+    }
+  }
+]

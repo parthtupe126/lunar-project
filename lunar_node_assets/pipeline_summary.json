@@ -1,126 +1,126 @@
 {
   "pipeline_name": "Lunar GIS Automated ETL Pipeline",
-  "execution_timestamp_utc": "2026-08-18T11:47:08.758438Z",
+  "execution_timestamp_utc": "2026-08-19T17:05:34.541078Z",
   "total_nodes_processed": 23,
-  "nodes_approved": 0,
-  "nodes_failed": 23,
-  "elapsed_seconds": 17.48,
-  "target_endpoint": "https://wms.lroc.asu.edu/lroc/wms",
+  "nodes_approved": 23,
+  "nodes_failed": 0,
+  "elapsed_seconds": 15.33,
+  "target_endpoint": "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/earth/moon_simp_cyl.map",
   "nodes": [
     {
       "id": "01_Shackleton_Crater",
       "name": "Shackleton Crater Rim",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "02_Mons_Malapert",
       "name": "Mons Malapert Plateau",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "03_Faustini_Rim_A",
       "name": "Faustini Rim A",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "04_Connecting_Ridge",
       "name": "Connecting Ridge (Shackleton-de Gerlache)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "05_de_Gerlache_Rim",
       "name": "de Gerlache Rim",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "06_Haworth_Crater_Rim",
       "name": "Haworth Crater Rim North",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "07_Mons_Mouton",
       "name": "Mons Mouton (Leibnitz Beta)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "08_Nobile_Crater_Rim",
       "name": "Nobile Crater Rim",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "09_Amundsen_Crater",
       "name": "Amundsen Crater (Site I)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "10_Marius_Hills_Lava_Tube",
       "name": "Marius Hills Lava Tube Skylight",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "11_Cabeus_Crater",
       "name": "Cabeus Crater (LCROSS Site)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "12_Shoemaker_Crater_Rim",
       "name": "Shoemaker Crater Rim South",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "13_Chandrayaan3_Shiv_Shakti",
       "name": "Chandrayaan-3 (Shiv Shakti Point)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "14_Chandrayaan1_Jawahar",
       "name": "Chandrayaan-1 (Jawahar Point)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "15_Chandrayaan2_Tiranga",
       "name": "Chandrayaan-2 (Tiranga Point)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "16_Chandrayaan4_LUPEX",
       "name": "Chandrayaan-4 / LUPEX Candidate",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "17_Apollo11_Tranquility_Base",
       "name": "Apollo 11 (Statio Tranquillitatis)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "18_Apollo12_Ocean_of_Storms",
       "name": "Apollo 12 (Ocean of Storms)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "19_Apollo14_Fra_Mauro",
       "name": "Apollo 14 (Fra Mauro Highlands)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "20_Apollo15_Hadley_Apennine",
       "name": "Apollo 15 (Hadley-Apennine)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "21_Apollo16_Descartes_Highlands",
       "name": "Apollo 16 (Descartes Highlands)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "22_Apollo17_Taurus_Littrow",
       "name": "Apollo 17 (Taurus-Littrow Valley)",
-      "status": "Failed"
+      "status": "Approved"
     },
     {
       "id": "23_Artemis3_Ridge_Target",
       "name": "Artemis III Target (Shackleton Ridge)",
-      "status": "Failed"
+      "status": "Approved"
     }
   ]
 }
