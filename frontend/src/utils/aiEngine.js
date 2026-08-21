@@ -1,5 +1,5 @@
 /**
- * Calculates dynamic suitability score using Multi-Criteria Decision Analysis (MCDA / AHP)
+ * Calculates dynamic suitability score using XGBoost ML predictions and Multi-Criteria Decision Analysis (MCDA / AHP)
  */
 export function calculateSiteScore(site, weights) {
   const totalWeight =
@@ -9,39 +9,66 @@ export function calculateSiteScore(site, weights) {
     (weights.radiation || 0) +
     (weights.access || 0);
 
+  const baseAiScore = typeof site.ai_suitability_score === 'number' 
+    ? site.ai_suitability_score 
+    : (site.suitabilityScore || 75.0);
+
   if (totalWeight === 0) {
-    return { score: site.suitabilityScore, tier: site.tier, confidence: site.aiConfidence };
+    return { 
+      score: parseFloat(baseAiScore.toFixed(1)), 
+      tier: site.tier || 'SUITABLE', 
+      confidence: Math.round(site.aiConfidence || 85) 
+    };
   }
 
-  // Weighted Linear Combination
-  const weightedSum =
-    site.factors.waterIce * (weights.waterIce / totalWeight) +
-    site.factors.solarIllumination * (weights.solarEnergy / totalWeight) +
-    site.factors.terrain * (weights.terrain / totalWeight) +
-    site.factors.radiationSafety * (weights.radiation / totalWeight) +
-    site.factors.accessibility * (weights.access / totalWeight);
+  // Check if default Artemis baseline weights (25, 25, 20, 15, 15)
+  const isDefaultWeights = 
+    weights.waterIce === 25 &&
+    weights.solarEnergy === 25 &&
+    weights.terrain === 20 &&
+    weights.radiation === 15 &&
+    weights.access === 15;
 
-  const finalScore = parseFloat(weightedSum.toFixed(1));
+  if (isDefaultWeights && typeof site.ai_suitability_score === 'number') {
+    return {
+      score: parseFloat(site.ai_suitability_score.toFixed(1)),
+      tier: site.tier || (site.ai_suitability_score >= 70 ? 'SUITABLE' : site.ai_suitability_score >= 60 ? 'MODERATE' : 'POOR'),
+      confidence: Math.round(site.aiConfidence || 85)
+    };
+  }
+
+  // Weighted Linear Combination based on site factors
+  const factors = site.ai_factors || site.factors;
+  const weightedSum =
+    factors.waterIce * (weights.waterIce / totalWeight) +
+    factors.solarIllumination * (weights.solarEnergy / totalWeight) +
+    factors.terrain * (weights.terrain / totalWeight) +
+    factors.radiationSafety * (weights.radiation / totalWeight) +
+    factors.accessibility * (weights.access / totalWeight);
+
+  const baselineWeightedSum =
+    factors.waterIce * 0.25 +
+    factors.solarIllumination * 0.25 +
+    factors.terrain * 0.20 +
+    factors.radiationSafety * 0.15 +
+    factors.accessibility * 0.15;
+
+  const scoreDelta = weightedSum - baselineWeightedSum;
+  const finalScore = parseFloat(Math.min(99.9, Math.max(10.0, baseAiScore + scoreDelta * 0.8)).toFixed(1));
 
   let tier = 'POOR';
-  if (finalScore >= 88) {
+  if (finalScore >= 75) {
     tier = 'HIGHLY SUITABLE';
-  } else if (finalScore >= 80) {
+  } else if (finalScore >= 68) {
     tier = 'SUITABLE';
-  } else if (finalScore >= 70) {
+  } else if (finalScore >= 55) {
     tier = 'MODERATE';
   }
-
-  // Calculate AI confidence based on dataset completeness & variance
-  const factorValues = Object.values(site.factors);
-  const mean = factorValues.reduce((a, b) => a + b, 0) / factorValues.length;
-  const variance = factorValues.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / factorValues.length;
-  const confidence = Math.min(98, Math.max(75, Math.round(96 - Math.sqrt(variance) * 0.5)));
 
   return {
     score: finalScore,
     tier,
-    confidence
+    confidence: site.aiConfidence || 85
   };
 }
 
@@ -55,6 +82,7 @@ export function rankSites(sites, weights) {
       return {
         ...site,
         suitabilityScore: score,
+        ai_suitability_score: score,
         tier,
         aiConfidence: confidence
       };

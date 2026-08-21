@@ -15,6 +15,7 @@ import { ApiService } from './api';
 export function App() {
   // Navigation & UI State
   const [showIntro, setShowIntro] = useState(true);
+  const [isAppRevealed, setIsAppRevealed] = useState(false);
   const [activeTab, setActiveTab] = useState('map');
   const [isMuted, setIsMuted] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
@@ -23,6 +24,13 @@ export function App() {
   const [isTeamOpen, setIsTeamOpen] = useState(false);
   const [isBackendConnected, setIsBackendConnected] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+    setTimeout(() => {
+      setIsAppRevealed(true);
+    }, 50);
+  };
 
   // Toggle Full Screen View for Moon
   const toggleFullscreen = () => {
@@ -159,19 +167,21 @@ export function App() {
     <div className="flex flex-col h-screen w-screen bg-[#030712] text-slate-100 overflow-hidden font-sans select-none">
       {/* 1. Header Navbar (Hidden in Fullscreen mode) */}
       {!isFullscreen && (
-        <Header
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          isMuted={isMuted}
-          setIsMuted={setIsMuted}
-          onOpenReport={() => setIsReportOpen(true)}
-          onOpenMissions={() => setIsMissionsOpen(true)}
-          onOpenTeam={() => setIsTeamOpen(true)}
-          spaceWeather={spaceWeather}
-          isBackendConnected={isBackendConnected}
-          isFullscreen={isFullscreen}
-          onToggleFullscreen={toggleFullscreen}
-        />
+        <div className={isAppRevealed ? 'animate-smooth-slide-down' : 'opacity-0 -translate-y-6'}>
+          <Header
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            isMuted={isMuted}
+            setIsMuted={setIsMuted}
+            onOpenReport={() => setIsReportOpen(true)}
+            onOpenMissions={() => setIsMissionsOpen(true)}
+            onOpenTeam={() => setIsTeamOpen(true)}
+            spaceWeather={spaceWeather}
+            isBackendConnected={isBackendConnected}
+            isFullscreen={isFullscreen}
+            onToggleFullscreen={toggleFullscreen}
+          />
+        </div>
       )}
 
       {/* 2. Main Studio Viewport (Full 100% width/height in Fullscreen Mode) */}
@@ -179,19 +189,21 @@ export function App() {
         
         {/* Left Column: UI Weight Sliders (Slope, Sun, Ice) & Layer Controls */}
         {!isFullscreen && (
-          <LayerControls
-            weights={weights}
-            setWeights={setWeights}
-            layers={layers}
-            setLayers={setLayers}
-            filter={filter}
-            setFilter={setFilter}
-          />
+          <div className={`h-full shrink-0 z-10 ${isAppRevealed ? 'animate-smooth-slide-left' : 'opacity-0 -translate-x-16'}`}>
+            <LayerControls
+              weights={weights}
+              setWeights={setWeights}
+              layers={layers}
+              setLayers={setLayers}
+              filter={filter}
+              setFilter={setFilter}
+            />
+          </div>
         )}
 
         {/* Center Column: 3D Lunar Surface & Polar Orbit Visualization Canvas */}
         <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-          <div className="flex-1 relative min-h-0 w-full h-full">
+          <div className={`flex-1 relative min-h-0 w-full h-full transition-opacity duration-1000 ${isAppRevealed ? 'animate-smooth-fade-scale' : 'opacity-0'}`}>
             <Map3D
               sites={visibleSites}
               selectedSite={selectedSite}
@@ -204,25 +216,24 @@ export function App() {
               onToggleFullscreen={toggleFullscreen}
             />
           </div>
-
-
         </div>
 
         {/* Right Column: Top Habitat Coordinates & AI Scoreboard */}
         {!isFullscreen && (
-          <Scoreboard
-            sites={rankedSites}
-            selectedSite={selectedSite}
-            onSelectSite={handleSelectSite}
-            onOpenReport={() => setIsReportOpen(true)}
-            onOpenDeepDive={() => setIsDeepDiveOpen(true)}
-            weights={weights}
-          />
+          <div className={`h-full shrink-0 z-10 ${isAppRevealed ? 'animate-smooth-slide-right' : 'opacity-0 translate-x-16'}`}>
+            <Scoreboard
+              sites={rankedSites}
+              selectedSite={selectedSite}
+              onSelectSite={handleSelectSite}
+              onOpenReport={() => setIsReportOpen(true)}
+              onOpenDeepDive={() => setIsDeepDiveOpen(true)}
+              onOpenMissions={() => setIsMissionsOpen(true)}
+              weights={weights}
+            />
+          </div>
         )}
 
       </main>
-
-
 
       {/* 4. AI Mission Dossier Modal */}
       {selectedSite && (
@@ -250,13 +261,27 @@ export function App() {
         isOpen={isMissionsOpen}
         onClose={() => setIsMissionsOpen(false)}
         onFlyToMission={(mission) => {
-          // Find matching site or coordinate
+          // Find matching site or create target coordinate from mission
           const matchedSite = rankedSites.find(s => 
             s.id === mission.id || 
             s.name?.toLowerCase().includes(mission.name.toLowerCase().split('(')[0].trim())
           );
           if (matchedSite) {
             handleSelectSite(matchedSite);
+          } else if (mission && typeof mission.lat === 'number') {
+            const missionSite = {
+              id: mission.id,
+              code: mission.agency || 'MISSION',
+              name: mission.name,
+              shortName: mission.name,
+              tier: 'MISSION LANDMARK',
+              latitude: mission.lat,
+              longitude: mission.lon,
+              elevationMeters: 0,
+              suitabilityScore: 90,
+              aiConfidence: 95
+            };
+            handleSelectSite(missionSite);
           }
         }}
       />
@@ -269,7 +294,7 @@ export function App() {
 
       {/* 8. Cinematic Opening / Initialization Sequence */}
       {showIntro && (
-        <OpeningAnimation onComplete={() => setShowIntro(false)} />
+        <OpeningAnimation onComplete={handleIntroComplete} />
       )}
     </div>
   );

@@ -1,11 +1,14 @@
 import React from 'react';
 import { 
-  Globe2, 
-  Volume2, 
-  VolumeX, 
+  Rocket, 
   FileText, 
-  Compass,
-  Maximize2, 
+  Radio, 
+  Sparkles, 
+  Activity,
+  Layers,
+  BarChart3,
+  Server,
+  Maximize2,
   Minimize2,
   Users
 } from 'lucide-react';
@@ -24,31 +27,32 @@ export const Header = ({
   isFullscreen = false,
   onToggleFullscreen = () => {}
 }) => {
-  const toggleMute = () => {
-    const muted = soundManager.toggleMute();
-    setIsMuted(muted);
-  };
+  const navItems = [
+    { id: 'map', label: '3D Lunar Globe', icon: <Layers className="w-3.5 h-3.5" /> },
+    { id: 'scoreboard', label: 'Habitat Scoreboard', icon: <BarChart3 className="w-3.5 h-3.5" /> },
+  ];
 
   return (
-    <header className="h-13 bg-[#0a0d14]/95 border-b border-slate-800/60 px-4 flex items-center justify-between z-20 shrink-0 select-none backdrop-blur-md">
-      {/* Brand & Studio Title */}
+    <header className="h-14 bg-[#070B14]/95 border-b border-slate-800/80 px-4 flex items-center justify-between z-20 shrink-0 select-none backdrop-blur-xl animate-smooth-slide-down">
+      {/* Brand & Mission Title */}
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-slate-900 border border-slate-700/70 flex items-center justify-center shadow-sm">
-          <Globe2 className="w-4 h-4 text-sky-400" />
+        <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-purple-600 flex items-center justify-center shadow-glow-cyan">
+          <Rocket className="w-5 h-5 text-white transform -rotate-45" />
         </div>
-        <div className="flex items-center gap-2.5">
-          <h1 className="text-xs font-semibold tracking-tight text-white flex items-center gap-2">
-            <span className="font-sans font-bold text-slate-100 text-sm">LUNAR HABITAT</span>
-            <span className="text-[11px] font-mono text-slate-400 font-normal">STUDIO</span>
-          </h1>
-          <span className="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
-            v2.4
-          </span>
+        <div>
+          <div className="flex items-center gap-2">
+            <h1 className="text-sm font-bold font-mono tracking-tight text-white flex items-center gap-1.5">
+              <span>LUNAR HABITAT AI</span>
+              <span className="text-[10px] font-mono font-normal text-cyan-400 bg-cyan-950/80 px-1.5 py-0.2 rounded border border-cyan-500/30">
+                v1.0
+              </span>
+            </h1>
+          </div>
         </div>
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-2">
         {/* Missions Directory Button */}
         <button
           onClick={() => {
@@ -56,24 +60,24 @@ export const Header = ({
             onOpenMissions();
           }}
           title="Open Structured Lunar Missions Directory (ISRO, Apollo, Artemis, SpaceX)"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white text-xs font-medium transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-mono font-semibold transition-all shadow-glow-cyan"
         >
-          <Compass className="w-3.5 h-3.5 text-sky-400" />
-          <span className="hidden sm:inline">Missions Directory</span>
+          <Rocket className="w-3.5 h-3.5 text-orange-400" />
+          <span className="hidden sm:inline">Missions Catalogue</span>
           <span className="sm:hidden">Missions</span>
         </button>
 
-        {/* Project Team Button */}
+        {/* Project Team & Members Button */}
         <button
           onClick={() => {
             soundManager.playSelect();
             onOpenTeam();
           }}
-          title="View Team Members & Contributors"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white text-xs font-medium transition-colors cursor-pointer"
+          title="View GitHub Repository Contributors & Team Members"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-purple-500/30 text-purple-300 hover:text-white text-xs font-mono font-semibold transition-all shadow-glow-purple"
         >
-          <Users className="w-3.5 h-3.5 text-indigo-400" />
-          <span className="hidden sm:inline">Contributors</span>
+          <Users className="w-3.5 h-3.5 text-purple-400" />
+          <span className="hidden sm:inline">Repo Team</span>
           <span className="sm:hidden">Team</span>
         </button>
 
@@ -83,35 +87,28 @@ export const Header = ({
             soundManager.playClick();
             onToggleFullscreen();
           }}
-          title={isFullscreen ? 'Exit Full Screen' : 'Full Screen View (F)'}
-          className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
+          title={isFullscreen ? 'Exit Full Screen' : 'Full Screen Moon View (F)'}
+          className={`p-2 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-mono ${
             isFullscreen 
-              ? 'bg-sky-950/60 border-sky-600/50 text-sky-300' 
-              : 'bg-slate-900/80 hover:bg-slate-800 text-slate-400 hover:text-white border-slate-800'
+              ? 'bg-cyan-950/80 border-cyan-500/50 text-cyan-300 shadow-glow-cyan' 
+              : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border-slate-800'
           }`}
         >
-          {isFullscreen ? <Minimize2 className="w-3.5 h-3.5 text-sky-400" /> : <Maximize2 className="w-3.5 h-3.5" />}
+          {isFullscreen ? <Minimize2 className="w-4 h-4 text-cyan-400" /> : <Maximize2 className="w-4 h-4 text-cyan-400" />}
+          <span className="hidden sm:inline">{isFullscreen ? 'Exit Fullscreen' : 'Full Screen'}</span>
         </button>
 
-        {/* Mute Button */}
-        <button
-          onClick={toggleMute}
-          title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-          className="p-1.5 rounded-lg bg-slate-900/80 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 transition-colors cursor-pointer"
-        >
-          {isMuted ? <VolumeX className="w-3.5 h-3.5 text-rose-400" /> : <Volume2 className="w-3.5 h-3.5" />}
-        </button>
-
-        {/* Primary Action: AI Mission Dossier Trigger */}
+        {/* AI Mission Dossier Trigger */}
         <button
           onClick={() => {
             soundManager.playSelect();
             onOpenReport();
           }}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-xs font-medium transition-colors shadow-sm cursor-pointer ml-1"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-xs font-mono font-semibold transition-all shadow-glow-purple"
         >
           <FileText className="w-3.5 h-3.5" />
-          <span>Mission Dossier</span>
+          <span className="hidden sm:inline">AI Mission Dossier</span>
+          <span className="sm:hidden">Dossier</span>
         </button>
       </div>
     </header>

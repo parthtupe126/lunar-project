@@ -4,28 +4,28 @@
 
 @layer base {
   body {
-    @apply bg-[#080b11] text-slate-100 font-sans select-none antialiased;
+    @apply bg-[#030712] text-slate-100 font-sans select-none antialiased;
     color-scheme: dark;
   }
 }
 
-/* Custom Clean Matte Scrollbar */
+/* Custom Sleek Dark Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(12, 16, 23, 0.4);
+  background: rgba(7, 11, 20, 0.6);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(71, 85, 105, 0.45);
+  background: rgba(51, 65, 85, 0.8);
   border-radius: 9999px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(100, 116, 139, 0.8);
+  background: rgba(100, 116, 139, 1);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -36,43 +36,9 @@
   scrollbar-width: none;
 }
 
-/* Precision Aerospace Range Sliders */
+/* Range input styling */
 input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-  height: 18px;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-  height: 4px;
-  background: #1e293b;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  margin-top: -6px;
-  background: #f8fafc;
-  height: 16px;
-  width: 16px;
-  border-radius: 9999px;
-  border: 2px solid #0f172a;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-  transition: transform 0.15s ease, background-color 0.15s ease;
-}
-
-input[type="range"]:hover::-webkit-slider-thumb {
-  transform: scale(1.15);
-  background: #ffffff;
-  border-color: #38bdf8;
-}
-
-input[type="range"]:focus::-webkit-slider-thumb {
-  outline: 2px solid rgba(56, 189, 248, 0.4);
+  accent-color: #38bdf8;
 }
 
 /* Radial progress animation */
@@ -95,8 +61,95 @@ input[type="range"]:focus::-webkit-slider-thumb {
 }
 
 .animate-spin-slow {
-  animation: spinSlow 20s linear infinite;
+  animation: spinSlow 12s linear infinite;
 }
+
+/* Smooth Cinematic Opening Animations for Left and Right Panels */
+@keyframes smoothSlideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
+    filter: blur(10px);
+  }
+  50% {
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes smoothSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(80px);
+    filter: blur(10px);
+  }
+  50% {
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes smoothSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+    filter: blur(8px);
+  }
+  60% {
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes smoothFadeScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.94);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+.animate-smooth-slide-left {
+  animation: smoothSlideLeft 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.animate-smooth-slide-right {
+  animation: smoothSlideRight 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.animate-smooth-slide-down {
+  animation: smoothSlideDown 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.animate-smooth-fade-scale {
+  animation: smoothFadeScale 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.stagger-1 { animation-delay: 80ms; }
+.stagger-2 { animation-delay: 160ms; }
+.stagger-3 { animation-delay: 240ms; }
+.stagger-4 { animation-delay: 320ms; }
 
 /* Print Styles */
 @media print {

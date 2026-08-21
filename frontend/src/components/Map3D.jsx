@@ -183,12 +183,19 @@ const MOON_FRAG_SHADER = `
 
       gl_FragColor = vec4(finalColor, 1.0);
     } else {
-      // 8K NASA LOLA Hypsometric Topography / Spectrometry / Thermal Map mode
-      vec3 normalTexDemo = texture2D(normalMap, vUv).xyz * 2.0 - 1.0;
-      normalTexDemo.xy *= (reliefScale * 0.65);
-      vec3 N_demo = normalize(TBN * normalize(normalTexDemo));
-      float diff = max(0.35, dot(N_demo, V));
-      gl_FragColor = vec4(albedo * (diff * 0.70 + 0.40), 1.0);
+      // 8K NASA Scientific Layer Shading (Hypsometric Altimetry / Volatiles Spectrometry / Diviner IR)
+      vec3 normalTexScientific = texture2D(normalMap, vUv).xyz * 2.0 - 1.0;
+      normalTexScientific.xy *= (reliefScale * 0.85);
+      vec3 N_sci = normalize(TBN * normalize(normalTexScientific));
+      
+      // Hillshading from camera & sun angles for authentic physical 3D crater depth
+      float NdotV = max(0.15, dot(N_sci, V));
+      float NdotL = max(0.10, dot(N_sci, L));
+      float hillshade = NdotV * 0.60 + NdotL * 0.40;
+
+      // Blend false-color scientific overlay with authentic LOLA physical relief
+      vec3 finalSciColor = albedo * (hillshade * 0.85 + 0.35);
+      gl_FragColor = vec4(finalSciColor, 1.0);
     }
   }
 `;
@@ -329,48 +336,223 @@ export const Map3D = ({
     return LUNAR_MISSIONS.filter(m => m.category === activeMissionFilter);
   }, [activeMissionFilter]);
 
-  // Water-Ice Volatiles Epithermal Neutron Spectrometer Texture
+  // Dynamic Telemetry Target Name
+  const activeTargetName = useMemo(() => {
+    if (hoveredObject) {
+      if (hoveredObject.type === 'site') {
+        return hoveredObject.data.shortName || hoveredObject.data.name;
+      }
+      if (hoveredObject.type === 'mission') {
+        return hoveredObject.data.name;
+      }
+    }
+    if (selectedSite) {
+      return selectedSite.shortName || selectedSite.name;
+    }
+    if (selectedMission) {
+      return selectedMission.name;
+    }
+    if (cursorCoords.lat < -80) return 'Lunar South Pole';
+    if (cursorCoords.lat > 80) return 'Lunar North Pole';
+    if (cursorCoords.lat > 10 && cursorCoords.lat < 40 && cursorCoords.lon > -60 && cursorCoords.lon < 0) return 'Mare Imbrium';
+    return 'Lunar Surface';
+  }, [hoveredObject, selectedSite, selectedMission, cursorCoords.lat, cursorCoords.lon]);
+
+  // Authentic NASA & ISRO Water-Ice Volatiles Epithermal Neutron Spectrometer Texture Generator
   const createWaterIceTexture = () => {
     const canvas = document.createElement('canvas');
     canvas.width = 2048;
     canvas.height = 1024;
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#070b14';
+
+    // Base Layer: Dark space-grade deep navy slate with lunar regolith grid
+    ctx.fillStyle = '#060a14';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const polarGradients = [
-      { x: canvas.width * 0.5, y: canvas.height * 0.94, r: 180, c: '#38bdf8' },
-      { x: canvas.width * 0.42, y: canvas.height * 0.92, r: 130, c: '#06b6d4' },
-      { x: canvas.width * 0.58, y: canvas.height * 0.91, r: 110, c: '#60a5fa' },
+    // Subtle equatorial trace hydration signatures (M3 Spectrometry)
+    const eqHydration = [
+      { x: canvas.width * 0.44, y: canvas.height * 0.48, r: 80, opacity: 0.25 }, // Mare Tranquillitatis
+      { x: canvas.width * 0.32, y: canvas.height * 0.62, r: 60, opacity: 0.20 }, // Bullialdus
+      { x: canvas.width * 0.24, y: canvas.height * 0.42, r: 50, opacity: 0.20 }  // Reiner Gamma
     ];
-    polarGradients.forEach(p => {
-      const grad = ctx.createRadialGradient(p.x, p.y, 5, p.x, p.y, p.r);
-      grad.addColorStop(0, 'rgba(56, 189, 248, 0.95)');
-      grad.addColorStop(0.4, 'rgba(6, 182, 212, 0.6)');
-      grad.addColorStop(0.8, 'rgba(30, 58, 138, 0.3)');
+    eqHydration.forEach(h => {
+      const grad = ctx.createRadialGradient(h.x, h.y, 2, h.x, h.y, h.r);
+      grad.addColorStop(0, `rgba(56, 189, 248, ${h.opacity})`);
       grad.addColorStop(1, 'transparent');
       ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.arc(h.x, h.y, h.r, 0, Math.PI * 2);
       ctx.fill();
     });
-    return new THREE.CanvasTexture(canvas);
+
+    // Helper to render high-purity PSR polar ice crater targets
+    const drawIceTarget = (lat, lon, radiusPx, intensity = 1.0, name = '') => {
+      const x = ((lon + 180) / 360) * canvas.width;
+      const y = ((90 - lat) / 180) * canvas.height;
+
+      const grad = ctx.createRadialGradient(x, y, 1, x, y, radiusPx);
+      grad.addColorStop(0.0, `rgba(255, 255, 255, ${0.95 * intensity})`);
+      grad.addColorStop(0.2, `rgba(0, 240, 255, ${0.90 * intensity})`);
+      grad.addColorStop(0.5, `rgba(56, 189, 248, ${0.60 * intensity})`);
+      grad.addColorStop(0.8, `rgba(30, 58, 138, ${0.30 * intensity})`);
+      grad.addColorStop(1.0, 'transparent');
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(x, y, radiusPx, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (name) {
+        ctx.font = 'bold 11px monospace';
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.85)';
+        ctx.fillText(name, x + radiusPx * 0.6, y - 4);
+      }
+    };
+
+    // South Pole Volatile Network (Continuous Ice Belt & PSR Craters)
+    const spGrad = ctx.createLinearGradient(0, canvas.height, 0, canvas.height * 0.85);
+    spGrad.addColorStop(0, 'rgba(0, 240, 255, 0.55)');
+    spGrad.addColorStop(0.6, 'rgba(14, 116, 144, 0.35)');
+    spGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = spGrad;
+    ctx.fillRect(0, canvas.height * 0.85, canvas.width, canvas.height * 0.15);
+
+    // Major South Pole Volatile PSR Craters
+    drawIceTarget(-89.28, 15.40, 36, 1.0, 'Shackleton');
+    drawIceTarget(-84.90, -35.50, 42, 1.0, 'Cabeus (LCROSS)');
+    drawIceTarget(-88.10, 45.60, 28, 0.9, 'Shoemaker');
+    drawIceTarget(-87.30, 77.00, 24, 0.85, 'Faustini');
+    drawIceTarget(-84.50, 82.80, 30, 0.9, 'Amundsen');
+    drawIceTarget(-87.40, -5.00, 26, 0.85, 'Haworth');
+    drawIceTarget(-85.20, 53.50, 28, 0.88, 'Nobile (VIPER)');
+    drawIceTarget(-86.50, -135.00, 22, 0.8, 'Slater');
+    drawIceTarget(-88.30, -156.00, 20, 0.8, 'De Gerlache');
+
+    // North Pole Volatile Network (+80° to +90°)
+    const npGrad = ctx.createLinearGradient(0, 0, 0, canvas.height * 0.15);
+    npGrad.addColorStop(0, 'rgba(0, 240, 255, 0.55)');
+    npGrad.addColorStop(0.6, 'rgba(14, 116, 144, 0.35)');
+    npGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = npGrad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height * 0.15);
+
+    // Major North Pole Volatile PSR Craters
+    drawIceTarget(86.00, 93.30, 38, 1.0, 'Hermite (26K)');
+    drawIceTarget(88.60, 33.00, 26, 0.85, 'Peary');
+    drawIceTarget(85.20, -157.80, 28, 0.85, 'Rozhdestvenskiy');
+    drawIceTarget(89.10, 120.00, 22, 0.8, 'Whipple');
+
+    // Polar Grid Lines (80°S, 85°S, 80°N, 85°N)
+    ctx.strokeStyle = 'rgba(56, 189, 248, 0.30)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    [-80, -85, 80, 85].forEach(lat => {
+      const y = ((90 - lat) / 180) * canvas.height;
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(canvas.width, y);
+      ctx.stroke();
+    });
+
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.ClampToEdgeWrapping;
+    return tex;
   };
 
-  // Diviner Thermal IR Heatmap Texture
+  // Authentic NASA Diviner Thermal IR Surface Temperature Heatmap Generator
   const createThermalTexture = () => {
     const canvas = document.createElement('canvas');
     canvas.width = 2048;
     canvas.height = 1024;
     const ctx = canvas.getContext('2d');
+
+    // Base Latitude Thermal Gradient (North Pole 35K -> Equator 395K -> South Pole 35K)
     const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0.0, '#312e81');
-    gradient.addColorStop(0.5, '#ea580c');
-    gradient.addColorStop(0.88, '#4c1d95');
-    gradient.addColorStop(1.0, '#1e1b4b');
+    gradient.addColorStop(0.00, '#00e5ff'); // North Pole Cold Trap (35K - 80K)
+    gradient.addColorStop(0.08, '#1a237e'); // High North Latitudes (100K)
+    gradient.addColorStop(0.22, '#4a148c'); // Mid North Latitudes (200K)
+    gradient.addColorStop(0.38, '#ff9800'); // Warm Sub-tropical North (320K)
+    gradient.addColorStop(0.50, '#ffee58'); // Equatorial Noon Peak (395K / +122°C)
+    gradient.addColorStop(0.62, '#ff9800'); // Warm Sub-tropical South (320K)
+    gradient.addColorStop(0.78, '#4a148c'); // Mid South Latitudes (200K)
+    gradient.addColorStop(0.92, '#1a237e'); // High South Latitudes (100K)
+    gradient.addColorStop(1.00, '#00e5ff'); // South Pole Cold Trap (35K - 80K)
+
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    return new THREE.CanvasTexture(canvas);
+
+    // Thermal Anomaly Hotspots (Impact Craters with High Thermal Inertia Rock Fields)
+    const drawThermalHotspot = (lat, lon, radiusPx, tempLabel = '') => {
+      const x = ((lon + 180) / 360) * canvas.width;
+      const y = ((90 - lat) / 180) * canvas.height;
+
+      const grad = ctx.createRadialGradient(x, y, 1, x, y, radiusPx);
+      grad.addColorStop(0.0, 'rgba(255, 255, 255, 0.95)'); // Core 390K+
+      grad.addColorStop(0.3, 'rgba(255, 235, 59, 0.85)');  // 360K
+      grad.addColorStop(0.7, 'rgba(244, 67, 54, 0.60)');   // 320K
+      grad.addColorStop(1.0, 'transparent');
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(x, y, radiusPx, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (tempLabel) {
+        ctx.font = 'bold 10px monospace';
+        ctx.fillStyle = 'rgba(255, 235, 59, 0.90)';
+        ctx.fillText(tempLabel, x + radiusPx * 0.7, y - 2);
+      }
+    };
+
+    // Major Lunar Thermal Anomalies
+    drawThermalHotspot(-43.30, -11.20, 24, 'Tycho (385K Anomaly)');
+    drawThermalHotspot(9.60, -20.10, 20, 'Copernicus');
+    drawThermalHotspot(23.70, -47.40, 22, 'Aristarchus');
+    drawThermalHotspot(-3.20, -19.60, 18, 'Fra Mauro');
+
+    // Cold Trap PSR Anomaly Spots (Hermite & Shackleton ultra-cold points)
+    const drawColdTrap = (lat, lon, radiusPx, label = '') => {
+      const x = ((lon + 180) / 360) * canvas.width;
+      const y = ((90 - lat) / 180) * canvas.height;
+
+      const grad = ctx.createRadialGradient(x, y, 1, x, y, radiusPx);
+      grad.addColorStop(0.0, 'rgba(0, 229, 255, 1.0)');  // 26K - 35K
+      grad.addColorStop(0.5, 'rgba(3, 169, 244, 0.7)');
+      grad.addColorStop(1.0, 'transparent');
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(x, y, radiusPx, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (label) {
+        ctx.font = 'bold 10px monospace';
+        ctx.fillStyle = 'rgba(0, 229, 255, 0.95)';
+        ctx.fillText(label, x + radiusPx * 0.6, y - 2);
+      }
+    };
+
+    drawColdTrap(86.00, 93.30, 26, 'Hermite (26K Cold Trap)');
+    drawColdTrap(-89.28, 15.40, 24, 'Shackleton (40K)');
+    drawColdTrap(-84.90, -35.50, 22, 'Cabeus (38K)');
+
+    // Isothermal Latitudinal Boundary Lines (100K, 200K, 300K, 380K)
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    [-60, -30, 0, 30, 60].forEach(lat => {
+      const y = ((90 - lat) / 180) * canvas.height;
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(canvas.width, y);
+      ctx.stroke();
+    });
+
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.ClampToEdgeWrapping;
+    return tex;
   };
 
   // Three.js Core Initialization
@@ -608,11 +790,14 @@ export const Map3D = ({
 
       // Smooth Camera Fly-To transitions
       if (targetCameraPosRef.current && cameraRef.current) {
-        cameraRef.current.position.lerp(targetCameraPosRef.current, 0.06);
+        cameraRef.current.position.lerp(targetCameraPosRef.current, 0.08);
         if (targetControlsTargetRef.current && controlsRef.current) {
-          controlsRef.current.target.lerp(targetControlsTargetRef.current, 0.06);
+          controlsRef.current.target.lerp(targetControlsTargetRef.current, 0.08);
         }
-        if (cameraRef.current.position.distanceTo(targetCameraPosRef.current) < 0.02) {
+        if (controlsRef.current) {
+          controlsRef.current.update();
+        }
+        if (cameraRef.current.position.distanceTo(targetCameraPosRef.current) < 0.01) {
           targetCameraPosRef.current = null;
           targetControlsTargetRef.current = null;
         }
@@ -860,23 +1045,46 @@ export const Map3D = ({
     overlaysGroupRef.current.clear();
   }, [sites, layers]);
 
-  // Smooth Camera Fly-To function
-  const flyToCoords = (latDeg, lonDeg, distance = 2.4) => {
+  // Smooth Camera Fly-To function with precise 3D Globe alignment
+  const flyToCoords = (latDeg, lonDeg, distance = 2.0) => {
     soundManager.playSelect();
-    const pos = latLonToVector3(latDeg, lonDeg, distance);
-    targetCameraPosRef.current = new THREE.Vector3(pos.x, pos.y, pos.z);
+    
+    // Pause auto-spin so target marker stays locked at dead-center after zoom
+    setIsAutoSpin(false);
+
+    // Calculate local unit position on moon sphere surface
+    const localPos = latLonToVector3(latDeg, lonDeg, MOON_RADIUS);
+    const localVec = new THREE.Vector3(localPos.x, localPos.y, localPos.z);
+
+    // Transform local position to world space accounting for current globe rotation
+    const worldVec = globeGroupRef.current
+      ? globeGroupRef.current.localToWorld(localVec.clone())
+      : (moonMeshRef.current ? moonMeshRef.current.localToWorld(localVec.clone()) : localVec);
+
+    // Position camera along the normal vector extending from center through target to zoom distance
+    const targetCameraPos = worldVec.clone().normalize().multiplyScalar(distance);
+
+    targetCameraPosRef.current = targetCameraPos;
     targetControlsTargetRef.current = new THREE.Vector3(0, 0, 0);
+
+    // Immediately update telemetry readout coordinates
+    const elevMeters = getEstimatedElevation(latDeg, lonDeg);
+    setCursorCoords({
+      lat: Math.round(latDeg * 100) / 100,
+      lon: Math.round(lonDeg * 100) / 100,
+      elevation: elevMeters
+    });
   };
 
   const handleSelectSiteInternal = (site) => {
     setSelectedMission(null);
     onSelectSite(site);
-    flyToCoords(site.latitude, site.longitude, 2.2);
+    flyToCoords(site.latitude, site.longitude, 2.0);
   };
 
   const handleSelectMissionInternal = (mission) => {
     setSelectedMission(mission);
-    flyToCoords(mission.lat, mission.lon, mission.zoom || 2.4);
+    flyToCoords(mission.lat, mission.lon, mission.zoom || 2.0);
   };
 
   const resetView = () => {
@@ -892,19 +1100,36 @@ export const Map3D = ({
     const mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     const mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
-    const estimatedLat = -85 - (mouseY + 1) * 2.5;
-    const estimatedLon = mouseX * 90;
-    const clampedLat = Math.max(-90, Math.min(90, estimatedLat));
-    const elevMeters = getEstimatedElevation(clampedLat, estimatedLon);
-
-    setCursorCoords({
-      lat: clampedLat,
-      lon: estimatedLon,
-      elevation: elevMeters
-    });
-
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(new THREE.Vector2(mouseX, mouseY), cameraRef.current);
+
+    // Authentic 3D Globe Surface Raycasting
+    if (moonMeshRef.current) {
+      const hits = raycaster.intersectObject(moonMeshRef.current, true);
+      if (hits.length > 0) {
+        const hitPoint = hits[0].point.clone();
+        moonMeshRef.current.worldToLocal(hitPoint);
+        
+        const r = hitPoint.length();
+        if (r > 0.0001) {
+          const phi = Math.acos(Math.max(-1, Math.min(1, hitPoint.y / r)));
+          const lat = 90 - (phi * 180) / Math.PI;
+          
+          const theta = Math.atan2(hitPoint.z, -hitPoint.x);
+          let lon = (theta * 180) / Math.PI - 180;
+          while (lon > 180) lon -= 360;
+          while (lon < -180) lon += 360;
+
+          const elevMeters = getEstimatedElevation(lat, lon);
+
+          setCursorCoords({
+            lat: Math.round(lat * 100) / 100,
+            lon: Math.round(lon * 100) / 100,
+            elevation: elevMeters
+          });
+        }
+      }
+    }
 
     if (missionsGroupRef.current) {
       const missionHits = raycaster.intersectObjects(missionsGroupRef.current.children, true);
@@ -990,28 +1215,28 @@ export const Map3D = ({
       )}
 
       {/* 2. WebGL Canvas Container */}
-      <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+      <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing animate-smooth-fade-scale" />
 
       {/* 3. Top HUD Area: Search, Surface Modes, Telemetry & Controls */}
-      <div className="absolute top-4 left-4 right-4 z-20 pointer-events-none flex flex-col md:flex-row items-start md:items-center justify-between gap-2.5">
+      <div className="absolute top-4 left-4 right-4 z-20 pointer-events-none flex flex-col md:flex-row items-start md:items-center justify-between gap-2.5 animate-smooth-slide-down">
 
         {/* Left Side: Search Bar & Texture Map Mode Switcher */}
         <div className="pointer-events-auto flex flex-wrap items-center gap-2 max-w-full">
           {/* Search Box */}
-          <div className="relative w-56 sm:w-64 shrink-0">
-            <div className="relative flex items-center bg-slate-900/90 backdrop-blur-md rounded-lg border border-slate-700/70 shadow-sm px-3 py-1.5">
-              <Search className="w-3.5 h-3.5 text-slate-400 mr-2 shrink-0" />
+          <div className="relative w-56 sm:w-64 md:w-72 shrink-0">
+            <div className="relative flex items-center bg-[#0B1120]/90 backdrop-blur-md rounded-xl border border-slate-700/80 shadow-lg px-3 py-2">
+              <Search className="w-4 h-4 text-cyan-400 mr-2 shrink-0" />
               <input
                 type="text"
                 placeholder="Search crater, Apollo, Artemis..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent text-xs text-white placeholder-slate-400 focus:outline-none w-full"
+                className="bg-transparent text-xs font-mono text-white placeholder-slate-400 focus:outline-none w-full"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="text-slate-400 hover:text-white text-xs px-1 cursor-pointer"
+                  className="text-slate-400 hover:text-white text-xs font-mono px-1"
                 >
                   ×
                 </button>
@@ -1020,7 +1245,7 @@ export const Map3D = ({
 
             {/* Search Results Dropdown */}
             {searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-lg overflow-hidden shadow-xl z-30">
+              <div className="absolute top-full left-0 right-0 mt-1 bg-[#0B1120]/95 backdrop-blur-xl border border-cyan-500/40 rounded-xl overflow-hidden shadow-2xl z-30">
                 {searchResults.map(item => (
                   <div
                     key={item.id}
@@ -1032,19 +1257,19 @@ export const Map3D = ({
                       }
                       setSearchQuery('');
                     }}
-                    className="px-3 py-2 hover:bg-slate-800 cursor-pointer border-b border-slate-800/80 last:border-0 flex items-center justify-between"
+                    className="px-3 py-2 hover:bg-slate-800/80 cursor-pointer border-b border-slate-800/60 last:border-0 flex items-center justify-between"
                   >
                     <div>
-                      <div className="text-xs font-semibold text-white flex items-center gap-1.5">
-                        {item.isMission ? <Rocket className="w-3 h-3 text-amber-400" /> : <MapPin className="w-3 h-3 text-sky-400" />}
+                      <div className="text-xs font-mono font-bold text-white flex items-center gap-1.5">
+                        {item.isMission ? <Rocket className="w-3 h-3 text-orange-400" /> : <MapPin className="w-3 h-3 text-cyan-400" />}
                         <span>{item.name}</span>
                       </div>
-                      <div className="text-[11px] font-mono text-slate-400">
+                      <div className="text-[10px] font-mono text-slate-400">
                         {item.latitude.toFixed(2)}°, {item.longitude.toFixed(2)}° • {item.siteType}
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono font-medium text-slate-300 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">
-                      View
+                    <span className="text-[10px] font-mono font-bold text-cyan-400 bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-500/30">
+                      FLY TO
                     </span>
                   </div>
                 ))}
@@ -1053,19 +1278,19 @@ export const Map3D = ({
           </div>
 
           {/* Texture Map & Surface Mode Switcher Pills */}
-          <div className="flex items-center gap-1 bg-slate-900/90 backdrop-blur-md p-1 rounded-lg border border-slate-800 shadow-sm overflow-x-auto max-w-full no-scrollbar">
+          <div className="flex items-center gap-1 bg-[#0B1120]/90 backdrop-blur-md p-1 rounded-xl border border-slate-800 shadow-xl overflow-x-auto max-w-full no-scrollbar">
             <button
               onClick={() => {
                 soundManager.playClick();
                 setActiveTextureMode('lroc_8k');
               }}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'lroc_8k'
-                  ? 'bg-blue-600 text-white'
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'lroc_8k'
+                  ? 'bg-cyan-600 text-white shadow-glow-cyan'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Globe className="w-3.5 h-3.5" />
-              <span>NASA 8K</span>
+              <Globe className="w-3.5 h-3.5 text-cyan-300" />
+              <span>NASA 8K Moon</span>
             </button>
 
             <button
@@ -1073,13 +1298,13 @@ export const Map3D = ({
                 soundManager.playClick();
                 setActiveTextureMode('crater_contrast');
               }}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'crater_contrast'
-                  ? 'bg-blue-600 text-white'
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'crater_contrast'
+                  ? 'bg-amber-600 text-white shadow-glow-amber'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Camera className="w-3.5 h-3.5" />
-              <span>High Contrast</span>
+              <Camera className="w-3.5 h-3.5 text-amber-300" />
+              <span>High-Contrast</span>
             </button>
 
             <button
@@ -1087,12 +1312,12 @@ export const Map3D = ({
                 soundManager.playClick();
                 setActiveTextureMode('lola_dem');
               }}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'lola_dem'
-                  ? 'bg-blue-600 text-white'
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'lola_dem'
+                  ? 'bg-emerald-600 text-white shadow-glow-emerald'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Mountain className="w-3.5 h-3.5" />
+              <Mountain className="w-3.5 h-3.5 text-emerald-300" />
               <span>LOLA Topo</span>
             </button>
 
@@ -1101,12 +1326,12 @@ export const Map3D = ({
                 soundManager.playClick();
                 setActiveTextureMode('ice_spectrometry');
               }}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'ice_spectrometry'
-                  ? 'bg-blue-600 text-white'
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'ice_spectrometry'
+                  ? 'bg-blue-600 text-white shadow-glow-cyan'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Droplets className="w-3.5 h-3.5" />
+              <Droplets className="w-3.5 h-3.5 text-blue-300" />
               <span>Water Ice</span>
             </button>
 
@@ -1115,12 +1340,12 @@ export const Map3D = ({
                 soundManager.playClick();
                 setActiveTextureMode('thermal_diviner');
               }}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors whitespace-nowrap cursor-pointer ${activeTextureMode === 'thermal_diviner'
-                  ? 'bg-blue-600 text-white'
+              className={`px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap ${activeTextureMode === 'thermal_diviner'
+                  ? 'bg-purple-600 text-white shadow-glow-purple'
                   : 'text-slate-400 hover:text-white hover:bg-slate-800'
                 }`}
             >
-              <Thermometer className="w-3.5 h-3.5" />
+              <Thermometer className="w-3.5 h-3.5 text-purple-300" />
               <span>Diviner IR</span>
             </button>
           </div>
@@ -1134,34 +1359,34 @@ export const Map3D = ({
                 soundManager.playClick();
                 onToggleFullscreen();
               }}
-              className="bg-slate-900/90 hover:bg-slate-800 backdrop-blur-md px-3 py-1 rounded-full border border-slate-700 text-xs font-mono text-slate-300 shadow-md flex items-center gap-2 transition-colors cursor-pointer group"
+              className="bg-[#0B1120]/90 hover:bg-[#131b2e] backdrop-blur-md px-3.5 py-1.5 rounded-full border border-cyan-500/40 text-[11px] font-mono text-cyan-300 shadow-2xl flex items-center gap-2 transition-all cursor-pointer group hover:border-cyan-400"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-              <span>Full Screen • Press <strong>ESC</strong> to exit</span>
-              <Minimize2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span>Full Screen Active • Press <strong>ESC</strong> or <strong>F</strong> to exit</span>
+              <Minimize2 className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
             </button>
           </div>
         )}
 
         {/* Right Side: Moon Phase, Telemetry & Controls Toolbox */}
-        <div className="pointer-events-auto flex flex-col items-end gap-1.5 shrink-0 self-end md:self-auto">
-          {/* Telemetry & LOLA Elevation readout */}
-          <div className="bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800 text-[11px] font-mono text-slate-300 shadow-sm flex items-center gap-2.5">
-            <div className="flex items-center gap-1 text-slate-400">
-              <Crosshair className="w-3 h-3 text-sky-400" />
-              <span>Target: <span className="text-slate-200">South Pole</span></span>
+        <div className="pointer-events-auto flex flex-col items-end gap-2 shrink-0 self-end md:self-auto">
+          {/* Real-time Telemetry & LOLA Elevation readout */}
+          <div className="bg-[#0B1120]/85 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-800 text-[11px] font-mono text-slate-300 shadow-lg flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
+              <Crosshair className="w-3.5 h-3.5 text-cyan-400 animate-spin" style={{ animationDuration: '10s' }} />
+              <span>Target: <strong className="text-white">{activeTargetName}</strong></span>
             </div>
-            <span className="text-slate-700">|</span>
+            <span className="text-slate-600">|</span>
             <div>
-              Lat: <span className="text-slate-100 font-semibold">{cursorCoords.lat.toFixed(2)}°</span>
+              Lat: <span className="text-cyan-300 font-bold">{cursorCoords.lat > 0 ? `+${cursorCoords.lat.toFixed(2)}` : cursorCoords.lat.toFixed(2)}°</span>
             </div>
             <div>
-              Lon: <span className="text-slate-100 font-semibold">{cursorCoords.lon.toFixed(2)}°</span>
+              Lon: <span className="text-cyan-300 font-bold">{cursorCoords.lon > 0 ? `+${cursorCoords.lon.toFixed(2)}` : cursorCoords.lon.toFixed(2)}°</span>
             </div>
-            <span className="text-slate-700">|</span>
-            <div className="text-slate-200 font-medium flex items-center gap-1">
+            <span className="text-slate-600">|</span>
+            <div className="text-emerald-400 font-bold flex items-center gap-1">
               <Activity className="w-3 h-3 text-emerald-400" />
-              <span>{cursorCoords.elevation > 0 ? `+${cursorCoords.elevation}` : cursorCoords.elevation} m</span>
+              <span>Elev: {cursorCoords.elevation > 0 ? `+${cursorCoords.elevation}` : cursorCoords.elevation} m</span>
             </div>
           </div>
 
@@ -1364,18 +1589,56 @@ export const Map3D = ({
         </div>
       </div>
 
-      {/* 6. LOLA LDEM Hypsometric Elevation Legend (Shown in LOLA DEM mode) */}
+      {/* 6. Scientific Map Layer Legend Overlays (LOLA Topo, Water Ice, Diviner IR - Positioned Bottom-Right) */}
       {activeTextureMode === 'lola_dem' && (
-        <div className="absolute top-20 right-4 z-20 bg-[#0B1120]/90 backdrop-blur-md p-3 rounded-xl border border-slate-700 text-[10px] font-mono shadow-2xl animate-in fade-in duration-200">
+        <div className="absolute bottom-20 right-4 z-20 bg-[#0B1120]/95 backdrop-blur-md p-3 rounded-xl border border-cyan-500/40 text-[10px] font-mono shadow-2xl animate-in fade-in duration-200">
           <div className="text-xs font-bold text-white mb-2 flex items-center gap-1.5">
-            <Mountain className="w-3.5 h-3.5 text-emerald-400" />
-            <span>NASA LOLA 118m LDEM Scale</span>
+            <Mountain className="w-3.5 h-3.5 text-cyan-400" />
+            <span>NASA LOLA 118m LDEM Altimetry Scale</span>
           </div>
-          <div className="h-3 w-48 rounded bg-gradient-to-r from-[#2c004d] via-[#0284c7] via-[#eab308] via-[#dc2626] to-[#ffffff] border border-slate-600 mb-1" />
-          <div className="flex justify-between text-slate-400 text-[9px]">
+          <div className="h-3 w-56 rounded bg-gradient-to-r from-[#0284c7] via-[#22c55e] via-[#eab308] via-[#ef4444] to-[#ec4899] border border-slate-600 mb-1" />
+          <div className="flex justify-between text-slate-300 text-[9px] font-bold">
             <span>-9,000m (Basin)</span>
             <span>0m (Datum)</span>
             <span>+10,700m (Peaks)</span>
+          </div>
+        </div>
+      )}
+
+      {activeTextureMode === 'ice_spectrometry' && (
+        <div className="absolute bottom-20 right-4 z-20 bg-[#0B1120]/95 backdrop-blur-md p-3 rounded-xl border border-cyan-500/40 text-[10px] font-mono shadow-2xl animate-in fade-in duration-200">
+          <div className="text-xs font-bold text-cyan-300 mb-2 flex items-center gap-1.5">
+            <Droplets className="w-3.5 h-3.5 text-cyan-400" />
+            <span>NASA & ISRO M3 / LAMP Water-Ice Volatiles</span>
+          </div>
+          <div className="h-3 w-56 rounded bg-gradient-to-r from-[#060a14] via-[#1e3a8a] via-[#0284c7] via-[#00f0ff] to-[#ffffff] border border-slate-600 mb-1" />
+          <div className="flex justify-between text-slate-300 text-[9px] font-bold">
+            <span>0% (Desiccated)</span>
+            <span>30% (Subsurface)</span>
+            <span>&gt;95% (PSR Ice Trap)</span>
+          </div>
+          <div className="mt-1.5 text-[9px] text-cyan-400 flex items-center justify-between border-t border-slate-800 pt-1">
+            <span>PSR Targets:</span>
+            <span className="font-bold text-white">Shackleton • Cabeus • Hermite</span>
+          </div>
+        </div>
+      )}
+
+      {activeTextureMode === 'thermal_diviner' && (
+        <div className="absolute bottom-20 right-4 z-20 bg-[#0B1120]/95 backdrop-blur-md p-3 rounded-xl border border-purple-500/40 text-[10px] font-mono shadow-2xl animate-in fade-in duration-200">
+          <div className="text-xs font-bold text-purple-300 mb-2 flex items-center gap-1.5">
+            <Thermometer className="w-3.5 h-3.5 text-purple-400" />
+            <span>NASA LRO Diviner Thermal Infrared Surface Temp</span>
+          </div>
+          <div className="h-3 w-56 rounded bg-gradient-to-r from-[#00e5ff] via-[#1a237e] via-[#4a148c] via-[#ff9800] to-[#ffee58] border border-slate-600 mb-1" />
+          <div className="flex justify-between text-slate-300 text-[9px] font-bold">
+            <span>35K (-238°C)</span>
+            <span>200K (-73°C)</span>
+            <span>395K (+122°C)</span>
+          </div>
+          <div className="mt-1.5 text-[9px] text-purple-300 flex items-center justify-between border-t border-slate-800 pt-1">
+            <span>Thermal Hotspots:</span>
+            <span className="font-bold text-white">Tycho • Copernicus • Aristarchus</span>
           </div>
         </div>
       )}

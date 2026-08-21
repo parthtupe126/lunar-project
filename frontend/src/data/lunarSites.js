@@ -1,4 +1,6 @@
 
+import aiPredictionsData from './ai_predictions.json';
+
 // Helper to convert lat/lon in degrees to 3D unit sphere coordinates
 // Moon coordinates: South Pole is lat -90, equator is 0
 export function latLonToVector3(lat, lon, radius = 1.5) {
@@ -12,7 +14,7 @@ export function latLonToVector3(lat, lon, radius = 1.5) {
   return { x, y, z };
 }
 
-export const INITIAL_LUNAR_SITES = [
+const RAW_LUNAR_SITES = [
   // 1. Shackleton Crater Rim
   {
     id: 'site-shackleton',
@@ -1552,6 +1554,40 @@ export const INITIAL_LUNAR_SITES = [
 ]
   }
 ];
+
+const aiPredictionsMap = {};
+if (aiPredictionsData?.predictions) {
+  aiPredictionsData.predictions.forEach(p => {
+    aiPredictionsMap[p.id] = p;
+  });
+}
+
+export const INITIAL_LUNAR_SITES = RAW_LUNAR_SITES.map(site => {
+  const pred = aiPredictionsMap[site.id];
+  if (!pred) return site;
+  return {
+    ...site,
+    ai_suitability_score: pred.ai_suitability_score,
+    suitabilityScore: pred.ai_suitability_score,
+    original_mcda_score: pred.original_mcda_score,
+    aiConfidence: Math.round(pred.ai_confidence_pct),
+    tier: pred.suitability_tier,
+    ai_rank: pred.ai_rank,
+    shap_top_features: pred.shap_top_features,
+    ai_factors: pred.factors,
+    ai_ml_matrix: {
+      mcda_suitability_score: pred.ai_suitability_score,
+      ai_confidence_pct: pred.ai_confidence_pct,
+      suitability_tier: pred.suitability_tier,
+      ai_rank: pred.ai_rank,
+      score_delta_from_mcda: pred.score_delta,
+      model_version: aiPredictionsData.metadata?.model_version || 'xgb_lunar_v1.0',
+      model_r2: aiPredictionsData.metadata?.model_r2 || 0.9562,
+      model_mae: aiPredictionsData.metadata?.model_mae || 1.3007,
+      shap_top_features: pred.shap_top_features
+    }
+  };
+}).sort((a, b) => b.suitabilityScore - a.suitabilityScore);
 
 
 export const LUNAR_MISSIONS = [

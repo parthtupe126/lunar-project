@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
               LUNAR HABITAT AI
             </h1>
             <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-400 border border-cyan-500/30">
-              v2.6 POLAR
+              v1.0
             </span>
           </div>
           <p className="text-[11px] text-slate-400 hidden sm:block tracking-wide">

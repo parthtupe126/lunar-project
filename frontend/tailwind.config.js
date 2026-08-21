@@ -8,44 +8,37 @@ export default {
     extend: {
       colors: {
         space: {
-          950: '#070a10',
-          900: '#0c1017',
-          850: '#111722',
-          800: '#172030',
-          750: '#1e293b',
-          700: '#27354a',
-          600: '#384860',
-          500: '#526580',
+          950: '#030712',
+          900: '#070B14',
+          850: '#0B1120',
+          800: '#0F172A',
+          700: '#1E293B',
+          600: '#334155',
         },
-        aerospace: {
-          blue: '#2563eb',
-          cyan: '#0284c7',
-          sky: '#38bdf8',
-          teal: '#0d9488',
+        lunar: {
+          cyan: '#38bdf8',
+          purple: '#a855f7',
           emerald: '#10b981',
-          amber: '#d97706',
-          orange: '#ea580c',
-          rose: '#e11d48',
-          purple: '#7c3aed',
+          amber: '#f59e0b',
+          rose: '#f43f5e',
         }
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'SF Mono', 'monospace'],
+        mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
       },
       boxShadow: {
-        'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3)',
-        'panel': '0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06)',
-        'glow-blue': '0 0 16px -2px rgba(37, 99, 235, 0.35)',
-        'glow-cyan': '0 0 16px -2px rgba(56, 189, 248, 0.35)',
-        'glow-purple': '0 0 16px -2px rgba(124, 58, 237, 0.35)',
+        'glow-cyan': '0 0 15px -2px rgba(56, 189, 248, 0.4)',
+        'glow-purple': '0 0 18px -2px rgba(168, 85, 247, 0.45)',
+        'glow-emerald': '0 0 15px -2px rgba(16, 185, 129, 0.4)',
+        'glow-amber': '0 0 15px -2px rgba(245, 158, 11, 0.4)',
+        'card': '0 4px 20px -2px rgba(0, 0, 0, 0.5)',
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'spin-slow': 'spinSlow 20s linear infinite',
+        'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
       }
     },
   },
   plugins: [],
 };
-

@@ -3,6 +3,75 @@ import * as THREE from 'three';
 import { ShieldCheck, Sparkles, Activity, Globe, Compass, ChevronRight, Zap } from 'lucide-react';
 import { soundManager } from '../utils/audio';
 
+const getInstantMoonTexture = () => {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 256;
+  const ctx = canvas.getContext('2d');
+
+  // Base silvery-grey lunar albedo
+  const bgGrad = ctx.createLinearGradient(0, 0, 0, 256);
+  bgGrad.addColorStop(0, '#c2cbd7');
+  bgGrad.addColorStop(0.5, '#a4adb9');
+  bgGrad.addColorStop(1, '#8b94a2');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, 512, 256);
+
+  // Soft lunar maria (lunar seas)
+  const maria = [
+    { x: 130, y: 110, rx: 65, ry: 42, color: 'rgba(52, 59, 70, 0.52)' },
+    { x: 230, y: 95, rx: 50, ry: 35, color: 'rgba(48, 55, 65, 0.55)' },
+    { x: 310, y: 115, rx: 60, ry: 40, color: 'rgba(46, 53, 62, 0.50)' },
+    { x: 170, y: 70, rx: 45, ry: 30, color: 'rgba(50, 57, 66, 0.46)' },
+    { x: 380, y: 130, rx: 55, ry: 38, color: 'rgba(58, 66, 76, 0.42)' },
+    { x: 200, y: 175, rx: 42, ry: 26, color: 'rgba(55, 62, 72, 0.40)' }
+  ];
+
+  maria.forEach(m => {
+    const g = ctx.createRadialGradient(m.x, m.y, 4, m.x, m.y, m.rx);
+    g.addColorStop(0, m.color);
+    g.addColorStop(0.7, m.color);
+    g.addColorStop(1, 'rgba(120, 130, 145, 0)');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.ellipse(m.x, m.y, m.rx, m.ry, 0, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // Soft highland crater rays & craters
+  const craters = [
+    { x: 180, y: 195, r: 14 },
+    { x: 110, y: 95, r: 11 },
+    { x: 250, y: 90, r: 9 },
+    { x: 340, y: 140, r: 12 },
+    { x: 420, y: 80, r: 10 }
+  ];
+
+  craters.forEach(c => {
+    const rg = ctx.createRadialGradient(c.x, c.y, 1, c.x, c.y, c.r * 2.2);
+    rg.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
+    rg.addColorStop(0.5, 'rgba(225, 232, 242, 0.15)');
+    rg.addColorStop(1, 'rgba(180, 190, 205, 0)');
+    ctx.fillStyle = rg;
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, c.r * 2.2, 0, Math.PI * 2);
+    ctx.fill();
+
+    const cg = ctx.createRadialGradient(c.x - 1, c.y - 1, 1, c.x, c.y, c.r);
+    cg.addColorStop(0, 'rgba(38, 43, 50, 0.65)');
+    cg.addColorStop(0.7, 'rgba(65, 72, 82, 0.45)');
+    cg.addColorStop(1, 'rgba(235, 240, 250, 0.35)');
+    ctx.fillStyle = cg;
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+};
+
 const MiniMoonGlobe = () => {
   const mountRef = useRef(null);
 
@@ -17,65 +86,53 @@ const MiniMoonGlobe = () => {
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
     renderer.setSize(size, size);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.2;
     container.replaceChildren(renderer.domElement);
 
-    const textureLoader = new THREE.TextureLoader();
+    // Instant synchronous 0ms lunar texture
+    const instantMap = getInstantMoonTexture();
 
-    // High-Resolution NASA 4K Albedo & Normal Mapping
-    const colorMap = textureLoader.load('/assets/real-moon/moon_4k_color_brim16.jpg', (tex) => {
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.anisotropy = 16;
-      tex.generateMipmaps = true;
-    });
-
-    const normalMap = textureLoader.load('/assets/real-moon/lola_ldem_4k_normal.jpg', (tex) => {
-      tex.anisotropy = 16;
-      tex.generateMipmaps = true;
-    });
-
-    const bumpMap = textureLoader.load('/assets/real-moon/lola_ldem_4k_bump.jpg');
-
-    const geometry = new THREE.SphereGeometry(0.96, 128, 128);
+    const geometry = new THREE.SphereGeometry(0.98, 48, 48);
     const material = new THREE.MeshStandardMaterial({
-      map: colorMap,
-      normalMap: normalMap,
-      normalScale: new THREE.Vector2(2.2, 2.2),
-      bumpMap: bumpMap,
-      bumpScale: 0.06,
-      roughness: 0.90,
-      metalness: 0.04
+      map: instantMap,
+      roughness: 0.92,
+      metalness: 0.02
     });
 
     const moon = new THREE.Mesh(geometry, material);
     moon.rotation.y = Math.PI * 0.4;
     scene.add(moon);
 
-    // 1. Key Direct Sunlight at grazing angle for dramatic 3D crater shadows
-    const sunLight = new THREE.DirectionalLight(0xfffdf5, 3.8);
-    sunLight.position.set(2.4, 1.2, 2.2);
+    // Asynchronously load NASA photographic texture without blocking initial render
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load('/assets/real-moon/moon1024x512.jpg', (tex) => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.minFilter = THREE.LinearMipmapLinearFilter;
+      tex.generateMipmaps = true;
+      material.map = tex;
+      material.needsUpdate = true;
+    });
+
+    // 1. Soft Warm Solar Light
+    const sunLight = new THREE.DirectionalLight(0xfffaed, 2.8);
+    sunLight.position.set(2.2, 1.0, 2.4);
     scene.add(sunLight);
 
-    // 2. Soft Earthshine fill (prevents total darkness on dark side)
-    const earthshine = new THREE.DirectionalLight(0x38bdf8, 0.65);
-    earthshine.position.set(-2.0, -0.6, 1.2);
-    scene.add(earthshine);
-
-    // 3. Subtle ambient light
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    // 2. Soft Ambient Earthshine for natural, blended shadow fill
+    const ambientLight = new THREE.AmbientLight(0xdce3ef, 0.7);
     scene.add(ambientLight);
 
-    // 4. Cyan orbital atmospheric rim glow
-    const rimLight = new THREE.DirectionalLight(0x00f0ff, 0.8);
-    rimLight.position.set(-2.2, 1.5, -1.0);
+    // 3. Subtle Cyan Lunar Limb / Exosphere Rim Glow
+    const rimLight = new THREE.DirectionalLight(0x38bdf8, 0.55);
+    rimLight.position.set(-2.0, 1.2, -1.0);
     scene.add(rimLight);
 
     let animId;
     const animate = () => {
       animId = requestAnimationFrame(animate);
-      moon.rotation.y += 0.0035; // Gentle, slow photorealistic lunar spin
+      moon.rotation.y += 0.0035; // Gentle, smooth photorealistic spin
       renderer.render(scene, camera);
     };
     animate();
@@ -240,52 +297,56 @@ export const OpeningAnimation = ({ onComplete = () => {} }) => {
       <div className="absolute w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-cyan-600/15 via-purple-600/10 to-transparent blur-3xl pointer-events-none animate-pulse" />
       <div className="absolute w-[300px] h-[300px] rounded-full bg-cyan-500/10 blur-2xl pointer-events-none" />
 
-      {/* Central Clean Aerospace Modal */}
-      <div className="relative z-10 max-w-md w-full mx-4 p-7 rounded-2xl bg-slate-900/95 border border-slate-800 backdrop-blur-xl shadow-2xl flex flex-col items-center text-center">
+      {/* Central Interactive HUD Modal */}
+      <div className="relative z-10 max-w-xl w-full mx-4 p-8 rounded-3xl bg-[#070B14]/85 border border-cyan-500/30 backdrop-blur-2xl shadow-[0_0_80px_rgba(6,182,212,0.15)] flex flex-col items-center text-center">
         
-        {/* Photorealistic 3D Spinning Moon Sphere */}
-        <div className="relative mb-5 flex items-center justify-center">
-          <div className="relative w-26 h-26 rounded-full overflow-hidden flex items-center justify-center border border-slate-700 shadow-md">
+        {/* Holographic 3D Spinning Moon Sphere */}
+        <div className="relative mb-6 flex items-center justify-center">
+          <div className="relative w-28 h-28 rounded-full overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(56,189,248,0.35)]">
             <MiniMoonGlobe />
           </div>
+          
+          {/* Pulsing Target Brackets & Orbital Rings */}
+          <div className="absolute -inset-3 border border-cyan-400/30 rounded-full animate-ping opacity-25 pointer-events-none" />
+          <div className="absolute -inset-1.5 border border-purple-500/40 rounded-full pointer-events-none" />
         </div>
 
         {/* Brand Titles */}
-        <div className="space-y-1 mb-5">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-[10px] font-mono text-slate-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-            <span>MISSION STUDIO INITIALIZATION</span>
+        <div className="space-y-1.5 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-[11px] font-mono text-cyan-300 tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span>LUNAR EXPLORATION MISSION CONTROL</span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight pt-1">
-            Lunar Habitat Intelligence
+          <h1 className="text-2xl sm:text-3xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 tracking-tight">
+            LUNAR HABITAT AI
           </h1>
-          <p className="text-xs text-slate-400 max-w-xs mx-auto">
-            Autonomous site assessment, 3D altimetry & spatial suitability modeling
+          <p className="text-xs font-mono text-slate-400 max-w-md mx-auto">
+            Autonomous Site Selection, 3D Altimetry & Habitat Spatial Intelligence
           </p>
         </div>
 
         {/* Dynamic Telemetry Stage Card */}
-        <div className="w-full bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 text-left">
-          <div className="flex items-center justify-between text-xs mb-1.5">
-            <span className="text-slate-300 font-medium flex items-center gap-1.5">
-              <Activity className="w-3.5 h-3.5 text-sky-400" />
+        <div className="w-full bg-[#030712]/90 border border-slate-800/90 rounded-2xl p-4 text-left">
+          <div className="flex items-center justify-between text-[11px] font-mono mb-2">
+            <span className="text-cyan-400 font-semibold flex items-center gap-1.5">
+              <Activity className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
               {BOOT_STAGES[stageIndex]?.tag || 'INITIALIZING'}
             </span>
-            <span className="font-mono text-xs text-slate-400">{Math.round(progress)}%</span>
+            <span className="text-slate-400">{Math.round(progress)}%</span>
           </div>
 
-          {/* Precision Progress Bar */}
-          <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mb-2.5">
+          {/* Progress Bar */}
+          <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-[1px] border border-slate-800 mb-3">
             <div
-              className="h-full bg-blue-600 rounded-full transition-all duration-100 ease-out"
+              className="h-full bg-gradient-to-r from-purple-600 via-indigo-500 to-cyan-400 rounded-full transition-all duration-75 shadow-[0_0_12px_rgba(6,182,212,0.8)]"
               style={{ width: `${progress}%` }}
             />
           </div>
 
           {/* Live Log readout */}
-          <div className="text-[11px] font-mono text-slate-400 truncate flex items-center gap-1.5">
-            <span className="text-blue-400">❯</span>
-            <span>{BOOT_STAGES[stageIndex]?.label}</span>
+          <div className="text-[11px] font-mono text-slate-300 truncate flex items-center gap-2">
+            <span className="text-cyan-500">❯</span>
+            <span className="typing-text">{BOOT_STAGES[stageIndex]?.label}</span>
           </div>
         </div>
       </div>
