@@ -28,6 +28,8 @@ import { DashboardView } from './components/dashboard/DashboardView';
 import { SiteAnalysisView } from './components/analysis/SiteAnalysisView';
 import { OptimizationView } from './components/optimization/OptimizationView';
 import { DataLayersView } from './components/layers/DataLayersView';
+import { MissionPlannerView } from './components/mission/MissionPlannerView';
+import { RiskMonitorView } from './components/risk/RiskMonitorView';
 
 // Modals
 import { MissionReportModal } from './components/modals/MissionReportModal';
@@ -210,6 +212,25 @@ export function App() {
         {/* TAB 5: DATA LAYERS SCIENCE EXPLORER */}
         {activeTab === 'layers' && (
           <DataLayersView />
+        )}
+
+        {/* TAB 6: MISSION PLANNER */}
+        {activeTab === 'mission' && (
+          <MissionPlannerView
+            sites={rankedSites}
+            selectedSite={selectedSite}
+            onSelectSite={handleSelectSite}
+          />
+        )}
+
+        {/* TAB 7: RISK MONITOR */}
+        {activeTab === 'risk' && (
+          <RiskMonitorView
+            sites={rankedSites}
+            selectedSite={selectedSite}
+            onSelectSite={handleSelectSite}
+            spaceWeather={spaceWeather}
+          />
         )}
       </main>
 
