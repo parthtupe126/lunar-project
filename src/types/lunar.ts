@@ -1,4 +1,4 @@
-export type ActiveTab = 'map' | 'dashboard' | 'analysis' | 'optimization' | 'layers';
+export type ActiveTab = 'map' | 'dashboard' | 'analysis' | 'optimization' | 'layers' | 'mission' | 'risk';
 
 export type SiteSuitabilityTier = 'HIGHLY SUITABLE' | 'SUITABLE' | 'MODERATE' | 'POOR';
 

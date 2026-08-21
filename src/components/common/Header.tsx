@@ -11,7 +11,9 @@ import {
   Radio,
   Sparkles,
   ShieldCheck,
-  Compass
+  Compass,
+  Rocket,
+  ShieldAlert
 } from 'lucide-react';
 import { soundManager } from '../../utils/audio';
 
@@ -49,6 +51,8 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'analysis', label: 'SITE ANALYSIS', icon: <Compass className="w-3.5 h-3.5" /> },
     { id: 'optimization', label: 'OPTIMIZATION', icon: <Sliders className="w-3.5 h-3.5" /> },
     { id: 'layers', label: 'DATA LAYERS', icon: <Layers className="w-3.5 h-3.5" /> },
+    { id: 'mission', label: 'MISSION PLANNER', icon: <Rocket className="w-3.5 h-3.5" /> },
+    { id: 'risk', label: 'RISK MONITOR', icon: <ShieldAlert className="w-3.5 h-3.5" /> },
   ];
 
   return (

@@ -14,7 +14,12 @@ import {
   Sparkles,
   ArrowRightLeft,
   ChevronRight,
-  Maximize2
+  Maximize2,
+  Leaf,
+  BarChart2,
+  RefreshCw,
+  TrendingUp,
+  Expand
 } from 'lucide-react';
 import { soundManager } from '../../utils/audio';
 
@@ -387,6 +392,239 @@ export const SiteAnalysisView: React.FC<SiteAnalysisViewProps> = ({
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* ============================================================ */}
+      {/* OUTCOME 4: SUSTAINABILITY PANEL */}
+      {/* ============================================================ */}
+      <div className="bg-[#0B1120]/90 border border-emerald-500/30 rounded-2xl p-5 shadow-card backdrop-blur-xl space-y-5">
+        <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+          <Leaf className="w-4 h-4 text-emerald-400" />
+          <h3 className="text-base font-bold font-mono text-white">SUSTAINABILITY ANALYSIS — {primarySite.shortName}</h3>
+          <span className="ml-auto text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
+            OUTCOME 4: LONG-TERM HABITABILITY
+          </span>
+        </div>
+
+        {/* ROW 1: Energy & Water Sustainability */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          {/* Energy Sustainability */}
+          {(() => {
+            const solarHoursPerDay = (primarySite.illuminationPercent / 100) * 24;
+            const panelAreaM2 = Math.ceil((totalPowerLoad / (0.2 * 0.14)) / solarHoursPerDay); // η=20%, irradiance=0.14kW/m²
+            const energySustainabilityScore = Math.min(100, Math.round(primarySite.illuminationPercent));
+            return (
+              <div className="bg-slate-900/60 rounded-xl border border-slate-800 p-4 space-y-3">
+                <div className="flex items-center gap-2">
+                  <Sun className="w-4 h-4 text-amber-400" />
+                  <span className="text-xs font-mono font-bold text-white">ENERGY SUSTAINABILITY</span>
+                  <span className={`ml-auto text-[9px] font-mono font-bold px-2 py-0.5 rounded ${
+                    energySustainabilityScore >= 80 ? 'bg-emerald-950 text-emerald-400' :
+                    energySustainabilityScore >= 60 ? 'bg-amber-950 text-amber-400' :
+                    'bg-rose-950 text-rose-400'
+                  }`}>
+                    {energySustainabilityScore >= 80 ? 'SELF-SUFFICIENT' : energySustainabilityScore >= 60 ? 'SUPPLEMENTAL' : 'CRITICAL'}
+                  </span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-[10px] font-mono">
+                  <div className="bg-slate-950/80 p-2 rounded-lg text-center">
+                    <div className="text-slate-400">Solar Hours/Day</div>
+                    <div className="text-amber-300 font-bold text-sm">{solarHoursPerDay.toFixed(1)}h</div>
+                  </div>
+                  <div className="bg-slate-950/80 p-2 rounded-lg text-center">
+                    <div className="text-slate-400">Panel Area Needed</div>
+                    <div className="text-cyan-300 font-bold text-sm">{panelAreaM2} m²</div>
+                  </div>
+                  <div className="bg-slate-950/80 p-2 rounded-lg text-center">
+                    <div className="text-slate-400">Illumination</div>
+                    <div className="text-emerald-300 font-bold text-sm">{primarySite.illuminationPercent}%</div>
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                    <span>Solar Viability</span><span className="text-amber-300">{energySustainabilityScore}%</span>
+                  </div>
+                  <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full transition-all duration-700" style={{ width: `${energySustainabilityScore}%` }} />
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* Water Sustainability */}
+          {(() => {
+            const isruRateKgPerDay = (primarySite.waterIcePurityPercent / 100) * 50; // max 50 kg/day at 100% purity
+            const crewDemandLDay = 3.0 * 4; // 4-crew baseline
+            const waterSurplusRatio = Math.min(200, Math.round((isruRateKgPerDay / crewDemandLDay) * 100));
+            return (
+              <div className="bg-slate-900/60 rounded-xl border border-slate-800 p-4 space-y-3">
+                <div className="flex items-center gap-2">
+                  <Droplets className="w-4 h-4 text-cyan-400" />
+                  <span className="text-xs font-mono font-bold text-white">WATER SUSTAINABILITY</span>
+                  <span className={`ml-auto text-[9px] font-mono font-bold px-2 py-0.5 rounded ${
+                    waterSurplusRatio >= 100 ? 'bg-emerald-950 text-emerald-400' :
+                    waterSurplusRatio >= 60 ? 'bg-amber-950 text-amber-400' :
+                    'bg-rose-950 text-rose-400'
+                  }`}>
+                    {waterSurplusRatio >= 100 ? 'SURPLUS' : waterSurplusRatio >= 60 ? 'BALANCED' : 'DEFICIT'}
+                  </span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-[10px] font-mono">
+                  <div className="bg-slate-950/80 p-2 rounded-lg text-center">
+                    <div className="text-slate-400">ISRU Rate</div>
+                    <div className="text-cyan-300 font-bold text-sm">{isruRateKgPerDay.toFixed(1)} kg/d</div>
+                  </div>
+                  <div className="bg-slate-950/80 p-2 rounded-lg text-center">
+                    <div className="text-slate-400">Crew Demand</div>
+                    <div className="text-blue-300 font-bold text-sm">{crewDemandLDay} L/d</div>
+                  </div>
+                  <div className="bg-slate-950/80 p-2 rounded-lg text-center">
+                    <div className="text-slate-400">Ice Purity</div>
+                    <div className="text-emerald-300 font-bold text-sm">{primarySite.waterIcePurityPercent}%</div>
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                    <span>Water Self-Sufficiency</span><span className="text-cyan-300">{Math.min(100, waterSurplusRatio)}%</span>
+                  </div>
+                  <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-400 rounded-full transition-all duration-700" style={{ width: `${Math.min(100, waterSurplusRatio)}%` }} />
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+
+        {/* ROW 2: Resource Loop Diagram + Long-term Chart */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          {/* Resource Loop Tracker */}
+          <div className="bg-slate-900/60 rounded-xl border border-slate-800 p-4 space-y-3">
+            <div className="flex items-center gap-2">
+              <RefreshCw className="w-4 h-4 text-purple-400" />
+              <span className="text-xs font-mono font-bold text-white">CLOSED-LOOP RESOURCE CYCLES</span>
+            </div>
+            <div className="relative h-48 flex items-center justify-center">
+              <svg viewBox="0 0 300 200" className="w-full h-full">
+                {/* Background circle */}
+                <circle cx="150" cy="100" r="70" fill="none" stroke="rgba(99,102,241,0.15)" strokeWidth="1" strokeDasharray="4 4" />
+
+                {/* Loop arrows */}
+                <path d="M 150 30 A 70 70 0 0 1 220 100" fill="none" stroke="#f59e0b" strokeWidth="2" markerEnd="url(#arrowAmber)" opacity="0.8"/>
+                <path d="M 220 100 A 70 70 0 0 1 150 170" fill="none" stroke="#10b981" strokeWidth="2" markerEnd="url(#arrowGreen)" opacity="0.8"/>
+                <path d="M 150 170 A 70 70 0 0 1 80 100" fill="none" stroke="#06b6d4" strokeWidth="2" markerEnd="url(#arrowCyan)" opacity="0.8"/>
+                <path d="M 80 100 A 70 70 0 0 1 150 30" fill="none" stroke="#a855f7" strokeWidth="2" markerEnd="url(#arrowPurple)" opacity="0.8"/>
+
+                <defs>
+                  <marker id="arrowAmber" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#f59e0b" />
+                  </marker>
+                  <marker id="arrowGreen" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#10b981" />
+                  </marker>
+                  <marker id="arrowCyan" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#06b6d4" />
+                  </marker>
+                  <marker id="arrowPurple" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#a855f7" />
+                  </marker>
+                </defs>
+
+                {/* Node: Solar */}
+                <circle cx="150" cy="28" r="22" fill="#1c1917" stroke="#f59e0b" strokeWidth="1.5" />
+                <text x="150" y="24" textAnchor="middle" fill="#f59e0b" fontSize="8" fontFamily="monospace" fontWeight="bold">SOLAR</text>
+                <text x="150" y="34" textAnchor="middle" fill="#f59e0b" fontSize="7" fontFamily="monospace">ENERGY</text>
+
+                {/* Node: Greenhouse */}
+                <circle cx="222" cy="100" r="22" fill="#1c1917" stroke="#10b981" strokeWidth="1.5" />
+                <text x="222" y="96" textAnchor="middle" fill="#10b981" fontSize="8" fontFamily="monospace" fontWeight="bold">GREEN</text>
+                <text x="222" y="106" textAnchor="middle" fill="#10b981" fontSize="7" fontFamily="monospace">HOUSE</text>
+
+                {/* Node: H2O ISRU */}
+                <circle cx="150" cy="172" r="22" fill="#1c1917" stroke="#06b6d4" strokeWidth="1.5" />
+                <text x="150" y="168" textAnchor="middle" fill="#06b6d4" fontSize="8" fontFamily="monospace" fontWeight="bold">H₂O</text>
+                <text x="150" y="178" textAnchor="middle" fill="#06b6d4" fontSize="7" fontFamily="monospace">ISRU</text>
+
+                {/* Node: Crew */}
+                <circle cx="78" cy="100" r="22" fill="#1c1917" stroke="#a855f7" strokeWidth="1.5" />
+                <text x="78" y="96" textAnchor="middle" fill="#a855f7" fontSize="8" fontFamily="monospace" fontWeight="bold">CREW</text>
+                <text x="78" y="106" textAnchor="middle" fill="#a855f7" fontSize="7" fontFamily="monospace">HABITAT</text>
+
+                {/* Center label */}
+                <text x="150" y="97" textAnchor="middle" fill="#64748b" fontSize="7" fontFamily="monospace">CLOSED</text>
+                <text x="150" y="107" textAnchor="middle" fill="#64748b" fontSize="7" fontFamily="monospace">LOOP</text>
+              </svg>
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-[9px] font-mono">
+              <div className="flex items-center gap-1 text-amber-400"><span className="w-2 h-0.5 bg-amber-400 inline-block" /> Solar → Powers Greenhouse & ISRU</div>
+              <div className="flex items-center gap-1 text-emerald-400"><span className="w-2 h-0.5 bg-emerald-400 inline-block" /> Greenhouse → O₂ + Food for Crew</div>
+              <div className="flex items-center gap-1 text-cyan-400"><span className="w-2 h-0.5 bg-cyan-400 inline-block" /> H₂O ISRU → Water recycled to Crew</div>
+              <div className="flex items-center gap-1 text-purple-400"><span className="w-2 h-0.5 bg-purple-400 inline-block" /> Crew CO₂ → Greenhouse input</div>
+            </div>
+          </div>
+
+          {/* Long-Term Habitability Projection Chart */}
+          {(() => {
+            const baseScore = primarySite.suitabilityScore;
+            const waterBonus = Math.min(10, primarySite.waterIcePurityPercent / 3);
+            const solarBonus = Math.min(8, (primarySite.illuminationPercent - 70) / 4);
+            const yr1 = Math.round(Math.min(100, baseScore * 0.85));
+            const yr5 = Math.round(Math.min(100, baseScore * 0.92 + waterBonus));
+            const yr10 = Math.round(Math.min(100, baseScore * 0.98 + waterBonus + solarBonus));
+            const yr20 = Math.round(Math.min(100, baseScore + waterBonus + solarBonus));
+            const bars = [
+              { label: 'Year 1', value: yr1, color: 'bg-blue-500' },
+              { label: 'Year 5', value: yr5, color: 'bg-cyan-500' },
+              { label: 'Year 10', value: yr10, color: 'bg-emerald-500' },
+              { label: 'Year 20', value: yr20, color: 'bg-purple-500' },
+            ];
+            const expansionPotential = primarySite.slopeDegrees < 4 ? 'Excellent' : primarySite.slopeDegrees < 7 ? 'Good' : 'Limited';
+            const expansionColor = primarySite.slopeDegrees < 4 ? 'text-emerald-400 bg-emerald-950 border-emerald-500/40' : primarySite.slopeDegrees < 7 ? 'text-amber-400 bg-amber-950 border-amber-500/40' : 'text-rose-400 bg-rose-950 border-rose-500/40';
+            return (
+              <div className="bg-slate-900/60 rounded-xl border border-slate-800 p-4 space-y-3">
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-purple-400" />
+                  <span className="text-xs font-mono font-bold text-white">LONG-TERM HABITABILITY PROJECTION</span>
+                </div>
+
+                {/* Bar Chart */}
+                <div className="flex items-end gap-3 h-32 pt-2">
+                  {bars.map(b => (
+                    <div key={b.label} className="flex-1 flex flex-col items-center gap-1">
+                      <span className="text-[10px] font-mono font-bold text-white">{b.value}</span>
+                      <div className="w-full bg-slate-800 rounded-t-sm overflow-hidden flex items-end" style={{ height: '80px' }}>
+                        <div
+                          className={`w-full ${b.color} rounded-t-sm transition-all duration-700 opacity-90`}
+                          style={{ height: `${(b.value / 100) * 80}px` }}
+                        />
+                      </div>
+                      <span className="text-[9px] font-mono text-slate-400">{b.label}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[10px] font-mono text-slate-400">
+                  Habitability score increases as ISRU matures, infrastructure expands, and supply chains are established.
+                </p>
+
+                {/* Expansion Potential */}
+                <div className="flex items-center justify-between pt-1 border-t border-slate-800">
+                  <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                    <Expand className="w-3.5 h-3.5" /> Expansion Potential
+                  </div>
+                  <span className={`text-xs font-mono font-bold px-3 py-1 rounded-lg border ${expansionColor}`}>
+                    {expansionPotential.toUpperCase()}
+                  </span>
+                </div>
+                <p className="text-[10px] font-mono text-slate-500">
+                  Based on {primarySite.slopeDegrees}° terrain slope • {primarySite.siteType} topology • {(primarySite.factors.terrain)}% terrain score
+                </p>
+              </div>
+            );
+          })()}
         </div>
       </div>
     </div>
