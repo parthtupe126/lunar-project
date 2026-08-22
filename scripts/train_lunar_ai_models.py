@@ -176,14 +176,35 @@ def main():
         }
     }
     
-    out_json_path = "src/data/trained_ai_models.json"
+    out_json_path = "data/model_metrics.json"
     with open(out_json_path, "w") as f:
         json.dump(export_payload, f, indent=2)
     print(f"\nSaved trained model metadata & metrics to: {out_json_path}")
-    
-    with open("data/model_metrics.json", "w") as f:
-        json.dump(export_payload, f, indent=2)
-    print(f"Saved metrics log to: data/model_metrics.json")
+
+    # ==============================================================
+    # VALIDATION ON 23 OFFICIAL NASA/ISRO LUNAR SITES
+    # ==============================================================
+    official_csv = "data/official_23_sites_ml_ready.csv"
+    if os.path.exists(official_csv):
+        df_official = pd.read_csv(official_csv)
+        print("\n================================================================")
+        print(" AI INFERENCE ON 23 OFFICIAL NASA/ISRO/INTERNATIONAL SITES")
+        print("================================================================")
+        X_off = df_official[feature_cols].values
+        
+        pred_scores = rf_reg.predict(X_off)
+        pred_zones = rf_cls.predict(X_off)
+        
+        df_official['ai_predicted_score'] = np.round(pred_scores, 1)
+        df_official['ai_predicted_zone'] = pred_zones
+        df_official['score_residual'] = np.round(df_official['ai_predicted_score'] - df_official['suitability_score'], 2)
+        
+        display_cols = ['node_id', 'node_name', 'slope_deg', 'annual_illumination_pct', 'ice_prob', 'suitability_score', 'ai_predicted_score', 'ai_predicted_zone']
+        print(df_official[display_cols].to_string(index=False))
+        
+        off_r2 = r2_score(df_official['suitability_score'], pred_scores)
+        off_mae = mean_absolute_error(df_official['suitability_score'], pred_scores)
+        print(f"\nOfficial 23 Sites Evaluation -> R2 Score: {off_r2:.4f} | MAE: {off_mae:.3f} pts")
     
     print("\nAI Training Pipeline Finished Successfully!")
 
