@@ -1,7 +1,7 @@
 @echo off
 title Lunar Habitat AI Launcher
 echo ===================================================
-echo        Starting Lunar Habitat AI Project
+echo        Starting Lunar Habitat AI Project 
 echo ===================================================
 echo.
 cd /d "%~dp0frontend"
