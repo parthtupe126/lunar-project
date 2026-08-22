@@ -534,6 +534,10 @@
     /* ── Markers (attached to moonPivot so they rotate with the moon) ── */
     var markerGroup = new THREE.Group();
     var markerSprites = [];
+    var hitTargets = [];
+    var hitGeometry = new THREE.SphereGeometry(0.18, 10, 10);
+    var hitMaterial = new THREE.MeshBasicMaterial({ visible: false });
+
     MARKER_SITES.forEach(function(site) {
       var pos = latLonToXYZ(site.lat, site.lon, MOON_RADIUS * 1.055);
       var sprite = buildMarkerSprite(site.color, site.id, site.name);
@@ -541,6 +545,13 @@
       sprite.userData.site = site;
       markerGroup.add(sprite);
       markerSprites.push(sprite);
+
+      // Invisible hit sphere for 100% reliable raycasting
+      var hitSphere = new THREE.Mesh(hitGeometry, hitMaterial);
+      hitSphere.position.copy(pos);
+      hitSphere.userData.site = site;
+      markerGroup.add(hitSphere);
+      hitTargets.push(hitSphere);
     });
     moonPivot.add(markerGroup);
 
@@ -554,34 +565,108 @@
       pointer.y = -((e.clientY - rect.top)  / rect.height) * 2 + 1;
     }
 
-    renderer.domElement.addEventListener('click', function(e) {
-      if (isDragging) return;
-      setPointer(e);
-      raycaster.setFromCamera(pointer, camera);
-      var hits = raycaster.intersectObjects(markerSprites);
-      if (hits.length > 0) {
-        var s = hits[0].object.userData.site;
-        if (typeof selectSite === 'function') selectSite(s.siteIndex);
+    /* ── Drag & Click State ── */
+    var isDragging = false;
+    var dragDist = 0;
+    var prevX = 0, prevY = 0;
+    var rotX = 0.15, rotY = 0;
+    var velX = 0, velY = 0;
+    var autoRotate = true;
+
+    renderer.domElement.style.cursor = 'grab';
+
+    renderer.domElement.addEventListener('mousedown', function(e) {
+      dragDist = 0;
+      prevX = e.clientX;
+      prevY = e.clientY;
+      velX = velY = 0;
+    });
+
+    window.addEventListener('mouseup', function(e) {
+      setTimeout(function() {
+        isDragging = false;
+        if (renderer.domElement) renderer.domElement.style.cursor = 'grab';
+      }, 30);
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      if (e.buttons === 1) {
+        var dx = e.clientX - prevX;
+        var dy = e.clientY - prevY;
+        dragDist += Math.abs(dx) + Math.abs(dy);
+        if (dragDist > 4) {
+          isDragging = true;
+          if (renderer.domElement) renderer.domElement.style.cursor = 'grabbing';
+          velY = dx * 0.005;
+          velX = dy * 0.005;
+          rotY += velY;
+          rotX += velX;
+          rotX = Math.max(-Math.PI/2, Math.min(Math.PI/2, rotX));
+        }
+        prevX = e.clientX;
+        prevY = e.clientY;
       }
     });
 
-    renderer.domElement.addEventListener('mousemove', function(e) {
+    /* ── Click Event: Select Node & Toggle/Stop Rotation ── */
+    renderer.domElement.addEventListener('click', function(e) {
+      if (dragDist > 6) return; // Disregard drag movements
       setPointer(e);
       raycaster.setFromCamera(pointer, camera);
-      var hits = raycaster.intersectObjects(markerSprites);
+
+      // 1. Check if clicked a location marker
+      var hits = raycaster.intersectObjects(hitTargets.concat(markerSprites), true);
+      if (hits.length > 0) {
+        var s = hits[0].object.userData.site;
+        if (s) {
+          autoRotate = false; // Stop rotating when clicking a location
+          var btn = document.getElementById('btn-toggle-rotate');
+          if (btn) {
+            btn.textContent = '▷';
+            btn.classList.remove('globe-ctrl-btn--active');
+          }
+          if (typeof window.selectSite === 'function') {
+            window.selectSite(s.siteIndex);
+          } else if (typeof selectSite === 'function') {
+            selectSite(s.siteIndex);
+          }
+          return;
+        }
+      }
+
+      // 2. If clicked the Moon sphere body -> Toggle/Stop auto-rotation!
+      var moonHits = raycaster.intersectObject(moonPivot, true);
+      if (moonHits.length > 0) {
+        autoRotate = !autoRotate;
+        var rotBtn = document.getElementById('btn-toggle-rotate');
+        if (rotBtn) {
+          rotBtn.textContent = autoRotate ? '❚❚' : '▷';
+          rotBtn.classList.toggle('globe-ctrl-btn--active', autoRotate);
+        }
+      }
+    });
+
+    /* ── Tooltip Hover ── */
+    renderer.domElement.addEventListener('mousemove', function(e) {
+      if (isDragging) return;
+      setPointer(e);
+      raycaster.setFromCamera(pointer, camera);
+      var hits = raycaster.intersectObjects(hitTargets.concat(markerSprites), true);
       var tip = getTooltip();
       if (hits.length > 0) {
         var s = hits[0].object.userData.site;
-        renderer.domElement.style.cursor = 'pointer';
-        tip.innerHTML = '<strong style="color:' + (s.color || '#4B8BF4') + '">' + s.name + '</strong><br>Lat: ' + s.lat + '&deg; &nbsp; Lon: ' + s.lon + '&deg;';
-        tip.style.display = 'block';
-        var rect = container.getBoundingClientRect();
-        tip.style.left = (e.clientX - rect.left + 14) + 'px';
-        tip.style.top  = (e.clientY - rect.top  + 14) + 'px';
-      } else {
-        renderer.domElement.style.cursor = isDragging ? 'grabbing' : 'grab';
-        tip.style.display = 'none';
+        if (s) {
+          renderer.domElement.style.cursor = 'pointer';
+          tip.innerHTML = '<strong style="color:' + (s.color || '#4B8BF4') + '">' + s.name + '</strong><br>Lat: ' + s.lat + '&deg; &nbsp; Lon: ' + s.lon + '&deg;<br><span style="color:#38BDF8;font-size:9.5px;display:block;margin-top:2px;">⚡ Click to open Deep Dive</span>';
+          tip.style.display = 'block';
+          var rect = container.getBoundingClientRect();
+          tip.style.left = (e.clientX - rect.left + 14) + 'px';
+          tip.style.top  = (e.clientY - rect.top  + 14) + 'px';
+          return;
+        }
       }
+      renderer.domElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+      if (tip) tip.style.display = 'none';
     });
 
     renderer.domElement.addEventListener('mouseleave', function() {
@@ -589,46 +674,68 @@
       if (tip) tip.style.display = 'none';
     });
 
-    /* ── Drag-to-rotate ── */
-    var isDragging = false;
-    var prevX = 0, prevY = 0;
-    var rotX = 0.15, rotY = 0;
-    var velX = 0, velY = 0;
+    /* ── Connect HUD button for auto-rotation toggle ── */
+    var hudRotateBtn = document.getElementById('btn-toggle-rotate');
+    if (hudRotateBtn) {
+      hudRotateBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        autoRotate = !autoRotate;
+        hudRotateBtn.textContent = autoRotate ? '❚❚' : '▷';
+        hudRotateBtn.classList.toggle('globe-ctrl-btn--active', autoRotate);
+      });
+    }
 
-    renderer.domElement.style.cursor = 'grab';
+    var hudResetBtn = document.getElementById('btn-reset-view');
+    if (hudResetBtn) {
+      hudResetBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        rotX = 0.15;
+        rotY = 0;
+        velX = velY = 0;
+        camera.position.set(0, 0, 4.8);
+      });
+    }
 
-    renderer.domElement.addEventListener('mousedown', function(e) {
-      isDragging = true; prevX = e.clientX; prevY = e.clientY;
-      velX = velY = 0;
-      renderer.domElement.style.cursor = 'grabbing';
-    });
-    window.addEventListener('mouseup', function() {
-      isDragging = false;
-      renderer.domElement.style.cursor = 'grab';
-    });
-    window.addEventListener('mousemove', function(e) {
-      if (!isDragging) return;
-      velY = (e.clientX - prevX) * 0.005;
-      velX = (e.clientY - prevY) * 0.005;
-      rotY += velY; rotX += velX;
-      rotX = Math.max(-Math.PI/2, Math.min(Math.PI/2, rotX));
-      prevX = e.clientX; prevY = e.clientY;
-    });
-
-    /* Touch */
-    var tx0 = 0, ty0 = 0;
+    /* Touch Support */
+    var tx0 = 0, ty0 = 0, touchDist = 0;
     renderer.domElement.addEventListener('touchstart', function(e) {
       tx0 = e.touches[0].clientX; ty0 = e.touches[0].clientY;
-      velX = velY = 0; isDragging = true;
+      touchDist = 0;
+      velX = velY = 0;
     }, { passive: true });
     renderer.domElement.addEventListener('touchmove', function(e) {
-      velY = (e.touches[0].clientX - tx0) * 0.005;
-      velX = (e.touches[0].clientY - ty0) * 0.005;
-      rotY += velY; rotX += velX;
-      rotX = Math.max(-Math.PI/2, Math.min(Math.PI/2, rotX));
-      tx0 = e.touches[0].clientX; ty0 = e.touches[0].clientY;
+      if (e.touches.length === 1) {
+        var dx = e.touches[0].clientX - tx0;
+        var dy = e.touches[0].clientY - ty0;
+        touchDist += Math.abs(dx) + Math.abs(dy);
+        if (touchDist > 4) {
+          isDragging = true;
+          velY = dx * 0.005;
+          velX = dy * 0.005;
+          rotY += velY; rotX += velX;
+          rotX = Math.max(-Math.PI/2, Math.min(Math.PI/2, rotX));
+        }
+        tx0 = e.touches[0].clientX; ty0 = e.touches[0].clientY;
+      }
     }, { passive: true });
-    renderer.domElement.addEventListener('touchend', function() { isDragging = false; });
+    renderer.domElement.addEventListener('touchend', function(e) {
+      if (touchDist <= 6 && e.changedTouches && e.changedTouches.length > 0) {
+        var t = e.changedTouches[0];
+        setPointer(t);
+        raycaster.setFromCamera(pointer, camera);
+        var hits = raycaster.intersectObjects(hitTargets.concat(markerSprites), true);
+        if (hits.length > 0) {
+          var s = hits[0].object.userData.site;
+          if (s && typeof window.selectSite === 'function') {
+            autoRotate = false;
+            window.selectSite(s.siteIndex);
+          }
+        } else {
+          autoRotate = !autoRotate;
+        }
+      }
+      isDragging = false;
+    });
 
     /* ── Scroll to zoom + overlay auto-hide ── */
     var ZOOM_HIDE_THRESHOLD = 3.6;  // hide UI chrome below this distance
@@ -699,7 +806,6 @@
     /* ── Animation loop ── */
     var clock = new THREE.Clock();
     var pulseT = 0;
-    var autoRotate = true;
 
     function animate() {
       requestAnimationFrame(animate);
