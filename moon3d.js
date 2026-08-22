@@ -1,4 +1,4 @@
-﻿/* =============================================================
+/* =============================================================
    MOON 3D — Three.js Interactive Lunar Globe
    Features:
     * Procedural realistic moon surface (bump + crater shading)
@@ -17,19 +17,40 @@
   var MOON_RADIUS = 2.2;
   var STAR_COUNT  = 2200;
 
-  /* ─── SITE MARKER DEFINITIONS (lat/lon in degrees) ─── */
+  /* ─── SITE MARKER DEFINITIONS (lat/lon in degrees for 23 Verified Lunar Nodes) ─── */
   var MARKER_SITES = [
-    { id: '01', name: 'Shackleton Crater Rim', lat: -89.28, lon:  15.40, color: '#4B8BF4', siteIndex: 0 },
-    { id: '02', name: 'Faulkes Crater',         lat: -75.20, lon:  30.80, color: '#4B8BF4', siteIndex: 1 },
-    { id: '03', name: 'Malapert Massif',         lat: -86.60, lon: -10.90, color: '#4B8BF4', siteIndex: 2 },
-    { id: '04', name: 'Peak Near Shackleton',    lat: -88.30, lon:  15.10, color: '#F4C44B', siteIndex: 3 },
-    { id: '05', name: 'Aristarchus Plateau',     lat:  23.70, lon:  47.00, color: '#F4C44B', siteIndex: 4 },
+    { id: '01', name: 'Shackleton Crater Rim', lat: -89.28, lon: 15.40, color: '#4B8BF4', siteIndex: 0 },
+    { id: '02', name: 'Mons Malapert Plateau', lat: -85.99, lon: 12.90, color: '#4B8BF4', siteIndex: 1 },
+    { id: '03', name: 'Faustini Rim A', lat: -87.14, lon: 76.98, color: '#4B8BF4', siteIndex: 2 },
+    { id: '04', name: 'Connecting Ridge', lat: -89.44, lon: 222.70, color: '#4B8BF4', siteIndex: 3 },
+    { id: '05', name: 'de Gerlache Crater Rim', lat: -88.50, lon: 271.70, color: '#4B8BF4', siteIndex: 4 },
+    { id: '06', name: 'Haworth Crater Rim', lat: -87.40, lon: 354.90, color: '#4B8BF4', siteIndex: 5 },
+    { id: '07', name: 'Mons Mouton (Leibnitz)', lat: -84.50, lon: 327.90, color: '#4B8BF4', siteIndex: 6 },
+    { id: '08', name: 'Nobile Crater Rim', lat: -85.20, lon: 53.50, color: '#4B8BF4', siteIndex: 7 },
+    { id: '09', name: 'Amundsen Crater Peak', lat: -84.50, lon: 82.80, color: '#4B8BF4', siteIndex: 8 },
+    { id: '10', name: 'Marius Hills Lava Tube', lat: 14.12, lon: 303.24, color: '#F4C44B', siteIndex: 9 },
+    { id: '11', name: 'Cabeus Crater', lat: -84.90, lon: 324.50, color: '#4B8BF4', siteIndex: 10 },
+    { id: '12', name: 'Shoemaker Crater Rim', lat: -88.10, lon: 44.90, color: '#4B8BF4', siteIndex: 11 },
+    { id: '13', name: 'Chandrayaan-3 Shiv Shakti', lat: -69.37, lon: 32.32, color: '#34D399', siteIndex: 12 },
+    { id: '14', name: 'Chandrayaan-1 Jawahar Point', lat: -89.90, lon: 0.00, color: '#34D399', siteIndex: 13 },
+    { id: '15', name: 'Chandrayaan-2 Tiranga Point', lat: -70.90, lon: 22.78, color: '#34D399', siteIndex: 14 },
+    { id: '16', name: 'Chandrayaan-4 / LUPEX Site', lat: -89.10, lon: 115.00, color: '#34D399', siteIndex: 15 },
+    { id: '17', name: 'Apollo 11 Tranquility Base', lat: 0.67, lon: 23.47, color: '#A78BFA', siteIndex: 16 },
+    { id: '18', name: 'Apollo 12 Ocean of Storms', lat: -3.01, lon: 336.58, color: '#A78BFA', siteIndex: 17 },
+    { id: '19', name: 'Apollo 14 Fra Mauro', lat: -3.65, lon: 342.53, color: '#A78BFA', siteIndex: 18 },
+    { id: '20', name: 'Apollo 15 Hadley Rille', lat: 26.13, lon: 3.63, color: '#A78BFA', siteIndex: 19 },
+    { id: '21', name: 'Apollo 16 Descartes Highlands', lat: -8.97, lon: 15.50, color: '#A78BFA', siteIndex: 20 },
+    { id: '22', name: 'Apollo 17 Taurus-Littrow', lat: 20.19, lon: 30.77, color: '#A78BFA', siteIndex: 21 },
+    { id: '23', name: 'Artemis III Candidate Rim', lat: -89.50, lon: 45.00, color: '#4B8BF4', siteIndex: 22 }
   ];
 
   /* ─── Convert lat/lon to XYZ on a sphere ─── */
   function latLonToXYZ(lat, lon, radius) {
+    var normLon = lon;
+    while (normLon > 180) normLon -= 360;
+    while (normLon < -180) normLon += 360;
     var phi   = (90 - lat)  * (Math.PI / 180);
-    var theta = (lon + 180) * (Math.PI / 180);
+    var theta = (normLon + 180) * (Math.PI / 180);
     return new THREE.Vector3(
       -radius * Math.sin(phi) * Math.cos(theta),
        radius * Math.cos(phi),
@@ -331,7 +352,11 @@
       var hits = raycaster.intersectObjects(markerSprites);
       if (hits.length > 0) {
         var s = hits[0].object.userData.site;
-        if (typeof selectSite === 'function') selectSite(s.siteIndex);
+        if (typeof window.selectLunarNode === 'function') {
+          window.selectLunarNode(s.siteIndex);
+        } else if (typeof selectSite === 'function') {
+          selectSite(s.siteIndex);
+        }
       }
     });
 
@@ -343,7 +368,7 @@
       if (hits.length > 0) {
         var s = hits[0].object.userData.site;
         renderer.domElement.style.cursor = 'pointer';
-        tip.innerHTML = '<strong style="color:#4B8BF4">' + s.name + '</strong><br>Lat: ' + s.lat + '&deg; &nbsp; Lon: ' + s.lon + '&deg;';
+        tip.innerHTML = '<strong style="color:#4B8BF4">' + s.id + ': ' + s.name + '</strong><br>Lat: ' + s.lat + '&deg; &nbsp; Lon: ' + s.lon + '&deg;<br><span style="color:#34D399;font-size:10px;">⚡ Click to open Deep Dive</span>';
         tip.style.display = 'block';
         var rect = container.getBoundingClientRect();
         tip.style.left = (e.clientX - rect.left + 14) + 'px';
@@ -447,6 +472,13 @@
       focusSite: function(idx) {
         var s = MARKER_SITES[idx];
         if (!s) return;
+        var normLon = s.lon;
+        while (normLon > 180) normLon -= 360;
+        while (normLon < -180) normLon += 360;
+        rotX = -(s.lat * Math.PI) / 180;
+        rotY = -(normLon * Math.PI) / 180;
+        velX = 0;
+        velY = 0;
       }
     };
   }

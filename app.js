@@ -195,6 +195,9 @@ function renderScoreboard() {
       $$('.site-marker').forEach((m, i) => m.classList.toggle('site-marker--active', i === idx));
       updateSiteDetail(node);
       openDeepDiveModal(node);
+      if (window.moon3d && typeof window.moon3d.focusSite === 'function') {
+        window.moon3d.focusSite(idx);
+      }
     };
 
     row.addEventListener('click', selectAndOpen);
@@ -208,6 +211,21 @@ function renderScoreboard() {
     container.appendChild(row);
   });
 }
+
+window.selectLunarNode = function(idx) {
+  const filtered = getFilteredNodes();
+  if (idx >= 0 && idx < filtered.length) {
+    SELECTED_NODE_INDEX = idx;
+    const node = filtered[idx];
+    $$('.score-row').forEach((r, i) => r.classList.toggle('score-row--active', i === idx));
+    $$('.site-marker').forEach((m, i) => m.classList.toggle('site-marker--active', i === idx));
+    updateSiteDetail(node);
+    openDeepDiveModal(node);
+    if (window.moon3d && typeof window.moon3d.focusSite === 'function') {
+      window.moon3d.focusSite(idx);
+    }
+  }
+};
 
 /* ─── SITE DETAIL RENDERING ─── */
 function updateSiteDetail(node) {
@@ -511,18 +529,39 @@ function initMarkers() {
 
     const lat = node.coordinates.latitude;
     const lon = node.coordinates.longitude;
-    let topPct = 50;
-    let leftPct = 50;
+    
+    // Normalize longitude to range [-180, +180] deg
+    let normLon = lon;
+    while (normLon > 180) normLon -= 360;
+    while (normLon < -180) normLon += 360;
 
-    if (lat < -60) {
-      const distFromPole = (90.0 + lat) / 32.0;
-      const rad = (lon * Math.PI) / 180;
-      leftPct = 50 + distFromPole * 38 * Math.cos(rad);
-      topPct = 50 + distFromPole * 38 * Math.sin(rad);
-    } else {
-      leftPct = 20 + (lon / 360.0) * 60;
-      topPct = 40 - (lat / 90.0) * 30;
+    // Convert to radians
+    const phi = (lat * Math.PI) / 180.0;
+    const lambda = (normLon * Math.PI) / 180.0;
+
+    // Orthographic Spherical Projection centered at (0° lat, 0° lon) Nearside
+    // X: West (-), East (+) | Y: South (-), North (+) | Z: Nearside Depth (+)
+    const x = Math.cos(phi) * Math.sin(lambda);
+    const y = Math.sin(phi);
+
+    // Moon disc is centered at (50%, 50%) with radius 41.5%
+    let leftPct = 50.0 + (x * 41.5);
+    let topPct  = 50.0 - (y * 41.5);
+
+    // For South Polar sites (Lat <= -80°), spread around the South Pole limb
+    if (lat <= -80.0) {
+      const polarDist = Math.abs(lat + 90.0); // 0° at pole to 10° at 80°S
+      const polarRad = (normLon * Math.PI) / 180.0;
+      const southPoleBaseY = 41.5;
+      const spreadX = (polarDist / 10.0) * 14.0 * Math.sin(polarRad);
+      const spreadY = (polarDist / 10.0) * 5.0 * Math.cos(polarRad);
+      leftPct = 50.0 + (x * 32.0) + spreadX;
+      topPct = 50.0 + southPoleBaseY - 2.5 + spreadY;
     }
+
+    // Keep within visible bounds
+    leftPct = Math.max(6, Math.min(94, leftPct));
+    topPct = Math.max(6, Math.min(94, topPct));
 
     marker.style.left = `${leftPct.toFixed(1)}%`;
     marker.style.top = `${topPct.toFixed(1)}%`;
@@ -535,8 +574,8 @@ function initMarkers() {
       </div>
       <div class="marker-tooltip">
         <strong>${node.node_name}</strong>
-        <span class="mono">${node.ai_suitability.score.toFixed(1)}%</span>
-        <span style="font-size: 9px; color: #38BDF8; display: block; margin-top: 2px;">⚡ Click to open Deep Dive</span>
+        <span class="mono">${node.coordinates.short_formatted}</span>
+        <span class="mono" style="color: #38BDF8;">Score: ${node.ai_suitability.score.toFixed(1)}%</span>
       </div>
     `;
 
