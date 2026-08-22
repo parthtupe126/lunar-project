@@ -16,6 +16,7 @@ import {
   Camera
 } from 'lucide-react';
 import { soundManager } from '../../utils/audio';
+import { generateAiAssessment } from '../../utils/aiEngine';
 
 interface MissionReportModalProps {
   isOpen: boolean;
@@ -100,6 +101,7 @@ END OF DOSSIER — LUNAR HABITAT AI DECISION SUPPORT SYSTEM
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -237,9 +239,12 @@ END OF DOSSIER — LUNAR HABITAT AI DECISION SUPPORT SYSTEM
             <h5 className="font-mono font-bold text-slate-400 uppercase text-[11px]">
               AI Site Assessment & Engineering Directives
             </h5>
+            <div className="p-3 bg-slate-900/80 rounded-xl border border-slate-800 text-[11px] font-mono text-cyan-300 leading-relaxed">
+              {generateAiAssessment(topSite, weights)}
+            </div>
             <div className="p-3 bg-slate-900/60 rounded-xl border border-slate-800 space-y-2">
-              {topSite.missionRecommendations.map((rec, i) => (
-                <div key={i} className="flex items-start gap-2 text-slate-300">
+              {topSite.missionRecommendations.map((rec) => (
+                <div key={rec} className="flex items-start gap-2 text-slate-300">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                   <span>{rec}</span>
                 </div>

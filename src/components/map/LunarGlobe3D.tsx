@@ -100,7 +100,7 @@ const MOON_FRAG_SHADER = `
     normalTex.xy *= reliefScale;
 
     float camDist = length(cameraWorldPosition - vWorldPosition);
-    float closeDetail = smoothstep(5.0, 1.6, camDist) * microDetailScale;
+    float closeDetail = (1.0 - smoothstep(1.6, 5.0, camDist)) * microDetailScale;
     if (closeDetail > 0.001) {
       vec2 microUv = vUv * 900.0;
       float grain1 = sin(microUv.x * 6.283) * sin(microUv.y * 6.283);
@@ -248,22 +248,27 @@ export const LunarGlobe3D: React.FC<LunarGlobe3DProps> = ({
       s.code.toLowerCase().includes(q) ||
       s.shortName.toLowerCase().includes(q)
     );
-    const missionMatches = LUNAR_MISSIONS.filter(m => 
-      m.name.toLowerCase().includes(q) ||
-      m.agency.toLowerCase().includes(q) ||
-      m.site.toLowerCase().includes(q)
-    ).map(m => ({
-      id: m.id,
-      code: m.agency,
-      name: m.name,
-      shortName: m.name,
-      latitude: m.lat,
-      longitude: m.lon,
-      suitabilityScore: 99.9,
-      siteType: `${m.country} • ${m.craft}`,
-      isMission: true,
-      missionData: m
-    }));
+    const missionMatches = LUNAR_MISSIONS.reduce<any[]>((acc, m) => {
+      if (
+        m.name.toLowerCase().includes(q) ||
+        m.agency.toLowerCase().includes(q) ||
+        m.site.toLowerCase().includes(q)
+      ) {
+        acc.push({
+          id: m.id,
+          code: m.agency,
+          name: m.name,
+          shortName: m.name,
+          latitude: m.lat,
+          longitude: m.lon,
+          suitabilityScore: 99.9,
+          siteType: `${m.country} • ${m.craft}`,
+          isMission: true,
+          missionData: m
+        });
+      }
+      return acc;
+    }, []);
     return [...siteMatches, ...missionMatches].slice(0, 6);
   }, [sites, searchQuery]);
 

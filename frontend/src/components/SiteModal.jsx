@@ -18,21 +18,29 @@ import {
   Printer
 } from 'lucide-react';
 import { soundManager } from '../utils/audio';
+import { PhotoGalleryGrid } from './PhotoGalleryGrid';
+
+const DEFAULT_SITES = [];
+const DEFAULT_WEIGHTS = {};
+const DEFAULT_WEATHER = {};
+const NOOP = () => {};
+
+function handlePrintReport() {
+  soundManager.playClick();
+  window.print();
+}
 
 export const SiteModal = ({
   isOpen = false,
-  onClose = () => {},
+  onClose = NOOP,
   topSite = null,
-  allSites = [],
-  weights = {},
-  spaceWeather = {}
+  allSites = DEFAULT_SITES,
+  weights = DEFAULT_WEIGHTS,
+  spaceWeather = DEFAULT_WEATHER
 }) => {
   if (!isOpen || !topSite) return null;
 
-  const handlePrint = () => {
-    soundManager.playClick();
-    window.print();
-  };
+
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto">
@@ -62,7 +70,8 @@ export const SiteModal = ({
               soundManager.playClick();
               onClose();
             }}
-            className="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+            className="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors cursor-pointer"
+            aria-label="Close mission dossier modal"
           >
             <X className="w-5 h-5" />
           </button>
@@ -166,10 +175,10 @@ export const SiteModal = ({
               <span>Recommended Habitat Engineering & Infrastructure Steps</span>
             </h4>
             <div className="bg-[#070B14] p-4 rounded-xl border border-slate-800 space-y-2">
-              {topSite.missionRecommendations && topSite.missionRecommendations.map((rec, i) => (
-                <div key={i} className="flex items-start gap-2 text-slate-300">
+              {topSite.missionRecommendations && topSite.missionRecommendations.map((rec) => (
+                <div key={rec} className="flex items-start gap-2 text-slate-300">
                   <span className="w-4 h-4 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-500/40 flex items-center justify-center text-[10px] shrink-0 mt-0.5">
-                    {i + 1}
+                    •
                   </span>
                   <span>{rec}</span>
                 </div>
@@ -192,7 +201,7 @@ export const SiteModal = ({
           </div>
           <div className="flex items-center gap-2">
             <button
-              onClick={handlePrint}
+              onClick={handlePrintReport}
               className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-mono text-xs font-semibold transition-colors"
             >
               <Printer className="w-3.5 h-3.5" />
@@ -203,7 +212,7 @@ export const SiteModal = ({
                 soundManager.playClick();
                 onClose();
               }}
-              className="px-4 py-1.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-xl font-mono text-xs font-bold transition-all shadow-glow-cyan"
+              className="px-4 py-1.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-xl font-mono text-xs font-bold transition-colors shadow-glow-cyan"
             >
               Close Dossier
             </button>

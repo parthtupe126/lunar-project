@@ -2,73 +2,73 @@ import React, { useState } from 'react';
 import { Layers, Database, Eye, ExternalLink, Sparkles, CheckCircle2, Satellite } from 'lucide-react';
 import { soundManager } from '../../utils/audio';
 
+const DATASETS = [
+  {
+    id: 'lola',
+    name: 'LRO LOLA (Lunar Orbiter Laser Altimeter)',
+    instrument: 'Pulse laser altimeter (1064 nm)',
+    resolution: '5 meters / pixel polar grid',
+    coverage: '100% Polar & Global Topography',
+    description: 'Provides ultra-accurate topographical elevation, slope gradients, surface roughness, and illumination maps. Essential for calculating habitat foundation tilt limits and crater rim sun coverage.',
+    color: 'text-cyan-400',
+    badge: 'Elevation & Slope'
+  },
+  {
+    id: 'diviner',
+    name: 'LRO Diviner Lunar Radiometer',
+    instrument: '9-channel infrared radiometer',
+    resolution: '200 meters / pixel',
+    coverage: 'Global Day / Night Thermal Cycle',
+    description: 'Maps the extreme thermal environment of the Moon, ranging from -248°C (25 K) in permanently shadowed craters up to +120°C (393 K) at sub-solar points. Critical for habitat insulation design.',
+    color: 'text-rose-400',
+    badge: 'Thermal & Temperature'
+  },
+  {
+    id: 'lamp',
+    name: 'LRO LAMP (Lyman-Alpha Mapping Project)',
+    instrument: 'Far-ultraviolet imaging spectrograph',
+    resolution: '100 meters / pixel in PSRs',
+    coverage: 'Permanently Shadowed Regions (PSRs)',
+    description: 'Uses interplanetary starlight and Lyman-alpha emissions to illuminate dark crater floors, identifying water ice frost patches with ~1.5% to 25% regolith weight concentration.',
+    color: 'text-blue-400',
+    badge: 'Water Ice Volatiles'
+  },
+  {
+    id: 'lroc',
+    name: 'LRO LROC (Lunar Reconnaissance Orbiter Camera)',
+    instrument: 'Narrow Angle (NAC) & Wide Angle (WAC)',
+    resolution: '0.5 meters / pixel optical',
+    coverage: 'Complete South Pole Mosaic',
+    description: 'High-resolution optical images capturing boulder distributions, micro-craters, and surface morphology for lunar lander precision guidance and hazard avoidance.',
+    color: 'text-emerald-400',
+    badge: 'Optical Imagery'
+  },
+  {
+    id: 'mini-rf',
+    name: 'LRO Mini-RF (Miniature Radio Frequency)',
+    instrument: 'Synthetic Aperture Radar (S-band & X-band)',
+    resolution: '15 meters / pixel',
+    coverage: 'Subsurface Polar Deposits',
+    description: 'Radar backscatter Circular Polarization Ratio (CPR) analysis differentiating surface roughness from subsurface pure water ice sheets.',
+    color: 'text-purple-400',
+    badge: 'Subsurface Radar'
+  },
+  {
+    id: 'm3',
+    name: 'Chandrayaan-1 Moon Mineralogy Mapper (M³)',
+    instrument: 'Imaging Spectrometer (430 - 3000 nm)',
+    resolution: '70 meters / pixel',
+    coverage: 'Mineral & OH/H2O Absorption Bands',
+    description: 'Uncovered definitive diagnostic absorption bands at 2.8 to 3.0 microns indicating widespread hydroxyl and water molecules bound in polar regolith.',
+    color: 'text-amber-400',
+    badge: 'Spectrometry'
+  }
+];
+
 export const DataLayersView: React.FC = () => {
   const [selectedDataset, setSelectedDataset] = useState('lola');
 
-  const datasets = [
-    {
-      id: 'lola',
-      name: 'LRO LOLA (Lunar Orbiter Laser Altimeter)',
-      instrument: 'Pulse laser altimeter (1064 nm)',
-      resolution: '5 meters / pixel polar grid',
-      coverage: '100% Polar & Global Topography',
-      description: 'Provides ultra-accurate topographical elevation, slope gradients, surface roughness, and illumination maps. Essential for calculating habitat foundation tilt limits and crater rim sun coverage.',
-      color: 'text-cyan-400',
-      badge: 'Elevation & Slope'
-    },
-    {
-      id: 'diviner',
-      name: 'LRO Diviner Lunar Radiometer',
-      instrument: '9-channel infrared radiometer',
-      resolution: '200 meters / pixel',
-      coverage: 'Global Day / Night Thermal Cycle',
-      description: 'Maps the extreme thermal environment of the Moon, ranging from -248°C (25 K) in permanently shadowed craters up to +120°C (393 K) at sub-solar points. Critical for habitat insulation design.',
-      color: 'text-rose-400',
-      badge: 'Thermal & Temperature'
-    },
-    {
-      id: 'lamp',
-      name: 'LRO LAMP (Lyman-Alpha Mapping Project)',
-      instrument: 'Far-ultraviolet imaging spectrograph',
-      resolution: '100 meters / pixel in PSRs',
-      coverage: 'Permanently Shadowed Regions (PSRs)',
-      description: 'Uses interplanetary starlight and Lyman-alpha emissions to illuminate dark crater floors, identifying water ice frost patches with ~1.5% to 25% regolith weight concentration.',
-      color: 'text-blue-400',
-      badge: 'Water Ice Volatiles'
-    },
-    {
-      id: 'lroc',
-      name: 'LRO LROC (Lunar Reconnaissance Orbiter Camera)',
-      instrument: 'Narrow Angle (NAC) & Wide Angle (WAC)',
-      resolution: '0.5 meters / pixel optical',
-      coverage: 'Complete South Pole Mosaic',
-      description: 'High-resolution optical images capturing boulder distributions, micro-craters, and surface morphology for lunar lander precision guidance and hazard avoidance.',
-      color: 'text-emerald-400',
-      badge: 'Optical Imagery'
-    },
-    {
-      id: 'mini-rf',
-      name: 'LRO Mini-RF (Miniature Radio Frequency)',
-      instrument: 'Synthetic Aperture Radar (S-band & X-band)',
-      resolution: '15 meters / pixel',
-      coverage: 'Subsurface Polar Deposits',
-      description: 'Radar backscatter Circular Polarization Ratio (CPR) analysis differentiating surface roughness from subsurface pure water ice sheets.',
-      color: 'text-purple-400',
-      badge: 'Subsurface Radar'
-    },
-    {
-      id: 'm3',
-      name: 'Chandrayaan-1 Moon Mineralogy Mapper (M³)',
-      instrument: 'Imaging Spectrometer (430 - 3000 nm)',
-      resolution: '70 meters / pixel',
-      coverage: 'Mineral & OH/H2O Absorption Bands',
-      description: 'Uncovered definitive diagnostic absorption bands at 2.8 to 3.0 microns indicating widespread hydroxyl and water molecules bound in polar regolith.',
-      color: 'text-amber-400',
-      badge: 'Spectrometry'
-    }
-  ];
-
-  const currentData = datasets.find(d => d.id === selectedDataset) || datasets[0];
+  const currentData = DATASETS.find(d => d.id === selectedDataset) || DATASETS[0];
 
   return (
     <div className="w-full h-full bg-[#050811] overflow-y-auto p-6 space-y-6 text-slate-200">
@@ -85,7 +85,7 @@ export const DataLayersView: React.FC = () => {
 
       {/* Dataset Selector Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {datasets.map((dataset) => {
+        {DATASETS.map((dataset) => {
           const isSelected = selectedDataset === dataset.id;
           return (
             <div

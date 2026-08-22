@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { latLonToVector3, LUNAR_MISSIONS, LUNAR_LANDMARKS } from '../data/lunarSites';
+import { latLonToVector3, LUNAR_MISSIONS } from '../data/lunarSites';
 import {
   Search,
   RotateCcw,
@@ -111,7 +111,7 @@ const MOON_FRAG_SHADER = `
 
     // 4. Procedural Micro-Scale Regolith Roughness & Grain for Closeups
     float camDist = length(cameraWorldPosition - vWorldPosition);
-    float closeDetail = smoothstep(5.0, 1.6, camDist) * microDetailScale;
+    float closeDetail = (1.0 - smoothstep(1.6, 5.0, camDist)) * microDetailScale;
     if (closeDetail > 0.001) {
       vec2 microUv = vUv * 900.0;
       float grain1 = sin(microUv.x * 6.283) * sin(microUv.y * 6.283);
@@ -311,22 +311,27 @@ export const Map3D = ({
       s.code.toLowerCase().includes(q) ||
       s.shortName.toLowerCase().includes(q)
     );
-    const missionMatches = LUNAR_MISSIONS.filter(m =>
-      m.name.toLowerCase().includes(q) ||
-      m.agency.toLowerCase().includes(q) ||
-      m.site.toLowerCase().includes(q)
-    ).map(m => ({
-      id: m.id,
-      code: m.agency,
-      name: m.name,
-      shortName: m.name,
-      latitude: m.lat,
-      longitude: m.lon,
-      suitabilityScore: 99.9,
-      siteType: `${m.country} • ${m.craft}`,
-      isMission: true,
-      missionData: m
-    }));
+    const missionMatches = LUNAR_MISSIONS.reduce((acc, m) => {
+      if (
+        m.name.toLowerCase().includes(q) ||
+        m.agency.toLowerCase().includes(q) ||
+        m.site.toLowerCase().includes(q)
+      ) {
+        acc.push({
+          id: m.id,
+          code: m.agency,
+          name: m.name,
+          shortName: m.name,
+          latitude: m.lat,
+          longitude: m.lon,
+          suitabilityScore: 99.9,
+          siteType: `${m.country} • ${m.craft}`,
+          isMission: true,
+          missionData: m
+        });
+      }
+      return acc;
+    }, []);
     return [...siteMatches, ...missionMatches].slice(0, 6);
   }, [sites, searchQuery]);
 

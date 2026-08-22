@@ -1,10 +1,10 @@
 import React from 'react';
-import { Activity, Radio, Cpu, ShieldCheck, Database } from 'lucide-react';
+import { Database } from 'lucide-react';
 
 export const Footer = ({
-  totalCandidateSites = 7,
+  totalCandidateSites = 23,
   analyzedRegionsCount = 1250,
-  bestScore = 92.4,
+  bestScore = 94.2,
   lastUpdated = 'Live'
 }) => {
   return (

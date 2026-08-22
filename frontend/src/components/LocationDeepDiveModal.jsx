@@ -193,6 +193,7 @@ export const LocationDeepDiveModal = ({
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -593,13 +594,13 @@ export const LocationDeepDiveModal = ({
                       { text: 'Optimal local landing corridor and low slope terrain', type: 'positive' },
                       { text: 'Direct adjacent access to permanent light and volatile traps', type: 'positive' },
                       { text: 'Precision touchdown navigation required for rock/hazard avoidance', type: 'warning' }
-                    ]).map((item, idx) => {
+                    ]).map((item) => {
                       const isPositive = typeof item === 'string' 
                         ? !item.toLowerCase().includes('warning') && !item.toLowerCase().includes('hazard') && !item.toLowerCase().includes('steep')
                         : item.type === 'positive';
                       const text = typeof item === 'string' ? item : item.text || JSON.stringify(item);
                       return (
-                        <div key={idx} className="flex items-start gap-2 text-xs text-slate-300 bg-slate-900/50 p-2 rounded-lg border border-slate-800/80">
+                        <div key={text} className="flex items-start gap-2 text-xs text-slate-300 bg-slate-900/50 p-2 rounded-lg border border-slate-800/80">
                           {isPositive ? (
                             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                           ) : (
@@ -620,7 +621,7 @@ export const LocationDeepDiveModal = ({
                       'Establish primary pressurized habitat modules in micro-depression zone',
                       'Deploy autonomous rover into local PSR for water ice mining'
                     ]).map((rec, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-300 bg-slate-900/50 p-2 rounded-lg border border-slate-800/80">
+                      <div key={typeof rec === 'string' ? rec : rec.text || `rec-${idx}`} className="flex items-start gap-2 text-xs text-slate-300 bg-slate-900/50 p-2 rounded-lg border border-slate-800/80">
                         <span className="text-[10px] font-mono font-bold text-cyan-400 bg-cyan-950/80 px-1.5 py-0.5 rounded border border-cyan-500/30">
                           {idx + 1}
                         </span>

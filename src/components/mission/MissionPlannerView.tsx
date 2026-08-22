@@ -52,6 +52,22 @@ const LAUNCH_WINDOWS: LaunchWindow[] = [
   { date: 'Jan 30 – Feb 03, 2026', deltaV: 3.41, travelDays: 6.1, rating: 'Acceptable', earthMoonDist: 401800 },
 ];
 
+const PHASE_COLOR_MAP: Record<string, string> = {
+  blue: 'border-blue-500/50 bg-blue-950/30',
+  cyan: 'border-cyan-500/50 bg-cyan-950/30',
+  amber: 'border-amber-500/50 bg-amber-950/30',
+  orange: 'border-orange-500/50 bg-orange-950/30',
+  emerald: 'border-emerald-500/50 bg-emerald-950/30',
+};
+const PHASE_TEXT_MAP: Record<string, string> = {
+  blue: 'text-blue-400', cyan: 'text-cyan-400', amber: 'text-amber-400',
+  orange: 'text-orange-400', emerald: 'text-emerald-400',
+};
+const PHASE_BG_MAP: Record<string, string> = {
+  blue: 'bg-blue-500', cyan: 'bg-cyan-500', amber: 'bg-amber-500',
+  orange: 'bg-orange-500', emerald: 'bg-emerald-500',
+};
+
 export const MissionPlannerView: React.FC<MissionPlannerViewProps> = ({
   sites,
   selectedSite,
@@ -184,22 +200,6 @@ export const MissionPlannerView: React.FC<MissionPlannerViewProps> = ({
   const readyCount = checklist.filter(c => c.status === 'ready').length;
   const overallReadiness = Math.round((readyCount / checklist.length) * 100);
 
-  const phaseColorMap: Record<string, string> = {
-    blue: 'border-blue-500/50 bg-blue-950/30',
-    cyan: 'border-cyan-500/50 bg-cyan-950/30',
-    amber: 'border-amber-500/50 bg-amber-950/30',
-    orange: 'border-orange-500/50 bg-orange-950/30',
-    emerald: 'border-emerald-500/50 bg-emerald-950/30',
-  };
-  const phaseTextMap: Record<string, string> = {
-    blue: 'text-blue-400', cyan: 'text-cyan-400', amber: 'text-amber-400',
-    orange: 'text-orange-400', emerald: 'text-emerald-400',
-  };
-  const phaseBgMap: Record<string, string> = {
-    blue: 'bg-blue-500', cyan: 'bg-cyan-500', amber: 'bg-amber-500',
-    orange: 'bg-orange-500', emerald: 'bg-emerald-500',
-  };
-
   const totalTimelineWidth = phases.reduce((a, b) => a + b.durationDays, 0);
 
   return (
@@ -311,8 +311,8 @@ export const MissionPlannerView: React.FC<MissionPlannerViewProps> = ({
 
           {/* Checklist */}
           <div className="space-y-1.5 max-h-52 overflow-y-auto pr-1">
-            {checklist.map((item, i) => (
-              <div key={i} className="flex items-center gap-2.5 bg-slate-900/60 rounded-lg px-3 py-1.5 border border-slate-800">
+            {checklist.map((item) => (
+              <div key={item.label} className="flex items-center gap-2.5 bg-slate-900/60 rounded-lg px-3 py-1.5 border border-slate-800">
                 {item.status === 'ready' && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />}
                 {item.status === 'warning' && <AlertCircle className="w-3.5 h-3.5 text-amber-400 shrink-0" />}
                 {item.status === 'fail' && <XCircle className="w-3.5 h-3.5 text-rose-400 shrink-0" />}
@@ -333,18 +333,22 @@ export const MissionPlannerView: React.FC<MissionPlannerViewProps> = ({
         </div>
       </div>
 
-      {/* Mission Timeline */}
+      {/* Mission Timeline & Phase Breakdown */}
       <div className="bg-[#0B1120]/90 border border-slate-800 rounded-2xl p-5 space-y-4">
-        <h3 className="text-sm font-bold font-mono text-white flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-purple-400" /> MISSION TIMELINE BUILDER
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-bold font-mono text-white flex items-center gap-2">
+            <Clock className="w-4 h-4 text-cyan-400" />
+            MISSION PHASES & LIFECYCLE SCHEDULE
+          </h3>
+          <span className="text-xs font-mono text-cyan-400">Total: {totalTimelineWidth} Days (~{Math.round(totalTimelineWidth / 30.4)} months)</span>
+        </div>
 
         {/* Gantt-style visual bar */}
         <div className="flex h-8 rounded-lg overflow-hidden border border-slate-700 gap-0.5">
           {phases.map(p => (
             <div
               key={p.id}
-              className={`${phaseBgMap[p.color]} opacity-80 flex items-center justify-center transition-all duration-300`}
+              className={`${PHASE_BG_MAP[p.color]} opacity-80 flex items-center justify-center transition-all duration-300`}
               style={{ width: `${(p.durationDays / totalTimelineWidth) * 100}%` }}
               title={`${p.name}: ${p.durationDays} days`}
             >
@@ -358,10 +362,10 @@ export const MissionPlannerView: React.FC<MissionPlannerViewProps> = ({
         {/* Phase Cards */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
           {phases.map((phase, idx) => (
-            <div key={phase.id} className={`rounded-xl border p-3 space-y-2 ${phaseColorMap[phase.color]}`}>
+            <div key={phase.id} className={`rounded-xl border p-3 space-y-2 ${PHASE_COLOR_MAP[phase.color]}`}>
               <div className="flex items-center gap-1.5">
-                <span className={phaseTextMap[phase.color]}>{phase.icon}</span>
-                <span className={`text-[10px] font-mono font-bold ${phaseTextMap[phase.color]}`}>
+                <span className={PHASE_TEXT_MAP[phase.color]}>{phase.icon}</span>
+                <span className={`text-[10px] font-mono font-bold ${PHASE_TEXT_MAP[phase.color]}`}>
                   PHASE {idx + 1}
                 </span>
               </div>
@@ -371,7 +375,7 @@ export const MissionPlannerView: React.FC<MissionPlannerViewProps> = ({
               <div className="space-y-1">
                 <div className="flex justify-between text-[10px] font-mono text-slate-400">
                   <span>Duration</span>
-                  <span className={`font-bold ${phaseTextMap[phase.color]}`}>{phase.durationDays}d</span>
+                  <span className={`font-bold ${PHASE_TEXT_MAP[phase.color]}`}>{phase.durationDays}d</span>
                 </div>
                 <input
                   type="range"
@@ -385,8 +389,8 @@ export const MissionPlannerView: React.FC<MissionPlannerViewProps> = ({
 
               {/* Milestones */}
               <div className="space-y-1">
-                {phase.milestones.slice(0, 2).map((m, mi) => (
-                  <div key={mi} className="flex items-start gap-1 text-[9px] font-mono text-slate-400">
+                {phase.milestones.slice(0, 2).map((m) => (
+                  <div key={m} className="flex items-start gap-1 text-[9px] font-mono text-slate-400">
                     <ChevronRight className="w-2.5 h-2.5 shrink-0 mt-0.5" />{m}
                   </div>
                 ))}
@@ -403,7 +407,7 @@ export const MissionPlannerView: React.FC<MissionPlannerViewProps> = ({
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {LAUNCH_WINDOWS.map((w, i) => (
-            <div key={i} className={`rounded-xl border p-4 space-y-3 ${
+            <div key={w.date} className={`rounded-xl border p-4 space-y-3 ${
               w.rating === 'Optimal' ? 'border-emerald-500/50 bg-emerald-950/20' :
               w.rating === 'Good' ? 'border-cyan-500/40 bg-cyan-950/20' :
               'border-slate-700 bg-slate-900/40'

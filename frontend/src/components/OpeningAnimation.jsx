@@ -1,85 +1,81 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { ShieldCheck, Sparkles, Activity, Globe, Compass, ChevronRight, Zap } from 'lucide-react';
+import { 
+  Activity, 
+  Sparkles, 
+  Cpu, 
+  Globe,
+  Layers,
+  ChevronRight
+} from 'lucide-react';
 import { soundManager } from '../utils/audio';
 
-const getInstantMoonTexture = () => {
+function getInstantMoonTexture() {
   const canvas = document.createElement('canvas');
   canvas.width = 512;
   canvas.height = 256;
   const ctx = canvas.getContext('2d');
-
-  // Base silvery-grey lunar albedo
-  const bgGrad = ctx.createLinearGradient(0, 0, 0, 256);
-  bgGrad.addColorStop(0, '#c2cbd7');
-  bgGrad.addColorStop(0.5, '#a4adb9');
-  bgGrad.addColorStop(1, '#8b94a2');
-  ctx.fillStyle = bgGrad;
+  
+  ctx.fillStyle = '#828994';
   ctx.fillRect(0, 0, 512, 256);
 
-  // Soft lunar maria (lunar seas)
   const maria = [
-    { x: 130, y: 110, rx: 65, ry: 42, color: 'rgba(52, 59, 70, 0.52)' },
-    { x: 230, y: 95, rx: 50, ry: 35, color: 'rgba(48, 55, 65, 0.55)' },
-    { x: 310, y: 115, rx: 60, ry: 40, color: 'rgba(46, 53, 62, 0.50)' },
-    { x: 170, y: 70, rx: 45, ry: 30, color: 'rgba(50, 57, 66, 0.46)' },
-    { x: 380, y: 130, rx: 55, ry: 38, color: 'rgba(58, 66, 76, 0.42)' },
-    { x: 200, y: 175, rx: 42, ry: 26, color: 'rgba(55, 62, 72, 0.40)' }
+    { x: 190, y: 80, rx: 65, ry: 45, color: '#3d4450' },
+    { x: 260, y: 90, rx: 45, ry: 35, color: '#383f4b' },
+    { x: 290, y: 130, rx: 50, ry: 40, color: '#353c48' },
+    { x: 120, y: 110, rx: 80, ry: 70, color: '#404754' },
+    { x: 280, y: 175, rx: 35, ry: 30, color: '#444b58' },
+    { x: 340, y: 115, rx: 35, ry: 35, color: '#323944' },
+    { x: 250, y: 220, rx: 55, ry: 30, color: '#4a515e' }
   ];
 
   maria.forEach(m => {
-    const g = ctx.createRadialGradient(m.x, m.y, 4, m.x, m.y, m.rx);
-    g.addColorStop(0, m.color);
-    g.addColorStop(0.7, m.color);
-    g.addColorStop(1, 'rgba(120, 130, 145, 0)');
-    ctx.fillStyle = g;
     ctx.beginPath();
     ctx.ellipse(m.x, m.y, m.rx, m.ry, 0, 0, Math.PI * 2);
+    ctx.fillStyle = m.color;
     ctx.fill();
   });
 
-  // Soft highland crater rays & craters
   const craters = [
-    { x: 180, y: 195, r: 14 },
-    { x: 110, y: 95, r: 11 },
-    { x: 250, y: 90, r: 9 },
-    { x: 340, y: 140, r: 12 },
-    { x: 420, y: 80, r: 10 }
+    { x: 230, y: 190, r: 9, ray: true },
+    { x: 170, y: 115, r: 7, ray: true },
+    { x: 130, y: 115, r: 5, ray: true },
+    { x: 256, y: 245, r: 8, ray: false }
   ];
 
   craters.forEach(c => {
-    const rg = ctx.createRadialGradient(c.x, c.y, 1, c.x, c.y, c.r * 2.2);
-    rg.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
-    rg.addColorStop(0.5, 'rgba(225, 232, 242, 0.15)');
-    rg.addColorStop(1, 'rgba(180, 190, 205, 0)');
-    ctx.fillStyle = rg;
-    ctx.beginPath();
-    ctx.arc(c.x, c.y, c.r * 2.2, 0, Math.PI * 2);
-    ctx.fill();
-
-    const cg = ctx.createRadialGradient(c.x - 1, c.y - 1, 1, c.x, c.y, c.r);
-    cg.addColorStop(0, 'rgba(38, 43, 50, 0.65)');
-    cg.addColorStop(0.7, 'rgba(65, 72, 82, 0.45)');
-    cg.addColorStop(1, 'rgba(235, 240, 250, 0.35)');
-    ctx.fillStyle = cg;
+    if (c.ray) {
+      ctx.strokeStyle = 'rgba(230, 235, 245, 0.35)';
+      ctx.lineWidth = 1;
+      for (let a = 0; a < Math.PI * 2; a += Math.PI / 6) {
+        ctx.beginPath();
+        ctx.moveTo(c.x, c.y);
+        ctx.lineTo(c.x + Math.cos(a) * 45, c.y + Math.sin(a) * 45);
+        ctx.stroke();
+      }
+    }
     ctx.beginPath();
     ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+    ctx.fillStyle = '#ffffff';
     ctx.fill();
+    ctx.strokeStyle = '#1e2430';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
   });
 
-  const tex = new THREE.CanvasTexture(canvas);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  return tex;
-};
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+}
 
 const MiniMoonGlobe = () => {
   const mountRef = useRef(null);
 
   useEffect(() => {
-    if (!mountRef.current) return;
     const container = mountRef.current;
-    const size = 120; // 120px width/height
+    if (!container) return;
 
+    const size = 120;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
     camera.position.set(0, 0, 2.5);
@@ -91,7 +87,6 @@ const MiniMoonGlobe = () => {
     renderer.toneMappingExposure = 1.2;
     container.replaceChildren(renderer.domElement);
 
-    // Instant synchronous 0ms lunar texture
     const instantMap = getInstantMoonTexture();
 
     const geometry = new THREE.SphereGeometry(0.98, 48, 48);
@@ -105,34 +100,39 @@ const MiniMoonGlobe = () => {
     moon.rotation.y = Math.PI * 0.4;
     scene.add(moon);
 
-    // Asynchronously load NASA photographic texture without blocking initial render
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.load('/assets/real-moon/moon1024x512.jpg', (tex) => {
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.minFilter = THREE.LinearMipmapLinearFilter;
-      tex.generateMipmaps = true;
-      material.map = tex;
-      material.needsUpdate = true;
-    });
+    textureLoader.load(
+      '/assets/real-moon/moon1024x512.jpg',
+      (tex) => {
+        tex.colorSpace = THREE.SRGBColorSpace;
+        tex.minFilter = THREE.LinearMipmapLinearFilter;
+        tex.generateMipmaps = true;
+        material.map = tex;
+        material.needsUpdate = true;
+      },
+      undefined,
+      (err) => {
+        console.warn('Fallback texture active in mini globe', err);
+      }
+    );
 
-    // 1. Soft Warm Solar Light
     const sunLight = new THREE.DirectionalLight(0xfffaed, 2.8);
     sunLight.position.set(2.2, 1.0, 2.4);
     scene.add(sunLight);
 
-    // 2. Soft Ambient Earthshine for natural, blended shadow fill
     const ambientLight = new THREE.AmbientLight(0xdce3ef, 0.7);
     scene.add(ambientLight);
 
-    // 3. Subtle Cyan Lunar Limb / Exosphere Rim Glow
     const rimLight = new THREE.DirectionalLight(0x38bdf8, 0.55);
     rimLight.position.set(-2.0, 1.2, -1.0);
     scene.add(rimLight);
 
+    const clock = new THREE.Clock();
     let animId;
     const animate = () => {
       animId = requestAnimationFrame(animate);
-      moon.rotation.y += 0.0035; // Gentle, smooth photorealistic spin
+      const delta = clock.getDelta();
+      moon.rotation.y += delta * 0.22;
       renderer.render(scene, camera);
     };
     animate();
@@ -161,11 +161,12 @@ const BOOT_STAGES = [
   { label: 'LUNAR HABITAT AI STUDIO FULLY OPERATIONAL', tag: 'ONLINE' }
 ];
 
-export const OpeningAnimation = ({ onComplete = () => {} }) => {
+const NOOP = () => {};
+
+export const OpeningAnimation = ({ onComplete = NOOP }) => {
   const [progress, setProgress] = useState(0);
   const [stageIndex, setStageIndex] = useState(0);
   const [isClosing, setIsClosing] = useState(false);
-  const [isReady, setIsReady] = useState(false);
   const canvasRef = useRef(null);
 
   // Background Starfield & Orbit Rings Canvas
@@ -184,7 +185,6 @@ export const OpeningAnimation = ({ onComplete = () => {} }) => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Generate Stars
     const stars = Array.from({ length: 160 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
@@ -199,45 +199,31 @@ export const OpeningAnimation = ({ onComplete = () => {} }) => {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // 1. Star Particles
-      stars.forEach(s => {
-        s.alpha += s.speed * s.direction;
-        if (s.alpha > 1 || s.alpha < 0.2) s.direction *= -1;
-        ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
+      stars.forEach(star => {
+        star.alpha += star.speed * star.direction;
+        if (star.alpha > 0.95 || star.alpha < 0.15) {
+          star.direction *= -1;
+        }
+        ctx.fillStyle = `rgba(224, 242, 254, ${Math.max(0.1, star.alpha)})`;
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fill();
       });
 
-      // 2. Holographic Center Orbital HUD Rings
-      const cx = width / 2;
-      const cy = height / 2;
-      angle += 0.008;
-
-      // Outer Ring
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.15)';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.arc(cx, cy, 140, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Dashed Rotating Ring
       ctx.save();
-      ctx.translate(cx, cy);
+      ctx.translate(width / 2, height / 2);
+      angle += 0.003;
       ctx.rotate(angle);
-      ctx.strokeStyle = 'rgba(0, 240, 255, 0.35)';
-      ctx.setLineDash([8, 12]);
-      ctx.beginPath();
-      ctx.arc(0, 0, 165, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.restore();
 
-      // Reverse Dashed Outer Ring
-      ctx.save();
-      ctx.translate(cx, cy);
-      ctx.rotate(-angle * 0.7);
-      ctx.strokeStyle = 'rgba(168, 85, 247, 0.25)';
-      ctx.setLineDash([14, 18]);
+      ctx.strokeStyle = 'rgba(6, 182, 212, 0.12)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 8]);
+      ctx.beginPath();
+      ctx.arc(0, 0, 140, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(168, 85, 247, 0.10)';
+      ctx.setLineDash([2, 6]);
       ctx.beginPath();
       ctx.arc(0, 0, 195, 0, Math.PI * 2);
       ctx.stroke();
@@ -253,102 +239,114 @@ export const OpeningAnimation = ({ onComplete = () => {} }) => {
     };
   }, []);
 
-  // Progress Counter & Auto-Launch
+  // Pure Interval with direct cleanup
   useEffect(() => {
-    const duration = 2000; // 2.0 seconds smooth sequence
-    const interval = 25;
-    const step = 100 / (duration / interval);
+    let count = 0;
+    const timerId = setInterval(() => {
+      count += 2;
+      if (count >= 100) {
+        clearInterval(timerId);
+        setProgress(100);
+        setStageIndex(4);
+        soundManager.playLaunch();
+        setIsClosing(true);
+        onComplete();
+      } else {
+        setProgress(count);
+        setStageIndex(Math.min(Math.floor((count / 100) * 4), 3));
+      }
+    }, 35);
 
-    const timer = setInterval(() => {
-      setProgress(prev => {
-        const next = prev + step;
-        if (next >= 100) {
-          clearInterval(timer);
-          setStageIndex(4);
-          soundManager.playLaunch();
-          setTimeout(() => {
-            setIsClosing(true);
-            setTimeout(() => {
-              onComplete();
-            }, 600);
-          }, 300);
-          return 100;
-        }
-
-        const stage = Math.min(Math.floor((next / 100) * 4), 3);
-        setStageIndex(stage);
-        return next;
-      });
-    }, interval);
-
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timerId);
+    };
   }, [onComplete]);
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#030712] select-none overflow-hidden transition-all duration-700 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#030712] select-none overflow-hidden transition-[opacity,transform] duration-700 ${
         isClosing ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
       }`}
     >
-      {/* Background Starfield & HUD Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
-      {/* Radial Gradient Glows */}
       <div className="absolute w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-cyan-600/15 via-purple-600/10 to-transparent blur-3xl pointer-events-none animate-pulse" />
       <div className="absolute w-[300px] h-[300px] rounded-full bg-cyan-500/10 blur-2xl pointer-events-none" />
 
-      {/* Central Interactive HUD Modal */}
       <div className="relative z-10 max-w-xl w-full mx-4 p-8 rounded-3xl bg-[#070B14]/85 border border-cyan-500/30 backdrop-blur-2xl shadow-[0_0_80px_rgba(6,182,212,0.15)] flex flex-col items-center text-center">
         
-        {/* Holographic 3D Spinning Moon Sphere */}
         <div className="relative mb-6 flex items-center justify-center">
           <div className="relative w-28 h-28 rounded-full overflow-hidden flex items-center justify-center shadow-[0_0_40px_rgba(56,189,248,0.35)]">
             <MiniMoonGlobe />
           </div>
           
-          {/* Pulsing Target Brackets & Orbital Rings */}
           <div className="absolute -inset-3 border border-cyan-400/30 rounded-full animate-ping opacity-25 pointer-events-none" />
-          <div className="absolute -inset-1.5 border border-purple-500/40 rounded-full pointer-events-none" />
+          <div className="absolute -inset-6 border border-purple-500/20 rounded-full border-dashed animate-spin-slow pointer-events-none" />
         </div>
 
-        {/* Brand Titles */}
-        <div className="space-y-1.5 mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-[11px] font-mono text-cyan-300 tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>LUNAR EXPLORATION MISSION CONTROL</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold font-mono text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 tracking-tight">
-            LUNAR HABITAT AI
-          </h1>
-          <p className="text-xs font-mono text-slate-400 max-w-md mx-auto">
-            Autonomous Site Selection, 3D Altimetry & Habitat Spatial Intelligence
-          </p>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 text-xs font-mono mb-3 shadow-glow-cyan">
+          <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-spin-slow" />
+          <span>AUTONOMOUS LUNAR DECISION SYSTEM</span>
         </div>
 
-        {/* Dynamic Telemetry Stage Card */}
-        <div className="w-full bg-[#030712]/90 border border-slate-800/90 rounded-2xl p-4 text-left">
-          <div className="flex items-center justify-between text-[11px] font-mono mb-2">
-            <span className="text-cyan-400 font-semibold flex items-center gap-1.5">
-              <Activity className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-              {BOOT_STAGES[stageIndex]?.tag || 'INITIALIZING'}
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-200 to-purple-400 font-mono tracking-tight mb-2">
+          LUNAR HABITAT AI
+        </h1>
+        <p className="text-xs sm:text-sm text-slate-300 font-mono max-w-md mb-6 leading-relaxed">
+          High-Precision Decision Support System for Artemis & ISRO Lunar South Pole Habitat Candidate Site Optimization
+        </p>
+
+        <div className="w-full space-y-2">
+          <div className="flex justify-between items-center text-xs font-mono">
+            <span className="text-cyan-400 flex items-center gap-1.5 font-semibold">
+              <Activity className="w-3.5 h-3.5 animate-pulse" />
+              <span>{BOOT_STAGES[stageIndex]?.tag || 'INITIALIZING'}</span>
             </span>
-            <span className="text-slate-400">{Math.round(progress)}%</span>
+            <span className="text-white font-bold">{progress}%</span>
           </div>
 
-          {/* Progress Bar */}
-          <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden p-[1px] border border-slate-800 mb-3">
+          <div className="w-full bg-slate-900/90 h-2.5 rounded-full overflow-hidden border border-slate-800 p-0.5 shadow-inner">
             <div
-              className="h-full bg-gradient-to-r from-purple-600 via-indigo-500 to-cyan-400 rounded-full transition-all duration-75 shadow-[0_0_12px_rgba(6,182,212,0.8)]"
+              className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-sky-400 to-purple-500 transition-[width] duration-75 shadow-glow-cyan"
               style={{ width: `${progress}%` }}
             />
           </div>
 
-          {/* Live Log readout */}
-          <div className="text-[11px] font-mono text-slate-300 truncate flex items-center gap-2">
-            <span className="text-cyan-500">❯</span>
-            <span className="typing-text">{BOOT_STAGES[stageIndex]?.label}</span>
+          <div className="h-5 flex items-center justify-center">
+            <p className="text-[10px] sm:text-[11px] font-mono text-slate-400 truncate animate-pulse">
+              {BOOT_STAGES[stageIndex]?.label || 'Loading...'}
+            </p>
           </div>
         </div>
+
+        <div className="grid grid-cols-3 gap-2 w-full mt-6 pt-4 border-t border-slate-800/80 text-[10px] font-mono text-slate-400">
+          <div className="flex flex-col items-center gap-1 p-2 rounded-xl bg-slate-900/40 border border-slate-800/60">
+            <Globe className="w-4 h-4 text-cyan-400" />
+            <span>LOLA 118m LDEM</span>
+          </div>
+          <div className="flex flex-col items-center gap-1 p-2 rounded-xl bg-slate-900/40 border border-slate-800/60">
+            <Cpu className="w-4 h-4 text-purple-400" />
+            <span>XGBoost ML Vector</span>
+          </div>
+          <div className="flex flex-col items-center gap-1 p-2 rounded-xl bg-slate-900/40 border border-slate-800/60">
+            <Layers className="w-4 h-4 text-emerald-400" />
+            <span>MCDA Multi-Criteria</span>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => {
+            soundManager.playClick();
+            setIsClosing(true);
+            onComplete();
+          }}
+          aria-label="Skip initialization sequence"
+          className="mt-5 text-[11px] font-mono text-slate-400 hover:text-cyan-300 flex items-center gap-1 transition-colors group cursor-pointer"
+        >
+          <span>Skip Initialization Sequence</span>
+          <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+        </button>
       </div>
     </div>
   );

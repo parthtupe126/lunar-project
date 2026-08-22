@@ -17,60 +17,84 @@ import {
 } from 'lucide-react';
 import { soundManager } from '../utils/audio';
 
-/**
- * LayerControls: UI Sliders for Slope, Sun, Ice, and Mission Criteria Weight Adjustments + Data Layer Toggles
- */
-export const LayerControls = ({
-  weights = {
-    waterIce: 25,
-    solarEnergy: 25,
-    terrain: 20,
-    radiation: 15,
-    access: 15
+const PRESETS = [
+  {
+    name: 'Artemis Baseline',
+    weights: { waterIce: 25, solarEnergy: 25, terrain: 20, radiation: 15, access: 15 },
+    iconColor: 'text-cyan-400'
   },
-  setWeights = () => {},
-  layers = {
-    terrain: true,
-    elevation: true,
-    slope: true,
-    waterIce: true,
-    illumination: true,
-    radiation: true,
-    temperature: true,
-    aiSuitability: true
+  {
+    name: 'ISRU Water Mining',
+    weights: { waterIce: 45, solarEnergy: 20, terrain: 15, radiation: 10, access: 10 },
+    iconColor: 'text-blue-400'
   },
-  setLayers = () => {},
-  filter = {
-    minScore: 0,
-    siteType: 'All',
-    searchQuery: ''
+  {
+    name: 'Solar Power Station',
+    weights: { waterIce: 15, solarEnergy: 50, terrain: 15, radiation: 10, access: 10 },
+    iconColor: 'text-amber-400'
   },
-  setFilter = () => {}
-}) => {
-  // Preset Mission Profiles
-  const presets = [
-    {
-      name: 'Artemis Baseline',
-      weights: { waterIce: 25, solarEnergy: 25, terrain: 20, radiation: 15, access: 15 },
-      icon: <Sparkles className="w-3 h-3 text-cyan-400" />
-    },
-    {
-      name: 'ISRU Water Mining',
-      weights: { waterIce: 45, solarEnergy: 20, terrain: 15, radiation: 10, access: 10 },
-      icon: <Droplets className="w-3 h-3 text-blue-400" />
-    },
-    {
-      name: 'Solar Power Station',
-      weights: { waterIce: 15, solarEnergy: 50, terrain: 15, radiation: 10, access: 10 },
-      icon: <Sun className="w-3 h-3 text-amber-400" />
-    },
-    {
-      name: 'Radiation Safe Base',
-      weights: { waterIce: 20, solarEnergy: 20, terrain: 15, radiation: 35, access: 10 },
-      icon: <ShieldCheck className="w-3 h-3 text-purple-400" />
-    }
-  ];
+  {
+    name: 'Radiation Safe Base',
+    weights: { waterIce: 20, solarEnergy: 20, terrain: 15, radiation: 35, access: 10 },
+    iconColor: 'text-purple-400'
+  }
+];
 
+const DEFAULT_WEIGHTS = {
+  waterIce: 25,
+  solarEnergy: 25,
+  terrain: 20,
+  radiation: 15,
+  access: 15
+};
+
+const DEFAULT_LAYERS = {
+  terrain: true,
+  elevation: true,
+  slope: true,
+  waterIce: true,
+  illumination: true,
+  radiation: true,
+  temperature: true,
+  aiSuitability: true
+};
+
+const DEFAULT_FILTER = {
+  minScore: 0,
+  siteType: 'All',
+  searchQuery: ''
+};
+
+const NOOP = () => {};
+
+
+const LAYER_ITEMS = [
+  { key: 'terrain', label: 'Terrain Relief', icon: <Mountain className="w-3.5 h-3.5 text-cyan-400" /> },
+  { key: 'elevation', label: 'Elevation Contours', icon: <Layers className="w-3.5 h-3.5 text-blue-400" /> },
+  { key: 'slope', label: 'Slope Hazards', icon: <TrendingUp className="w-3.5 h-3.5 text-emerald-400" /> },
+  { key: 'waterIce', label: 'Water Ice Volatiles', icon: <Droplets className="w-3.5 h-3.5 text-cyan-300" /> },
+  { key: 'illumination', label: 'Solar Illumination', icon: <Sun className="w-3.5 h-3.5 text-amber-400" /> },
+  { key: 'radiation', label: 'Radiation Shielding', icon: <Radiation className="w-3.5 h-3.5 text-purple-400" /> },
+  { key: 'temperature', label: 'Thermal Profile', icon: <Thermometer className="w-3.5 h-3.5 text-rose-400" /> },
+];
+
+function getPresetIcon(name) {
+  switch (name) {
+    case 'ISRU Water Mining': return <Droplets className="w-3 h-3 text-blue-400" />;
+    case 'Solar Power Station': return <Sun className="w-3 h-3 text-amber-400" />;
+    case 'Radiation Safe Base': return <ShieldCheck className="w-3 h-3 text-purple-400" />;
+    default: return <Sparkles className="w-3 h-3 text-cyan-400" />;
+  }
+}
+
+export const LayerControls = ({
+  weights = DEFAULT_WEIGHTS,
+  setWeights = NOOP,
+  layers = DEFAULT_LAYERS,
+  setLayers = NOOP,
+  filter = DEFAULT_FILTER,
+  setFilter = NOOP
+}) => {
   const handleWeightChange = (key, value) => {
     soundManager.playClick();
     setWeights(prev => ({
@@ -103,15 +127,7 @@ export const LayerControls = ({
     });
   };
 
-  const layerItems = [
-    { key: 'terrain', label: 'Terrain Relief', icon: <Mountain className="w-3.5 h-3.5 text-cyan-400" /> },
-    { key: 'elevation', label: 'Elevation Contours', icon: <Layers className="w-3.5 h-3.5 text-blue-400" /> },
-    { key: 'slope', label: 'Slope Hazards', icon: <TrendingUp className="w-3.5 h-3.5 text-emerald-400" /> },
-    { key: 'waterIce', label: 'Water Ice Volatiles', icon: <Droplets className="w-3.5 h-3.5 text-cyan-300" /> },
-    { key: 'illumination', label: 'Solar Illumination', icon: <Sun className="w-3.5 h-3.5 text-amber-400" /> },
-    { key: 'radiation', label: 'Radiation Shielding', icon: <Radiation className="w-3.5 h-3.5 text-purple-400" /> },
-    { key: 'temperature', label: 'Thermal Profile', icon: <Thermometer className="w-3.5 h-3.5 text-rose-400" /> },
-  ];
+
 
   return (
     <aside className="w-80 h-full bg-[#070B14]/95 border-r border-slate-800/80 p-4 flex flex-col justify-between overflow-y-auto backdrop-blur-xl z-10 shrink-0 select-none custom-scrollbar animate-smooth-slide-left">
@@ -127,9 +143,11 @@ export const LayerControls = ({
               </h2>
             </div>
             <button
+              type="button"
               onClick={resetWeights}
               title="Reset to Artemis Baseline"
-              className="text-[10px] font-mono text-slate-400 hover:text-cyan-400 flex items-center gap-1 transition-colors"
+              aria-label="Reset weights to Artemis Baseline"
+              className="text-[10px] font-mono text-slate-400 hover:text-cyan-400 flex items-center gap-1 transition-colors cursor-pointer"
             >
               <RotateCcw className="w-3 h-3" />
               Reset
@@ -138,13 +156,15 @@ export const LayerControls = ({
 
           {/* Mission Presets */}
           <div className="grid grid-cols-2 gap-1.5 mb-3">
-            {presets.map((p, idx) => (
+            {PRESETS.map((p) => (
               <button
-                key={idx}
+                key={p.name}
+                type="button"
                 onClick={() => applyPreset(p.weights)}
-                className="flex items-center gap-1.5 px-2 py-1.5 bg-[#0B1120] hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-lg text-[10px] font-mono text-slate-300 transition-all text-left"
+                aria-label={`Apply ${p.name} preset`}
+                className="flex items-center gap-1.5 px-2 py-1.5 bg-[#0B1120] hover:bg-slate-800 border border-slate-800 hover:border-slate-700 rounded-lg text-[10px] font-mono text-slate-300 transition-colors text-left cursor-pointer"
               >
-                {p.icon}
+                {getPresetIcon(p.name)}
                 <span className="truncate">{p.name}</span>
               </button>
             ))}
@@ -169,6 +189,7 @@ export const LayerControls = ({
                 min="0"
                 max="60"
                 value={weights.terrain}
+                aria-label="Slope terrain flatness weight percentage"
                 onChange={(e) => handleWeightChange('terrain', e.target.value)}
                 className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400"
               />
@@ -194,6 +215,7 @@ export const LayerControls = ({
                 min="0"
                 max="60"
                 value={weights.solarEnergy}
+                aria-label="Solar energy illumination weight percentage"
                 onChange={(e) => handleWeightChange('solarEnergy', e.target.value)}
                 className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400"
               />
@@ -219,6 +241,7 @@ export const LayerControls = ({
                 min="0"
                 max="60"
                 value={weights.waterIce}
+                aria-label="Water ice volatiles weight percentage"
                 onChange={(e) => handleWeightChange('waterIce', e.target.value)}
                 className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
               />
@@ -244,6 +267,7 @@ export const LayerControls = ({
                 min="0"
                 max="60"
                 value={weights.radiation}
+                aria-label="Radiation shielding weight percentage"
                 onChange={(e) => handleWeightChange('radiation', e.target.value)}
                 className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-400"
               />
@@ -265,6 +289,7 @@ export const LayerControls = ({
                 min="0"
                 max="60"
                 value={weights.access}
+                aria-label="Landing accessibility weight percentage"
                 onChange={(e) => handleWeightChange('access', e.target.value)}
                 className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-sky-400"
               />
@@ -283,7 +308,7 @@ export const LayerControls = ({
           </div>
 
           <div className="bg-[#0B1120]/80 p-2.5 rounded-xl border border-slate-800/80 space-y-2 shadow-inner">
-            {layerItems.map((item) => (
+            {LAYER_ITEMS.map((item) => (
               <label
                 key={item.key}
                 className="flex items-center justify-between p-1 rounded-lg hover:bg-slate-800/50 cursor-pointer transition-colors"
@@ -297,11 +322,12 @@ export const LayerControls = ({
                 <div className="relative inline-flex items-center cursor-pointer">
                   <input
                     type="checkbox"
+                    aria-label={`Toggle ${item.label} layer`}
                     checked={layers[item.key]}
                     onChange={() => toggleLayer(item.key)}
                     className="sr-only peer"
                   />
-                  <div className="w-8 h-4 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:bg-cyan-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all border border-slate-700" />
+                  <div className="w-8 h-4 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:bg-cyan-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-transform border border-slate-700" />
                 </div>
               </label>
             ))}
@@ -320,27 +346,33 @@ export const LayerControls = ({
           <div className="bg-[#0B1120]/80 p-3 rounded-xl border border-slate-800/80 space-y-3 shadow-inner">
             <div>
               <div className="flex items-center justify-between text-xs font-mono mb-1">
-                <span className="text-slate-400">Min Suitability Threshold</span>
+                <label htmlFor="min-score-threshold" className="text-slate-400 cursor-pointer">
+                  Min Suitability Threshold
+                </label>
                 <span className="font-bold text-cyan-400 bg-cyan-950/60 px-1.5 py-0.5 rounded border border-cyan-500/30 text-[11px]">
                   {filter.minScore}
                 </span>
               </div>
               <input
+                id="min-score-threshold"
                 type="range"
                 min="0"
                 max="95"
                 value={filter.minScore}
+                aria-label="Minimum Suitability Threshold Slider"
                 onChange={(e) => setFilter(prev => ({ ...prev, minScore: Number(e.target.value) }))}
                 className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-mono text-slate-400 mb-1">
+              <label htmlFor="geo-feature-type-select" className="block text-[11px] font-mono text-slate-400 mb-1">
                 Geological Feature Type
               </label>
               <select
+                id="geo-feature-type-select"
                 value={filter.siteType}
+                aria-label="Geological Feature Type Selection"
                 onChange={(e) => {
                   soundManager.playClick();
                   setFilter(prev => ({ ...prev, siteType: e.target.value }));

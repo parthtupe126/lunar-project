@@ -26,6 +26,16 @@ interface HeaderProps {
   nasaLive: boolean;
 }
 
+const NAV_ITEMS: { id: ActiveTab; label: string; icon: React.ReactNode }[] = [
+  { id: 'dashboard', label: 'DASHBOARD', icon: <BarChart3 className="w-3.5 h-3.5" /> },
+  { id: 'map', label: 'LUNAR MAP', icon: <Globe2 className="w-3.5 h-3.5" /> },
+  { id: 'analysis', label: 'SITE ANALYSIS', icon: <Compass className="w-3.5 h-3.5" /> },
+  { id: 'optimization', label: 'OPTIMIZATION', icon: <Sliders className="w-3.5 h-3.5" /> },
+  { id: 'layers', label: 'DATA LAYERS', icon: <Layers className="w-3.5 h-3.5" /> },
+  { id: 'mission', label: 'MISSION PLANNER', icon: <Rocket className="w-3.5 h-3.5" /> },
+  { id: 'risk', label: 'RISK MONITOR', icon: <ShieldAlert className="w-3.5 h-3.5" /> },
+];
+
 export const Header: React.FC<HeaderProps> = ({
   activeTab,
   setActiveTab,
@@ -44,16 +54,6 @@ export const Header: React.FC<HeaderProps> = ({
     setIsMuted(nextMuted);
     if (!nextMuted) soundManager.playSelect();
   };
-
-  const navItems: { id: ActiveTab; label: string; icon: React.ReactNode }[] = [
-    { id: 'dashboard', label: 'DASHBOARD', icon: <BarChart3 className="w-3.5 h-3.5" /> },
-    { id: 'map', label: 'LUNAR MAP', icon: <Globe2 className="w-3.5 h-3.5" /> },
-    { id: 'analysis', label: 'SITE ANALYSIS', icon: <Compass className="w-3.5 h-3.5" /> },
-    { id: 'optimization', label: 'OPTIMIZATION', icon: <Sliders className="w-3.5 h-3.5" /> },
-    { id: 'layers', label: 'DATA LAYERS', icon: <Layers className="w-3.5 h-3.5" /> },
-    { id: 'mission', label: 'MISSION PLANNER', icon: <Rocket className="w-3.5 h-3.5" /> },
-    { id: 'risk', label: 'RISK MONITOR', icon: <ShieldAlert className="w-3.5 h-3.5" /> },
-  ];
 
   return (
     <header className="h-16 px-5 bg-[#070B14]/90 border-b border-slate-800/80 backdrop-blur-xl flex items-center justify-between z-30 shrink-0 select-none">
@@ -80,7 +80,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Main Navigation Tabs */}
       <nav className="flex items-center bg-[#0B1120]/90 p-1 rounded-xl border border-slate-700/60 shadow-inner">
-        {navItems.map((item) => {
+        {NAV_ITEMS.map((item) => {
           const isActive = activeTab === item.id;
           return (
             <button

@@ -25,17 +25,46 @@ import {
 } from 'lucide-react';
 import { soundManager } from '../utils/audio';
 
+const DEFAULT_SITES = [];
+const DEFAULT_WEIGHTS = {};
+const NOOP = () => {};
+
+
+const DEFAULT_WHY_SITE = [
+  { text: 'Peak of Eternal Light: high annual solar illumination along ridge', type: 'positive' },
+  { text: 'Direct adjacent access to volatile cold trap reserves', type: 'positive' }
+];
+
+function getSiteBadge(s) {
+  if (!s) return { label: 'Candidate', flag: '🌑', color: 'text-slate-300 bg-slate-900 border-slate-700' };
+  const id = s.id?.toLowerCase() || '';
+  const name = s.name?.toLowerCase() || '';
+  if (id.includes('ch') || id.includes('lupex') || id.includes('jawahar') || id.includes('tiranga') || id.includes('shiv') || name.includes('chandrayaan')) {
+    return { label: 'ISRO', flag: '🇮🇳', color: 'text-orange-400 bg-orange-950/60 border-orange-500/40' };
+  }
+  if (id.includes('apollo') || name.includes('apollo')) {
+    return { label: 'Apollo', flag: '🇺🇸', color: 'text-blue-300 bg-blue-950/60 border-blue-500/40' };
+  }
+  if (id.includes('artemis') || name.includes('artemis')) {
+    return { label: 'Artemis', flag: '🇺🇸', color: 'text-cyan-400 bg-cyan-950/60 border-cyan-500/40' };
+  }
+  if (id.includes('spacex') || name.includes('spacex') || id.includes('viper') || id.includes('im1')) {
+    return { label: 'CLPS', flag: '🚀', color: 'text-emerald-400 bg-emerald-950/60 border-emerald-500/40' };
+  }
+  return { label: s.siteType || 'Candidate', flag: '🌑', color: 'text-slate-300 bg-slate-900 border-slate-700' };
+}
+
 /**
  * Scoreboard: Panel showing top habitat candidate coordinates, rankings, and AI analysis breakdown
  */
 export const Scoreboard = ({
-  sites = [],
+  sites = DEFAULT_SITES,
   selectedSite = null,
-  onSelectSite = () => {},
-  onOpenReport = () => {},
-  onOpenDeepDive = () => {},
-  onOpenMissions = () => {},
-  weights = {}
+  onSelectSite = NOOP,
+  onOpenReport = NOOP,
+  onOpenDeepDive = NOOP,
+  onOpenMissions = NOOP,
+  weights = DEFAULT_WEIGHTS
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
@@ -44,33 +73,7 @@ export const Scoreboard = ({
 
   const topSite = selectedSite || sites[0] || null;
 
-  if (!topSite) {
-    return (
-      <aside className="w-84 h-full bg-[#070B14]/95 border-l border-slate-800/80 p-4 flex flex-col items-center justify-center text-slate-500 backdrop-blur-xl shrink-0">
-        <Sparkles className="w-8 h-8 mb-2 text-slate-600 animate-pulse" />
-        <p className="text-xs font-mono text-center">Loading habitat candidate coordinates...</p>
-      </aside>
-    );
-  }
-
-  const isAiMode = evaluationMode === 'ai';
-
-  // Dynamic Score depending on mode
-  const displayedScore = isAiMode 
-    ? (topSite.ai_suitability_score ?? topSite.suitabilityScore ?? 0)
-    : (topSite.original_mcda_score ?? topSite.suitabilityScore ?? 0);
-
-  // Dynamic factors depending on mode
-  const activeFactors = isAiMode
-    ? (topSite.ai_factors || topSite.factors || {})
-    : (topSite.factors || {});
-
-  // Radial progress gauge calculations
-  const gaugeRadius = 28;
-  const circumference = 2 * Math.PI * gaugeRadius;
-  const clampedScore = Math.min(100, Math.max(0, displayedScore));
-  const strokeDashoffset = circumference - (clampedScore / 100) * circumference;
-
+  // Filtered Candidates list computed unconditionally before any early returns (Rules of Hooks)
   const filteredCandidates = useMemo(() => {
     let list = sites;
     if (activeCategoryFilter === 'top5') list = sites.slice(0, 5);
@@ -112,23 +115,32 @@ export const Scoreboard = ({
     return list;
   }, [sites, isExpanded, activeCategoryFilter, searchQuery]);
 
-  const getSiteBadge = (s) => {
-    const id = s.id?.toLowerCase() || '';
-    const name = s.name?.toLowerCase() || '';
-    if (id.includes('ch') || id.includes('lupex') || id.includes('jawahar') || id.includes('tiranga') || id.includes('shiv') || name.includes('chandrayaan')) {
-      return { label: 'ISRO', flag: '🇮🇳', color: 'text-orange-400 bg-orange-950/60 border-orange-500/40' };
-    }
-    if (id.includes('apollo') || name.includes('apollo')) {
-      return { label: 'Apollo', flag: '🇺🇸', color: 'text-blue-300 bg-blue-950/60 border-blue-500/40' };
-    }
-    if (id.includes('artemis') || name.includes('artemis')) {
-      return { label: 'Artemis', flag: '🇺🇸', color: 'text-cyan-400 bg-cyan-950/60 border-cyan-500/40' };
-    }
-    if (id.includes('spacex') || name.includes('spacex') || id.includes('viper') || id.includes('im1')) {
-      return { label: 'CLPS', flag: '🚀', color: 'text-emerald-400 bg-emerald-950/60 border-emerald-500/40' };
-    }
-    return { label: s.siteType || 'Candidate', flag: '🌑', color: 'text-slate-300 bg-slate-900 border-slate-700' };
-  };
+  if (!topSite) {
+    return (
+      <aside className="w-84 h-full bg-[#070B14]/95 border-l border-slate-800/80 p-4 flex flex-col items-center justify-center text-slate-500 backdrop-blur-xl shrink-0">
+        <Sparkles className="w-8 h-8 mb-2 text-slate-600 animate-pulse" />
+        <p className="text-xs font-mono text-center">Loading habitat candidate coordinates...</p>
+      </aside>
+    );
+  }
+
+  const isAiMode = evaluationMode === 'ai';
+
+  // Dynamic Score depending on mode
+  const displayedScore = isAiMode 
+    ? (topSite.ai_suitability_score ?? topSite.suitabilityScore ?? 0)
+    : (topSite.original_mcda_score ?? topSite.suitabilityScore ?? 0);
+
+  // Dynamic factors depending on mode
+  const activeFactors = isAiMode
+    ? (topSite.ai_factors || topSite.factors || {})
+    : (topSite.factors || {});
+
+  // Radial progress gauge calculations
+  const gaugeRadius = 28;
+  const circumference = 2 * Math.PI * gaugeRadius;
+  const clampedScore = Math.min(100, Math.max(0, displayedScore));
+  const strokeDashoffset = circumference - (clampedScore / 100) * circumference;
 
   return (
     <aside className="w-84 h-full bg-[#070B14]/95 border-l border-slate-800/80 p-4 flex flex-col justify-between overflow-y-auto backdrop-blur-xl z-10 shrink-0 select-none custom-scrollbar animate-smooth-slide-right">
@@ -155,6 +167,7 @@ export const Scoreboard = ({
               <input
                 type="text"
                 placeholder="Search missions (e.g. Apollo, ISRO)..."
+                aria-label="Search lunar candidate sites"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-[#0B1120] border border-slate-700/80 rounded-lg pl-8 pr-3 py-1 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
@@ -162,250 +175,199 @@ export const Scoreboard = ({
             </div>
           )}
 
-          {/* Expanded Category Filter Pills */}
-          {isExpanded && (
-            <div className="flex items-center gap-1 overflow-x-auto pb-1 mb-2 no-scrollbar">
+          {/* Filter Pills */}
+          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-1 mb-2">
+            {[
+              { id: 'all', label: 'All' },
+              { id: 'top5', label: 'Top 5' },
+              { id: 'isro', label: '🇮🇳 ISRO' },
+              { id: 'apollo', label: '🇺🇸 Apollo' },
+              { id: 'nasa', label: '🚀 Artemis' },
+              { id: 'southpole', label: '❄️ South Pole' }
+            ].map((f) => (
               <button
+                key={f.id}
+                type="button"
                 onClick={() => {
                   soundManager.playClick();
-                  setActiveCategoryFilter('all');
+                  setActiveCategoryFilter(f.id);
                 }}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold whitespace-nowrap transition-all ${
-                  activeCategoryFilter === 'all'
+                className={`px-2 py-0.5 rounded text-[10px] font-mono font-semibold whitespace-nowrap transition-colors cursor-pointer ${
+                  activeCategoryFilter === f.id
                     ? 'bg-cyan-600 text-white shadow-glow-cyan'
-                    : 'bg-[#0B1120] text-slate-400 hover:text-white border border-slate-800'
+                    : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
                 }`}
               >
-                All ({sites.length})
+                {f.label}
               </button>
-              <button
-                onClick={() => {
-                  soundManager.playClick();
-                  setActiveCategoryFilter('isro');
-                }}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold whitespace-nowrap transition-all ${
-                  activeCategoryFilter === 'isro'
-                    ? 'bg-orange-600 text-white shadow-glow-orange'
-                    : 'bg-[#0B1120] text-slate-400 hover:text-orange-400 border border-slate-800'
-                }`}
-              >
-                🇮🇳 ISRO (4)
-              </button>
-              <button
-                onClick={() => {
-                  soundManager.playClick();
-                  setActiveCategoryFilter('nasa');
-                }}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold whitespace-nowrap transition-all ${
-                  activeCategoryFilter === 'nasa'
-                    ? 'bg-blue-600 text-white shadow-glow-cyan'
-                    : 'bg-[#0B1120] text-slate-400 hover:text-blue-400 border border-slate-800'
-                }`}
-              >
-                🇺🇸 NASA (10)
-              </button>
-              <button
-                onClick={() => {
-                  soundManager.playClick();
-                  setActiveCategoryFilter('apollo');
-                }}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold whitespace-nowrap transition-all ${
-                  activeCategoryFilter === 'apollo'
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-[#0B1120] text-slate-400 hover:text-indigo-400 border border-slate-800'
-                }`}
-              >
-                Apollo (6)
-              </button>
-              <button
-                onClick={() => {
-                  soundManager.playClick();
-                  setActiveCategoryFilter('southpole');
-                }}
-                className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold whitespace-nowrap transition-all ${
-                  activeCategoryFilter === 'southpole'
-                    ? 'bg-purple-600 text-white shadow-glow-purple'
-                    : 'bg-[#0B1120] text-slate-400 hover:text-purple-400 border border-slate-800'
-                }`}
-              >
-                🌑 South Pole
-              </button>
-            </div>
-          )}
+            ))}
+          </div>
 
-          {/* Top Candidates Ranked List with Image Previews */}
-          <div className={`space-y-1.5 mb-2 ${isExpanded ? 'max-h-[30rem] overflow-y-auto pr-1 custom-scrollbar' : ''}`}>
-            {filteredCandidates.map((s) => {
-              const originalIndex = sites.findIndex(item => item.id === s.id);
-              const rankNum = originalIndex >= 0 ? originalIndex + 1 : 1;
-              const isSelected = topSite.id === s.id;
+          {/* Top Candidates List */}
+          <div className="space-y-1.5 max-h-56 overflow-y-auto custom-scrollbar pr-0.5">
+            {filteredCandidates.map((s, index) => {
+              const isSelected = s.id === topSite.id;
               const badge = getSiteBadge(s);
+              const score = isAiMode 
+                ? (s.ai_suitability_score ?? s.suitabilityScore ?? 0)
+                : (s.original_mcda_score ?? s.suitabilityScore ?? 0);
 
+              
               return (
-                <button
+                <div
                   key={s.id}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => {
-                    soundManager.playSelect();
+                    soundManager.playClick();
                     onSelectSite(s);
                   }}
-                  className={`w-full p-2.5 rounded-xl border text-left transition-all flex items-center justify-between gap-2.5 cursor-pointer ${
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      soundManager.playClick();
+                      onSelectSite(s);
+                    }
+                  }}
+                  aria-label={`Select site ${s.shortName || s.name}`}
+                  className={`p-2 rounded-xl border transition-colors cursor-pointer flex items-center justify-between group focus:outline-none focus:ring-1 focus:ring-cyan-500 ${
                     isSelected
-                      ? 'bg-purple-950/50 border-purple-500/90 shadow-glow-purple ring-1 ring-purple-500/40'
-                      : 'bg-[#0B1120] border-slate-800/90 hover:border-cyan-500/40 hover:bg-slate-900/80'
+                      ? 'bg-cyan-950/60 border-cyan-500/60 shadow-[0_0_15px_rgba(6,182,212,0.15)]'
+                      : 'bg-[#0B1120]/70 hover:bg-slate-800/80 border-slate-800/80 hover:border-slate-700'
                   }`}
                 >
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1.5 mb-0.5">
-                      <span className="text-[10px] font-mono font-bold text-slate-400">
-                        Site #{rankNum}
-                      </span>
-                      {rankNum <= 3 && (
-                        <span className="text-[9px] px-1 rounded bg-amber-950/70 text-amber-300 border border-amber-500/40 font-mono font-bold">
-                          {rankNum === 1 ? '🥇 TOP' : rankNum === 2 ? '🥈' : '🥉'}
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className={`text-xs font-mono font-bold w-4 text-center ${
+                      index === 0 ? 'text-amber-400' : index === 1 ? 'text-slate-300' : index === 2 ? 'text-amber-600' : 'text-slate-500'
+                    }`}>
+                      #{index + 1}
+                    </span>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-xs font-mono font-bold text-white truncate">
+                          {s.shortName || s.name}
                         </span>
-                      )}
-                      <span className={`text-[9px] font-mono font-semibold px-1.5 py-0.2 rounded border ${badge.color}`}>
-                        {badge.flag} {badge.label}
-                      </span>
-                    </div>
-
-                    <div className="font-mono font-bold text-xs text-white truncate" title={s.name}>
-                      {s.name || s.code || s.shortName}
-                    </div>
-
-                    <div className="flex items-center gap-2 font-mono text-[10px] mt-1">
-                      <span className="text-cyan-300 font-bold bg-cyan-950/60 px-1.5 py-0.2 rounded border border-cyan-500/30">
-                        {s.suitabilityScore.toFixed(1)}%
-                      </span>
-                      <span className="text-slate-500">
-                        {s.latitude?.toFixed(1)}°, {s.longitude?.toFixed(1)}°
-                      </span>
+                        <span className={`text-[9px] px-1 rounded border ${badge.color}`}>
+                          {badge.flag} {badge.label}
+                        </span>
+                      </div>
+                      <div className="text-[10px] font-mono text-slate-400 flex items-center gap-2">
+                        <span>Lat: {s.latitude?.toFixed(1)}°</span>
+                        <span>Lon: {s.longitude?.toFixed(1)}°</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Thumbnail Preview */}
-                  <div className="w-16 h-12 rounded-lg overflow-hidden border border-slate-700/80 shrink-0 bg-black shadow-md relative group">
-                    <img 
-                      src={s.surfaceImageUrl || s.thumbnail} 
-                      alt={s.code}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      loading="lazy"
-                    />
+                  <div className="text-right shrink-0">
+                    <div className="text-xs font-mono font-bold text-cyan-400">
+                      {score.toFixed(1)}
+                    </div>
+                    <div className="text-[9px] font-mono text-slate-400">
+                      {s.tier ? s.tier.replace('_', ' ') : 'SUITABLE'}
+                    </div>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
 
-          {/* Interactive Show More / Show Less Toggle Button */}
-          {sites.length > 5 && (
-            <button
-              onClick={() => {
-                soundManager.playClick();
-                setIsExpanded(!isExpanded);
-              }}
-              className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-cyan-950/60 to-purple-950/60 hover:from-cyan-900/80 hover:to-purple-900/80 border border-cyan-500/40 hover:border-cyan-400 text-cyan-300 hover:text-white text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg"
-            >
-              {isExpanded ? (
-                <>
-                  <span>Show Top 5 Only</span>
-                  <ChevronUp className="w-4 h-4 text-cyan-400" />
-                </>
-              ) : (
-                <>
-                  <span>Show All 23 Candidate Missions ({sites.length - 5} More)</span>
-                  <ChevronDown className="w-4 h-4 text-cyan-400" />
-                </>
-              )}
-            </button>
-          )}
-
-          {/* Quick Launch Full Directory Modal */}
-          {isExpanded && (
-            <button
-              onClick={() => {
-                soundManager.playSelect();
-                onOpenMissions();
-              }}
-              className="w-full mt-2 py-1.5 px-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-cyan-400 hover:text-white text-[11px] font-mono transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
-            >
-              <Rocket className="w-3.5 h-3.5 text-orange-400" />
-              <span>Open 23 Missions Catalogue Modal ↗</span>
-            </button>
-          )}
+          {/* Expand/Collapse Button */}
+          <button
+            type="button"
+            onClick={() => {
+              soundManager.playClick();
+              setIsExpanded(!isExpanded);
+            }}
+            className="w-full mt-2 py-1 bg-slate-900/60 hover:bg-slate-800/80 text-slate-400 hover:text-slate-200 text-[10px] font-mono rounded-lg border border-slate-800 flex items-center justify-center gap-1 transition-colors cursor-pointer"
+          >
+            {isExpanded ? (
+              <>
+                <span>Show Top 5 Only</span>
+                <ChevronUp className="w-3 h-3" />
+              </>
+            ) : (
+              <>
+                <span>View All {sites.length} Analyzed Sites</span>
+                <ChevronDown className="w-3 h-3" />
+              </>
+            )}
+          </button>
         </div>
 
-        {/* SELECTED SITE DOSSIER */}
-        <div className="bg-[#0B1120]/80 p-3.5 rounded-2xl border border-slate-800/80 shadow-inner space-y-3">
+        {/* SECTION 2: TOP SITE DEEP-DIVE CARD */}
+        <div className="bg-[#0B1120]/90 rounded-2xl border border-cyan-500/30 p-3.5 space-y-3 shadow-lg">
           
-          {/* Site Title & Geographic Coordinates Banner */}
-          <div className="flex items-start justify-between border-b border-slate-800/80 pb-2.5">
+          {/* Site Header & Rank Badge */}
+          <div className="flex items-start justify-between">
             <div>
-              <div className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-                <h3 className="text-base font-bold text-white font-mono">
-                  {topSite.code} — {topSite.shortName}
-                </h3>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-[10px] font-mono text-cyan-400 bg-cyan-950/80 px-1.5 py-0.2 rounded border border-cyan-500/30 font-bold">
+                  RANK #1 SELECTED NODE
+                </span>
+                <span className="text-[10px] font-mono text-slate-400">
+                  {topSite.code}
+                </span>
               </div>
-              {/* Detailed Lunar Coordinates */}
-              <div className="text-[11px] font-mono text-cyan-300 mt-1 flex items-center gap-2">
-                <span>Lat: <strong>{topSite.latitude.toFixed(2)}°S</strong></span>
-                <span>•</span>
-                <span>Lon: <strong>{topSite.longitude.toFixed(2)}°E</strong></span>
-                <span>•</span>
-                <span>Alt: <strong>{topSite.elevationMeters}m</strong></span>
-              </div>
+              <h3 className="text-sm font-mono font-bold text-white leading-tight">
+                {topSite.name}
+              </h3>
+              <p className="text-[10px] font-mono text-slate-400 mt-0.5">
+                {topSite.latitude?.toFixed(3)}°S, {topSite.longitude?.toFixed(3)}°E • Elevation: {topSite.elevationMeters ?? 4120}m
+              </p>
             </div>
 
-            <span className={`text-[9px] font-mono font-bold px-2 py-1 rounded-md border shrink-0 ${
-              topSite.tier === 'HIGHLY SUITABLE' 
-                ? 'bg-purple-950/80 text-purple-300 border-purple-500/50 shadow-glow-purple'
-                : topSite.tier === 'SUITABLE'
-                ? 'bg-emerald-950/80 text-emerald-300 border-emerald-500/40'
-                : 'bg-amber-950/80 text-amber-300 border-amber-500/40'
-            }`}>
-              {topSite.tier}
-            </span>
+            {/* Radial Suitability Score Meter */}
+            <div className="relative w-16 h-16 flex items-center justify-center shrink-0">
+              <svg className="w-16 h-16 transform -rotate-90">
+                <circle
+                  cx="32"
+                  cy="32"
+                  r={gaugeRadius}
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  className="text-slate-800"
+                  fill="transparent"
+                />
+                <circle
+                  cx="32"
+                  cy="32"
+                  r={gaugeRadius}
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
+                  strokeLinecap="round"
+                  className={isAiMode ? "text-purple-400 transition-[stroke-dashoffset] duration-700" : "text-cyan-400 transition-[stroke-dashoffset] duration-700"}
+                  fill="transparent"
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span className="text-xs font-mono font-black text-white leading-none">
+                  {displayedScore.toFixed(1)}
+                </span>
+                <span className="text-[8px] font-mono text-slate-400 leading-none mt-0.5">
+                  / 100
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Real Lunar Reconnaissance Optical Imagery Card */}
-          {topSite.thumbnail && (
-            <div className="relative rounded-xl overflow-hidden border border-slate-800 bg-slate-950 group shadow-lg">
-              <img 
-                src={topSite.thumbnail} 
-                alt={topSite.name}
-                className="w-full h-28 object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-black/30" />
-              <div className="absolute bottom-1.5 left-2 right-2 flex items-center justify-between text-[9px] font-mono text-slate-300">
-                <span className="flex items-center gap-1 bg-black/70 px-1.5 py-0.5 rounded backdrop-blur-sm border border-slate-700/50">
-                  <Camera className="w-2.5 h-2.5 text-cyan-400" />
-                  <span>NASA LRO Optical Survey</span>
-                </span>
-                <span className="bg-black/70 px-1.5 py-0.5 rounded backdrop-blur-sm text-cyan-300 font-bold border border-slate-700/50">
-                  {topSite.elevationMeters > 0 ? `+${topSite.elevationMeters}m` : `${topSite.elevationMeters}m`}
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* Toggle Switch: NASA Calibrated vs AI Model Predictions */}
-          <div className="bg-[#070B14] p-1 rounded-xl border border-slate-800 flex items-center gap-1 shadow-inner">
+          {/* AI vs NASA Domain Calibrated Toggle */}
+          <div className="grid grid-cols-2 gap-1 p-0.5 bg-[#050811] rounded-lg border border-slate-800 text-[10px] font-mono">
             <button
               type="button"
               onClick={() => {
                 soundManager.playClick();
                 setEvaluationMode('calibrated');
               }}
-              className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg text-[10px] font-mono font-bold transition-all cursor-pointer ${
-                !isAiMode
-                  ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-glow-cyan'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+              className={`py-1 rounded flex items-center justify-center gap-1 transition-colors cursor-pointer ${
+                evaluationMode === 'calibrated'
+                  ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/40 font-bold'
+                  : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              <Database className="w-3 h-3 text-cyan-300" />
-              <span>NASA Calibrated</span>
+              <Database className="w-3 h-3 text-cyan-400" />
+              <span>NASA MCDA</span>
             </button>
             <button
               type="button"
@@ -413,72 +375,15 @@ export const Scoreboard = ({
                 soundManager.playClick();
                 setEvaluationMode('ai');
               }}
-              className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg text-[10px] font-mono font-bold transition-all cursor-pointer ${
-                isAiMode
-                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-glow-purple'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+              className={`py-1 rounded flex items-center justify-center gap-1 transition-colors cursor-pointer ${
+                evaluationMode === 'ai'
+                  ? 'bg-purple-950 text-purple-300 border border-purple-500/40 font-bold'
+                  : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              <Cpu className="w-3 h-3 text-purple-300" />
-              <span>AI Pred (JSON)</span>
+              <Cpu className="w-3 h-3 text-purple-400" />
+              <span>XGBoost ML</span>
             </button>
-          </div>
-
-          {/* Big Circular Progress Score Gauge */}
-          <div className="flex items-center gap-3.5 bg-[#070B14]/90 p-3 rounded-xl border border-slate-800 overflow-hidden">
-            <div className="relative w-16 h-16 flex items-center justify-center shrink-0">
-              <svg viewBox="0 0 72 72" className="w-16 h-16 -rotate-90 origin-center block">
-                <circle
-                  cx="36"
-                  cy="36"
-                  r={gaugeRadius}
-                  className="stroke-slate-800"
-                  strokeWidth="5.5"
-                  fill="transparent"
-                />
-                <circle
-                  cx="36"
-                  cy="36"
-                  r={gaugeRadius}
-                  className={`${isAiMode ? 'stroke-purple-500' : 'stroke-cyan-400'} transition-all duration-700`}
-                  strokeWidth="5.5"
-                  strokeDasharray={circumference}
-                  strokeDashoffset={strokeDashoffset}
-                  strokeLinecap="round"
-                  fill="transparent"
-                  style={{ filter: isAiMode ? 'drop-shadow(0 0 4px rgba(168, 85, 247, 0.6))' : 'drop-shadow(0 0 4px rgba(6, 182, 212, 0.6))' }}
-                />
-              </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <span className="text-base font-black font-mono text-white leading-none">
-                  {displayedScore.toFixed(1)}
-                </span>
-                <span className="text-[8px] font-mono text-slate-400 leading-tight">
-                  / 100
-                </span>
-              </div>
-            </div>
-
-            <div className="space-y-1 min-w-0">
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs font-semibold text-slate-200 truncate">
-                  {isAiMode ? 'Overall AI Suitability' : 'NASA MCDA Suitability'}
-                </span>
-                <span className={`text-[8px] px-1 py-0.2 rounded font-mono font-bold border ${
-                  isAiMode 
-                    ? 'bg-purple-950/70 text-purple-300 border-purple-500/40' 
-                    : 'bg-cyan-950/70 text-cyan-300 border-cyan-500/40'
-                }`}>
-                  {isAiMode ? 'AI' : 'MCDA'}
-                </span>
-              </div>
-              <div className="text-[10px] text-slate-400 font-mono">
-                AI Confidence: <strong className="text-emerald-400">{topSite.aiConfidence}%</strong>
-              </div>
-              <div className="text-[10px] text-slate-400 font-mono">
-                Traverse to Ice PSR: <strong className="text-cyan-300">{topSite.distanceToPsrMeters}m</strong>
-              </div>
-            </div>
           </div>
 
           {/* Key Factor Breakdown Progress Bars */}
@@ -508,7 +413,7 @@ export const Scoreboard = ({
               </div>
               <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                 <div
-                  className="bg-emerald-400 h-full rounded-full transition-all duration-500 shadow-glow-emerald"
+                  className="bg-emerald-400 h-full rounded-full transition-[width] duration-500 shadow-glow-emerald"
                   style={{ width: `${Math.round(activeFactors.terrain ?? 85)}%` }}
                 />
               </div>
@@ -526,7 +431,7 @@ export const Scoreboard = ({
               </div>
               <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                 <div
-                  className="bg-cyan-400 h-full rounded-full transition-all duration-500 shadow-glow-cyan"
+                  className="bg-cyan-400 h-full rounded-full transition-[width] duration-500 shadow-glow-cyan"
                   style={{ width: `${Math.round(activeFactors.waterIce ?? 80)}%` }}
                 />
               </div>
@@ -544,7 +449,7 @@ export const Scoreboard = ({
               </div>
               <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                 <div
-                  className="bg-amber-400 h-full rounded-full transition-all duration-500 shadow-glow-amber"
+                  className="bg-amber-400 h-full rounded-full transition-[width] duration-500 shadow-glow-amber"
                   style={{ width: `${Math.round(activeFactors.solarIllumination ?? 90)}%` }}
                 />
               </div>
@@ -562,7 +467,7 @@ export const Scoreboard = ({
               </div>
               <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                 <div
-                  className="bg-purple-400 h-full rounded-full transition-all duration-500 shadow-glow-purple"
+                  className="bg-purple-400 h-full rounded-full transition-[width] duration-500 shadow-glow-purple"
                   style={{ width: `${Math.round(activeFactors.radiationSafety ?? 80)}%` }}
                 />
               </div>
@@ -580,7 +485,7 @@ export const Scoreboard = ({
               </div>
               <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                 <div
-                  className="bg-sky-400 h-full rounded-full transition-all duration-500"
+                  className="bg-sky-400 h-full rounded-full transition-[width] duration-500"
                   style={{ width: `${Math.round(activeFactors.accessibility ?? 82)}%` }}
                 />
               </div>
@@ -593,14 +498,12 @@ export const Scoreboard = ({
               KEY SITE ATTRIBUTES
             </div>
             <ul className="space-y-1 text-[11px]">
-              {(topSite.whyThisSite || [
-                { text: 'Peak of Eternal Light: high annual solar illumination along ridge', type: 'positive' },
-                { text: 'Direct adjacent access to volatile cold trap reserves', type: 'positive' }
-              ]).slice(0, 4).map((item, idx) => {
+              {(topSite.whyThisSite || DEFAULT_WHY_SITE).slice(0, 4).map((item) => {
                 const isPositive = typeof item === 'string' ? !item.toLowerCase().includes('warning') && !item.toLowerCase().includes('hazard') : item.type === 'positive';
                 const text = typeof item === 'string' ? item : item.text || JSON.stringify(item);
+                
                 return (
-                  <li key={idx} className="flex items-start gap-1.5 text-slate-300 leading-tight">
+                  <li key={typeof item === 'string' ? item : item.text} className="flex items-start gap-1.5 text-slate-300 leading-tight">
                     {isPositive ? (
                       <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" />
                     ) : (
@@ -620,22 +523,24 @@ export const Scoreboard = ({
       {/* ACTION BAR: FULL DOSSIER REPORT & SCIENTIFIC TELEMETRY PAGE */}
       <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
         <button
+          type="button"
           onClick={() => {
             soundManager.playSelect();
             onOpenDeepDive();
           }}
-          className="w-full py-2.5 bg-gradient-to-r from-purple-700 via-indigo-600 to-cyan-600 hover:from-purple-600 hover:to-cyan-500 text-white rounded-xl font-mono text-xs font-bold transition-all shadow-glow-cyan flex items-center justify-center gap-2 border border-cyan-400/40 cursor-pointer"
+          className="w-full py-2.5 bg-gradient-to-r from-purple-700 via-indigo-600 to-cyan-600 hover:from-purple-600 hover:to-cyan-500 text-white rounded-xl font-mono text-xs font-bold transition-[background-color,border-color,box-shadow] shadow-glow-cyan flex items-center justify-center gap-2 border border-cyan-400/40 cursor-pointer"
         >
           <Rocket className="w-4 h-4 text-cyan-300" />
           <span>Open Full Scientific Telemetry Page ↗</span>
         </button>
 
         <button
+          type="button"
           onClick={() => {
             soundManager.playSelect();
             onOpenReport();
           }}
-          className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white rounded-xl font-mono text-xs font-bold transition-all shadow-glow-purple flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white rounded-xl font-mono text-xs font-bold transition-[background-color,box-shadow] shadow-glow-purple flex items-center justify-center gap-2 cursor-pointer"
         >
           <FileText className="w-4 h-4" />
           <span>Generate AI Mission Dossier</span>

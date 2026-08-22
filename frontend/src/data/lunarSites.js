@@ -1953,7 +1953,7 @@ export const LUNAR_MISSIONS = [
   }
 ];
 
-export const LUNAR_LANDMARKS = [
+const LUNAR_LANDMARKS = [
   { name: 'Apollo 11 Tranquility Base', lat: 0.67, lon: 23.47, type: 'Historic', missionId: 'apollo_11' },
   { name: 'Chandrayaan-3 Shiv Shakti', lat: -69.37, lon: 32.32, type: 'Historic', missionId: 'ch3_shiv_shakti' },
   { name: 'Apollo 17 Taurus-Littrow', lat: 20.19, lon: 30.77, type: 'Historic', missionId: 'apollo_17' },

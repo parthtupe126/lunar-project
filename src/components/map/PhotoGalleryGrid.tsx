@@ -9,6 +9,29 @@ interface PhotoGalleryGridProps {
   onViewLander?: (image: GalleryImage) => void;
 }
 
+const DEFAULT_GALLERY: GalleryImage[] = [
+  {
+    url: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
+    alt_text: 'Surface Crew & Lunar Lander Touchdown Zone',
+    overlayText: ''
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    alt_text: 'Orbital Descent & Lunar Landing Vehicle',
+    overlayText: 'View Lander'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
+    alt_text: 'Autonomous Surface Exploration Rover',
+    overlayText: ''
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
+    alt_text: 'Pressurized Base Habitat & In-Situ Infrastructure',
+    overlayText: ''
+  }
+];
+
 export const PhotoGalleryGrid: React.FC<PhotoGalleryGridProps> = ({
   images = [],
   siteName = 'Lunar Target',
@@ -16,30 +39,7 @@ export const PhotoGalleryGrid: React.FC<PhotoGalleryGridProps> = ({
 }) => {
   const [activeLightboxImage, setActiveLightboxImage] = useState<GalleryImage | null>(null);
 
-  const defaultGallery: GalleryImage[] = [
-    {
-      url: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-      alt_text: 'Surface Crew & Lunar Lander Touchdown Zone',
-      overlayText: ''
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-      alt_text: 'Orbital Descent & Lunar Landing Vehicle',
-      overlayText: 'View Lander'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-      alt_text: 'Autonomous Surface Exploration Rover',
-      overlayText: ''
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
-      alt_text: 'Pressurized Base Habitat & In-Situ Infrastructure',
-      overlayText: ''
-    }
-  ];
-
-  const displayImages = (images && images.length > 0) ? images.slice(0, 4) : defaultGallery;
+  const displayImages = (images && images.length > 0) ? images.slice(0, 4) : DEFAULT_GALLERY;
 
   const handlePillClick = (e: React.MouseEvent, img: GalleryImage) => {
     e.stopPropagation();
@@ -56,7 +56,7 @@ export const PhotoGalleryGrid: React.FC<PhotoGalleryGridProps> = ({
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
         {displayImages.map((img, idx) => (
           <div
-            key={idx}
+            key={img.url}
             onClick={() => {
               soundManager.playClick();
               setActiveLightboxImage(img);

@@ -1,6 +1,0 @@
-@echo off
-set PATH=C:\Program Files\nodejs;%PATH%
-echo [1/2] Installing dependencies...
-call npm install
-echo [2/2] Starting Vite Dev Server...
-call npm run dev

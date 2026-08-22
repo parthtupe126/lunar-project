@@ -1,3 +1,4 @@
+import * as _scientificVisualizers from './utils/scientificVisualizers';
 import React, { useState, useEffect, useMemo } from 'react';
 import { Map3D } from './components/Map3D';
 import { LayerControls } from './components/LayerControls';
@@ -8,6 +9,7 @@ import { LocationDeepDiveModal } from './components/LocationDeepDiveModal';
 import { MissionsExplorerModal } from './components/MissionsExplorerModal';
 import { TeamModal } from './components/TeamModal';
 import { OpeningAnimation } from './components/OpeningAnimation';
+import { Footer } from './components/Footer';
 import { INITIAL_LUNAR_SITES } from './data/lunarSites';
 import { rankSites } from './utils/aiEngine';
 import { ApiService } from './api';
@@ -290,6 +292,12 @@ export function App() {
       <TeamModal
         isOpen={isTeamOpen}
         onClose={() => setIsTeamOpen(false)}
+      />
+
+      {/* Footer Status Bar */}
+      <Footer
+        totalCandidateSites={rankedSites.length}
+        bestScore={rankedSites[0]?.suitabilityScore || 94.2}
       />
 
       {/* 8. Cinematic Opening / Initialization Sequence */}

@@ -110,6 +110,16 @@ function compositeRisk(site: LunarSite): number {
   return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
 }
 
+const ALERT_BG_MAP: Record<string, string> = {
+  CRITICAL: 'bg-rose-950/60 border-rose-500/60',
+  HIGH: 'bg-orange-950/60 border-orange-500/60',
+  MODERATE: 'bg-amber-950/60 border-amber-500/50',
+  NOMINAL: 'bg-emerald-950/40 border-emerald-500/40',
+};
+const ALERT_TEXT_MAP: Record<string, string> = {
+  CRITICAL: 'text-rose-400', HIGH: 'text-orange-400', MODERATE: 'text-amber-400', NOMINAL: 'text-emerald-400',
+};
+
 export const RiskMonitorView: React.FC<RiskMonitorViewProps> = ({
   sites,
   selectedSite,
@@ -124,16 +134,6 @@ export const RiskMonitorView: React.FC<RiskMonitorViewProps> = ({
   const isHighFlare = flareLevel.startsWith('M') || flareLevel.startsWith('X');
   const isMedFlare = flareLevel.startsWith('C') && parseFloat(flareLevel.slice(1)) > 5;
   const overallSpaceAlertLevel = spaceWeather.cmeAlert ? 'CRITICAL' : isHighFlare ? 'HIGH' : isMedFlare ? 'MODERATE' : 'NOMINAL';
-
-  const alertBgMap: Record<string, string> = {
-    CRITICAL: 'bg-rose-950/60 border-rose-500/60',
-    HIGH: 'bg-orange-950/60 border-orange-500/60',
-    MODERATE: 'bg-amber-950/60 border-amber-500/50',
-    NOMINAL: 'bg-emerald-950/40 border-emerald-500/40',
-  };
-  const alertTextMap: Record<string, string> = {
-    CRITICAL: 'text-rose-400', HIGH: 'text-orange-400', MODERATE: 'text-amber-400', NOMINAL: 'text-emerald-400',
-  };
 
   // Top 8 sites for heatmap
   const heatmapSites = useMemo(() => sites.slice(0, 8), [sites]);
@@ -164,17 +164,17 @@ export const RiskMonitorView: React.FC<RiskMonitorViewProps> = ({
       </div>
 
       {/* LIVE NASA HAZARD ALERT BANNER */}
-      <div className={`rounded-2xl border p-4 ${alertBgMap[overallSpaceAlertLevel]}`}>
+      <div className={`rounded-2xl border p-4 ${ALERT_BG_MAP[overallSpaceAlertLevel]}`}>
         <div className="flex items-center gap-3">
           {overallSpaceAlertLevel === 'NOMINAL'
             ? <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
             : overallSpaceAlertLevel === 'CRITICAL'
             ? <Siren className="w-5 h-5 text-rose-400 shrink-0 animate-pulse" />
-            : <AlertTriangle className={`w-5 h-5 shrink-0 ${alertTextMap[overallSpaceAlertLevel]}`} />
+            : <AlertTriangle className={`w-5 h-5 shrink-0 ${ALERT_TEXT_MAP[overallSpaceAlertLevel]}`} />
           }
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <span className={`text-xs font-mono font-bold ${alertTextMap[overallSpaceAlertLevel]}`}>
+              <span className={`text-xs font-mono font-bold ${ALERT_TEXT_MAP[overallSpaceAlertLevel]}`}>
                 ● LIVE NASA SPACE WEATHER — ALERT LEVEL: {overallSpaceAlertLevel}
               </span>
               <span className="text-[10px] font-mono text-slate-500">Updated: {spaceWeather.lastUpdated}</span>
@@ -329,8 +329,8 @@ export const RiskMonitorView: React.FC<RiskMonitorViewProps> = ({
                 : 'Solar activity nominal. Maintain storm shelter readiness protocol at all times.',
               color: isHighFlare || spaceWeather.cmeAlert ? 'text-rose-400' : 'text-emerald-400',
             },
-          ].map((item, i) => (
-            <div key={i} className={`flex items-start gap-3 p-3 rounded-xl border ${item.active ? 'bg-slate-900/80 border-slate-700' : 'bg-slate-950/50 border-slate-800'}`}>
+          ].map((item) => (
+            <div key={item.title} className={`flex items-start gap-3 p-3 rounded-xl border ${item.active ? 'bg-slate-900/80 border-slate-700' : 'bg-slate-950/50 border-slate-800'}`}>
               <span className={item.color}>{item.icon}</span>
               <div>
                 <div className="text-[11px] font-mono font-bold text-white">{item.title}</div>

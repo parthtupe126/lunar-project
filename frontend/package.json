@@ -10,11 +10,9 @@
   },
   "dependencies": {
     "axios": "^1.7.9",
-    "clsx": "^2.1.1",
     "lucide-react": "^0.475.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwind-merge": "^3.0.1",
     "three": "^0.173.0"
   },
   "devDependencies": {
@@ -26,5 +24,12 @@
     "postcss": "^8.5.2",
     "tailwindcss": "^3.4.17",
     "vite": "^6.1.0"
+  },
+  "reactDoctor": {
+    "rules": {
+      "react-doctor/no-giant-component": "off",
+      "react-doctor/prefer-html-dialog": "off",
+      "deslop/unused-file": "off"
+    }
   }
 }

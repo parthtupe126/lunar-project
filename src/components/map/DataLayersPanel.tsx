@@ -22,6 +22,17 @@ interface DataLayersPanelProps {
   setFilter: React.Dispatch<React.SetStateAction<FilterState>>;
 }
 
+const LAYER_ITEMS: { key: keyof LayerVisibility; label: string; icon: React.ReactNode; color: string }[] = [
+  { key: 'terrain', label: 'Terrain', icon: <Mountain className="w-4 h-4 text-cyan-400" />, color: 'peer-checked:bg-cyan-500' },
+  { key: 'elevation', label: 'Elevation', icon: <Layers className="w-4 h-4 text-blue-400" />, color: 'peer-checked:bg-blue-500' },
+  { key: 'slope', label: 'Slope', icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, color: 'peer-checked:bg-emerald-500' },
+  { key: 'waterIce', label: 'Water Ice', icon: <Droplets className="w-4 h-4 text-cyan-300" />, color: 'peer-checked:bg-cyan-400' },
+  { key: 'illumination', label: 'Illumination', icon: <Sun className="w-4 h-4 text-amber-400" />, color: 'peer-checked:bg-amber-500' },
+  { key: 'radiation', label: 'Radiation', icon: <Radiation className="w-4 h-4 text-purple-400" />, color: 'peer-checked:bg-purple-500' },
+  { key: 'temperature', label: 'Temperature', icon: <Thermometer className="w-4 h-4 text-rose-400" />, color: 'peer-checked:bg-rose-500' },
+  { key: 'aiSuitability', label: 'AI Suitability', icon: <Cpu className="w-4 h-4 text-emerald-300" />, color: 'peer-checked:bg-emerald-500' },
+];
+
 export const DataLayersPanel: React.FC<DataLayersPanelProps> = ({
   layers,
   setLayers,
@@ -32,17 +43,6 @@ export const DataLayersPanel: React.FC<DataLayersPanelProps> = ({
     soundManager.playClick();
     setLayers((prev) => ({ ...prev, [layerKey]: !prev[layerKey] }));
   };
-
-  const layerItems: { key: keyof LayerVisibility; label: string; icon: React.ReactNode; color: string }[] = [
-    { key: 'terrain', label: 'Terrain', icon: <Mountain className="w-4 h-4 text-cyan-400" />, color: 'peer-checked:bg-cyan-500' },
-    { key: 'elevation', label: 'Elevation', icon: <Layers className="w-4 h-4 text-blue-400" />, color: 'peer-checked:bg-blue-500' },
-    { key: 'slope', label: 'Slope', icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, color: 'peer-checked:bg-emerald-500' },
-    { key: 'waterIce', label: 'Water Ice', icon: <Droplets className="w-4 h-4 text-cyan-300" />, color: 'peer-checked:bg-cyan-400' },
-    { key: 'illumination', label: 'Illumination', icon: <Sun className="w-4 h-4 text-amber-400" />, color: 'peer-checked:bg-amber-500' },
-    { key: 'radiation', label: 'Radiation', icon: <Radiation className="w-4 h-4 text-purple-400" />, color: 'peer-checked:bg-purple-500' },
-    { key: 'temperature', label: 'Temperature', icon: <Thermometer className="w-4 h-4 text-rose-400" />, color: 'peer-checked:bg-rose-500' },
-    { key: 'aiSuitability', label: 'AI Suitability', icon: <Cpu className="w-4 h-4 text-emerald-300" />, color: 'peer-checked:bg-emerald-500' },
-  ];
 
   return (
     <aside className="w-72 h-full bg-[#070B14]/90 border-r border-slate-800/80 p-4 flex flex-col justify-between overflow-y-auto backdrop-blur-xl z-10 shrink-0 select-none">
@@ -58,7 +58,7 @@ export const DataLayersPanel: React.FC<DataLayersPanelProps> = ({
 
           {/* Layer Switches List (Matching Image 2) */}
           <div className="space-y-2 bg-[#0B1120]/70 p-2.5 rounded-xl border border-slate-800/80 shadow-inner">
-            {layerItems.map((item) => (
+            {LAYER_ITEMS.map((item) => (
               <label
                 key={item.key}
                 className="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-800/40 cursor-pointer transition-colors"

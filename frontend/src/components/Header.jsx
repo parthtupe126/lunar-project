@@ -2,36 +2,21 @@ import React from 'react';
 import { 
   Rocket, 
   FileText, 
-  Radio, 
-  Sparkles, 
-  Activity,
-  Layers,
-  BarChart3,
-  Server,
+  Users,
   Maximize2,
-  Minimize2,
-  Users
+  Minimize2
 } from 'lucide-react';
 import { soundManager } from '../utils/audio';
 
-export const Header = ({
-  activeTab = 'map',
-  setActiveTab = () => {},
-  isMuted = false,
-  setIsMuted = () => {},
-  onOpenReport = () => {},
-  onOpenMissions = () => {},
-  onOpenTeam = () => {},
-  spaceWeather = {},
-  isBackendConnected = false,
-  isFullscreen = false,
-  onToggleFullscreen = () => {}
-}) => {
-  const navItems = [
-    { id: 'map', label: '3D Lunar Globe', icon: <Layers className="w-3.5 h-3.5" /> },
-    { id: 'scoreboard', label: 'Habitat Scoreboard', icon: <BarChart3 className="w-3.5 h-3.5" /> },
-  ];
+const NOOP = () => {};
 
+export const Header = ({
+  onOpenReport = NOOP,
+  onOpenMissions = NOOP,
+  onOpenTeam = NOOP,
+  isFullscreen = false,
+  onToggleFullscreen = NOOP
+}) => {
   return (
     <header className="h-14 bg-[#070B14]/95 border-b border-slate-800/80 px-4 flex items-center justify-between z-20 shrink-0 select-none backdrop-blur-xl animate-smooth-slide-down">
       {/* Brand & Mission Title */}
@@ -55,12 +40,14 @@ export const Header = ({
       <div className="flex items-center gap-2">
         {/* Missions Directory Button */}
         <button
+          type="button"
           onClick={() => {
             soundManager.playSelect();
             onOpenMissions();
           }}
           title="Open Structured Lunar Missions Directory (ISRO, Apollo, Artemis, SpaceX)"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-mono font-semibold transition-all shadow-glow-cyan"
+          aria-label="Open Structured Lunar Missions Directory"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-mono font-semibold transition-[color,background-color,border-color,box-shadow] shadow-glow-cyan cursor-pointer"
         >
           <Rocket className="w-3.5 h-3.5 text-orange-400" />
           <span className="hidden sm:inline">Missions Catalogue</span>
@@ -69,12 +56,14 @@ export const Header = ({
 
         {/* Project Team & Members Button */}
         <button
+          type="button"
           onClick={() => {
             soundManager.playSelect();
             onOpenTeam();
           }}
           title="View GitHub Repository Contributors & Team Members"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-purple-500/30 text-purple-300 hover:text-white text-xs font-mono font-semibold transition-all shadow-glow-purple"
+          aria-label="View Project Team and Contributors"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-purple-500/30 text-purple-300 hover:text-white text-xs font-mono font-semibold transition-[color,background-color,border-color,box-shadow] shadow-glow-purple cursor-pointer"
         >
           <Users className="w-3.5 h-3.5 text-purple-400" />
           <span className="hidden sm:inline">Repo Team</span>
@@ -83,12 +72,14 @@ export const Header = ({
 
         {/* Fullscreen Toggle Button */}
         <button
+          type="button"
           onClick={() => {
             soundManager.playClick();
             onToggleFullscreen();
           }}
           title={isFullscreen ? 'Exit Full Screen' : 'Full Screen Moon View (F)'}
-          className={`p-2 rounded-xl border transition-all flex items-center gap-1.5 text-xs font-mono ${
+          aria-label={isFullscreen ? 'Exit Full Screen' : 'Enter Full Screen Moon View'}
+          className={`p-2 rounded-xl border transition-[color,background-color,border-color,box-shadow] flex items-center gap-1.5 text-xs font-mono cursor-pointer ${
             isFullscreen 
               ? 'bg-cyan-950/80 border-cyan-500/50 text-cyan-300 shadow-glow-cyan' 
               : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border-slate-800'
@@ -100,11 +91,13 @@ export const Header = ({
 
         {/* AI Mission Dossier Trigger */}
         <button
+          type="button"
           onClick={() => {
             soundManager.playSelect();
             onOpenReport();
           }}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-xs font-mono font-semibold transition-all shadow-glow-purple"
+          aria-label="Generate AI Mission Dossier Report"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white text-xs font-mono font-semibold transition-[color,background-color,border-color,box-shadow] shadow-glow-purple cursor-pointer"
         >
           <FileText className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">AI Mission Dossier</span>
@@ -116,4 +109,3 @@ export const Header = ({
 };
 
 export default Header;
-

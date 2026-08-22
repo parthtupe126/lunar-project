@@ -70,7 +70,8 @@ const TEAM_MEMBERS = [
   }
 ];
 
-export const TeamModal = ({ isOpen, onClose }) => {
+const NOOP = () => {};
+export const TeamModal = ({ isOpen = false, onClose = NOOP }) => {
   if (!isOpen) return null;
 
   return (
@@ -103,7 +104,7 @@ export const TeamModal = ({ isOpen, onClose }) => {
               href={REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 text-xs text-cyan-300 font-mono transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 text-xs text-cyan-300 font-mono transition-colors"
             >
               <Github className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">View GitHub Repo</span>
@@ -114,7 +115,7 @@ export const TeamModal = ({ isOpen, onClose }) => {
                 soundManager.playClick();
                 onClose();
               }}
-              className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+              type="button" aria-label="Close team contributors modal" className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -150,7 +151,7 @@ export const TeamModal = ({ isOpen, onClose }) => {
             {TEAM_MEMBERS.map((member) => (
               <div
                 key={member.id}
-                className="rounded-xl bg-[#0e1424]/80 border border-slate-800/90 hover:border-cyan-500/50 p-5 flex flex-col justify-between transition-all hover:shadow-[0_0_20px_rgba(6,182,212,0.1)] group"
+                className="rounded-xl bg-[#0e1424]/80 border border-slate-800/90 hover:border-cyan-500/50 p-5 flex flex-col justify-between transition-colors hover:shadow-[0_0_20px_rgba(6,182,212,0.1)] group"
               >
                 <div>
                   {/* Top Profile Header */}
@@ -187,7 +188,7 @@ export const TeamModal = ({ isOpen, onClose }) => {
                     </span>
                     <ul className="space-y-1 text-[11px] text-slate-300">
                       {member.contributions.map((c, i) => (
-                        <li key={i} className="flex items-start gap-1.5">
+                        <li key={contrib} className="flex items-start gap-1.5">
                           <span className="text-cyan-400 mt-0.5">•</span>
                           <span>{c}</span>
                         </li>
@@ -197,9 +198,9 @@ export const TeamModal = ({ isOpen, onClose }) => {
 
                   {/* Skills tags */}
                   <div className="flex flex-wrap gap-1 mb-4">
-                    {member.skills.map((skill, i) => (
+                    {member.skills.map((skill) => (
                       <span
-                        key={i}
+                        key={skill}
                         className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700/60"
                       >
                         {skill}
