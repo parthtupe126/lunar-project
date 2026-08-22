@@ -1522,7 +1522,7 @@ export const INITIAL_LUNAR_SITES = RAW_LUNAR_SITES.map(site => {
 
 export const LUNAR_MISSIONS = [
   // =========================================================================
-  // ISRO (Indian Space Research Organisation) Lunar Missions
+  // ISRO (Indian Space Research Organisation) Lunar Missions (4)
   // =========================================================================
   {
     id: 'ch3_shiv_shakti',
@@ -1584,15 +1584,16 @@ export const LUNAR_MISSIONS = [
     discovery: 'Planned in-situ volatile prospecting with 1.5-meter deep sub-surface drill and onboard chemical analysis for water ice purity quantification.',
     status: 'In Development'
   },
+
   // =========================================================================
-  // NASA Apollo Program (Ground-Truth Crewed Surface Bases)
+  // NASA Apollo Program (6 Ground-Truth Human Bases)
   // =========================================================================
   {
     id: 'apollo_11',
     name: 'Apollo 11 (Statio Tranquillitatis)',
     agency: 'NASA',
     country: '🇺🇸 USA',
-    category: 'apollo',
+    category: 'nasa',
     lat: 0.674,
     lon: 23.473,
     zoom: 2.3,
@@ -1607,7 +1608,7 @@ export const LUNAR_MISSIONS = [
     name: 'Apollo 12 (Ocean of Storms)',
     agency: 'NASA',
     country: '🇺🇸 USA',
-    category: 'apollo',
+    category: 'nasa',
     lat: -3.012,
     lon: -23.422,
     zoom: 2.3,
@@ -1622,7 +1623,7 @@ export const LUNAR_MISSIONS = [
     name: 'Apollo 14 (Fra Mauro Highlands)',
     agency: 'NASA',
     country: '🇺🇸 USA',
-    category: 'apollo',
+    category: 'nasa',
     lat: -3.645,
     lon: -17.471,
     zoom: 2.3,
@@ -1637,7 +1638,7 @@ export const LUNAR_MISSIONS = [
     name: 'Apollo 15 (Hadley-Apennine)',
     agency: 'NASA',
     country: '🇺🇸 USA',
-    category: 'apollo',
+    category: 'nasa',
     lat: 26.132,
     lon: 3.634,
     zoom: 2.2,
@@ -1652,7 +1653,7 @@ export const LUNAR_MISSIONS = [
     name: 'Apollo 16 (Descartes Highlands)',
     agency: 'NASA',
     country: '🇺🇸 USA',
-    category: 'apollo',
+    category: 'nasa',
     lat: -8.973,
     lon: 15.498,
     zoom: 2.2,
@@ -1667,7 +1668,7 @@ export const LUNAR_MISSIONS = [
     name: 'Apollo 17 (Taurus-Littrow)',
     agency: 'NASA',
     country: '🇺🇸 USA',
-    category: 'apollo',
+    category: 'nasa',
     lat: 20.191,
     lon: 30.772,
     zoom: 2.2,
@@ -1677,15 +1678,16 @@ export const LUNAR_MISSIONS = [
     discovery: 'First professional scientist astronaut (Harrison Schmitt, geologist). Discovered orange volcanic glass beads (pyroclastic mantle venting). Record 110.5 kg samples & 35.7 km traverse.',
     status: 'Historic Site'
   },
+
   // =========================================================================
-  // NASA Artemis & CLPS (Commercial Lunar Payload Services) Program
+  // NASA Artemis & Polar Scientific Survey Sites (8)
   // =========================================================================
   {
     id: 'artemis_3',
     name: 'Artemis III Target (Shackleton Ridge)',
     agency: 'NASA / SpaceX',
     country: '🇺🇸 USA',
-    category: 'artemis',
+    category: 'nasa',
     lat: -89.5,
     lon: 130.0,
     zoom: 2.0,
@@ -1696,48 +1698,251 @@ export const LUNAR_MISSIONS = [
     status: 'Active Target'
   },
   {
-    id: 'lcross_cabeus',
-    name: 'LCROSS Impact (Cabeus PSR)',
+    id: 'shackleton_rim',
+    name: 'Shackleton Crater Rim (Artemis Base Camp Node)',
     agency: 'NASA',
     country: '🇺🇸 USA',
-    category: 'artemis',
-    lat: -84.9,
-    lon: -35.5,
-    zoom: 2.1,
-    date: 'October 9, 2009',
-    craft: 'Centaur Upper Stage + Shepherding Spacecraft',
-    site: 'Cabeus Crater Floor (Permanent Shadow)',
-    discovery: 'Centaur kinetic impact generated a 10km ejecta plume confirming 155 kg of water vapor and ice (5.6% by mass), plus carbon monoxide, methane, and ammonia.',
-    status: 'Impact Verified'
+    category: 'nasa',
+    lat: -89.28,
+    lon: 15.4,
+    zoom: 2.0,
+    date: 'Target 2028-2030',
+    craft: 'Artemis Foundation Habitat & Fission Surface Power',
+    site: 'Shackleton Rim (Elevation +4120m)',
+    discovery: 'Prime candidate for long-duration surface habitation with 92% annual solar illumination along the peak crest and immediate access to 350m cryogenic volatile cold traps.',
+    status: 'Primary Candidate'
   },
+  {
+    id: 'connecting_ridge',
+    name: 'Shackleton-de Gerlache Connecting Ridge',
+    agency: 'NASA',
+    country: '🇺🇸 USA',
+    category: 'nasa',
+    lat: -89.44,
+    lon: 136.2,
+    zoom: 2.0,
+    date: 'Target 2028',
+    craft: 'Lunar Terrain Vehicle (LTV) + Pressurized Rover',
+    site: 'High-Altitude Polar Ridge (+4280m)',
+    discovery: 'Strategic transportation corridor between major polar craters with continuous Earth line-of-sight communications and gentle 3.8° slopes for pressurized rover traverses.',
+    status: 'Corridor Candidate'
+  },
+  {
+    id: 'de_gerlache_rim1',
+    name: 'de Gerlache Crater Rim 1',
+    agency: 'NASA',
+    country: '🇺🇸 USA',
+    category: 'nasa',
+    lat: -88.71,
+    lon: -88.2,
+    zoom: 2.1,
+    date: 'Target 2027',
+    craft: 'Commercial Lunar Lander + Science Suite',
+    site: 'de Gerlache North Rim Plateau',
+    discovery: 'Expansive 8.5 km² plateau offering excellent landing safety, 84% annual sunlight, and deep PSR views for volatile mining infrastructure.',
+    status: 'Candidate Site'
+  },
+  {
+    id: 'de_gerlache_rim2',
+    name: 'de Gerlache Crater Rim 2',
+    agency: 'NASA',
+    country: '🇺🇸 USA',
+    category: 'nasa',
+    lat: -88.35,
+    lon: -68.5,
+    zoom: 2.1,
+    date: 'Target 2028',
+    craft: 'VIPER Auxiliary Prospector',
+    site: 'de Gerlache Saddle Incline',
+    discovery: 'Secondary landing zone with moderate relief, stable foundation regolith, and direct access to subsurface ice-bearing permafrost.',
+    status: 'Candidate Site'
+  },
+  {
+    id: 'haworth_plateau',
+    name: 'Haworth Crater Rim Plateau',
+    agency: 'NASA',
+    country: '🇺🇸 USA',
+    category: 'nasa',
+    lat: -87.89,
+    lon: -5.8,
+    zoom: 2.1,
+    date: 'Target 2028',
+    craft: 'Cryogenic In-Situ Resource Facility',
+    site: 'Haworth Polar Bench',
+    discovery: 'Overlooks one of the coldest PSRs on the Moon (40 K). Superb location for cold-trap volatile extraction and cryogenic hydrogen liquefaction.',
+    status: 'Candidate Site'
+  },
+  {
+    id: 'malapert_mountain',
+    name: 'Malapert Mountain (Peak of Eternal Light)',
+    agency: 'NASA',
+    country: '🇺🇸 USA',
+    category: 'nasa',
+    lat: -86.04,
+    lon: -2.7,
+    zoom: 2.1,
+    date: 'Target 2027-2028',
+    craft: 'Solar Array Tower + Optical Relay Station',
+    site: 'Malapert Massif Peak (+5000m)',
+    discovery: 'Prominent 5000m peak with uninterrupted line-of-sight to Earth and near-continuous sunlight. Premier location for solar power towers and communications relays.',
+    status: 'Strategic Relay Site'
+  },
+  {
+    id: 'amundsen_rim',
+    name: 'Amundsen Crater Rim Ridge',
+    agency: 'NASA',
+    country: '🇺🇸 USA',
+    category: 'nasa',
+    lat: -84.44,
+    lon: 83.1,
+    zoom: 2.2,
+    date: 'Target 2029',
+    craft: 'Heavy Cargo Lander',
+    site: 'Amundsen Crest Bench',
+    discovery: 'Rich highland geochemical boundary with high volatile indicators and extensive flat benches suitable for large-scale modular surface habitat deployment.',
+    status: 'Candidate Site'
+  },
+
+  // =========================================================================
+  // SpaceX / NASA CLPS Commercial Lunar Missions (5)
+  // =========================================================================
   {
     id: 'im1_odysseus',
     name: 'Intuitive Machines IM-1 (Odysseus)',
     agency: 'Intuitive Machines / NASA CLPS',
     country: '🇺🇸 USA',
-    category: 'artemis',
+    category: 'spacex',
     lat: -80.13,
     lon: 1.44,
-    zoom: 2.2,
+    zoom: 2.1,
     date: 'February 22, 2024',
-    craft: 'Nova-C Lander (Odysseus)',
-    site: 'Malapert A Crater (South Pole Region)',
-    discovery: 'First commercial spacecraft to achieve a soft lunar landing. Operated scientific payloads in the extreme southern latitude including ROLSES radio receiver.',
-    status: 'Mission Complete'
+    craft: 'Nova-C Lander (Falcon 9)',
+    site: 'Malapert A Crater (South Polar Highland)',
+    discovery: 'First commercial spacecraft to achieve a lunar soft landing, and first American vehicle on the Moon since Apollo 17 (52 years). Returned radio astronomy and laser retroreflector data.',
+    status: 'Mission Accomplished'
   },
   {
     id: 'viper_griffin',
-    name: 'VIPER / Astrobotic Griffin',
-    agency: 'NASA / Astrobotic',
+    name: 'NASA VIPER / Astrobotic Griffin (Nobile Rim 1)',
+    agency: 'NASA / Astrobotic / SpaceX',
     country: '🇺🇸 USA',
-    category: 'artemis',
-    lat: -85.4,
-    lon: 31.8,
-    zoom: 2.0,
+    category: 'spacex',
+    lat: -85.22,
+    lon: 36.4,
+    zoom: 2.1,
+    date: 'Target 2026',
+    craft: 'Griffin Lander + VIPER Heavy Prospecting Rover (Falcon Heavy)',
+    site: 'Mons Mouton / Nobile Crater Rim',
+    discovery: 'Groundbreaking mobile subsurface volatiles survey. 100-day traverse equipped with 1-meter TRIDENT auger drill and NIRVSS / MSolo spectrometers to map volatile distribution.',
+    status: 'Active Programme'
+  },
+  {
+    id: 'clps_starship',
+    name: 'NASA CLPS Starship HLS Demo (Nobile Rim 2)',
+    agency: 'NASA / SpaceX',
+    country: '🇺🇸 USA',
+    category: 'spacex',
+    lat: -85.58,
+    lon: 34.8,
+    zoom: 2.1,
+    date: 'Target 2026',
+    craft: 'Starship Human Landing System Uncrewed Demo',
+    site: 'Nobile Ridge Secondary Landing Bench',
+    discovery: 'Full-scale vertical touchdown demonstration of SpaceX Starship HLS Raptor engines, cryogenic propellant boil-off mitigation, and automated ramp deployment.',
+    status: 'In Development'
+  },
+  {
+    id: 'im2_athena',
+    name: 'Intuitive Machines IM-2 Athena (Leibnitz Beta)',
+    agency: 'Intuitive Machines / NASA CLPS',
+    country: '🇺🇸 USA',
+    category: 'spacex',
+    lat: -85.80,
+    lon: -28.8,
+    zoom: 2.1,
     date: 'Target 2025-2026',
-    craft: 'Griffin Lander + VIPER Prospecting Rover',
-    site: 'Mons Mouton (Leibnitz Beta Plateau)',
-    discovery: '100-day traverse mapping volatile distribution and subsurface ice with TRIDENT 1m drill and NIRVSS / NSS spectrometers across the flat Mons Mouton tableland.',
-    status: 'Mission Planned'
+    craft: 'Nova-C Lander + PRIME-1 Ice Drill (Falcon 9)',
+    site: 'Shackleton Connecting Ridge / Leibnitz Beta',
+    discovery: 'First on-site deployment of the Polar Resources Ice Mining Experiment-1 (PRIME-1) drill to extract sub-surface regolith and detect ice volatiles in real-time.',
+    status: 'In Integration'
+  },
+  {
+    id: 'firefly_blue_ghost',
+    name: 'Firefly Aerospace Blue Ghost (Shoemaker Rim)',
+    agency: 'Firefly Aerospace / NASA CLPS',
+    country: '🇺🇸 USA',
+    category: 'spacex',
+    lat: -88.10,
+    lon: 45.2,
+    zoom: 2.1,
+    date: 'Target 2025',
+    craft: 'Blue Ghost Lunar Lander (Falcon 9)',
+    site: 'Shoemaker Crater Rim Plateau',
+    discovery: 'Commercial payload delivery delivering 10 NASA scientific experiments including regolith electrostatic charging, GNSS reception, and lunar dust mitigation technology.',
+    status: 'Flight Integration'
+  },
+
+  // =========================================================================
+  // Global Exploration Axes & Hemispheres (4)
+  // =========================================================================
+  {
+    id: 'near_side',
+    name: 'Lunar Nearside (Equatorial Reference)',
+    agency: 'Global Perspective',
+    country: '🌐 0° Meridian',
+    category: 'sides',
+    lat: 0.0,
+    lon: 0.0,
+    zoom: 1.8,
+    date: 'Continuous Observation',
+    craft: 'Tidally Locked Earth-Facing Hemipshere',
+    site: 'Sinus Medii (Central Lunar Disc)',
+    discovery: 'Direct 100% line-of-sight to Earth for unassisted deep-space optical and RF communication with zero orbital latency.',
+    status: 'Earth-Facing Zone'
+  },
+  {
+    id: 'far_side',
+    name: 'Lunar Farside (Radio-Quiet Zone)',
+    agency: 'Global Perspective',
+    country: '🌐 180° Meridian',
+    category: 'sides',
+    lat: 0.0,
+    lon: 180.0,
+    zoom: 1.8,
+    date: 'Protected Science Zone',
+    craft: 'Shielded from Earth Electromagnetic Noise',
+    site: 'South Pole-Aitken Basin / Hertzsprung',
+    discovery: 'Shielded from terrestrial radio frequency interference. The single finest location in the Solar System for low-frequency cosmological radio astronomy.',
+    status: 'Radio-Quiet Zone'
+  },
+  {
+    id: 'south_pole',
+    name: 'Lunar South Pole Axis (-90°)',
+    agency: 'Global Perspective',
+    country: '❄️ -90° Pole',
+    category: 'sides',
+    lat: -89.99,
+    lon: 0.0,
+    zoom: 1.9,
+    date: 'Continuous Focus',
+    craft: 'South Pole-Aitken (SPA) Basin Complex',
+    site: 'Shackleton Peak Crest / Cryogenic Floor',
+    discovery: 'Co-location of billion-year-old Permanently Shadowed Region (PSR) cryogenic water-ice reservoirs and elevated Peaks of Eternal Light.',
+    status: 'Global Focus Zone'
+  },
+  {
+    id: 'north_pole',
+    name: 'Lunar North Pole Axis (+90°)',
+    agency: 'Global Perspective',
+    country: '❄️ +90° Pole',
+    category: 'sides',
+    lat: 89.99,
+    lon: 0.0,
+    zoom: 1.9,
+    date: 'Scientific Survey',
+    craft: 'North Polar Volatiles Assessment Zone',
+    site: 'Peary / Hermite / Whipple Crater Rims',
+    discovery: 'Secondary polar volatile reserve containing ancient cold-trap deposits and moderate thermal stability along crater rims.',
+    status: 'Survey Zone'
   }
 ];

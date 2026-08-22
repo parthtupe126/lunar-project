@@ -1669,7 +1669,7 @@ export const Map3D = ({
                   : 'bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700'
                 }`}
             >
-              <span>All ({LUNAR_MISSIONS.length})</span>
+              <span>All ({LUNAR_MISSIONS.filter(m => m.category !== 'sides').length})</span>
               <span className="text-[9px] opacity-75">↗</span>
             </button>
 

@@ -21,7 +21,7 @@ import { soundManager } from '../utils/audio';
 const MISSION_SECTIONS = [
   {
     id: 'isro',
-    title: '🇮🇳 ISRO — CHANDRAYAAN PROGRAMME',
+    title: '🇮🇳 ISRO — CHANDRAYAAN PROGRAMME (4 MISSIONS)',
     agency: 'ISRO',
     theme: 'orange',
     filterTag: 'isro',
@@ -29,7 +29,7 @@ const MISSION_SECTIONS = [
   },
   {
     id: 'nasa_apollo',
-    title: '🇺🇸 NASA — APOLLO PROGRAMME (HUMAN LUNAR EXPEDITIONS)',
+    title: '🇺🇸 NASA — APOLLO CREWED LANDINGS (6 SITES)',
     agency: 'NASA',
     theme: 'cyan',
     filterTag: 'nasa',
@@ -37,30 +37,29 @@ const MISSION_SECTIONS = [
   },
   {
     id: 'nasa_artemis_lro',
-    title: '🇺🇸 NASA — ARTEMIS, LCROSS & LRO SCIENTIFIC SURVEYS',
+    title: '🇺🇸 NASA — ARTEMIS & SOUTH POLE TARGETS (8 SITES)',
     agency: 'NASA',
     theme: 'cyan',
     filterTag: 'nasa',
-    missions: ['artemis_3', 'lcross_cabeus', 'copernicus_crater', 'tycho_crater']
+    missions: ['artemis_3', 'shackleton_rim', 'connecting_ridge', 'de_gerlache_rim1', 'de_gerlache_rim2', 'haworth_plateau', 'malapert_mountain', 'amundsen_rim']
   },
   {
     id: 'spacex_clps',
-    title: '🚀 SPACEX / CLPS & COMMERCIAL LUNAR MISSIONS',
-    agency: 'SpaceX / Commercial',
+    title: '🚀 SPACEX / NASA CLPS COMMERCIAL MISSIONS (5 MISSIONS)',
+    agency: 'SpaceX / CLPS',
     theme: 'emerald',
     filterTag: 'spacex',
-    missions: ['im1_odysseus', 'im2_athena', 'viper_griffin', 'firefly_blue_ghost', 'hakuto_r']
+    missions: ['im1_odysseus', 'viper_griffin', 'clps_starship', 'im2_athena', 'firefly_blue_ghost']
   },
   {
     id: 'sides_poles',
-    title: '🌑 HEMISPHERES & POLAR EXPLORATION AXES',
+    title: '🟣 HEMISPHERES & POLAR EXPLORATION AXES (4 AXES)',
     agency: 'Global Perspective',
     theme: 'purple',
     filterTag: 'sides',
     missions: ['near_side', 'far_side', 'south_pole', 'north_pole']
   }
 ];
-
 
 function getThemeStyles(theme) {
   switch (theme) {
@@ -106,11 +105,11 @@ function getThemeStyles(theme) {
 
 function getCountryCode(countryStr, agency) {
   if (agency?.includes('ISRO') || countryStr?.includes('India')) return 'IN';
-  if (agency?.includes('NASA') || countryStr?.includes('United States')) return 'US';
+  if (agency?.includes('NASA') || countryStr?.includes('USA')) return 'US';
   if (agency?.includes('SpaceX') || countryStr?.includes('SpaceX')) return 'US';
-  if (agency?.includes('ispace') || countryStr?.includes('Japan')) return 'JP';
-  if (countryStr?.includes('0°')) return '🌍 0°';
-  if (countryStr?.includes('180°')) return '🌑 180°';
+  if (agency?.includes('JAXA') || countryStr?.includes('Japan')) return 'JP';
+  if (countryStr?.includes('0°')) return '🌐 0°';
+  if (countryStr?.includes('180°')) return '🌐 180°';
   if (countryStr?.includes('-90°')) return '❄️ -90°';
   if (countryStr?.includes('+90°')) return '❄️ +90°';
   return 'INTL';
@@ -132,6 +131,11 @@ export const MissionsExplorerModal = ({
     }
   }, [initialCategory, isOpen]);
 
+  // Primary 23 missions count (excluding sides)
+  const primaryMissions = useMemo(() => {
+    return LUNAR_MISSIONS.filter(m => m.category !== 'sides');
+  }, []);
+
   // Map of mission by ID
   const missionsMap = useMemo(() => {
     const map = {};
@@ -151,7 +155,7 @@ export const MissionsExplorerModal = ({
         return [];
       }
 
-      // Gather mission objects with flatMap (no chained map/filter)
+      // Gather mission objects
       let missions = section.missions.flatMap(id => missionsMap[id] ? [missionsMap[id]] : []);
 
       // Search filter
@@ -177,8 +181,10 @@ export const MissionsExplorerModal = ({
 
   if (!isOpen) return null;
 
-  
-  
+  const isroCount = LUNAR_MISSIONS.filter(m => m.category === 'isro').length;
+  const nasaCount = LUNAR_MISSIONS.filter(m => m.category === 'nasa' || m.category === 'apollo' || m.category === 'artemis').length;
+  const spacexCount = LUNAR_MISSIONS.filter(m => m.category === 'spacex' || m.category === 'clps').length;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md transition-opacity duration-200">
       <div className="bg-[#070B14] border border-slate-700/80 w-full max-w-7xl max-h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden text-slate-100 font-mono">
@@ -195,11 +201,11 @@ export const MissionsExplorerModal = ({
                   LUNAR MISSIONS DIRECTORY & HISTORIC LANDMARKS
                 </h2>
                 <span className="text-[10px] font-bold text-cyan-400 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-500/30">
-                  {LUNAR_MISSIONS.length} MISSIONS & SITES
+                  {primaryMissions.length} MISSIONS & CANDIDATES
                 </span>
               </div>
               <p className="text-xs text-slate-400 font-sans hidden sm:block">
-                Comprehensive structured catalogue of ISRO, NASA Apollo, Artemis, SpaceX CLPS & Polar Coordinates
+                Comprehensive directory of 23 ISRO, NASA Apollo, Artemis, and SpaceX CLPS Exploration Targets
               </p>
             </div>
           </div>
@@ -226,13 +232,13 @@ export const MissionsExplorerModal = ({
                 soundManager.playClick();
                 setSelectedFilter('all');
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap cursor-pointer ${
                 selectedFilter === 'all' 
                   ? 'bg-slate-700 text-white shadow-sm' 
                   : 'bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800'
               }`}
             >
-              All Programmes ({LUNAR_MISSIONS.length})
+              All Programmes ({primaryMissions.length})
             </button>
 
             <button
@@ -240,13 +246,13 @@ export const MissionsExplorerModal = ({
                 soundManager.playClick();
                 setSelectedFilter('isro');
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
                 selectedFilter === 'isro' 
                   ? 'bg-orange-600 text-white shadow-glow-orange' 
                   : 'bg-slate-900/80 text-slate-400 hover:text-orange-400 border border-slate-800'
               }`}
             >
-              <span>🇮🇳 ISRO ({LUNAR_MISSIONS.filter(m => m.category === 'isro').length})</span>
+              <span>🇮🇳 ISRO ({isroCount})</span>
             </button>
 
             <button
@@ -254,13 +260,13 @@ export const MissionsExplorerModal = ({
                 soundManager.playClick();
                 setSelectedFilter('nasa');
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
                 selectedFilter === 'nasa' 
                   ? 'bg-blue-600 text-white shadow-glow-cyan' 
                   : 'bg-slate-900/80 text-slate-400 hover:text-blue-400 border border-slate-800'
               }`}
             >
-              <span>🇺🇸 NASA ({LUNAR_MISSIONS.filter(m => m.category === 'nasa').length})</span>
+              <span>🇺🇸 NASA ({nasaCount})</span>
             </button>
 
             <button
@@ -268,13 +274,13 @@ export const MissionsExplorerModal = ({
                 soundManager.playClick();
                 setSelectedFilter('spacex');
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
                 selectedFilter === 'spacex' 
                   ? 'bg-emerald-600 text-white shadow-glow-emerald' 
                   : 'bg-slate-900/80 text-slate-400 hover:text-emerald-400 border border-slate-800'
               }`}
             >
-              <span>🚀 SpaceX / CLPS ({LUNAR_MISSIONS.filter(m => m.category === 'spacex').length})</span>
+              <span>🚀 SpaceX / CLPS ({spacexCount})</span>
             </button>
 
             <button
@@ -282,152 +288,138 @@ export const MissionsExplorerModal = ({
                 soundManager.playClick();
                 setSelectedFilter('sides');
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
                 selectedFilter === 'sides' 
                   ? 'bg-purple-600 text-white shadow-glow-purple' 
                   : 'bg-slate-900/80 text-slate-400 hover:text-purple-400 border border-slate-800'
               }`}
             >
-              <span>🌑 Hemispheres & Poles (4)</span>
+              <span>🟣 Hemispheres & Poles (4)</span>
             </button>
+          </div>
+
+          {/* Search Box */}
+          <div className="relative w-full md:w-72 shrink-0">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Search missions, craft, sites..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-[#070B14] border border-slate-700/80 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+            />
           </div>
         </div>
 
-        {/* Scrollable Missions Grid Content */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-8 custom-scrollbar">
-          {filteredSections.length === 0 ? (
-            <div className="text-center py-16">
-              <Compass className="w-12 h-12 text-slate-600 mx-auto mb-3 animate-pulse" />
-              <p className="text-sm text-slate-400">No lunar missions matched your search criteria.</p>
-              <button
-                onClick={() => {
-                  setSelectedFilter('all');
-                  setSearchQuery('');
-                }}
-                className="mt-3 px-4 py-1.5 rounded-xl bg-slate-800 text-cyan-300 text-xs hover:bg-slate-700 transition-colors"
-              >
-                Clear Search Filters
-              </button>
-            </div>
-          ) : (
-            filteredSections.map(section => {
-              const theme = getThemeStyles(section.theme);
+        {/* Content Body */}
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1 custom-scrollbar">
+          {filteredSections.map(section => {
+            const styles = getThemeStyles(section.theme);
 
-              return (
-                <div key={section.id} className="space-y-3.5">
-                  {/* Section Title Header Bar */}
-                  <div className={`px-4 py-2 rounded-xl border flex items-center justify-between ${theme.header}`}>
-                    <div className="flex items-center gap-2 font-bold text-xs sm:text-sm tracking-wide">
-                      <span>{section.title}</span>
-                      <span className="text-[11px] opacity-80">({section.missions.length})</span>
-                    </div>
-                    <span className="text-[10px] text-slate-400 font-sans hidden sm:inline">
-                      Click "Fly To Landing Site" to inspect in 3D orbit
+            return (
+              <div key={section.id} className="space-y-3">
+                {/* Section Header */}
+                <div className={`flex items-center justify-between p-2.5 rounded-xl border ${styles.header}`}>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs sm:text-sm font-bold tracking-wide">
+                      {section.title}
                     </span>
                   </div>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-md border font-semibold ${styles.badge}`}>
+                    {section.missions.length} LOCATIONS
+                  </span>
+                </div>
 
-                  {/* 3-Column Structured Card Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {section.missions.map(mission => {
-                      const countryCode = getCountryCode(mission.country, mission.agency);
-
-                      return (
-                        <div
-                          key={mission.id}
-                          className={`bg-[#0A0F1D]/90 backdrop-blur-md rounded-2xl border p-4 flex flex-col justify-between transition-colors duration-200 hover:-translate-y-0.5 ${theme.card}`}
-                        >
-                          {/* Card Top: Agency Tag + Country Code + Status */}
-                          <div>
-                            <div className="flex items-start justify-between gap-2 mb-2">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${theme.badge}`}>
-                                  {mission.agency}
-                                </span>
-                                <span className="text-[10px] text-slate-400">
-                                  • {mission.status}
-                                </span>
-                              </div>
-                              <span className={`text-xs px-2 py-0.5 rounded bg-slate-900 border border-slate-800 ${theme.countryBadge}`}>
-                                {countryCode}
-                              </span>
-                            </div>
-
-                            {/* Mission Title */}
-                            <h3 className="text-sm font-bold text-white mb-3 flex items-center gap-1.5">
-                              <span>{mission.name}</span>
+                {/* Grid Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {section.missions.map(mission => (
+                    <div
+                      key={mission.id}
+                      className={`bg-[#0B1120]/80 rounded-xl border p-3.5 flex flex-col justify-between space-y-3 transition-all hover:-translate-y-0.5 ${styles.card}`}
+                    >
+                      {/* Top Bar */}
+                      <div>
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">
+                              {mission.agency}
+                            </span>
+                            <h3 className="text-sm font-bold text-white leading-tight mt-0.5 truncate" title={mission.name}>
+                              {mission.name}
                             </h3>
+                          </div>
+                          <span className={`text-[10px] px-1.5 py-0.5 rounded border whitespace-nowrap shrink-0 ${styles.badge}`}>
+                            {getCountryCode(mission.country, mission.agency)}
+                          </span>
+                        </div>
 
-                            {/* Structured Parameters Key-Value List */}
-                            <div className="space-y-1.5 text-[11px] bg-[#070B14]/80 p-2.5 rounded-xl border border-slate-800/80 mb-3 font-mono">
-                              <div className="flex items-start gap-1.5">
-                                <Calendar className="w-3.5 h-3.5 text-slate-500 shrink-0 mt-0.5" />
-                                <span className="text-slate-400 shrink-0">Date:</span>
-                                <strong className="text-slate-200 truncate">{mission.date}</strong>
-                              </div>
+                        {/* Telemetry info */}
+                        <div className="mt-2.5 space-y-1 text-[11px] text-slate-300">
+                          <div className="flex items-center gap-1.5">
+                            <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                            <span className={`font-mono font-bold ${styles.coord}`}>
+                              {mission.lat > 0 ? `+${mission.lat.toFixed(2)}` : mission.lat.toFixed(2)}°, {mission.lon > 0 ? `+${mission.lon.toFixed(2)}` : mission.lon.toFixed(2)}°
+                            </span>
+                          </div>
 
-                              <div className="flex items-start gap-1.5">
-                                <Rocket className="w-3.5 h-3.5 text-slate-500 shrink-0 mt-0.5" />
-                                <span className="text-slate-400 shrink-0">Craft:</span>
-                                <strong className="text-slate-200 truncate">{mission.craft}</strong>
-                              </div>
+                          <div className="flex items-center gap-1.5 text-slate-400 text-[10px]">
+                            <Calendar className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                            <span>{mission.date}</span>
+                          </div>
+                        </div>
 
-                              <div className="flex items-start gap-1.5">
-                                <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0 mt-0.5" />
-                                <span className="text-slate-400 shrink-0">Site:</span>
-                                <strong className="text-slate-200 truncate">{mission.site}</strong>
-                              </div>
-
-                              <div className="flex items-start gap-1.5">
-                                <Crosshair className="w-3.5 h-3.5 text-slate-500 shrink-0 mt-0.5" />
-                                <span className="text-slate-400 shrink-0">Coords:</span>
-                                <strong className={theme.coord}>
-                                  {mission.lat.toFixed(2)}°, {mission.lon.toFixed(2)}°
-                                </strong>
-                              </div>
-                            </div>
-
-                            {/* Scientific Discovery & Details */}
-                            <p className="text-xs font-sans text-slate-300 leading-relaxed line-clamp-3 mb-4">
+                        {/* Craft & Discovery */}
+                        <div className="mt-2.5 pt-2 border-t border-slate-800/80 text-[10px] space-y-1.5">
+                          <div>
+                            <span className="text-slate-400 font-bold">Target Zone:</span>
+                            <p className="text-slate-300 leading-snug">{mission.site}</p>
+                          </div>
+                          <div>
+                            <span className="text-slate-400 font-bold">Discovery / Role:</span>
+                            <p className="text-slate-400 leading-snug line-clamp-3" title={mission.discovery}>
                               {mission.discovery}
                             </p>
                           </div>
-
-                          {/* Action Button: Fly To Landing Site */}
-                          <button
-                            onClick={() => {
-                              soundManager.playSelect();
-                              onFlyToMission(mission);
-                              onClose();
-                            }}
-                            className={`w-full py-2 px-3 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer ${theme.button}`}
-                          >
-                            <Rocket className="w-3.5 h-3.5 transform -rotate-45" />
-                            <span>🪐 Fly To Landing Site</span>
-                          </button>
                         </div>
-                      );
-                    })}
-                  </div>
+                      </div>
+
+                      {/* Action Button */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          soundManager.playSelect();
+                          onFlyToMission(mission);
+                        }}
+                        className={`w-full py-1.5 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${styles.button}`}
+                      >
+                        <Crosshair className="w-3.5 h-3.5" />
+                        <span>Navigate 3D Globe</span>
+                      </button>
+                    </div>
+                  ))}
                 </div>
-              );
-            })
+              </div>
+            );
+          })}
+
+          {filteredSections.length === 0 && (
+            <div className="text-center py-12 text-slate-500 space-y-2">
+              <Sparkles className="w-8 h-8 mx-auto text-slate-600 animate-pulse" />
+              <p className="text-xs">No missions found matching "{searchQuery}"</p>
+            </div>
           )}
         </div>
 
-        {/* Modal Footer */}
-        <div className="p-3 sm:p-4 bg-[#0B1120]/90 border-t border-slate-800 text-[11px] text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-2 shrink-0">
+        {/* Footer */}
+        <div className="p-3 bg-[#0B1120]/90 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-400 shrink-0">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Telemetry calibrated with NASA LRO 118m Laser Altimetry (LOLA) & ISRO Lunar Data</span>
+            <span>NASA PDS / ISRO SAC / LROC Unified Dataset</span>
           </div>
-          <div className="text-slate-500 font-mono text-[10px]">
-            Press ESC to close directory
-          </div>
+          <span>Select any mission to focus the 3D Moon Surface Engine</span>
         </div>
 
       </div>
     </div>
   );
 };
-
-export default MissionsExplorerModal;
