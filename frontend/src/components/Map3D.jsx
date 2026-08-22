@@ -1044,11 +1044,188 @@ export const Map3D = ({
     });
   }, [sites, selectedSite, layers.aiSuitability]);
 
-  // Clean overlays group (No fake translucent discs over authentic lunar surface)
+  // Update 3D Terrain Relief & Displacement when layers.terrain changes
+  useEffect(() => {
+    if (!moonMaterialRef.current) return;
+    moonMaterialRef.current.uniforms.reliefScale.value = layers.terrain ? reliefScale : 0.0;
+    moonMaterialRef.current.uniforms.displacementScale.value = layers.terrain ? displacementScale : 0.0;
+  }, [layers.terrain, reliefScale, displacementScale]);
+
+  // Render Dynamic 3D Data Layers Overlays
   useEffect(() => {
     if (!overlaysGroupRef.current) return;
-    overlaysGroupRef.current.clear();
-  }, [sites, layers]);
+    const group = overlaysGroupRef.current;
+    group.clear();
+
+    // 1. ELEVATION CONTOURS LAYER (Polar & Global Elevation Rings)
+    if (layers.elevation) {
+      const latBands = [-89.5, -88.0, -85.0, -80.0, -70.0, 0.0, 70.0, 85.0];
+      latBands.forEach((latDeg) => {
+        const rad = ((90 - Math.abs(latDeg)) * Math.PI) / 180.0;
+        const ringRadius = MOON_RADIUS * Math.sin(rad) + 0.005;
+        const ringY = (latDeg >= 0 ? 1 : -1) * MOON_RADIUS * Math.cos(rad);
+        
+        const curve = new THREE.EllipseCurve(0, 0, ringRadius, ringRadius, 0, 2 * Math.PI, false, 0);
+        const points = curve.getPoints(64);
+        const geo = new THREE.BufferGeometry().setFromPoints(points.map(p => new THREE.Vector3(p.x, ringY, p.y)));
+        const mat = new THREE.LineBasicMaterial({
+          color: latDeg === 0.0 ? 0x38bdf8 : 0x0ea5e9,
+          transparent: true,
+          opacity: latDeg === 0.0 ? 0.65 : 0.40
+        });
+        const line = new THREE.Line(geo, mat);
+        group.add(line);
+      });
+    }
+
+    // 2. SLOPE HAZARD HEATMAP LAYER (Hazard exclusion markers on steep relief)
+    if (layers.slope) {
+      const slopeHazards = [
+        { lat: -89.7, lon: 120.0, name: 'Shackleton Inner Wall (32°)' },
+        { lat: -86.5, lon: 10.0, name: 'Malapert Steep Scarp (26°)' },
+        { lat: -84.2, lon: -40.0, name: 'Cabeus Crater Wall (28°)' },
+        { lat: -88.1, lon: -95.0, name: 'de Gerlache Wall (24°)' },
+        { lat: -43.3, lon: -11.2, name: 'Tycho Central Peak (38°)' }
+      ];
+
+      slopeHazards.forEach(hz => {
+        const pos = latLonToVector3(hz.lat, hz.lon, MOON_RADIUS + 0.012);
+        const marker = new THREE.Group();
+        marker.position.set(pos.x, pos.y, pos.z);
+        marker.lookAt(pos.x * 2, pos.y * 2, pos.z * 2);
+
+        const ringGeo = new THREE.RingGeometry(0.024, 0.038, 20);
+        const ringMat = new THREE.MeshBasicMaterial({
+          color: 0xf43f5e,
+          transparent: true,
+          opacity: 0.85,
+          side: THREE.DoubleSide
+        });
+        marker.add(new THREE.Mesh(ringGeo, ringMat));
+
+        const dotGeo = new THREE.CircleGeometry(0.012, 12);
+        const dotMat = new THREE.MeshBasicMaterial({ color: 0xff0055 });
+        marker.add(new THREE.Mesh(dotGeo, dotMat));
+
+        group.add(marker);
+      });
+    }
+
+    // 3. WATER ICE VOLATILES LAYER (Cold-Trap Cryogenic Reservoirs & PSR Beacons)
+    if (layers.waterIce) {
+      const iceZones = [
+        { lat: -89.9, lon: 0.0, radKm: 21, name: 'Shackleton PSR Ice Trap' },
+        { lat: -84.9, lon: -35.5, radKm: 40, name: 'Cabeus LCROSS Ice Floor' },
+        { lat: -87.89, lon: -5.8, radKm: 32, name: 'Haworth Deep Cryo-Reservoir' },
+        { lat: -88.10, lon: 45.2, radKm: 25, name: 'Shoemaker Cold Trap' },
+        { lat: -87.1, lon: 77.0, radKm: 28, name: 'Faustini Volatile Concentration' }
+      ];
+
+      iceZones.forEach(iz => {
+        const pos = latLonToVector3(iz.lat, iz.lon, MOON_RADIUS + 0.014);
+        const marker = new THREE.Group();
+        marker.position.set(pos.x, pos.y, pos.z);
+        marker.lookAt(pos.x * 2, pos.y * 2, pos.z * 2);
+
+        const iceRingGeo = new THREE.RingGeometry(0.035, 0.055, 24);
+        const iceRingMat = new THREE.MeshBasicMaterial({
+          color: 0x06b6d4,
+          transparent: true,
+          opacity: 0.80,
+          side: THREE.DoubleSide
+        });
+        marker.add(new THREE.Mesh(iceRingGeo, iceRingMat));
+
+        const coreGeo = new THREE.CircleGeometry(0.020, 16);
+        const coreMat = new THREE.MeshBasicMaterial({
+          color: 0x67e8f9,
+          transparent: true,
+          opacity: 0.70
+        });
+        marker.add(new THREE.Mesh(coreGeo, coreMat));
+
+        group.add(marker);
+      });
+    }
+
+    // 4. SOLAR ILLUMINATION LAYER (Peaks of Eternal Light Solar Beacons)
+    if (layers.illumination) {
+      const sunPeaks = [
+        { lat: -86.04, lon: -2.7, name: 'Malapert Peak (95% Sunlight)' },
+        { lat: -89.44, lon: 136.2, name: 'Connecting Ridge Solar Crest' },
+        { lat: -85.80, lon: -28.8, name: 'Leibnitz Beta Solar Tower Site' },
+        { lat: -89.28, lon: 15.4, name: 'Shackleton Rim Peak' }
+      ];
+
+      sunPeaks.forEach(pk => {
+        const pos = latLonToVector3(pk.lat, pk.lon, MOON_RADIUS + 0.015);
+        const marker = new THREE.Group();
+        marker.position.set(pos.x, pos.y, pos.z);
+        marker.lookAt(pos.x * 2, pos.y * 2, pos.z * 2);
+
+        const haloGeo = new THREE.RingGeometry(0.025, 0.045, 20);
+        const haloMat = new THREE.MeshBasicMaterial({
+          color: 0xfbbf24,
+          transparent: true,
+          opacity: 0.85,
+          side: THREE.DoubleSide
+        });
+        marker.add(new THREE.Mesh(haloGeo, haloMat));
+
+        const centerGeo = new THREE.CircleGeometry(0.015, 12);
+        const centerMat = new THREE.MeshBasicMaterial({ color: 0xfffbeb });
+        marker.add(new THREE.Mesh(centerGeo, centerMat));
+
+        group.add(marker);
+      });
+    }
+
+    // 5. RADIATION SHIELDING & COSMIC FLUX LAYER (Cosmic Ray Latitude Grid)
+    if (layers.radiation) {
+      for (let lonDeg = -180; lonDeg < 180; lonDeg += 45) {
+        const rad = (lonDeg * Math.PI) / 180.0;
+        const curvePoints = [];
+        for (let latDeg = -90; latDeg <= 90; latDeg += 5) {
+          const p = latLonToVector3(latDeg, lonDeg, MOON_RADIUS + 0.008);
+          curvePoints.push(new THREE.Vector3(p.x, p.y, p.z));
+        }
+        const geo = new THREE.BufferGeometry().setFromPoints(curvePoints);
+        const mat = new THREE.LineBasicMaterial({
+          color: 0xa855f7,
+          transparent: true,
+          opacity: 0.35
+        });
+        group.add(new THREE.Line(geo, mat));
+      }
+    }
+
+    // 6. THERMAL DIVINER PROFILE LAYER (Equatorial Warmth vs Cryo Polar Zones)
+    if (layers.temperature) {
+      const thermalZones = [
+        { lat: 0.0, lon: 0.0, color: 0xf97316, name: 'Equatorial Heat Basin (390K)' },
+        { lat: 15.0, lon: -45.0, color: 0xfb923c, name: 'Procellarum Thermal Zone' },
+        { lat: -89.0, lon: 0.0, color: 0x3b82f6, name: 'Cryogenic Polar Trap (40K)' }
+      ];
+
+      thermalZones.forEach(tz => {
+        const pos = latLonToVector3(tz.lat, tz.lon, MOON_RADIUS + 0.010);
+        const marker = new THREE.Group();
+        marker.position.set(pos.x, pos.y, pos.z);
+        marker.lookAt(pos.x * 2, pos.y * 2, pos.z * 2);
+
+        const ringGeo = new THREE.RingGeometry(0.040, 0.070, 24);
+        const ringMat = new THREE.MeshBasicMaterial({
+          color: tz.color,
+          transparent: true,
+          opacity: 0.50,
+          side: THREE.DoubleSide
+        });
+        marker.add(new THREE.Mesh(ringGeo, ringMat));
+        group.add(marker);
+      });
+    }
+
+  }, [layers, reliefScale, displacementScale]);
 
   // Smooth Camera Fly-To function with precise 3D Globe alignment
   const flyToCoords = (latDeg, lonDeg, distance = 2.0) => {

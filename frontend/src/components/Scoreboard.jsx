@@ -210,7 +210,12 @@ export const Scoreboard = ({
 
           {/* Candidates List (Shows Top 5 or All 23 when expanded) */}
           <div className={`space-y-1.5 ${isExpanded ? 'max-h-[380px]' : 'max-h-56'} overflow-y-auto custom-scrollbar pr-0.5 transition-all duration-300`}>
-            {filteredCandidates.map((s, index) => {
+            {filteredCandidates.length === 0 ? (
+              <div className="p-3.5 rounded-xl bg-[#0B1120] border border-amber-500/30 text-center space-y-1 text-[11px] font-mono text-slate-400">
+                <div className="text-amber-400 font-bold">No Matching Sites Found</div>
+                <p className="text-[10px] text-slate-500">Lower the Min Suitability slider or select "All Site Formations" in Criteria Filter.</p>
+              </div>
+            ) : filteredCandidates.map((s, index) => {
               const isSelected = s?.id === topSite.id;
               const badge = getSiteBadge(s);
               const itemRawScore = isAiMode 

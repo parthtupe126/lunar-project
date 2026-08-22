@@ -224,7 +224,7 @@ export function App() {
         {!isFullscreen && (
           <div className={`h-full shrink-0 z-10 ${isAppRevealed ? 'animate-smooth-slide-right' : 'opacity-0 translate-x-16'}`}>
             <Scoreboard
-              sites={rankedSites}
+              sites={visibleSites}
               selectedSite={selectedSite}
               onSelectSite={handleSelectSite}
               onOpenReport={() => setIsReportOpen(true)}
