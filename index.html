@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lunar Habitat AI — Professional aerospace mission-planning and habitat suitability analysis platform for lunar surface operations." />
+  <title>Lunar Habitat AI — Mission Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     APPLICATION FRAME
+══════════════════════════════════════════════════════ -->
+<div class="app-frame" id="app-frame">
+
+  <!-- ─── TOP NAVIGATION ─── -->
+  <header class="top-nav" id="top-nav" role="banner">
+    <div class="nav-left">
+      <div class="brand" id="brand-logo">
+        <svg class="brand-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="10" cy="10" r="8.5" stroke="#4B8BF4" stroke-width="1.2"/>
+          <circle cx="10" cy="10" r="5" stroke="#4B8BF4" stroke-width="0.8" stroke-dasharray="2 2"/>
+          <circle cx="10" cy="10" r="2" fill="#4B8BF4" opacity="0.8"/>
+          <line x1="10" y1="1.5" x2="10" y2="4" stroke="#4B8BF4" stroke-width="1.2"/>
+          <line x1="10" y1="16" x2="10" y2="18.5" stroke="#4B8BF4" stroke-width="1.2"/>
+        </svg>
+        <span class="brand-name">Lunar Habitat AI</span>
+        <span class="brand-version">v2.4</span>
+      </div>
+    </div>
+
+    <div class="nav-center">
+      <div class="search-field" id="global-search">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <circle cx="6" cy="6" r="4.5" stroke="#6B7A99" stroke-width="1.2"/>
+          <line x1="9.5" y1="9.5" x2="12.5" y2="12.5" stroke="#6B7A99" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <input type="search" id="site-search" placeholder="Search crater, Apollo, Aristarchus…" autocomplete="off" spellcheck="false" />
+        <span class="search-shortcut">⌘K</span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <button class="nav-btn" id="btn-missions" title="Missions Catalogue">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <rect x="1" y="2" width="12" height="2" rx="0.5" fill="currentColor"/>
+          <rect x="1" y="6" width="9" height="2" rx="0.5" fill="currentColor"/>
+          <rect x="1" y="10" width="11" height="2" rx="0.5" fill="currentColor"/>
+        </svg>
+        Missions Catalogue
+      </button>
+      <button class="nav-btn" id="btn-fullscreen" title="Toggle Fullscreen">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 1h4M1 1v4M13 1h-4M13 1v4M1 13h4M1 13v-4M13 13h-4M13 13v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Full Screen
+      </button>
+      <div class="nav-divider" aria-hidden="true"></div>
+      <button class="nav-btn nav-btn--ai" id="btn-dossier" title="Generate AI Mission Dossier">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 2h6l3 3v7a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.1"/>
+          <path d="M9 2v3h3" stroke="currentColor" stroke-width="1.1"/>
+          <circle cx="7" cy="8.5" r="1.5" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        AI Mission Dossier
+        <span class="ai-status-dot" aria-label="AI online"></span>
+      </button>
+      <div class="nav-divider" aria-hidden="true"></div>
+      <div class="user-avatar" id="user-avatar" role="button" tabindex="0" title="Mission Operator">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="8" cy="6" r="3" stroke="#8899BB" stroke-width="1.2"/>
+          <path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#8899BB" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── MAIN LAYOUT ─── -->
+  <main class="main-layout" id="main-layout" role="main">
+
+    <!-- ══ LEFT SIDEBAR ══ -->
+    <aside class="sidebar-left" id="sidebar-left" aria-label="Analysis Controls">
+      <div class="sidebar-scroll">
+
+        <!-- Section: Analysis Controls -->
+        <section class="sidebar-section" id="section-analysis">
+          <div class="section-header">
+            <span class="section-label">ANALYSIS CONTROLS</span>
+            <button class="reset-btn" id="btn-reset-controls" title="Reset all controls to defaults">Reset</button>
+          </div>
+
+          <!-- Mission Config -->
+          <div class="config-group" id="mission-config">
+            <div class="config-row">
+              <div class="config-row-label">Mission Profile</div>
+              <div class="config-row-value">
+                <select class="config-select" id="select-mission">
+                  <option>Artemis Baseline</option>
+                  <option>Artemis III Extended</option>
+                  <option>Gateway Resupply</option>
+                </select>
+              </div>
+            </div>
+            <div class="config-row">
+              <div class="config-row-label">Power System</div>
+              <div class="config-row-value tag-label">15 kW Water Mining</div>
+            </div>
+            <div class="config-row">
+              <div class="config-row-label">Solar Potential</div>
+              <div class="config-row-value">
+                <span class="status-dot status-dot--high" aria-label="High"></span>
+                <span class="status-text">High</span>
+              </div>
+            </div>
+            <div class="config-row">
+              <div class="config-row-label">Radiation Safety</div>
+              <div class="config-row-value tag-label">Shielding Model</div>
+            </div>
+          </div>
+        </section>
+
+        <div class="sidebar-divider" aria-hidden="true"></div>
+
+        <!-- Section: Habitat Suitability Weights -->
+        <section class="sidebar-section" id="section-weights">
+          <div class="section-header">
+            <span class="section-label">HABITAT SUITABILITY WEIGHTS</span>
+          </div>
+
+          <div class="weight-group" id="weight-controls">
+
+            <div class="weight-item" id="weight-terrain">
+              <div class="weight-header">
+                <span class="weight-name">Terrain Flatness</span>
+                <span class="weight-value mono" id="val-terrain">20%</span>
+              </div>
+              <div class="slider-track-wrap">
+                <input type="range" class="weight-slider" id="slider-terrain" min="0" max="50" value="20" aria-label="Terrain Flatness weight" />
+              </div>
+              <div class="weight-axis">
+                <span>Rugged</span>
+                <span>Flat</span>
+              </div>
+            </div>
+
+            <div class="weight-item" id="weight-solar">
+              <div class="weight-header">
+                <span class="weight-name">Solar Energy</span>
+                <span class="weight-value mono" id="val-solar">25%</span>
+              </div>
+              <div class="slider-track-wrap">
+                <input type="range" class="weight-slider" id="slider-solar" min="0" max="50" value="25" aria-label="Solar Energy weight" />
+              </div>
+              <div class="weight-axis">
+                <span>Low</span>
+                <span>High</span>
+              </div>
+            </div>
+
+            <div class="weight-item" id="weight-ice">
+              <div class="weight-header">
+                <span class="weight-name">Water Ice</span>
+                <span class="weight-value mono" id="val-ice">25%</span>
+              </div>
+              <div class="slider-track-wrap">
+                <input type="range" class="weight-slider" id="slider-ice" min="0" max="50" value="25" aria-label="Water Ice weight" />
+              </div>
+              <div class="weight-axis">
+                <span>Low</span>
+                <span>High</span>
+              </div>
+            </div>
+
+            <div class="weight-item" id="weight-radiation">
+              <div class="weight-header">
+                <span class="weight-name">Radiation Shielding</span>
+                <span class="weight-value mono" id="val-radiation">15%</span>
+              </div>
+              <div class="slider-track-wrap">
+                <input type="range" class="weight-slider" id="slider-radiation" min="0" max="50" value="15" aria-label="Radiation Shielding weight" />
+              </div>
+              <div class="weight-axis">
+                <span>Low</span>
+                <span>High</span>
+              </div>
+            </div>
+
+            <div class="weight-item" id="weight-landing">
+              <div class="weight-header">
+                <span class="weight-name">Landing Accessibility</span>
+                <span class="weight-value mono" id="val-landing">15%</span>
+              </div>
+              <div class="slider-track-wrap">
+                <input type="range" class="weight-slider" id="slider-landing" min="0" max="50" value="15" aria-label="Landing Accessibility weight" />
+              </div>
+              <div class="weight-axis">
+                <span>Difficult</span>
+                <span>Easy</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="sidebar-divider" aria-hidden="true"></div>
+
+        <!-- Section: Map Layers -->
+        <section class="sidebar-section" id="section-layers">
+          <div class="section-header">
+            <span class="section-label">MAP LAYERS</span>
+          </div>
+
+          <div class="layer-list" id="map-layers">
+
+            <div class="layer-row" id="layer-terrain">
+              <div class="layer-icon" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 10L4 5l3 4 2-3 3 4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="layer-name">Terrain Relief</span>
+              <label class="toggle-switch" aria-label="Toggle Terrain Relief">
+                <input type="checkbox" id="layer-terrain-toggle" checked />
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+            <div class="layer-row" id="layer-contour">
+              <div class="layer-icon" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><ellipse cx="6.5" cy="6.5" rx="5" ry="2.5" stroke="currentColor" stroke-width="1.1"/><ellipse cx="6.5" cy="6.5" rx="3" ry="1.5" stroke="currentColor" stroke-width="1.1"/></svg>
+              </div>
+              <span class="layer-name">Elevation Contours</span>
+              <label class="toggle-switch" aria-label="Toggle Elevation Contours">
+                <input type="checkbox" id="layer-contour-toggle" checked />
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+            <div class="layer-row" id="layer-slope">
+              <div class="layer-icon" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 12L12 1" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M8 1h4v4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span class="layer-name">Slope Hazards</span>
+              <label class="toggle-switch" aria-label="Toggle Slope Hazards">
+                <input type="checkbox" id="layer-slope-toggle" />
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+            <div class="layer-row" id="layer-water">
+              <div class="layer-icon" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 2C6.5 2 2 6.5 2 9a4.5 4.5 0 009 0c0-2.5-4.5-7-4.5-7z" stroke="currentColor" stroke-width="1.1"/></svg>
+              </div>
+              <span class="layer-name">Water Ice Volatiles</span>
+              <label class="toggle-switch" aria-label="Toggle Water Ice Volatiles">
+                <input type="checkbox" id="layer-water-toggle" checked />
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+            <div class="layer-row" id="layer-solar">
+              <div class="layer-icon" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="2.5" stroke="currentColor" stroke-width="1.1"/><line x1="6.5" y1="1" x2="6.5" y2="2.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><line x1="6.5" y1="10.5" x2="6.5" y2="12" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><line x1="1" y1="6.5" x2="2.5" y2="6.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><line x1="10.5" y1="6.5" x2="12" y2="6.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+              </div>
+              <span class="layer-name">Solar Illumination</span>
+              <label class="toggle-switch" aria-label="Toggle Solar Illumination">
+                <input type="checkbox" id="layer-solar-toggle" checked />
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+            <div class="layer-row" id="layer-radiation">
+              <div class="layer-icon" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="1.5" stroke="currentColor" stroke-width="1.1"/><path d="M6.5 5V2M4.7 7.3l-2 1.2M8.3 7.3l2 1.2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+              </div>
+              <span class="layer-name">Radiation Heatmap</span>
+              <label class="toggle-switch" aria-label="Toggle Radiation Heatmap">
+                <input type="checkbox" id="layer-radiation-toggle" />
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
+          </div>
+        </section>
+
+      </div><!-- /sidebar-scroll -->
+    </aside>
+
+    <!-- ══ CENTER VISUALIZATION ══ -->
+    <div class="center-panel" id="center-panel">
+
+      <!-- Visualization Toolbar -->
+      <div class="viz-toolbar" id="viz-toolbar" role="toolbar" aria-label="Visualization modes">
+        <button class="viz-mode-btn" id="mode-nasa" data-mode="nasa">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1"/><circle cx="6" cy="6" r="2" stroke="currentColor" stroke-width="1"/></svg>
+          NASA 8K Moon
+        </button>
+        <button class="viz-mode-btn viz-mode-btn--active" id="mode-hc" data-mode="hc">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" stroke-width="1"/><path d="M6 1.5v9M1.5 6h9" stroke="currentColor" stroke-width="1"/></svg>
+          High-Contrast
+        </button>
+        <button class="viz-mode-btn" id="mode-lola" data-mode="lola">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 8L3 5l2.5 3L8 4l3 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          LOLA Topo
+        </button>
+        <button class="viz-mode-btn" id="mode-ice" data-mode="ice">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1.5C6 1.5 2.5 5.5 2.5 8a3.5 3.5 0 007 0c0-2.5-3.5-6.5-3.5-6.5z" stroke="currentColor" stroke-width="1"/></svg>
+          Water Ice
+        </button>
+        <button class="viz-mode-btn" id="mode-ir" data-mode="ir">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="2" stroke="currentColor" stroke-width="1"/><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1" stroke-dasharray="1.5 1.5"/></svg>
+          Diviner IR
+        </button>
+        <div class="viz-toolbar-spacer"></div>
+        <div class="coord-display mono" id="coord-display" aria-live="polite">
+          <span class="coord-label">TARGET</span>
+          <span class="coord-value">Lunar South Pole</span>
+        </div>
+      </div>
+
+      <!-- Lunar Visualization -->
+      <div class="lunar-viz" id="lunar-viz" role="img" aria-label="Lunar surface visualization - South Polar region" style="position:relative;">
+        <canvas id="lunar-canvas" aria-hidden="true"></canvas>
+
+        <!-- Site Markers overlay -->
+        <div class="site-markers" id="site-markers" aria-hidden="true">
+          <!-- Marker 01: Shackleton Crater Rim -->
+          <div class="site-marker site-marker--active" id="marker-01" style="left: 52%; top: 36%;"
+               role="button" tabindex="0" aria-label="Site 01: Shackleton Crater Rim, 81% suitability" data-site="0">
+            <div class="marker-pulse"></div>
+            <div class="marker-pin"></div>
+            <div class="marker-label">
+              <span class="marker-id">01</span>
+            </div>
+            <div class="marker-tooltip">
+              <strong>Shackleton Crater Rim</strong>
+              <span class="mono">81%</span>
+            </div>
+          </div>
+          <!-- Marker 02: Faulkes -->
+          <div class="site-marker" id="marker-02" style="left: 58%; top: 52%;"
+               role="button" tabindex="0" aria-label="Site 02: Faulkes Crater, 76% suitability" data-site="1">
+            <div class="marker-pin"></div>
+            <div class="marker-label">
+              <span class="marker-id">02</span>
+            </div>
+            <div class="marker-tooltip">
+              <strong>Faulkes Crater</strong>
+              <span class="mono">76%</span>
+            </div>
+          </div>
+          <!-- Marker 03: Malapert -->
+          <div class="site-marker" id="marker-03" style="left: 44%; top: 68%;"
+               role="button" tabindex="0" aria-label="Site 03: Malapert Massif, 72% suitability" data-site="2">
+            <div class="marker-pin"></div>
+            <div class="marker-label">
+              <span class="marker-id">03</span>
+            </div>
+            <div class="marker-tooltip">
+              <strong>Malapert Massif</strong>
+              <span class="mono">72%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Measurement arc overlay -->
+        <div class="measurement-overlay" id="measurement-overlay" aria-hidden="true">
+          <svg class="measure-svg" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Crosshair rings -->
+            <circle cx="300" cy="300" r="240" stroke="#2A3A5C" stroke-width="0.7" stroke-dasharray="3 8"/>
+            <circle cx="300" cy="300" r="140" stroke="#2A3A5C" stroke-width="0.5" stroke-dasharray="2 6"/>
+            <!-- Cardinal tick marks -->
+            <line x1="300" y1="56" x2="300" y2="66" stroke="#3A4D70" stroke-width="1"/>
+            <line x1="300" y1="534" x2="300" y2="544" stroke="#3A4D70" stroke-width="1"/>
+            <line x1="56" y1="300" x2="66" y2="300" stroke="#3A4D70" stroke-width="1"/>
+            <line x1="534" y1="300" x2="544" y2="300" stroke="#3A4D70" stroke-width="1"/>
+            <!-- Measurement arc near site 01 -->
+            <path d="M 360 120 A 200 200 0 0 1 510 280" stroke="#4B8BF4" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.5"/>
+            <text x="400" y="110" fill="#4B8BF4" font-size="8" font-family="IBM Plex Mono" opacity="0.7">350m traverse</text>
+          </svg>
+        </div>
+
+        <!-- Latitude/Longitude labels -->
+        <div class="geo-labels" aria-hidden="true">
+          <div class="geo-label geo-label--bottom-left mono">89°S  0°W</div>
+          <div class="geo-label geo-label--bottom-right mono">89°S  15°E</div>
+          <div class="geo-label geo-label--top-right mono">88°S  30°E</div>
+        </div>
+      </div>
+
+      <!-- Explore Navigation Bar -->
+      <nav class="explore-nav" id="explore-nav" aria-label="Mission filter navigation">
+        <button class="explore-btn explore-btn--active" id="exp-all" data-filter="all">ALL <span class="exp-count">23</span></button>
+        <button class="explore-btn" id="exp-isro" data-filter="isro">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 8V4L5 2l3 2v4" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>
+          ISRO <span class="exp-count">4</span>
+        </button>
+        <button class="explore-btn" id="exp-nasa" data-filter="nasa">US NASA <span class="exp-count">18</span></button>
+        <button class="explore-btn" id="exp-spacex" data-filter="spacex">SpaceX / CLPS <span class="exp-count">5</span></button>
+        <div class="explore-divider" aria-hidden="true"></div>
+        <button class="explore-btn" id="exp-poles" data-filter="poles">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="3.5" stroke="currentColor" stroke-width="1"/><line x1="5" y1="1.5" x2="5" y2="8.5" stroke="currentColor" stroke-width="1"/></svg>
+          Sides &amp; Poles
+        </button>
+      </nav>
+    </div><!-- /center-panel -->
+
+    <!-- ══ RIGHT PANEL ══ -->
+    <aside class="sidebar-right" id="sidebar-right" aria-label="Habitat Analysis Panel">
+      <div class="sidebar-scroll">
+
+        <!-- Scoreboard -->
+        <section class="right-section" id="section-scoreboard">
+          <div class="section-header">
+            <span class="section-label">HABITAT SCOREBOARD</span>
+            <span class="scoreboard-count">23 Analyzed</span>
+          </div>
+
+          <div class="scoreboard-list" id="scoreboard-list" role="list">
+
+            <div class="score-row score-row--active" id="score-01" role="listitem" tabindex="0" data-site="0" aria-label="Rank 1: Shackleton Crater Rim, 81%, High suitability">
+              <div class="score-rank mono">01</div>
+              <div class="score-thumb" aria-hidden="true">
+                <div class="thumb-placeholder thumb-1"></div>
+              </div>
+              <div class="score-info">
+                <div class="score-name">Shackleton Crater Rim</div>
+                <div class="score-coords mono">Lat: -89.9° | Lon: 0.0° | Alt: 4310m</div>
+              </div>
+              <div class="score-meta">
+                <div class="score-pct">81%</div>
+                <div class="score-status score-status--high">High</div>
+              </div>
+            </div>
+
+            <div class="score-row" id="score-02" role="listitem" tabindex="0" data-site="1" aria-label="Rank 2: Faulkes Crater, 76%, High suitability">
+              <div class="score-rank mono">02</div>
+              <div class="score-thumb" aria-hidden="true">
+                <div class="thumb-placeholder thumb-2"></div>
+              </div>
+              <div class="score-info">
+                <div class="score-name">Faulkes Crater</div>
+                <div class="score-coords mono">Lat: -75.2° | Lon: 30.8° | Alt: 3920m</div>
+              </div>
+              <div class="score-meta">
+                <div class="score-pct">76%</div>
+                <div class="score-status score-status--high">High</div>
+              </div>
+            </div>
+
+            <div class="score-row" id="score-03" role="listitem" tabindex="0" data-site="2" aria-label="Rank 3: Malapert Massif, 72%, High suitability">
+              <div class="score-rank mono">03</div>
+              <div class="score-thumb" aria-hidden="true">
+                <div class="thumb-placeholder thumb-3"></div>
+              </div>
+              <div class="score-info">
+                <div class="score-name">Malapert Massif</div>
+                <div class="score-coords mono">Lat: -86.6° | Lon: -10.9° | Alt: 2880m</div>
+              </div>
+              <div class="score-meta">
+                <div class="score-pct">72%</div>
+                <div class="score-status score-status--high">High</div>
+              </div>
+            </div>
+
+            <div class="score-row" id="score-04" role="listitem" tabindex="0" data-site="3" aria-label="Rank 4: Peak Near Shackleton, 69%, Moderate suitability">
+              <div class="score-rank mono">04</div>
+              <div class="score-thumb" aria-hidden="true">
+                <div class="thumb-placeholder thumb-4"></div>
+              </div>
+              <div class="score-info">
+                <div class="score-name">Peak Near Shackleton</div>
+                <div class="score-coords mono">Lat: -88.3° | Lon: 15.1° | Alt: 4120m</div>
+              </div>
+              <div class="score-meta">
+                <div class="score-pct score-pct--moderate">69%</div>
+                <div class="score-status score-status--moderate">Moderate</div>
+              </div>
+            </div>
+
+            <div class="score-row" id="score-05" role="listitem" tabindex="0" data-site="4" aria-label="Rank 5: Aristarchus Plateau, 66%, Moderate suitability">
+              <div class="score-rank mono">05</div>
+              <div class="score-thumb" aria-hidden="true">
+                <div class="thumb-placeholder thumb-5"></div>
+              </div>
+              <div class="score-info">
+                <div class="score-name">Aristarchus Plateau</div>
+                <div class="score-coords mono">Lat: 23.7° | Lon: 47.0° | Alt: 3100m</div>
+              </div>
+              <div class="score-meta">
+                <div class="score-pct score-pct--moderate">66%</div>
+                <div class="score-status score-status--moderate">Moderate</div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="sidebar-divider" aria-hidden="true"></div>
+
+        <!-- Selected Site Detail -->
+        <section class="right-section" id="section-site-detail">
+
+          <!-- Site Header -->
+          <div class="site-header" id="site-header">
+            <div class="site-title-row">
+              <div class="site-title-group">
+                <div class="site-rank-badge mono">01</div>
+                <div>
+                  <h1 class="site-name" id="site-name">Shackleton Crater Rim</h1>
+                  <div class="site-coords mono" id="site-coords">Lat: −89.28° S · Lon: 15.40° E · Alt: 4120m</div>
+                </div>
+              </div>
+              <div class="site-badge site-badge--high" id="site-badge">HIGHLY SUITABLE</div>
+            </div>
+          </div>
+
+          <!-- Site Image -->
+          <div class="site-image-wrap" id="site-image-wrap">
+            <div class="site-image" id="site-image" aria-label="NASA LRO optical survey image of Shackleton Crater Rim">
+              <div class="site-image-overlay">
+                <span class="image-source-label">NASA LRO Optical Survey</span>
+                <span class="image-alt-label mono">+4120m</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Suitability Score -->
+          <div class="suitability-block" id="suitability-block">
+            <div class="suitability-left">
+              <div class="suit-label">Overall AI Suitability</div>
+              <div class="suit-score mono" id="suit-score">90.2<span class="suit-denom">/100</span></div>
+              <div class="suit-meta-row">
+                <div class="suit-meta-item">
+                  <span class="suit-meta-label">Confidence</span>
+                  <span class="suit-meta-val mono">93%</span>
+                </div>
+                <div class="suit-meta-sep" aria-hidden="true">·</div>
+                <div class="suit-meta-item">
+                  <span class="suit-meta-label">Ice Traverse</span>
+                  <span class="suit-meta-val mono">350m</span>
+                </div>
+              </div>
+            </div>
+            <div class="suitability-right">
+              <div class="radial-chart" id="radial-chart" aria-label="Suitability score: 90.2 out of 100">
+                <svg viewBox="0 0 80 80" width="80" height="80">
+                  <circle cx="40" cy="40" r="32" stroke="#1E2A40" stroke-width="6" fill="none"/>
+                  <circle cx="40" cy="40" r="32" stroke="#4B8BF4" stroke-width="6" fill="none"
+                    stroke-linecap="round"
+                    stroke-dasharray="181.3 200"
+                    stroke-dashoffset="50"
+                    transform="rotate(-90 40 40)"
+                    id="radial-progress"/>
+                  <text x="40" y="37" text-anchor="middle" fill="#E8EDF5" font-size="13" font-family="IBM Plex Mono" font-weight="500">90.2</text>
+                  <text x="40" y="48" text-anchor="middle" fill="#4B6699" font-size="7" font-family="IBM Plex Mono">/100</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scientific Metrics -->
+          <div class="metrics-block" id="metrics-block">
+            <div class="metrics-header">KEY SCIENTIFIC METRICS</div>
+
+            <div class="metric-row" id="metric-terrain">
+              <div class="metric-name">Terrain Slope Flatness</div>
+              <div class="metric-bar-wrap">
+                <div class="metric-bar-track">
+                  <div class="metric-bar-fill metric-bar-fill--high" style="width: 94%" id="bar-terrain"></div>
+                </div>
+              </div>
+              <div class="metric-val mono">94% <span class="metric-sub">(4.2°)</span></div>
+            </div>
+
+            <div class="metric-row" id="metric-ice">
+              <div class="metric-name">Water Ice Volatiles</div>
+              <div class="metric-bar-wrap">
+                <div class="metric-bar-track">
+                  <div class="metric-bar-fill metric-bar-fill--high" style="width: 89%" id="bar-ice"></div>
+                </div>
+              </div>
+              <div class="metric-val mono">89% <span class="metric-sub">(19.5%)</span></div>
+            </div>
+
+            <div class="metric-row" id="metric-solar">
+              <div class="metric-name">Solar Illumination</div>
+              <div class="metric-bar-wrap">
+                <div class="metric-bar-track">
+                  <div class="metric-bar-fill metric-bar-fill--high" style="width: 97%" id="bar-solar"></div>
+                </div>
+              </div>
+              <div class="metric-val mono">97% <span class="metric-sub">(95.2%)</span></div>
+            </div>
+
+            <div class="metric-row" id="metric-radiation">
+              <div class="metric-name">Radiation Safety</div>
+              <div class="metric-bar-wrap">
+                <div class="metric-bar-track">
+                  <div class="metric-bar-fill metric-bar-fill--moderate" style="width: 84%" id="bar-radiation"></div>
+                </div>
+              </div>
+              <div class="metric-val mono">84% <span class="metric-sub">(280 mSv)</span></div>
+            </div>
+
+            <div class="metric-row" id="metric-access">
+              <div class="metric-name">Landing Accessibility</div>
+              <div class="metric-bar-wrap">
+                <div class="metric-bar-track">
+                  <div class="metric-bar-fill metric-bar-fill--moderate" style="width: 82%" id="bar-access"></div>
+                </div>
+              </div>
+              <div class="metric-val mono">82%</div>
+            </div>
+
+          </div>
+
+          <!-- Action Area -->
+          <div class="action-area" id="action-area">
+            <button class="action-btn action-btn--primary" id="btn-telemetry">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M1 11l3-6 3 4 2.5-3L13 11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="1" y1="14" x2="15" y2="14" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+              </svg>
+              Open Full Scientific Telemetry Page
+            </button>
+            <button class="action-btn action-btn--ai" id="btn-dossier-action">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 2h6l4 4v8a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M10 2v4h4" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="8" cy="10.5" r="1.5" stroke="currentColor" stroke-width="1"/>
+                <path d="M6.5 10.5h-1M9.5 10.5h1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+              </svg>
+              Generate AI Mission Dossier
+            </button>
+          </div>
+
+        </section>
+
+      </div><!-- /sidebar-scroll -->
+    </aside>
+
+  </main><!-- /main-layout -->
+
+  <!-- ─── STATUS FOOTER ─── -->
+  <footer class="status-footer" id="status-footer" role="contentinfo">
+    <div class="footer-left">
+      <span class="footer-brand">Lunar Habitat AI © 2025</span>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#about" class="footer-link">About</a>
+        <a href="#docs" class="footer-link">Docs</a>
+        <a href="#mission-data" class="footer-link">Mission Data</a>
+        <a href="#contact" class="footer-link">Contact</a>
+      </nav>
+    </div>
+    <div class="footer-right">
+      <span class="footer-source">Data Sources:</span>
+      <span class="footer-badge">NASA</span>
+      <span class="footer-sep">·</span>
+      <span class="footer-badge">USGS</span>
+      <span class="footer-sep">·</span>
+      <span class="footer-badge">ISRO</span>
+      <div class="footer-status-dots" aria-label="System status">
+        <div class="fstatus-dot fstatus-dot--online" title="Telemetry stream: online"></div>
+        <div class="fstatus-dot fstatus-dot--online" title="AI models: online"></div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /app-frame -->
+
+<script src="app.js"></script>
+<!-- Three.js r128 + Moon 3D module -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="moon3d.js"></script>
+</body>
+</html>
