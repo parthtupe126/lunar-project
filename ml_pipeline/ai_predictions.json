@@ -3,7 +3,7 @@
     "generated_at": "2026-08-20T12:03:55.195934Z",
     "model_version": "xgb_lunar_v1.0",
     "training_samples": 15000,
-    "model_r2": 0.9562,
+    "model_r2": 0.9562, 
     "model_mae": 1.3007,
     "best_optuna_params": {
       "n_estimators": 853,
