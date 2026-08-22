@@ -1,0 +1,98 @@
+{
+  "model_metadata": {
+    "name": "LUNA-DSS Multi-Model AI Habitat Suitability Engine",
+    "version": "2.4.0",
+    "training_samples": 8000,
+    "features": [
+      "slope_deg",
+      "annual_illumination_pct",
+      "ice_prob",
+      "radiation_msv_yr",
+      "earth_vis_pct",
+      "elevation_m",
+      "roughness_m",
+      "max_temp_k",
+      "min_temp_k",
+      "shielding_factor",
+      "weh_wt_pct"
+    ],
+    "classes": [
+      "Hazard / Exclusion Zone",
+      "ISRU Cryogenic Mining Outpost",
+      "Optimal Habitat Base",
+      "Secondary Exploration Zone",
+      "Solar Power Array",
+      "Spaceport / Landing Pad"
+    ]
+  },
+  "regression_metrics": {
+    "rf_r2_score": 0.9942,
+    "rf_mae": 0.203,
+    "rf_rmse": 0.824,
+    "gbr_r2_score": 0.9934,
+    "mlp_r2_score": 0.9946
+  },
+  "classification_metrics": {
+    "accuracy": 0.9994,
+    "precision": 0.9994,
+    "recall": 0.9994,
+    "f1_score": 0.9993,
+    "classes": [
+      "Hazard / Exclusion Zone",
+      "ISRU Cryogenic Mining Outpost",
+      "Optimal Habitat Base",
+      "Secondary Exploration Zone",
+      "Solar Power Array",
+      "Spaceport / Landing Pad"
+    ]
+  },
+  "feature_importances": {
+    "slope_deg": 0.1794,
+    "annual_illumination_pct": 0.1184,
+    "ice_prob": 0.1352,
+    "radiation_msv_yr": 0.0137,
+    "earth_vis_pct": 0.423,
+    "elevation_m": 0.0108,
+    "roughness_m": 0.0432,
+    "max_temp_k": 0.0319,
+    "min_temp_k": 0.0116,
+    "shielding_factor": 0.0145,
+    "weh_wt_pct": 0.0185
+  },
+  "scaler_params": {
+    "mean": [
+      2.5557,
+      55.4924,
+      0.0672,
+      328.1761,
+      56.2608,
+      1007.4665,
+      0.4798,
+      197.2667,
+      141.961,
+      0.2132,
+      0.5186
+    ],
+    "std": [
+      3.5219,
+      15.9647,
+      0.2097,
+      28.2053,
+      16.4108,
+      1122.5391,
+      0.4422,
+      31.7768,
+      26.5308,
+      0.087,
+      1.0365
+    ]
+  },
+  "ai_decision_rules": {
+    "slope_max_habitat_deg": 8.0,
+    "slope_max_landing_deg": 3.5,
+    "min_annual_illumination_pct": 75.0,
+    "max_annual_radiation_msv": 370.0,
+    "min_psr_ice_wt_pct": 3.0,
+    "safe_thermal_min_k": 120.0
+  }
+}

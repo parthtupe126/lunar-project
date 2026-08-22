@@ -1,0 +1,24 @@
+node_id,node_name,latitude_deg,longitude_deg,elevation_m,slope_deg,roughness_m,annual_illumination_pct,max_temp_k,min_temp_k,psr_flag,ice_prob,weh_wt_pct,radiation_msv_yr,shielding_factor,earth_vis_pct,suitability_score,zone_class
+N01,Shackleton Crater Rim,-89.28,15.399999999999977,4120,4.5,7.0,86.0,220.0,38.0,1,0.81,0.432,297.6,0.175,65.3,90.9,ISRU Cryogenic Mining Outpost
+N02,Mons Malapert Plateau,-85.99,12.899999999999977,5100,4.8,7.5,84.0,220.0,38.0,1,0.78,0.414,297.4,0.177,74.7,89.8,ISRU Cryogenic Mining Outpost
+N03,Faustini Rim A,-87.14,76.98000000000002,3200,5.1,8.0,82.0,220.0,38.0,1,0.74,0.396,297.2,0.178,80.3,88.7,ISRU Cryogenic Mining Outpost
+N04,Connecting Ridge,-89.44,222.7,4350,5.4,8.5,80.0,220.0,38.0,1,0.71,0.378,297.0,0.18,53.5,87.6,ISRU Cryogenic Mining Outpost
+N05,de Gerlache Crater Rim,-88.5,271.7,3850,5.7,9.0,78.0,220.0,38.0,1,0.67,0.36,296.7,0.182,52.5,86.5,ISRU Cryogenic Mining Outpost
+N06,Haworth Crater Rim,-87.4,354.9,3950,6.0,9.5,76.0,220.0,38.0,1,0.64,0.342,296.5,0.183,66.7,85.4,Optimal Habitat Base
+N07,Mons Mouton (Leibnitz),-84.5,327.9,6100,6.3,10.0,74.0,220.0,38.0,1,0.6,0.324,296.3,0.185,70.1,84.3,Optimal Habitat Base
+N08,Nobile Crater Rim,-85.2,53.5,3400,6.6,10.5,72.0,220.0,38.0,1,0.57,0.306,296.1,0.187,84.0,83.2,Optimal Habitat Base
+N09,Amundsen Crater Peak,-84.5,82.80000000000001,2900,6.9,11.0,70.0,220.0,38.0,1,0.53,0.288,295.9,0.188,88.4,82.1,Optimal Habitat Base
+N10,Marius Hills Lava Tube,14.12,303.24,-2200,2.8,11.5,50.0,384.0,100.0,0,0.0,0.04,298.8,0.166,53.2,81.0,Optimal Habitat Base
+N11,Cabeus Crater,-84.9,324.5,-4100,7.5,12.0,66.0,220.0,38.0,1,0.46,0.252,295.5,0.192,68.3,79.9,Secondary Exploration Zone
+N12,Shoemaker Crater Rim,-88.1,44.89999999999998,3600,7.8,12.5,64.0,220.0,38.0,1,0.43,0.234,295.3,0.193,74.2,78.8,Secondary Exploration Zone
+N13,Chandrayaan-3 Shiv Shakti,-69.373,32.31900000000002,-180,8.1,13.0,50.0,384.0,100.0,0,0.0,0.04,295.0,0.195,29.8,77.7,Secondary Exploration Zone
+N14,Chandrayaan-1 Jawahar Point,-89.9,0.0,3900,8.4,13.5,60.0,220.0,38.0,1,0.36,0.198,294.8,0.197,60.3,76.6,Secondary Exploration Zone
+N15,Chandrayaan-2 Tiranga Point,-70.9,22.779999999999973,-320,4.2,14.0,50.0,384.0,100.0,0,0.0,0.04,297.8,0.173,30.2,75.5,Secondary Exploration Zone
+N16,Chandrayaan-4 / LUPEX Site,-89.1,115.0,3700,4.5,6.5,56.0,220.0,38.0,1,0.29,0.162,297.6,0.175,73.6,74.4,Secondary Exploration Zone
+N17,Apollo 11 Tranquility Base,0.674,23.473000000000013,-2450,2.6,7.0,50.0,384.0,100.0,0,0.0,0.04,299.0,0.164,100.0,73.3,Spaceport / Landing Pad
+N18,Apollo 12 Ocean of Storms,-3.012,336.578,-2100,3.0,7.5,50.0,384.0,100.0,0,0.0,0.04,298.7,0.167,91.6,72.2,Spaceport / Landing Pad
+N19,Apollo 14 Fra Mauro,-3.645,342.529,-1450,3.4,8.0,50.0,384.0,100.0,0,0.0,0.04,298.4,0.169,95.2,71.1,Spaceport / Landing Pad
+N20,Apollo 15 Hadley Rille,26.132,3.6340000000000146,-1800,3.8,8.5,50.0,384.0,100.0,0,0.0,0.04,298.1,0.171,100.0,70.0,Secondary Exploration Zone
+N21,Apollo 16 Descartes Highlands,-8.973,15.49799999999999,1200,4.2,9.0,50.0,384.0,100.0,0,0.0,0.04,297.8,0.173,100.0,68.9,Secondary Exploration Zone
+N22,Apollo 17 Taurus-Littrow,20.191,30.77199999999999,-2580,4.6,9.5,50.0,384.0,100.0,0,0.0,0.04,297.5,0.176,100.0,67.8,Secondary Exploration Zone
+N23,Artemis III Candidate Rim,-89.5,45.0,4250,6.6,10.0,82.0,220.0,38.0,1,0.79,0.436,296.1,0.187,70.0,91.7,ISRU Cryogenic Mining Outpost

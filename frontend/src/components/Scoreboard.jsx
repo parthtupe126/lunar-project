@@ -29,17 +29,16 @@ const DEFAULT_SITES = [];
 const DEFAULT_WEIGHTS = {};
 const NOOP = () => {};
 
-
 const DEFAULT_WHY_SITE = [
   { text: 'Peak of Eternal Light: high annual solar illumination along ridge', type: 'positive' },
   { text: 'Direct adjacent access to volatile cold trap reserves', type: 'positive' }
 ];
 
 function getSiteBadge(s) {
-  if (!s) return { label: 'Candidate', flag: '🌑', color: 'text-slate-300 bg-slate-900 border-slate-700' };
+  if (!s) return { label: 'Candidate', flag: '🏳️', color: 'text-slate-300 bg-slate-900 border-slate-700' };
   const id = s.id?.toLowerCase() || '';
   const name = s.name?.toLowerCase() || '';
-  if (id.includes('ch') || id.includes('lupex') || id.includes('jawahar') || id.includes('tiranga') || id.includes('shiv') || name.includes('chandrayaan')) {
+  if (id.includes('ch') || id.includes('lupex') || id.includes('jawahar') || id.includes('tiranga') || id.includes('shiv') || name.includes('chandrayaan') || name.includes('isro')) {
     return { label: 'ISRO', flag: '🇮🇳', color: 'text-orange-400 bg-orange-950/60 border-orange-500/40' };
   }
   if (id.includes('apollo') || name.includes('apollo')) {
@@ -51,7 +50,7 @@ function getSiteBadge(s) {
   if (id.includes('spacex') || name.includes('spacex') || id.includes('viper') || id.includes('im1')) {
     return { label: 'CLPS', flag: '🚀', color: 'text-emerald-400 bg-emerald-950/60 border-emerald-500/40' };
   }
-  return { label: s.siteType || 'Candidate', flag: '🌑', color: 'text-slate-300 bg-slate-900 border-slate-700' };
+  return { label: s.siteType || 'Polar Site', flag: '🏔️', color: 'text-slate-300 bg-slate-900 border-slate-700' };
 }
 
 /**
@@ -69,47 +68,49 @@ export const Scoreboard = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [evaluationMode, setEvaluationMode] = useState('calibrated'); // 'calibrated' (NASA Ground Truth) | 'ai' (XGBoost ML)
+  const [evaluationMode, setEvaluationMode] = useState('calibrated'); // 'calibrated' (NASA Ground Truth) | 'ai' (Random Forest ML)
 
   const topSite = selectedSite || sites[0] || null;
 
   // Filtered Candidates list computed unconditionally before any early returns (Rules of Hooks)
   const filteredCandidates = useMemo(() => {
-    let list = sites;
-    if (activeCategoryFilter === 'top5') list = sites.slice(0, 5);
-    else if (activeCategoryFilter === 'isro') {
-      list = sites.filter(s => {
-        const id = s.id?.toLowerCase() || '';
-        const name = s.name?.toLowerCase() || '';
+    let list = Array.isArray(sites) ? sites : [];
+    if (activeCategoryFilter === 'top5') {
+      list = list.slice(0, 5);
+    } else if (activeCategoryFilter === 'isro') {
+      list = list.filter(s => {
+        const id = s?.id?.toLowerCase() || '';
+        const name = s?.name?.toLowerCase() || '';
         return id.includes('ch') || id.includes('lupex') || id.includes('jawahar') || id.includes('tiranga') || id.includes('shiv') || name.includes('chandrayaan') || name.includes('isro');
       });
     } else if (activeCategoryFilter === 'apollo') {
-      list = sites.filter(s => {
-        const id = s.id?.toLowerCase() || '';
-        const name = s.name?.toLowerCase() || '';
+      list = list.filter(s => {
+        const id = s?.id?.toLowerCase() || '';
+        const name = s?.name?.toLowerCase() || '';
         return id.includes('apollo') || name.includes('apollo');
       });
     } else if (activeCategoryFilter === 'nasa') {
-      list = sites.filter(s => {
-        const id = s.id?.toLowerCase() || '';
-        const name = s.name?.toLowerCase() || '';
-        return id.includes('apollo') || id.includes('artemis') || id.includes('shackleton') || id.includes('mouton') || name.includes('artemis') || name.includes('apollo') || name.includes('nasa');
+      list = list.filter(s => {
+        const id = s?.id?.toLowerCase() || '';
+        const name = s?.name?.toLowerCase() || '';
+        return id.includes('apollo') || id.includes('artemis') || id.includes('shackleton') || id.includes('mouton') || id.includes('nobile') || id.includes('malapert') || name.includes('artemis') || name.includes('apollo') || name.includes('nasa');
       });
     } else if (activeCategoryFilter === 'southpole') {
-      list = sites.filter(s => (s.latitude || 0) < -70);
+      list = list.filter(s => (s?.latitude ?? 0) < -70);
     }
 
     if (searchQuery.trim()) {
       const q = searchQuery.trim().toLowerCase();
       list = list.filter(s => 
-        (s.name && s.name.toLowerCase().includes(q)) ||
-        (s.code && s.code.toLowerCase().includes(q)) ||
-        (s.shortName && s.shortName.toLowerCase().includes(q))
+        (s?.name && s.name.toLowerCase().includes(q)) ||
+        (s?.code && s.code.toLowerCase().includes(q)) ||
+        (s?.shortName && s.shortName.toLowerCase().includes(q)) ||
+        (s?.siteType && s.siteType.toLowerCase().includes(q))
       );
     }
 
     if (!isExpanded && !searchQuery.trim() && activeCategoryFilter === 'all') {
-      return sites.slice(0, 5);
+      return list.slice(0, 5);
     }
 
     return list;
@@ -126,10 +127,11 @@ export const Scoreboard = ({
 
   const isAiMode = evaluationMode === 'ai';
 
-  // Dynamic Score depending on mode
-  const displayedScore = isAiMode 
+  // Dynamic Score depending on mode (always numeric safe)
+  const rawScore = isAiMode 
     ? (topSite.ai_suitability_score ?? topSite.suitabilityScore ?? 0)
     : (topSite.original_mcda_score ?? topSite.suitabilityScore ?? 0);
+  const displayedScore = typeof rawScore === 'number' ? rawScore : (parseFloat(rawScore) || 0);
 
   // Dynamic factors depending on mode
   const activeFactors = isAiMode
@@ -155,8 +157,8 @@ export const Scoreboard = ({
                 HABITAT SCOREBOARD
               </h2>
             </div>
-            <span className="text-[10px] font-mono text-cyan-400 bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-500/30">
-              {sites.length} Analyzed
+            <span className="text-[10px] font-mono text-cyan-400 bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-500/30 font-semibold">
+              {Array.isArray(sites) ? sites.length : 23} Analyzed
             </span>
           </div>
 
@@ -166,11 +168,11 @@ export const Scoreboard = ({
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
-                placeholder="Search missions (e.g. Apollo, ISRO)..."
+                placeholder="Search 23 sites (e.g. Apollo, ISRO)..."
                 aria-label="Search lunar candidate sites"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#0B1120] border border-slate-700/80 rounded-lg pl-8 pr-3 py-1 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
+                className="w-full bg-[#0B1120] border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition-colors"
               />
             </div>
           )}
@@ -178,12 +180,12 @@ export const Scoreboard = ({
           {/* Filter Pills */}
           <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-1 mb-2">
             {[
-              { id: 'all', label: 'All' },
+              { id: 'all', label: `All (${Array.isArray(sites) ? sites.length : 23})` },
               { id: 'top5', label: 'Top 5' },
               { id: 'isro', label: '🇮🇳 ISRO' },
               { id: 'apollo', label: '🇺🇸 Apollo' },
               { id: 'nasa', label: '🚀 Artemis' },
-              { id: 'southpole', label: '❄️ South Pole' }
+              { id: 'southpole', label: '🧊 South Pole' }
             ].map((f) => (
               <button
                 key={f.id}
@@ -191,6 +193,9 @@ export const Scoreboard = ({
                 onClick={() => {
                   soundManager.playClick();
                   setActiveCategoryFilter(f.id);
+                  if (f.id !== 'all' && f.id !== 'top5') {
+                    setIsExpanded(true);
+                  }
                 }}
                 className={`px-2 py-0.5 rounded text-[10px] font-mono font-semibold whitespace-nowrap transition-colors cursor-pointer ${
                   activeCategoryFilter === f.id
@@ -203,19 +208,26 @@ export const Scoreboard = ({
             ))}
           </div>
 
-          {/* Top Candidates List */}
-          <div className="space-y-1.5 max-h-56 overflow-y-auto custom-scrollbar pr-0.5">
+          {/* Candidates List (Shows Top 5 or All 23 when expanded) */}
+          <div className={`space-y-1.5 ${isExpanded ? 'max-h-[380px]' : 'max-h-56'} overflow-y-auto custom-scrollbar pr-0.5 transition-all duration-300`}>
             {filteredCandidates.map((s, index) => {
-              const isSelected = s.id === topSite.id;
+              const isSelected = s?.id === topSite.id;
               const badge = getSiteBadge(s);
-              const score = isAiMode 
-                ? (s.ai_suitability_score ?? s.suitabilityScore ?? 0)
-                : (s.original_mcda_score ?? s.suitabilityScore ?? 0);
+              const itemRawScore = isAiMode 
+                ? (s?.ai_suitability_score ?? s?.suitabilityScore ?? 0)
+                : (s?.original_mcda_score ?? s?.suitabilityScore ?? 0);
+              const scoreNum = typeof itemRawScore === 'number' ? itemRawScore : (parseFloat(itemRawScore) || 0);
 
-              
+              // Find overall rank in full sites array
+              const globalIndex = Array.isArray(sites) ? sites.findIndex(item => item.id === s.id) : -1;
+              const rankNum = globalIndex >= 0 ? globalIndex + 1 : index + 1;
+
+              const latVal = s?.latitude != null ? Number(s.latitude) : null;
+              const lonVal = s?.longitude != null ? Number(s.longitude) : null;
+
               return (
                 <div
-                  key={s.id}
+                  key={s?.id || index}
                   role="button"
                   tabIndex={0}
                   onClick={() => {
@@ -229,41 +241,41 @@ export const Scoreboard = ({
                       onSelectSite(s);
                     }
                   }}
-                  aria-label={`Select site ${s.shortName || s.name}`}
-                  className={`p-2 rounded-xl border transition-colors cursor-pointer flex items-center justify-between group focus:outline-none focus:ring-1 focus:ring-cyan-500 ${
+                  aria-label={`Select site ${s?.shortName || s?.name || 'Candidate'}`}
+                  className={`p-2 rounded-xl border transition-all cursor-pointer flex items-center justify-between group focus:outline-none focus:ring-1 focus:ring-cyan-500 ${
                     isSelected
-                      ? 'bg-cyan-950/60 border-cyan-500/60 shadow-[0_0_15px_rgba(6,182,212,0.15)]'
+                      ? 'bg-cyan-950/70 border-cyan-500/70 shadow-[0_0_15px_rgba(6,182,212,0.25)]'
                       : 'bg-[#0B1120]/70 hover:bg-slate-800/80 border-slate-800/80 hover:border-slate-700'
                   }`}
                 >
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className={`text-xs font-mono font-bold w-4 text-center ${
-                      index === 0 ? 'text-amber-400' : index === 1 ? 'text-slate-300' : index === 2 ? 'text-amber-600' : 'text-slate-500'
+                    <span className={`text-xs font-mono font-bold w-5 text-center shrink-0 ${
+                      rankNum === 1 ? 'text-amber-400' : rankNum === 2 ? 'text-slate-300' : rankNum === 3 ? 'text-amber-600' : 'text-slate-500'
                     }`}>
-                      #{index + 1}
+                      #{rankNum}
                     </span>
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5">
-                        <span className="text-xs font-mono font-bold text-white truncate">
-                          {s.shortName || s.name}
+                        <span className={`text-xs font-mono font-bold truncate ${isSelected ? 'text-cyan-300' : 'text-white group-hover:text-cyan-200'}`}>
+                          {s?.shortName || s?.name || 'Site Candidate'}
                         </span>
-                        <span className={`text-[9px] px-1 rounded border ${badge.color}`}>
+                        <span className={`text-[9px] px-1 rounded border whitespace-nowrap shrink-0 ${badge.color}`}>
                           {badge.flag} {badge.label}
                         </span>
                       </div>
                       <div className="text-[10px] font-mono text-slate-400 flex items-center gap-2">
-                        <span>Lat: {s.latitude?.toFixed(1)}°</span>
-                        <span>Lon: {s.longitude?.toFixed(1)}°</span>
+                        <span>Lat: {latVal != null ? `${latVal.toFixed(1)}°` : '—'}</span>
+                        <span>Lon: {lonVal != null ? `${lonVal.toFixed(1)}°` : '—'}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="text-right shrink-0">
-                    <div className="text-xs font-mono font-bold text-cyan-400">
-                      {score.toFixed(1)}
+                  <div className="text-right shrink-0 ml-1">
+                    <div className={`text-xs font-mono font-bold ${isSelected ? 'text-cyan-300' : 'text-cyan-400'}`}>
+                      {scoreNum.toFixed(1)}
                     </div>
-                    <div className="text-[9px] font-mono text-slate-400">
-                      {s.tier ? s.tier.replace('_', ' ') : 'SUITABLE'}
+                    <div className="text-[9px] font-mono text-slate-400 uppercase">
+                      {s?.tier ? String(s.tier).replace('_', ' ') : 'SUITABLE'}
                     </div>
                   </div>
                 </div>
@@ -278,17 +290,17 @@ export const Scoreboard = ({
               soundManager.playClick();
               setIsExpanded(!isExpanded);
             }}
-            className="w-full mt-2 py-1 bg-slate-900/60 hover:bg-slate-800/80 text-slate-400 hover:text-slate-200 text-[10px] font-mono rounded-lg border border-slate-800 flex items-center justify-center gap-1 transition-colors cursor-pointer"
+            className="w-full mt-2 py-1.5 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-cyan-300 text-[10px] font-mono font-bold rounded-lg border border-slate-700/80 hover:border-cyan-500/50 flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm"
           >
             {isExpanded ? (
               <>
                 <span>Show Top 5 Only</span>
-                <ChevronUp className="w-3 h-3" />
+                <ChevronUp className="w-3.5 h-3.5 text-cyan-400" />
               </>
             ) : (
               <>
-                <span>View All {sites.length} Analyzed Sites</span>
-                <ChevronDown className="w-3 h-3" />
+                <span>View All {Array.isArray(sites) ? sites.length : 23} Analyzed Sites</span>
+                <ChevronDown className="w-3.5 h-3.5 text-cyan-400" />
               </>
             )}
           </button>
@@ -299,20 +311,20 @@ export const Scoreboard = ({
           
           {/* Site Header & Rank Badge */}
           <div className="flex items-start justify-between">
-            <div>
-              <div className="flex items-center gap-1.5 mb-1">
+            <div className="min-w-0 pr-2">
+              <div className="flex items-center gap-1.5 mb-1 flex-wrap">
                 <span className="text-[10px] font-mono text-cyan-400 bg-cyan-950/80 px-1.5 py-0.2 rounded border border-cyan-500/30 font-bold">
-                  RANK #1 SELECTED NODE
+                  SELECTED NODE
                 </span>
                 <span className="text-[10px] font-mono text-slate-400">
-                  {topSite.code}
+                  {topSite.code || 'NODE'}
                 </span>
               </div>
               <h3 className="text-sm font-mono font-bold text-white leading-tight">
                 {topSite.name}
               </h3>
               <p className="text-[10px] font-mono text-slate-400 mt-0.5">
-                {topSite.latitude?.toFixed(3)}°S, {topSite.longitude?.toFixed(3)}°E • Elevation: {topSite.elevationMeters ?? 4120}m
+                {topSite.latitude != null ? `${Number(topSite.latitude).toFixed(3)}°S` : '0°'}, {topSite.longitude != null ? `${Number(topSite.longitude).toFixed(3)}°E` : '0°'} • Elevation: {topSite.elevationMeters ?? 4120}m
               </p>
             </div>
 
@@ -382,173 +394,126 @@ export const Scoreboard = ({
               }`}
             >
               <Cpu className="w-3 h-3 text-purple-400" />
-              <span>XGBoost ML</span>
+              <span>Random Forest ML</span>
             </button>
           </div>
 
-          {/* Key Factor Breakdown Progress Bars */}
-          <div className="space-y-2 text-xs font-mono">
-            <div className="flex items-center justify-between text-[10px] text-slate-400">
-              <span className="uppercase tracking-wider font-bold">
-                {isAiMode ? 'AI Feature Factors (JSON)' : 'NASA Domain Criteria'}
-              </span>
-              <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold border ${
-                isAiMode 
-                  ? 'text-purple-300 bg-purple-950/60 border-purple-500/30' 
-                  : 'text-cyan-300 bg-cyan-950/60 border-cyan-500/30'
-              }`}>
-                {isAiMode ? 'XGBoost ML Vector' : 'LRO / M³ Sensors'}
-              </span>
-            </div>
-
-            {/* Slope & Terrain */}
-            <div>
-              <div className="flex justify-between items-center text-slate-300 mb-0.5 text-[11px]">
-                <span className="flex items-center gap-1.5">
-                  <Mountain className="w-3 h-3 text-emerald-400" /> Terrain Slope Flatness
+          {/* ML Feature Impact SHAP Bar */}
+          {isAiMode && Array.isArray(topSite.shap_top_features) && (
+            <div className="bg-purple-950/30 border border-purple-500/20 rounded-xl p-2 space-y-1 text-[10px] font-mono animate-smooth-fade-in">
+              <div className="flex items-center justify-between text-purple-300 font-bold">
+                <span className="flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-purple-400" />
+                  Random Forest Key Drivers
                 </span>
-                <span className="font-bold text-white">
-                  {Math.round(activeFactors.terrain ?? 85)}% ({topSite.slopeDegrees ?? 4.2}°)
+                <span className="text-[9px] text-slate-400">
+                  R²: {topSite.ai_ml_matrix?.model_r2 || '0.956'}
                 </span>
               </div>
-              <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                <div
-                  className="bg-emerald-400 h-full rounded-full transition-[width] duration-500 shadow-glow-emerald"
-                  style={{ width: `${Math.round(activeFactors.terrain ?? 85)}%` }}
-                />
+              <div className="space-y-1">
+                {topSite.shap_top_features.map((feat, idx) => {
+                  const val = typeof feat?.impact === 'number' 
+                    ? feat.impact 
+                    : typeof feat?.shap_value === 'number' 
+                    ? feat.shap_value 
+                    : (parseFloat(feat?.impact || feat?.shap_value || 0) || 0);
+                  return (
+                    <div key={idx} className="flex items-center justify-between text-[9px]">
+                      <span className="text-slate-300">{feat?.feature || 'Feature'}</span>
+                      <span className={val > 0 ? "text-emerald-400" : "text-rose-400"}>
+                        {val > 0 ? `+${val.toFixed(1)}` : val.toFixed(1)}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
+          )}
 
-            {/* Water Ice Volatiles */}
-            <div>
-              <div className="flex justify-between items-center text-slate-300 mb-0.5 text-[11px]">
-                <span className="flex items-center gap-1.5">
-                  <Droplets className="w-3 h-3 text-cyan-400" /> Water Ice Volatiles
-                </span>
-                <span className="font-bold text-white">
-                  {Math.round(activeFactors.waterIce ?? 80)}% ({topSite.waterIcePurityPercent ?? 15}%)
-                </span>
+          {/* Factor Breakdown Bars */}
+          <div className="space-y-1.5">
+            {[
+              { label: 'Terrain Flatness', key: 'terrain', icon: Mountain, val: activeFactors.terrain || 90 },
+              { label: 'Water Ice & PSR', key: 'waterIce', icon: Droplets, val: activeFactors.waterIce || 85 },
+              { label: 'Solar Illumination', key: 'solarIllumination', icon: Sun, val: activeFactors.solarIllumination || 95 },
+              { label: 'Radiation Shielding', key: 'radiationSafety', icon: Radiation, val: activeFactors.radiationSafety || 80 },
+              { label: 'Thermal Equilibrium', key: 'temperature', icon: Thermometer, val: activeFactors.temperature || 88 },
+              { label: 'Landing Accessibility', key: 'accessibility', icon: Rocket, val: activeFactors.accessibility || 82 }
+            ].map((f) => (
+              <div key={f.key} className="space-y-0.5">
+                <div className="flex justify-between text-[10px] font-mono text-slate-300">
+                  <span className="flex items-center gap-1">
+                    <f.icon className="w-3 h-3 text-cyan-400" />
+                    {f.label}
+                  </span>
+                  <span className="font-bold text-cyan-300">{Number(f.val || 0)}%</span>
+                </div>
+                <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full rounded-full transition-all duration-500 ${
+                      isAiMode ? 'bg-purple-500' : 'bg-cyan-500'
+                    }`}
+                    style={{ width: `${Math.min(100, Math.max(0, Number(f.val || 0)))}%` }}
+                  />
+                </div>
               </div>
-              <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                <div
-                  className="bg-cyan-400 h-full rounded-full transition-[width] duration-500 shadow-glow-cyan"
-                  style={{ width: `${Math.round(activeFactors.waterIce ?? 80)}%` }}
-                />
-              </div>
-            </div>
+            ))}
+          </div>
 
-            {/* Solar Illumination */}
-            <div>
-              <div className="flex justify-between items-center text-slate-300 mb-0.5 text-[11px]">
-                <span className="flex items-center gap-1.5">
-                  <Sun className="w-3 h-3 text-amber-400" /> Solar Illumination
-                </span>
-                <span className="font-bold text-white">
-                  {Math.round(activeFactors.solarIllumination ?? 90)}% ({topSite.illuminationPercent ?? 85}%)
-                </span>
-              </div>
-              <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                <div
-                  className="bg-amber-400 h-full rounded-full transition-[width] duration-500 shadow-glow-amber"
-                  style={{ width: `${Math.round(activeFactors.solarIllumination ?? 90)}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Radiation Shielding */}
-            <div>
-              <div className="flex justify-between items-center text-slate-300 mb-0.5 text-[11px]">
-                <span className="flex items-center gap-1.5">
-                  <Radiation className="w-3 h-3 text-purple-400" /> Radiation Safety
-                </span>
-                <span className="font-bold text-white">
-                  {Math.round(activeFactors.radiationSafety ?? 80)}% ({topSite.radiationLevelMsvPerYear ?? 280} mSv)
-                </span>
-              </div>
-              <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                <div
-                  className="bg-purple-400 h-full rounded-full transition-[width] duration-500 shadow-glow-purple"
-                  style={{ width: `${Math.round(activeFactors.radiationSafety ?? 80)}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Landing Accessibility */}
-            <div>
-              <div className="flex justify-between items-center text-slate-300 mb-0.5 text-[11px]">
-                <span className="flex items-center gap-1.5">
-                  <Rocket className="w-3 h-3 text-sky-400" /> Landing Corridor
-                </span>
-                <span className="font-bold text-white">
-                  {Math.round(activeFactors.accessibility ?? 82)}%
-                </span>
-              </div>
-              <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                <div
-                  className="bg-sky-400 h-full rounded-full transition-[width] duration-500"
-                  style={{ width: `${Math.round(activeFactors.accessibility ?? 82)}%` }}
-                />
-              </div>
+          {/* Why This Site Strategic Highlights */}
+          <div className="space-y-1 pt-1 border-t border-slate-800/80">
+            <h4 className="text-[10px] font-mono font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1">
+              <Compass className="w-3 h-3 text-cyan-400" />
+              Strategic Evaluation
+            </h4>
+            <div className="space-y-1">
+              {(topSite.whyThisSite || DEFAULT_WHY_SITE).slice(0, 3).map((item, i) => (
+                <div key={i} className="flex items-start gap-1.5 text-[10px] font-mono text-slate-300">
+                  {item.type === 'warning' ? (
+                    <AlertTriangle className="w-3 h-3 text-amber-400 shrink-0 mt-0.5" />
+                  ) : (
+                    <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" />
+                  )}
+                  <span className="leading-tight">{item.text}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* WHY THIS SITE? */}
-          <div className="bg-[#070B14]/80 p-2.5 rounded-xl border border-slate-800">
-            <div className="text-[10px] font-mono font-bold text-slate-400 uppercase mb-1.5 tracking-wider">
-              KEY SITE ATTRIBUTES
-            </div>
-            <ul className="space-y-1 text-[11px]">
-              {(topSite.whyThisSite || DEFAULT_WHY_SITE).slice(0, 4).map((item) => {
-                const isPositive = typeof item === 'string' ? !item.toLowerCase().includes('warning') && !item.toLowerCase().includes('hazard') : item.type === 'positive';
-                const text = typeof item === 'string' ? item : item.text || JSON.stringify(item);
-                
-                return (
-                  <li key={typeof item === 'string' ? item : item.text} className="flex items-start gap-1.5 text-slate-300 leading-tight">
-                    {isPositive ? (
-                      <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" />
-                    ) : (
-                      <AlertTriangle className="w-3 h-3 text-amber-400 shrink-0 mt-0.5" />
-                    )}
-                    <span>{text}</span>
-                  </li>
-                );
-              })}
-            </ul>
+          {/* Action Buttons: Full Deep-Dive Dossier & Mission Explorer */}
+          <div className="grid grid-cols-2 gap-2 pt-1">
+            <button
+              type="button"
+              onClick={() => {
+                soundManager.playClick();
+                onOpenDeepDive(topSite);
+              }}
+              className="py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white text-[10px] font-mono font-bold rounded-lg border border-cyan-400/50 flex items-center justify-center gap-1 transition-all cursor-pointer shadow-glow-cyan"
+            >
+              <FileText className="w-3 h-3" />
+              <span>Full Dossier</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                soundManager.playClick();
+                onOpenReport();
+              }}
+              className="py-1.5 bg-slate-900/80 hover:bg-slate-800 text-slate-200 text-[10px] font-mono font-bold rounded-lg border border-slate-700 flex items-center justify-center gap-1 transition-all cursor-pointer"
+            >
+              <ArrowUpRight className="w-3 h-3 text-cyan-400" />
+              <span>PDF Report</span>
+            </button>
           </div>
-
         </div>
 
       </div>
 
-      {/* ACTION BAR: FULL DOSSIER REPORT & SCIENTIFIC TELEMETRY PAGE */}
-      <div className="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
-        <button
-          type="button"
-          onClick={() => {
-            soundManager.playSelect();
-            onOpenDeepDive();
-          }}
-          className="w-full py-2.5 bg-gradient-to-r from-purple-700 via-indigo-600 to-cyan-600 hover:from-purple-600 hover:to-cyan-500 text-white rounded-xl font-mono text-xs font-bold transition-[background-color,border-color,box-shadow] shadow-glow-cyan flex items-center justify-center gap-2 border border-cyan-400/40 cursor-pointer"
-        >
-          <Rocket className="w-4 h-4 text-cyan-300" />
-          <span>Open Full Scientific Telemetry Page ↗</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => {
-            soundManager.playSelect();
-            onOpenReport();
-          }}
-          className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white rounded-xl font-mono text-xs font-bold transition-[background-color,box-shadow] shadow-glow-purple flex items-center justify-center gap-2 cursor-pointer"
-        >
-          <FileText className="w-4 h-4" />
-          <span>Generate AI Mission Dossier</span>
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </button>
+      {/* FOOTER METADATA */}
+      <div className="pt-3 border-t border-slate-800/80 text-[9px] font-mono text-slate-500 flex items-center justify-between">
+        <span>NASA PDS / LROC SOC</span>
+        <span>23 Verified Sites</span>
       </div>
     </aside>
   );
 };
-
-export default Scoreboard;

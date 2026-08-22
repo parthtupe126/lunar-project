@@ -326,7 +326,7 @@ export const OpeningAnimation = ({ onComplete = NOOP }) => {
           </div>
           <div className="flex flex-col items-center gap-1 p-2 rounded-xl bg-slate-900/40 border border-slate-800/60">
             <Cpu className="w-4 h-4 text-purple-400" />
-            <span>XGBoost ML Vector</span>
+            <span>Random Forest ML Ensemble</span>
           </div>
           <div className="flex flex-col items-center gap-1 p-2 rounded-xl bg-slate-900/40 border border-slate-800/60">
             <Layers className="w-4 h-4 text-emerald-400" />

@@ -90,13 +90,13 @@ export const SiteModal = ({
                 {topSite.name} ({topSite.code})
               </h3>
               <div className="text-slate-300 text-xs mt-1">
-                Latitude: <strong className="text-cyan-300">{topSite.latitude.toFixed(2)}°S</strong> • Longitude: <strong className="text-cyan-300">{topSite.longitude.toFixed(2)}°E</strong> • Elevation: <strong className="text-white">{topSite.elevationMeters}m</strong>
+                Latitude: <strong className="text-cyan-300">{Number(topSite.latitude || 0).toFixed(2)}°S</strong> • Longitude: <strong className="text-cyan-300">{Number(topSite.longitude || 0).toFixed(2)}°E</strong> • Elevation: <strong className="text-white">{topSite.elevationMeters}m</strong>
               </div>
             </div>
 
             <div className="text-right shrink-0">
               <div className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
-                {topSite.suitabilityScore.toFixed(1)} / 100
+                {Number(topSite.suitabilityScore || 0).toFixed(1)} / 100
               </div>
               <div className="text-[10px] text-emerald-400 font-bold">
                 {topSite.tier} ({topSite.aiConfidence}% Confidence)

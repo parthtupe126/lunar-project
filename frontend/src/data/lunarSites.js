@@ -1,4 +1,3 @@
-
 import aiPredictionsData from './ai_predictions.json';
 
 // Helper to convert lat/lon in degrees to 3D unit sphere coordinates
@@ -15,1543 +14,1476 @@ export function latLonToVector3(lat, lon, radius = 1.5) {
 }
 
 const RAW_LUNAR_SITES = [
-  // 1. Shackleton Crater Rim
   {
-    id: 'site-shackleton',
-    code: 'Shackleton',
-    name: 'Shackleton Crater Rim — Peak of Eternal Light',
-    shortName: 'Shackleton Crater Rim',
-    tier: 'HIGHLY SUITABLE',
-    latitude: -89.28,
-    longitude: 15.40,
-    suitabilityScore: 94.2,
-    aiConfidence: 94,
-    factors: {
-      terrain: 94,
-      waterIce: 89,
-      solarIllumination: 97,
-      radiationSafety: 84,
-      temperature: 90,
-      accessibility: 82
+    "id": "site-shackleton",
+    "code": "Shackleton",
+    "name": "Shackleton Crater Rim \u2014 Peak of Eternal Light",
+    "shortName": "Shackleton Crater Rim",
+    "tier": "HIGHLY SUITABLE",
+    "latitude": -89.28,
+    "longitude": 15.4,
+    "suitabilityScore": 94.2,
+    "aiConfidence": 94,
+    "factors": {
+      "terrain": 94,
+      "waterIce": 89,
+      "solarIllumination": 97,
+      "radiationSafety": 84,
+      "temperature": 90,
+      "accessibility": 82
     },
-    elevationMeters: 4120, // Real LOLA SLDEM2015
-    slopeDegrees: 4.2,     // Real LOLA Slope
-    illuminationPercent: 95.2,
-    waterIcePurityPercent: 19.5,
-    radiationLevelMsvPerYear: 280,
-    tempMinKelvin: 180,
-    tempMaxKelvin: 220,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 98.4,
-    distanceToPsrMeters: 350,
-    siteType: 'Crater Rim',
-    description: 'Premier candidate on the high rim crest of Shackleton Crater near the true lunar South Pole. Features near-continuous solar illumination and immediate ridge access to permanently shadowed volatile reserves.',
-    whyThisSite: [
-      { text: 'Peak of Eternal Light: >95% annual solar illumination along ridge', type: 'positive' },
-      { text: 'Direct adjacent access to deep Shackleton PSR cold trap', type: 'positive' },
-      { text: 'Gentle localized slope (4.2°) along primary crest line', type: 'positive' },
-      { text: 'Direct continuous Line-of-Sight to Earth ground telemetry stations', type: 'positive' },
-      { text: 'Precision touchdown required to avoid steep internal wall gradients', type: 'warning' }
-    ],
-    missionRecommendations: [
-      'Deploy 100kW photovoltaic array along crest peak',
-      'Establish primary pressurized habitat modules in micro-depression zone',
-      'Deploy tethered autonomous cryo-rover into Shackleton PSR for water ice mining',
-      'Install Ka-band optical communication direct Earth relay terminal'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / GSFC / Arizona State University (LROC NAC)',
-    galleryImages: [
+    "elevationMeters": 4120,
+    "slopeDegrees": 4.2,
+    "illuminationPercent": 95.2,
+    "waterIcePurityPercent": 19.5,
+    "radiationLevelMsvPerYear": 280,
+    "tempMinKelvin": 180,
+    "tempMaxKelvin": 220,
+    "earthLineOfSightPercent": 98.4,
+    "distanceToPsrMeters": 350,
+    "siteType": "Crater Rim",
+    "description": "Premier candidate on the high rim crest of Shackleton Crater near the true lunar South Pole. Features near-continuous solar illumination and immediate ridge access to permanently shadowed volatile reserves.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Shackleton Crater Rim Crest Illuminated Ridge",
-            "overlayText": ""
+        "text": "Peak of Eternal Light: >95% annual solar illumination along ridge",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Artemis Polar Human Landing System (HLS)",
-            "overlayText": "View Lander"
+        "text": "Direct adjacent access to deep Shackleton PSR cold trap",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Polar Terrain Rover Ice Prospecting Traverse",
-            "overlayText": ""
+        "text": "Gentle localized slope (4.2\u00b0) along primary crest line",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "LOLA SLDEM2015 Laser Altimetry Topography",
-            "overlayText": ""
+        "text": "Direct continuous Line-of-Sight to Earth ground telemetry stations",
+        "type": "positive"
+      },
+      {
+        "text": "Precision touchdown required to avoid steep internal wall gradients",
+        "type": "warning"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy 100kW photovoltaic array along crest peak",
+      "Establish primary pressurized habitat modules in micro-depression zone",
+      "Deploy tethered autonomous cryo-rover into Shackleton PSR for water ice mining",
+      "Install Ka-band optical communication direct Earth relay terminal"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Shackleton Crater Rim Crest Illuminated Ridge",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Artemis Polar Human Landing System (HLS)",
+        "overlayText": "View Lander"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Polar Terrain Rover Ice Prospecting Traverse",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "LOLA SLDEM2015 Laser Altimetry Topography",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 2. Mons Malapert Plateau
   {
-    id: 'site-malapert',
-    code: 'Malapert',
-    name: 'Mons Malapert (Malapert Mountain Plateau)',
-    shortName: 'Mons Malapert Plateau',
-    tier: 'HIGHLY SUITABLE',
-    latitude: -85.99,
-    longitude: 12.90,
-    suitabilityScore: 91.8,
-    aiConfidence: 91,
-    factors: {
-      terrain: 90,
-      waterIce: 83,
-      solarIllumination: 96,
-      radiationSafety: 88,
-      temperature: 92,
-      accessibility: 86
+    "id": "site-malapert",
+    "code": "Malapert",
+    "name": "Mons Malapert (Malapert Mountain Plateau)",
+    "shortName": "Mons Malapert Plateau",
+    "tier": "HIGHLY SUITABLE",
+    "latitude": -85.99,
+    "longitude": 12.9,
+    "suitabilityScore": 91.8,
+    "aiConfidence": 93,
+    "factors": {
+      "terrain": 88,
+      "waterIce": 83,
+      "solarIllumination": 96,
+      "radiationSafety": 86,
+      "temperature": 88,
+      "accessibility": 85
     },
-    elevationMeters: 5100, // Real LOLA SLDEM2015
-    slopeDegrees: 6.1,     // Real LOLA Slope
-    illuminationPercent: 93.6,
-    waterIcePurityPercent: 14.8,
-    radiationLevelMsvPerYear: 290,
-    tempMinKelvin: 195,
-    tempMaxKelvin: 235,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 99.6,
-    distanceToPsrMeters: 1100,
-    siteType: 'Polar Plateau',
-    description: 'A colossal 5.1 km high massif offering unmatched unobstructed line-of-sight to Earth, extremely high annual solar power availability, and expansive plateau areas suitable for multi-module expansion.',
-    whyThisSite: [
-      { text: 'Unmatched 99.6% direct Earth communications visibility', type: 'positive' },
-      { text: 'Superb 93.6% year-round solar energy generation', type: 'positive' },
-      { text: 'Expansive flat terrain on eastern plateau shelf for large-scale footprints', type: 'positive' },
-      { text: 'Natural elevated vantage point for surface radar & LiDAR navigation', type: 'positive' },
-      { text: 'Traverse distance to PSR volatile beds is approx. 1.1 km', type: 'warning' }
-    ],
-    missionRecommendations: [
-      'Erect Artemis lunar communications hub and space traffic transponder',
-      'Construct initial surface basecamp on eastern plateau shelf',
-      'Establish automated rover haulage road to southern ice deposits'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / LRO / Intuitive Machines IM-1',
-    galleryImages: [
+    "elevationMeters": 5100,
+    "slopeDegrees": 6.1,
+    "illuminationPercent": 93.6,
+    "waterIcePurityPercent": 17.2,
+    "radiationLevelMsvPerYear": 290,
+    "tempMinKelvin": 175,
+    "tempMaxKelvin": 225,
+    "earthLineOfSightPercent": 99.2,
+    "distanceToPsrMeters": 620,
+    "siteType": "Polar Plateau",
+    "description": "Massive elevated massif offering exceptional continuous line-of-sight communication to Earth and outstanding long-duration solar exposure for high-output power generation.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Mons Malapert 5,000m Peak of Eternal Light",
-            "overlayText": ""
+        "text": "Unsurpassed 99.2% uninterrupted direct line-of-sight to Earth",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Intuitive Machines IM-1 Odysseus Lander",
-            "overlayText": "View Lander"
+        "text": "High 5100m elevation above surrounding impact plains",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Surface Prospecting Rover on Malapert Plateau",
-            "overlayText": ""
+        "text": "Extensive summit plateau accommodating multi-module layout",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "LROC Peak Solar Illumination Map",
-            "overlayText": ""
+        "text": "Slightly longer rover traverse required to reach deep PSR ice deposits",
+        "type": "warning"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Construct primary Earth-Moon deep space telecommunications relay tower",
+      "Establish multi-building scientific base camp on summit plateau",
+      "Deploy solar tracking farm with battery storage modules",
+      "Build automated landing zone on adjacent lower gradient shelf"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Mons Malapert Summit Panoramic Vista",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "High Altitude Comms Array Station",
+        "overlayText": "View Facility"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Malapert Mountain 3D Topographic Mesh",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 3. Faustini Rim A
   {
-    id: 'site-faustini',
-    code: 'Faustini A',
-    name: 'Faustini Crater Rim — Ridge A',
-    shortName: 'Faustini Rim A',
-    tier: 'SUITABLE',
-    latitude: -87.15,
-    longitude: 77.00,
-    suitabilityScore: 83.4,
-    aiConfidence: 85,
-    factors: {
-      terrain: 81,
-      waterIce: 95,
-      solarIllumination: 78,
-      radiationSafety: 80,
-      temperature: 79,
-      accessibility: 76
+    "id": "site-faustini",
+    "code": "Faustini A",
+    "name": "Faustini Crater Rim \u2014 Ridge A",
+    "shortName": "Faustini Ridge A",
+    "tier": "SUITABLE",
+    "latitude": -87.15,
+    "longitude": 77.0,
+    "suitabilityScore": 83.4,
+    "aiConfidence": 89,
+    "factors": {
+      "terrain": 80,
+      "waterIce": 95,
+      "solarIllumination": 78,
+      "radiationSafety": 82,
+      "temperature": 81,
+      "accessibility": 76
     },
-    elevationMeters: 2450, // Real LOLA SLDEM2015
-    slopeDegrees: 8.5,     // Real LOLA Slope
-    illuminationPercent: 77.5,
-    waterIcePurityPercent: 25.2,
-    radiationLevelMsvPerYear: 335,
-    tempMinKelvin: 110,
-    tempMaxKelvin: 200,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 86.2,
-    distanceToPsrMeters: 140,
-    siteType: 'Crater Rim',
-    description: 'High-yield volatiles prospect area. While solar illumination is lower compared to Shackleton, Faustini holds massive water ice reservoirs ideal for commercial propellant manufacturing.',
-    whyThisSite: [
-      { text: 'High water-ice purity estimate (25.2%) in immediate proximity', type: 'positive' },
-      { text: 'Direct access to deep cryo-trap (140m distance)', type: 'positive' },
-      { text: 'Rich mineral diversity including ilmenite for oxygen extraction', type: 'positive' },
-      { text: 'Lower annual sunlight (77.5%) requires hybrid power infrastructure', type: 'warning' }
-    ],
-    missionRecommendations: [
-      'Designate as industrial mining zone for Commercial Lunar Payload Services',
-      'Deploy thermal mining solar reflectors and sublimator domes'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / Diviner Science Team / UCLA',
-    galleryImages: [
+    "elevationMeters": 2450,
+    "slopeDegrees": 8.5,
+    "illuminationPercent": 77.5,
+    "waterIcePurityPercent": 24.2,
+    "radiationLevelMsvPerYear": 310,
+    "tempMinKelvin": 150,
+    "tempMaxKelvin": 230,
+    "earthLineOfSightPercent": 88.5,
+    "distanceToPsrMeters": 180,
+    "siteType": "Crater Rim",
+    "description": "High-priority volatile prospecting zone with exceptional water-ice concentrations identified by LEND and Diviner thermal mapping.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Faustini Rim A Perennial Shadow Margin",
-            "overlayText": ""
+        "text": "Extremely high water-ice signature (>24% estimated concentration)",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Cryogenic Volatile Sampling Landcraft",
-            "overlayText": "View Lander"
+        "text": "Ultra-short 180m access corridor into cold trap floor",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Subsurface Cold-Trap Cryo-Drill Rig",
-            "overlayText": ""
+        "text": "Steeper localized slopes (8.5\u00b0) require engineered landing pad",
+        "type": "warning"
       },
       {
-            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Diviner Thermal Channel 38K Cold Basin",
-            "overlayText": ""
+        "text": "Intermittent Earth line-of-sight requiring orbital relay support",
+        "type": "warning"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy specialized ISRU cryo-extraction mining station",
+      "Install autonomous winch-assisted rover descent cable system",
+      "Establish compact nuclear/fuel-cell supplemental power source"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Faustini Volatile Cold Trap Basin",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "ISRU Water Sintering Plant",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 4. Connecting Ridge
   {
-    id: 'site-connecting-ridge',
-    code: 'Connecting Ridge',
-    name: 'Connecting Ridge (Shackleton-de Gerlache)',
-    shortName: 'Connecting Ridge',
-    tier: 'HIGHLY SUITABLE',
-    latitude: -88.60,
-    longitude: -31.70,
-    suitabilityScore: 89.6,
-    aiConfidence: 89,
-    factors: {
-      terrain: 95,
-      waterIce: 86,
-      solarIllumination: 90,
-      radiationSafety: 87,
-      temperature: 88,
-      accessibility: 92
+    "id": "site-connecting-ridge",
+    "code": "Connecting Ridge",
+    "name": "Connecting Ridge (Shackleton-de Gerlache)",
+    "shortName": "Connecting Ridge",
+    "tier": "HIGHLY SUITABLE",
+    "latitude": -88.6,
+    "longitude": -31.7,
+    "suitabilityScore": 89.6,
+    "aiConfidence": 92,
+    "factors": {
+      "terrain": 92,
+      "waterIce": 86,
+      "solarIllumination": 91,
+      "radiationSafety": 83,
+      "temperature": 87,
+      "accessibility": 90
     },
-    elevationMeters: 3850, // Real LOLA SLDEM2015
-    slopeDegrees: 3.8,     // Real LOLA Slope
-    illuminationPercent: 89.5,
-    waterIcePurityPercent: 16.8,
-    radiationLevelMsvPerYear: 305,
-    tempMinKelvin: 160,
-    tempMaxKelvin: 220,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 93.5,
-    distanceToPsrMeters: 580,
-    siteType: 'Crater Rim',
-    description: 'An elongated elevated ridge bridging Shackleton and de Gerlache craters. Offers ultra-low slope gradients (3.8°) ideal for heavy lander touchdowns and long-range pressurized rover traversal.',
-    whyThisSite: [
-      { text: 'Extremely gentle slope (< 4°) across a wide landing corridor', type: 'positive' },
-      { text: 'Bilateral access to both Shackleton and de Gerlache shadow traps', type: 'positive' },
-      { text: 'High structural stability for foundation piling and sintering', type: 'positive' },
-      { text: 'Periodic brief communication shadowing during lunar winter', type: 'warning' }
-    ],
-    missionRecommendations: [
-      'Designate primary human lander touchdown zone (HLS designated)',
-      'Construct sintered regolith landing pad with blast deflection walls',
-      'Deploy mobile power generation rovers'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 3850,
+    "slopeDegrees": 3.8,
+    "illuminationPercent": 89.5,
+    "waterIcePurityPercent": 18.0,
+    "radiationLevelMsvPerYear": 285,
+    "tempMinKelvin": 170,
+    "tempMaxKelvin": 224,
+    "earthLineOfSightPercent": 94.2,
+    "distanceToPsrMeters": 290,
+    "siteType": "Crater Rim",
+    "description": "A continuous elevated saddle connecting Shackleton and de Gerlache craters. Features gentle slopes, wide corridors for rover movement, and balanced solar illumination.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-connecting-ridge Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Gentle 3.8\u00b0 slope ideal for base construction and heavy rover traverse",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-connecting-ridge Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Direct access to both Shackleton and de Gerlache volatile basins",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-connecting-ridge Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-connecting-ridge Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Dual-basin logistical mobility corridor",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Construct modular habitat along central flat crest",
+      "Establish dual-direction rover transport highway",
+      "Install high-efficiency solar-thermal generation array"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Connecting Ridge Traverse Route",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Artemis Polar Base Camp Layout",
+        "overlayText": "View Base"
+      }
+    ]
   },
-
-  // 5. de Gerlache Rim
   {
-    id: 'site-de-gerlache',
-    code: 'de Gerlache',
-    name: 'de Gerlache Rim — Mons Peak Alpha',
-    shortName: 'de Gerlache Rim',
-    tier: 'SUITABLE',
-    latitude: -85.90,
-    longitude: 76.30,
-    suitabilityScore: 84.1,
-    aiConfidence: 86,
-    factors: {
-      terrain: 84,
-      waterIce: 91,
-      solarIllumination: 84,
-      radiationSafety: 82,
-      temperature: 83,
-      accessibility: 80
+    "id": "site-de-gerlache",
+    "code": "de Gerlache",
+    "name": "de Gerlache Rim \u2014 Mons Peak Alpha",
+    "shortName": "de Gerlache Peak Alpha",
+    "tier": "SUITABLE",
+    "latitude": -85.9,
+    "longitude": 76.3,
+    "suitabilityScore": 84.1,
+    "aiConfidence": 88,
+    "factors": {
+      "terrain": 82,
+      "waterIce": 91,
+      "solarIllumination": 84,
+      "radiationSafety": 80,
+      "temperature": 83,
+      "accessibility": 79
     },
-    elevationMeters: 2900, // Real LOLA SLDEM2015
-    slopeDegrees: 7.2,     // Real LOLA Slope
-    illuminationPercent: 83.5,
-    waterIcePurityPercent: 22.1,
-    radiationLevelMsvPerYear: 320,
-    tempMinKelvin: 140,
-    tempMaxKelvin: 210,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 89.2,
-    distanceToPsrMeters: 210,
-    siteType: 'Crater Rim',
-    description: 'Overlooks the deep de Gerlache crater floor where neutron spectrometer readings indicate exceptionally high concentrations of subsurface hydrogen and water ice.',
-    whyThisSite: [
-      { text: 'Dense hydrogen/ice spectral signature in close proximity (210m)', type: 'positive' },
-      { text: 'Solid bedrock geology suitable for foundation anchoring', type: 'positive' },
-      { text: 'Slope angle (7.2°) requires leveled landing pad', type: 'warning' }
-    ],
-    missionRecommendations: [
-      'Install compact Kilopower nuclear reactor (10 kWe) as baseline power',
-      'Deploy autonomous ISRU water refinery pilot plant'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 2900,
+    "slopeDegrees": 7.2,
+    "illuminationPercent": 83.5,
+    "waterIcePurityPercent": 21.8,
+    "radiationLevelMsvPerYear": 300,
+    "tempMinKelvin": 160,
+    "tempMaxKelvin": 228,
+    "earthLineOfSightPercent": 90.1,
+    "distanceToPsrMeters": 220,
+    "siteType": "Crater Rim",
+    "description": "High ridge along de Gerlache crater rim with consistent solar exposure and proximity to extensive water-ice deposits.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-de-gerlache Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Rich volatile signatures in adjacent de Gerlache interior",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-de-gerlache Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Good solar exposure on elevated rim features",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-de-gerlache Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-de-gerlache Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Moderate terrain roughness requiring precision hazard detection",
+        "type": "warning"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy autonomous scientific survey outpost",
+      "Establish secondary power relay station",
+      "Deploy robotic ice sampler"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "de Gerlache Crater Rim",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 6. Haworth Crater Rim
   {
-    id: 'site-haworth',
-    code: 'Haworth',
-    name: 'Haworth Crater Rim North',
-    shortName: 'Haworth Crater Rim',
-    tier: 'SUITABLE',
-    latitude: -87.40,
-    longitude: -5.10,
-    suitabilityScore: 85.8,
-    aiConfidence: 87,
-    factors: {
-      terrain: 88,
-      waterIce: 91,
-      solarIllumination: 83,
-      radiationSafety: 83,
-      temperature: 82,
-      accessibility: 85
+    "id": "site-haworth",
+    "code": "Haworth",
+    "name": "Haworth Crater Rim North",
+    "shortName": "Haworth Crater Rim",
+    "tier": "SUITABLE",
+    "latitude": -87.4,
+    "longitude": -5.1,
+    "suitabilityScore": 85.8,
+    "aiConfidence": 90,
+    "factors": {
+      "terrain": 84,
+      "waterIce": 91,
+      "solarIllumination": 83,
+      "radiationSafety": 82,
+      "temperature": 85,
+      "accessibility": 82
     },
-    elevationMeters: 3100, // Real LOLA SLDEM2015
-    slopeDegrees: 5.4,     // Real LOLA Slope
-    illuminationPercent: 82.8,
-    waterIcePurityPercent: 22.8,
-    radiationLevelMsvPerYear: 315,
-    tempMinKelvin: 130,
-    tempMaxKelvin: 215,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 91.8,
-    distanceToPsrMeters: 280,
-    siteType: 'Crater Rim',
-    description: 'Prominent northern rim crest offering a balanced profile of ice proximity, stable illumination peaks, and easy access to both Haworth and Shoemaker crater basins.',
-    whyThisSite: [
-      { text: 'Multi-basin access for geological exploration and sampling', type: 'positive' },
-      { text: 'Strong water ice presence in permanently shadowed floor', type: 'positive' },
-      { text: 'Stable thermal conditions during peak lunar daytime', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Establish science laboratory for volatile age dating and isotope analysis',
-      'Integrate solar tower arrays on highest crest points'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 3100,
+    "slopeDegrees": 5.4,
+    "illuminationPercent": 82.8,
+    "waterIcePurityPercent": 20.1,
+    "radiationLevelMsvPerYear": 295,
+    "tempMinKelvin": 165,
+    "tempMaxKelvin": 226,
+    "earthLineOfSightPercent": 91.8,
+    "distanceToPsrMeters": 260,
+    "siteType": "Crater Rim",
+    "description": "Northern rim plateau overlooking the deep Haworth PSR with confirmed extensive volatile cold traps.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-haworth Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Direct access to one of the coldest PSRs on the Moon (<40K)",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-haworth Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Moderate slope and good structural foundation",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-haworth Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-haworth Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Consistent communication angles with Earth",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy extreme-cold cryogenic rover system",
+      "Establish volatile characterization laboratory",
+      "Build automated solar generation field"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Haworth North Rim Topography",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 7. Mons Mouton (Leibnitz Beta Plateau)
   {
-    id: 'site-mons-mouton',
-    code: 'Mons Mouton',
-    name: 'Mons Mouton (Leibnitz Beta Plateau)',
-    shortName: 'Mons Mouton Plateau',
-    tier: 'HIGHLY SUITABLE',
-    latitude: -85.10,
-    longitude: 31.50,
-    suitabilityScore: 92.6,
-    aiConfidence: 95,
-    factors: {
-      terrain: 98,
-      waterIce: 81,
-      solarIllumination: 95,
-      radiationSafety: 91,
-      temperature: 93,
-      accessibility: 93
+    "id": "site-mons-mouton",
+    "code": "Mons Mouton",
+    "name": "Mons Mouton (Leibnitz Beta Plateau)",
+    "shortName": "Mons Mouton Plateau",
+    "tier": "HIGHLY SUITABLE",
+    "latitude": -85.1,
+    "longitude": 31.5,
+    "suitabilityScore": 92.6,
+    "aiConfidence": 95,
+    "factors": {
+      "terrain": 96,
+      "waterIce": 81,
+      "solarIllumination": 94,
+      "radiationSafety": 88,
+      "temperature": 89,
+      "accessibility": 92
     },
-    elevationMeters: 5900, // Real LOLA SLDEM2015
-    slopeDegrees: 2.9,     // Real LOLA Slope
-    illuminationPercent: 93.8,
-    waterIcePurityPercent: 13.5,
-    radiationLevelMsvPerYear: 275,
-    tempMinKelvin: 200,
-    tempMaxKelvin: 240,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 99.3,
-    distanceToPsrMeters: 1650,
-    siteType: 'Polar Plateau',
-    description: 'A colossal 5.9 km flat-topped lunar mountain plateau selected as a primary VIPER rover landing site. The extraordinary flatness (2.9° slope) creates an ideal base for long-term expansion.',
-    whyThisSite: [
-      { text: 'Exceptional flatness (slope 2.9°) across 15+ square kilometers', type: 'positive' },
-      { text: 'Highest elevation in candidate cluster (+5,900m) provides wide radar coverage', type: 'positive' },
-      { text: 'Near constant 99.3% direct line-of-sight to Earth', type: 'positive' },
-      { text: 'Naturally elevated above local secondary impact ejecta flows', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Build primary civil lunar airport / commercial spaceport',
-      'Deploy deep-space optical telescope array benefiting from atmospheric absence',
-      'Establish permanent astronaut habitat complex'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / VIPER Science Team / Ames Research Center',
-    galleryImages: [
+    "elevationMeters": 5900,
+    "slopeDegrees": 2.9,
+    "illuminationPercent": 93.8,
+    "waterIcePurityPercent": 16.5,
+    "radiationLevelMsvPerYear": 275,
+    "tempMinKelvin": 178,
+    "tempMaxKelvin": 221,
+    "earthLineOfSightPercent": 99.0,
+    "distanceToPsrMeters": 480,
+    "siteType": "Polar Plateau",
+    "description": "Massive, flat-topped mountain plateau (VIPER landing target region). Exceptional 2.9\u00b0 flat terrain and highest summit elevation in the South Pole area.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Mons Mouton High-Altitude Flat Mesa Plateau",
-            "overlayText": ""
+        "text": "Ultra-flat plateau terrain (2.9\u00b0 slope) perfectly suited for heavy landers",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Commercial Lunar Payload Services (CLPS) Lander",
-            "overlayText": "View Lander"
+        "text": "Highest elevation (5900m) with 99.0% direct Earth line-of-sight",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "VIPER Neutron Spectrometer Volatiles Drill",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Mesa Solar Illumination Coverage",
-            "overlayText": ""
+        "text": "Broad summit allowing extensive habitat and landing infrastructure",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Construct primary lunar spaceport and heavy logistics landing pad",
+      "Deploy long-term science and residential habitat city",
+      "Install high-gain Earth deep space network antenna complex"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Mons Mouton Flat Summit Tableland",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "VIPER Rover Exploration Zone",
+        "overlayText": "View Rover"
+      }
+    ]
   },
-
-  // 8. Nobile Crater Rim
   {
-    id: 'site-nobile',
-    code: 'Nobile',
-    name: 'Nobile Crater Rim — Artemis Base Alpha',
-    shortName: 'Nobile Crater Rim',
-    tier: 'SUITABLE',
-    latitude: -85.20,
-    longitude: 53.50,
-    suitabilityScore: 87.5,
-    aiConfidence: 89,
-    factors: {
-      terrain: 90,
-      waterIce: 88,
-      solarIllumination: 86,
-      radiationSafety: 85,
-      temperature: 86,
-      accessibility: 89
+    "id": "site-nobile",
+    "code": "Nobile",
+    "name": "Nobile Crater Rim \u2014 Artemis Base Alpha",
+    "shortName": "Nobile Crater Rim",
+    "tier": "SUITABLE",
+    "latitude": -85.2,
+    "longitude": 53.5,
+    "suitabilityScore": 87.5,
+    "aiConfidence": 91,
+    "factors": {
+      "terrain": 88,
+      "waterIce": 88,
+      "solarIllumination": 87,
+      "radiationSafety": 84,
+      "temperature": 86,
+      "accessibility": 86
     },
-    elevationMeters: 3400, // Real LOLA SLDEM2015
-    slopeDegrees: 4.8,     // Real LOLA Slope
-    illuminationPercent: 86.8,
-    waterIcePurityPercent: 18.2,
-    radiationLevelMsvPerYear: 300,
-    tempMinKelvin: 165,
-    tempMaxKelvin: 225,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 94.8,
-    distanceToPsrMeters: 490,
-    siteType: 'Crater Rim',
-    description: 'Designated NASA VIPER landing exploration zone. Features undulating hills with accessible slopes down into permanently shadowed volatile pockets.',
-    whyThisSite: [
-      { text: 'Proven ground-truth candidate with extensive orbital survey data', type: 'positive' },
-      { text: 'Safe approach paths for automated cargo landers', type: 'positive' },
-      { text: 'Diverse soil composition rich in regolith volatiles', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Install Artemis Base Camp Core Habitation Module',
-      'Establish pressurized rover charging garage and airlocks'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 3400,
+    "slopeDegrees": 4.8,
+    "illuminationPercent": 86.8,
+    "waterIcePurityPercent": 19.0,
+    "radiationLevelMsvPerYear": 290,
+    "tempMinKelvin": 170,
+    "tempMaxKelvin": 225,
+    "earthLineOfSightPercent": 93.5,
+    "distanceToPsrMeters": 310,
+    "siteType": "Crater Rim",
+    "description": "Selected NASA VIPER rover traverse target region. Excellent balance of surface trafficability, solar power availability, and accessible shadowed volatiles.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-nobile Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Extensive ground-truth traverse planning already completed by NASA VIPER team",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-nobile Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Moderate slopes with direct access to shadowed ice pockets",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-nobile Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-nobile Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Reliable communications and solar illumination profiles",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy autonomous mobile prospecting rover network",
+      "Establish mid-scale habitat outpost",
+      "Install localized ISRU refueling station"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Nobile Rim Rover Traverse Route",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 9. Amundsen Crater Floor & Rim
   {
-    id: 'site-i',
-    code: 'Amundsen',
-    name: 'Amundsen Crater Floor & Rim (Site I)',
-    shortName: 'Amundsen Crater (Site I)',
-    tier: 'MODERATE',
-    latitude: -84.50,
-    longitude: 82.80,
-    suitabilityScore: 80.2,
-    aiConfidence: 82,
-    factors: {
-      terrain: 83,
-      waterIce: 89,
-      solarIllumination: 74,
-      radiationSafety: 78,
-      temperature: 76,
-      accessibility: 78
+    "id": "site-i",
+    "code": "Amundsen",
+    "name": "Amundsen Crater Floor & Rim (Site I)",
+    "shortName": "Amundsen Crater",
+    "tier": "MODERATE",
+    "latitude": -84.5,
+    "longitude": 82.8,
+    "suitabilityScore": 80.2,
+    "aiConfidence": 87,
+    "factors": {
+      "terrain": 78,
+      "waterIce": 89,
+      "solarIllumination": 75,
+      "radiationSafety": 81,
+      "temperature": 80,
+      "accessibility": 77
     },
-    elevationMeters: 1800, // Real LOLA SLDEM2015
-    slopeDegrees: 6.8,     // Real LOLA Slope
-    illuminationPercent: 75.2,
-    waterIcePurityPercent: 20.4,
-    radiationLevelMsvPerYear: 330,
-    tempMinKelvin: 120,
-    tempMaxKelvin: 210,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 82.5,
-    distanceToPsrMeters: 380,
-    siteType: 'Crater Rim',
-    description: 'A 105-kilometer diameter crater with steep terraced walls and a central peak. Deep shadow reservoirs contain extensive organic and water ice signatures.',
-    whyThisSite: [
-      { text: 'Massive catchment area with high geological research value', type: 'positive' },
-      { text: 'Central peak provides elevated solar installation opportunity', type: 'positive' },
-      { text: 'Complex terraced walls require cautious rover navigation', type: 'warning' }
-    ],
-    missionRecommendations: [
-      'Deploy autonomous drone/hopper for vertical wall sampling',
-      'Construct remote science sensor grid'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 1800,
+    "slopeDegrees": 6.8,
+    "illuminationPercent": 75.2,
+    "waterIcePurityPercent": 21.0,
+    "radiationLevelMsvPerYear": 315,
+    "tempMinKelvin": 140,
+    "tempMaxKelvin": 235,
+    "earthLineOfSightPercent": 86.4,
+    "distanceToPsrMeters": 210,
+    "siteType": "Crater Rim",
+    "description": "Large complex impact crater with prominent central peaks and extensive cold trap floor deposits.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-i Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Deep cold trap volatiles within crater floor",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-i Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Prominent central peak geological interest",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-i Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-i Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Higher slope variance along rim walls",
+        "type": "warning"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy deep seismic sensor network",
+      "Establish crater-floor resource extraction pilot",
+      "Set up orbital relay-assisted telemetry node"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Amundsen Crater Complex",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 10. Marius Hills Lava Tube Skylight
   {
-    id: 'site-j',
-    code: 'Marius Hills',
-    name: 'Marius Hills Lava Tube Skylight (Site J)',
-    shortName: 'Marius Hills Lava Tube',
-    tier: 'SUITABLE',
-    latitude: 14.20,
-    longitude: -56.70,
-    suitabilityScore: 86.7,
-    aiConfidence: 88,
-    factors: {
-      terrain: 79,
-      waterIce: 46,
-      solarIllumination: 70,
-      radiationSafety: 100,
-      temperature: 99,
-      accessibility: 74
+    "id": "site-j",
+    "code": "Marius Hills",
+    "name": "Marius Hills Lava Tube Skylight (Site J)",
+    "shortName": "Marius Hills Skylight",
+    "tier": "SUITABLE",
+    "latitude": 14.2,
+    "longitude": -56.7,
+    "suitabilityScore": 86.7,
+    "aiConfidence": 93,
+    "factors": {
+      "terrain": 82,
+      "waterIce": 46,
+      "solarIllumination": 52,
+      "radiationSafety": 99,
+      "temperature": 96,
+      "accessibility": 80
     },
-    elevationMeters: -1200, // Real LOLA SLDEM2015
-    slopeDegrees: 12.0,     // Real LOLA Slope
-    illuminationPercent: 52.0,
-    waterIcePurityPercent: 2.1,
-    radiationLevelMsvPerYear: 15, // Complete subterranean shielding
-    tempMinKelvin: 253,
-    tempMaxKelvin: 256,    // Constant stable subterranean temp (-20°C)
-    earthLineOfSightPercent: 82.0,
-    distanceToPsrMeters: 45000,
-    siteType: 'Lava Tube',
-    description: 'A subterranean lava tube cave system located in Oceanus Procellarum. Provides virtually 100% natural radiation shielding and a constant stable internal temperature of -20°C year-round.',
-    whyThisSite: [
-      { text: 'Near 100% natural cosmic radiation and micrometeorite shielding', type: 'positive' },
-      { text: 'Constant thermal equilibrium (-20°C) avoids extreme surface swings', type: 'positive' },
-      { text: 'Gigantic cavern capacity (hundreds of meters wide)', type: 'positive' },
-      { text: 'Low in-situ water ice availability (requires transport or recycling)', type: 'warning' },
-      { text: 'Access requires vertical winch or crane ingress system', type: 'warning' }
-    ],
-    missionRecommendations: [
-      'Subsurface master colony habitat installation',
-      'Deploy heavy winched elevator down 50m skylight shaft',
-      'Surface nuclear / solar umbilical power feed'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'JAXA / SELENE (Kaguya) Terrain Camera & LROC NAC',
-    galleryImages: [
+    "elevationMeters": -1200,
+    "slopeDegrees": 12.0,
+    "illuminationPercent": 52.0,
+    "waterIcePurityPercent": 2.0,
+    "radiationLevelMsvPerYear": 45,
+    "tempMinKelvin": 250,
+    "tempMaxKelvin": 255,
+    "earthLineOfSightPercent": 100.0,
+    "distanceToPsrMeters": 450000,
+    "siteType": "Lava Tube",
+    "description": "Natural sub-surface volcanic lava tube skylight entrance. Provides 99% cosmic ray radiation shielding and a constant natural thermal equilibrium of ~ -20\u00b0C (253K).",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Marius Hills Lava Tube Skylight Pit Opening",
-            "overlayText": ""
+        "text": "Maximum natural radiation shielding (45 mSv/yr vs 300+ mSv/yr on surface)",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Volcanic Dome Touchdown Platform",
-            "overlayText": "View Lander"
+        "text": "Stable constant internal temperature (~253K / -20\u00b0C) eliminating thermal cycling",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Subsurface Cave Rappelling Explorer",
-            "overlayText": ""
+        "text": "Complete micrometeorite impact protection beneath basalt ceiling",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "SELENE Lunar Radar Sounder (LRS) Void Echo",
-            "overlayText": ""
+        "text": "Equatorial location requires nuclear or high-capacity battery power for 14-day night",
+        "type": "warning"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy autonomous spelunking crawler into subsurface tube cavern",
+      "Establish subterranean pressurized habitat modules inside tube",
+      "Install surface elevator and crane system at skylight portal",
+      "Deploy nuclear fission surface power (FSP) unit on surface above"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / JAXA / Kaguya / LROC NAC (M111578606LE)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Marius Hills Lava Tube Skylight Portal",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Subterranean Inflatable Habitat Concept",
+        "overlayText": "View Interior"
+      }
+    ]
   },
-
-  // 11. Cabeus Crater (LCROSS Ground Zero)
   {
-    id: 'site-k',
-    code: 'Cabeus',
-    name: 'Cabeus Crater (LCROSS Impact Site)',
-    shortName: 'Cabeus Crater (Site K)',
-    tier: 'SUITABLE',
-    latitude: -84.90,
-    longitude: -35.50,
-    suitabilityScore: 84.8,
-    aiConfidence: 90,
-    factors: {
-      terrain: 82,
-      waterIce: 97,
-      solarIllumination: 73,
-      radiationSafety: 80,
-      temperature: 75,
-      accessibility: 77
+    "id": "site-k",
+    "code": "Cabeus",
+    "name": "Cabeus Crater (LCROSS Ground Zero)",
+    "shortName": "Cabeus Crater PSR",
+    "tier": "SUITABLE",
+    "latitude": -84.9,
+    "longitude": -35.5,
+    "suitabilityScore": 84.8,
+    "aiConfidence": 96,
+    "factors": {
+      "terrain": 78,
+      "waterIce": 97,
+      "solarIllumination": 74,
+      "radiationSafety": 83,
+      "temperature": 82,
+      "accessibility": 76
     },
-    elevationMeters: 2100, // Real LOLA SLDEM2015
-    slopeDegrees: 6.9,     // Real LOLA Slope
-    illuminationPercent: 73.5,
-    waterIcePurityPercent: 26.8,
-    radiationLevelMsvPerYear: 335,
-    tempMinKelvin: 90,
-    tempMaxKelvin: 210,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 86.8,
-    distanceToPsrMeters: 90,
-    siteType: 'PSR Basin',
-    description: 'Ground zero of the historic NASA LCROSS mission which definitively confirmed pure water ice, carbon monoxide, methane, and silver/mercury traces in the lunar regolith plume.',
-    whyThisSite: [
-      { text: 'Highest confirmed volatile concentration (LCROSS validated)', type: 'positive' },
-      { text: 'Direct target for heavy industrial volatile extraction', type: 'positive' },
-      { text: 'Extremely cold cryogenic environment requires heated rover chassis', type: 'warning' }
-    ],
-    missionRecommendations: [
-      'Commercial rocket propellant (LH2/LOX) plant',
-      'Cryogenic volatile distillation pipeline'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 2100,
+    "slopeDegrees": 6.9,
+    "illuminationPercent": 73.5,
+    "waterIcePurityPercent": 26.5,
+    "radiationLevelMsvPerYear": 310,
+    "tempMinKelvin": 40,
+    "tempMaxKelvin": 230,
+    "earthLineOfSightPercent": 87.2,
+    "distanceToPsrMeters": 120,
+    "siteType": "PSR Basin",
+    "description": "Proven site of NASA LCROSS impact (2009) confirming direct evidence of pure water ice (5.6% by mass in ejecta plume), hydroxyl, methane, and ammonia in permanent shadow.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-k Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Confirmed ground-truth water ice from NASA LCROSS kinetic impactor",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-k Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Highest volatile diversity (water, methane, ammonia, CO2)",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-k Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-k Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Extreme cold temperatures (<40K) require heated robotic rovers",
+        "type": "warning"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Establish heavy industrial cryogenic ice processing facility",
+      "Deploy autonomous thermal heating sublimation tents",
+      "Install high-power microwave energy beaming relay from crater rim"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / LCROSS / LRO Diviner Thermal Radiometer",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Cabeus Crater LCROSS Impact Site",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 12. Shoemaker Crater Rim South
   {
-    id: 'site-l',
-    code: 'Shoemaker',
-    name: 'Shoemaker Crater Rim South (Site L)',
-    shortName: 'Shoemaker Rim (Site L)',
-    tier: 'SUITABLE',
-    latitude: -88.10,
-    longitude: 44.90,
-    suitabilityScore: 86.5,
-    aiConfidence: 87,
-    factors: {
-      terrain: 88,
-      waterIce: 89,
-      solarIllumination: 85,
-      radiationSafety: 84,
-      temperature: 83,
-      accessibility: 86
+    "id": "site-l",
+    "code": "Shoemaker",
+    "name": "Shoemaker Crater Rim South (Site L)",
+    "shortName": "Shoemaker Crater Rim",
+    "tier": "SUITABLE",
+    "latitude": -88.1,
+    "longitude": 44.9,
+    "suitabilityScore": 86.5,
+    "aiConfidence": 91,
+    "factors": {
+      "terrain": 85,
+      "waterIce": 89,
+      "solarIllumination": 85,
+      "radiationSafety": 84,
+      "temperature": 86,
+      "accessibility": 84
     },
-    elevationMeters: 3300, // Real LOLA SLDEM2015
-    slopeDegrees: 5.1,     // Real LOLA Slope
-    illuminationPercent: 85.2,
-    waterIcePurityPercent: 18.6,
-    radiationLevelMsvPerYear: 310,
-    tempMinKelvin: 150,
-    tempMaxKelvin: 220,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 93.6,
-    distanceToPsrMeters: 390,
-    siteType: 'Crater Rim',
-    description: 'Adjacent to Malapert and Shackleton, Shoemaker Crater features a deep floor trap with gentle rim slopes permitting continuous rover excursions.',
-    whyThisSite: [
-      { text: 'Consistent terrain and illumination along southern rim', type: 'positive' },
-      { text: 'Direct line-of-sight to lunar comms satellites and Earth', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Autonomous mining rover testing grounds',
-      'Regolith sintering construction demonstration'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 3300,
+    "slopeDegrees": 5.1,
+    "illuminationPercent": 85.2,
+    "waterIcePurityPercent": 20.4,
+    "radiationLevelMsvPerYear": 290,
+    "tempMinKelvin": 165,
+    "tempMaxKelvin": 224,
+    "earthLineOfSightPercent": 92.4,
+    "distanceToPsrMeters": 270,
+    "siteType": "Crater Rim",
+    "description": "Southern rim ridge overlooking Shoemaker PSR. High concentration of hydrogen detected by Lunar Prospector and LRO LEND neutron spectrometers.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-l Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Strong hydrogen neutron suppression signature indicating water ice",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-l Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Stable ridge topology with good landing approach paths",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-l Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "site-l Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Proximity to Faustini and Shackleton exploration sectors",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy long-range autonomous scouting rovers",
+      "Establish regional polar power station",
+      "Build intermediate communications repeaters"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / GSFC / Arizona State University (LROC NAC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Shoemaker Crater Rim Altimetry",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 13. Chandrayaan-3 (Shiv Shakti Point)
   {
-    id: 'ch3_shiv_shakti',
-    code: 'Shiv Shakti',
-    name: 'Chandrayaan-3 (Shiv Shakti Point)',
-    shortName: 'Shiv Shakti Point',
-    tier: 'SUITABLE',
-    latitude: -69.373,
-    longitude: 32.319,
-    suitabilityScore: 83.2,
-    aiConfidence: 96,
-    factors: {
-      terrain: 92,
-      waterIce: 72,
-      solarIllumination: 80,
-      radiationSafety: 79,
-      temperature: 82,
-      accessibility: 94
+    "id": "ch3_shiv_shakti",
+    "code": "Shiv Shakti",
+    "name": "Chandrayaan-3 (Shiv Shakti Point)",
+    "shortName": "Shiv Shakti Point",
+    "tier": "SUITABLE",
+    "latitude": -69.373,
+    "longitude": 32.319,
+    "suitabilityScore": 83.2,
+    "aiConfidence": 92,
+    "factors": {
+      "terrain": 88,
+      "waterIce": 72,
+      "solarIllumination": 80,
+      "radiationSafety": 76,
+      "temperature": 78,
+      "accessibility": 91
     },
-    elevationMeters: -2580, // Real LOLA SLDEM2015
-    slopeDegrees: 3.1,      // Real LOLA Slope
-    illuminationPercent: 80.0,
-    waterIcePurityPercent: 8.5,
-    radiationLevelMsvPerYear: 340,
-    tempMinKelvin: 130,
-    tempMaxKelvin: 333,     // Real ChaSTE surface measurement (60°C / 333K)
-    earthLineOfSightPercent: 96.0,
-    distanceToPsrMeters: 4200,
-    siteType: 'Mare Plain',
-    description: 'Historic ground-truth landing site of ISRO Vikram Lander & Pragyan Rover. Confirmed elemental sulfur, iron, titanium, and provided in-situ regolith thermophysical profiling down to 8 cm depth.',
-    whyThisSite: [
-      { text: 'In-situ ground truth validation from ChaSTE & APXS spectrometers', type: 'positive' },
-      { text: 'Flat open highland plains with 3.1° slope', type: 'positive' },
-      { text: 'Direct telemetry coverage to ISTRAC & DSN ground stations', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Deploy stationary long-term seismological observatory',
-      'Establish regolith plasma charging research station'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'ISRO / ISTRAC / Pragyan Rover NavCam & Chandrayaan-2 OHRC',
-    galleryImages: [
+    "elevationMeters": -2580,
+    "slopeDegrees": 3.1,
+    "illuminationPercent": 80.0,
+    "waterIcePurityPercent": 14.5,
+    "radiationLevelMsvPerYear": 310,
+    "tempMinKelvin": 150,
+    "tempMaxKelvin": 333,
+    "earthLineOfSightPercent": 94.0,
+    "distanceToPsrMeters": 850,
+    "siteType": "Polar Plateau",
+    "description": "Historic soft-landing site of ISRO Chandrayaan-3 (Vikram lander & Pragyan rover). Situated on the high southern highland plains between Manzinus C and Simpelius N. Confirmed elemental sulfur, iron, and titanium regolith compositions.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Pragyan Rover on Lunar South Pole Regolith",
-            "overlayText": ""
+        "text": "Gentle, wide landing corridor with 3.1\u00b0 localized slope profile",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ISRO Vikram Lander Photographed by Pragyan NavCam",
-            "overlayText": "View Lander"
+        "text": "ISRO ChaSTE thermal probe validated subsurface temperature gradient",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "NASA LRO Orbital Photo of Vikram Lander at Shiv Shakti",
-            "overlayText": ""
+        "text": "Direct line-of-sight to Indian Deep Space Network (IDSN) & NASA DSN",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ChaSTE In-Situ Regolith Thermal Profile Record",
-            "overlayText": ""
+        "text": "Periodic 14-day lunar night requiring radioisotope thermal heater units (RHU)",
+        "type": "warning"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Establish South Pole Highland Science Outpost",
+      "Deploy autonomous ISRU sulfur-concrete sintering plant",
+      "Construct deep cryogenic drill testbed based on Pragyan APXS ground data"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "ISRO / NASA / Chandrayaan-3 Lander Imager & OHRC",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Chandrayaan-3 Vikram Lander on Shiv Shakti Point",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Pragyan Rover Ramp Deployment",
+        "overlayText": "View Rover"
+      }
+    ]
   },
-
-  // 14. Chandrayaan-1 (Jawahar Point)
   {
-    id: 'ch1_jawahar',
-    code: 'Jawahar Point',
-    name: 'Chandrayaan-1 (Jawahar Point)',
-    shortName: 'Jawahar Point',
-    tier: 'SUITABLE',
-    latitude: -89.90,
-    longitude: 0.0,
-    suitabilityScore: 88.4,
-    aiConfidence: 93,
-    factors: {
-      terrain: 88,
-      waterIce: 92,
-      solarIllumination: 91,
-      radiationSafety: 83,
-      temperature: 86,
-      accessibility: 82
+    "id": "ch1_jawahar",
+    "code": "Jawahar Point",
+    "name": "Chandrayaan-1 (Jawahar Point)",
+    "shortName": "Jawahar Point",
+    "tier": "SUITABLE",
+    "latitude": -89.9,
+    "longitude": 0.0,
+    "suitabilityScore": 88.4,
+    "aiConfidence": 95,
+    "factors": {
+      "terrain": 82,
+      "waterIce": 92,
+      "solarIllumination": 91,
+      "radiationSafety": 85,
+      "temperature": 88,
+      "accessibility": 80
     },
-    elevationMeters: 3950, // Real LOLA SLDEM2015
-    slopeDegrees: 5.0,     // Real LOLA Slope
-    illuminationPercent: 91.5,
-    waterIcePurityPercent: 20.0,
-    radiationLevelMsvPerYear: 290,
-    tempMinKelvin: 160,
-    tempMaxKelvin: 220,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 97.0,
-    distanceToPsrMeters: 250,
-    siteType: 'Crater Rim',
-    description: 'Impact site of the Moon Impact Probe (MIP) that discovered water molecules across polar lunar regolith alongside NASA M3 spectrometer data.',
-    whyThisSite: [
-      { text: 'Historic landmark of water molecule confirmation on the Moon', type: 'positive' },
-      { text: 'High polar elevation with direct view into South Pole cold traps', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Construct deep-space volatile monitoring station',
-      'Install commemorative international scientific marker'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 3950,
+    "slopeDegrees": 5.0,
+    "illuminationPercent": 91.5,
+    "waterIcePurityPercent": 22.0,
+    "radiationLevelMsvPerYear": 285,
+    "tempMinKelvin": 170,
+    "tempMaxKelvin": 225,
+    "earthLineOfSightPercent": 97.5,
+    "distanceToPsrMeters": 280,
+    "siteType": "Crater Rim",
+    "description": "Historic impact site of ISRO Moon Impact Probe (MIP) on Nov 14, 2008, confirming water molecules across the lunar polar regolith. Highly strategic ridge crest overlooking Shackleton interior.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch1_jawahar Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Historic proven location for polar hydroxyl/water ice concentration",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch1_jawahar Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "High annual sunlight availability (>91%) along southern polar crest",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch1_jawahar Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch1_jawahar Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Immediate adjacent descent path into deep cold trap volatiles",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Install ISRO-NASA International Joint Polar Research Observatory",
+      "Deploy autonomous continuous water extraction prototype",
+      "Set up optical laser communication terminal to Earth ground stations"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "ISRO / ISSDC / Chandrayaan-1 Moon Mineralogy Mapper (M3)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Jawahar Point Shackleton Rim View",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 15. Chandrayaan-2 (Tiranga Point)
   {
-    id: 'ch2_tiranga',
-    code: 'Tiranga Point',
-    name: 'Chandrayaan-2 (Tiranga Point)',
-    shortName: 'Tiranga Point',
-    tier: 'SUITABLE',
-    latitude: -70.83,
-    longitude: 22.68,
-    suitabilityScore: 81.9,
-    aiConfidence: 89,
-    factors: {
-      terrain: 89,
-      waterIce: 74,
-      solarIllumination: 81,
-      radiationSafety: 80,
-      temperature: 80,
-      accessibility: 91
+    "id": "ch2_tiranga",
+    "code": "Tiranga Point",
+    "name": "Chandrayaan-2 (Tiranga Point)",
+    "shortName": "Tiranga Point",
+    "tier": "SUITABLE",
+    "latitude": -70.83,
+    "longitude": 22.68,
+    "suitabilityScore": 81.9,
+    "aiConfidence": 90,
+    "factors": {
+      "terrain": 86,
+      "waterIce": 74,
+      "solarIllumination": 81,
+      "radiationSafety": 78,
+      "temperature": 77,
+      "accessibility": 89
     },
-    elevationMeters: -2300, // Real LOLA SLDEM2015
-    slopeDegrees: 4.0,      // Real LOLA Slope
-    illuminationPercent: 81.0,
-    waterIcePurityPercent: 10.2,
-    radiationLevelMsvPerYear: 335,
-    tempMinKelvin: 135,
-    tempMaxKelvin: 330,     // Real Diviner Max Temp
-    earthLineOfSightPercent: 95.0,
-    distanceToPsrMeters: 3800,
-    siteType: 'Mare Plain',
-    description: 'Target highland plains region surveyed continuously by Chandrayaan-2 Dual-Frequency SAR and high-resolution 0.32m optical cameras.',
-    whyThisSite: [
-      { text: 'High resolution (0.32m) orbital radar & camera calibration data', type: 'positive' },
-      { text: 'Even highland plain suitable for automated landers', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Install surface radar calibration transponder',
-      'Deploy autonomous meteorological outpost'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": -2300,
+    "slopeDegrees": 4.0,
+    "illuminationPercent": 81.0,
+    "waterIcePurityPercent": 13.8,
+    "radiationLevelMsvPerYear": 305,
+    "tempMinKelvin": 145,
+    "tempMaxKelvin": 335,
+    "earthLineOfSightPercent": 95.0,
+    "distanceToPsrMeters": 920,
+    "siteType": "Polar Plateau",
+    "description": "Chandrayaan-2 landing location in the southern highland terrain. Thoroughly surveyed by Chandrayaan-2 OHRC (0.32m resolution) providing world-class sub-meter topographic maps.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch2_tiranga Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Comprehensive sub-meter 0.32m OHRC orbital photogrammetry available",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch2_tiranga Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Smooth landing zone with low hazard density across highland plateau",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch2_tiranga Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "ch2_tiranga Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Good solar exposure during lunar summer solstice periods",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy automated lunar regolith processing facility",
+      "Set up regional high-bandwidth relay antenna node",
+      "Integrate with ISRO long-duration polar mobile rover grid"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "ISRO / Chandrayaan-2 Orbiter High Resolution Camera (OHRC)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Tiranga Point High Resolution Mapping",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 16. Chandrayaan-4 / LUPEX
   {
-    id: 'lupex_ch4',
-    code: 'LUPEX / CH-4',
-    name: 'Chandrayaan-4 / LUPEX (Connecting Ridge Target)',
-    shortName: 'LUPEX / Chandrayaan-4',
-    tier: 'HIGHLY SUITABLE',
-    latitude: -89.40,
-    longitude: 145.0,
-    suitabilityScore: 91.2,
-    aiConfidence: 92,
-    factors: {
-      terrain: 93,
-      waterIce: 90,
-      solarIllumination: 93,
-      radiationSafety: 86,
-      temperature: 89,
-      accessibility: 90
+    "id": "lupex_ch4",
+    "code": "LUPEX / CH-4",
+    "name": "Chandrayaan-4 / LUPEX (Connecting Ridge Target)",
+    "shortName": "LUPEX / CH-4 Target",
+    "tier": "HIGHLY SUITABLE",
+    "latitude": -89.4,
+    "longitude": 145.0,
+    "suitabilityScore": 91.2,
+    "aiConfidence": 94,
+    "factors": {
+      "terrain": 90,
+      "waterIce": 90,
+      "solarIllumination": 93,
+      "radiationSafety": 86,
+      "temperature": 89,
+      "accessibility": 88
     },
-    elevationMeters: 4050, // Real LOLA SLDEM2015
-    slopeDegrees: 4.1,     // Real LOLA Slope
-    illuminationPercent: 92.8,
-    waterIcePurityPercent: 19.8,
-    radiationLevelMsvPerYear: 285,
-    tempMinKelvin: 170,
-    tempMaxKelvin: 225,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 97.5,
-    distanceToPsrMeters: 320,
-    siteType: 'Crater Rim',
-    description: 'Joint ISRO-JAXA lunar volatile prospecting mission targeting 1.5m subsurface cryogenic drilling and in-situ analysis at the lunar south pole.',
-    whyThisSite: [
-      { text: 'Optimized for JAXA 350kg cryo-rover mobility and drill operations', type: 'positive' },
-      { text: 'Continuous solar power window during polar operational campaign', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Deploy 1.5m subsurface drill sampling core',
-      'Establish volatile mass spectrometry laboratory'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 4050,
+    "slopeDegrees": 4.1,
+    "illuminationPercent": 92.8,
+    "waterIcePurityPercent": 20.5,
+    "radiationLevelMsvPerYear": 280,
+    "tempMinKelvin": 175,
+    "tempMaxKelvin": 222,
+    "earthLineOfSightPercent": 97.8,
+    "distanceToPsrMeters": 340,
+    "siteType": "Crater Rim",
+    "description": "Target landing site for the joint ISRO-JAXA LUPEX (Lunar Polar Exploration) / Chandrayaan-4 mission. Designed to drill 1.5m underground into polar ice traps for in-situ resource utilization.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "lupex_ch4 Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Optimized specifically for 350kg JAXA rover + ISRO lander drilling operations",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "lupex_ch4 Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Sustained solar illumination corridor with minimal shadowing during mission lifespan",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "lupex_ch4 Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "lupex_ch4 Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Direct proximity to verified high-purity volatile deposits",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy ISRO-JAXA 1.5m deep core drill system",
+      "Construct automated hydrogen/oxygen propellant generation pilot plant",
+      "Install permanent polar thermal shelter module"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "ISRO / JAXA LUPEX Joint Mission Architecture",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "LUPEX Polar Rover Ice Prospecting Simulation",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 17. Apollo 11 (Statio Tranquillitatis)
   {
-    id: 'apollo_11',
-    code: 'Apollo 11',
-    name: 'Apollo 11 (Statio Tranquillitatis)',
-    shortName: 'Tranquility Base',
-    tier: 'SUITABLE',
-    latitude: 0.674,
-    longitude: 23.473,
-    suitabilityScore: 81.5,
-    aiConfidence: 98,
-    factors: {
-      terrain: 95,
-      waterIce: 20,
-      solarIllumination: 50,
-      radiationSafety: 72,
-      temperature: 70,
-      accessibility: 98
+    "id": "apollo_11",
+    "code": "Apollo 11",
+    "name": "Apollo 11 (Statio Tranquillitatis)",
+    "shortName": "Tranquility Base",
+    "tier": "SUITABLE",
+    "latitude": 0.674,
+    "longitude": 23.473,
+    "suitabilityScore": 81.5,
+    "aiConfidence": 98,
+    "factors": {
+      "terrain": 95,
+      "waterIce": 20,
+      "solarIllumination": 50,
+      "radiationSafety": 72,
+      "temperature": 65,
+      "accessibility": 98
     },
-    elevationMeters: -1440, // Real LOLA SLDEM2015
-    slopeDegrees: 1.8,      // Real LOLA Slope
-    illuminationPercent: 50.0,
-    waterIcePurityPercent: 0.1,
-    radiationLevelMsvPerYear: 380,
-    tempMinKelvin: 100,
-    tempMaxKelvin: 385,     // Real Diviner Equatorial Max Temp
-    earthLineOfSightPercent: 100.0,
-    distanceToPsrMeters: 99000,
-    siteType: 'Mare Plain',
-    description: 'Historic landing site of Apollo 11 Lunar Module Eagle. Deployed the Laser Ranging Retroreflector (LRRR) that remains active and laser-tracked from Earth today.',
-    whyThisSite: [
-      { text: 'Historic first human landing site with pristine geodetic laser retroreflector', type: 'positive' },
-      { text: 'Extremely flat titanium-rich basaltic mare plain (1.8° slope)', type: 'positive' },
-      { text: 'High thermal cycling (100K to 385K) and lack of volatile ice deposits', type: 'warning' }
-    ],
-    missionRecommendations: [
-      'Maintain international historical preservation perimeter',
-      'Install laser ranging calibration monitor'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / Neil Armstrong & Buzz Aldrin / LROC NAC (M102360879R)',
-    galleryImages: [
+    "elevationMeters": -1440,
+    "slopeDegrees": 1.8,
+    "illuminationPercent": 50.0,
+    "waterIcePurityPercent": 0.5,
+    "radiationLevelMsvPerYear": 380,
+    "tempMinKelvin": 100,
+    "tempMaxKelvin": 385,
+    "earthLineOfSightPercent": 100.0,
+    "distanceToPsrMeters": 850000,
+    "siteType": "Mare Plain",
+    "description": "Historic first human landing site on the Moon (July 20, 1969). Ultra-flat basaltic mare plain with near-zero slope hazards, proven geotechnical load-bearing capacity, and uninterrupted line-of-sight to Earth.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Buzz Aldrin on Mare Tranquillitatis by Neil Armstrong",
-            "overlayText": ""
+        "text": "Proven ground-truth human landing zone with 1.8\u00b0 average slope",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Apollo Lunar Module LM-5 Eagle on Lunar Surface",
-            "overlayText": "View Lander"
+        "text": "100% direct permanent line-of-sight to Earth equatorial tracking stations",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "LROC NAC Orbital View of Tranquility Base & Descent Stage",
-            "overlayText": ""
+        "text": "High ilmenite/titanium basalt regolith ideal for metal extraction & oxygen reduction",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Iconic Apollo 11 First Lunar Regolith Bootprint",
-            "overlayText": ""
+        "text": "Equatorial 14-day continuous night and wide thermal swings (100K to 385K)",
+        "type": "warning"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Preserve Apollo 11 Historic Heritage Zone (Statio Tranquillitatis)",
+      "Construct equatorial high-power nuclear fission surface power (FSP) hub",
+      "Establish basalt oxygen-extraction & 3D printing research facility"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Neil Armstrong & Buzz Aldrin / LROC NAC (M102360879R)",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Buzz Aldrin on Mare Tranquillitatis by Neil Armstrong",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Apollo Lunar Module LM-5 Eagle on Lunar Surface",
+        "overlayText": "View Lander"
+      }
+    ]
   },
-
-  // 18. Apollo 12 (Ocean of Storms)
   {
-    id: 'apollo_12',
-    code: 'Apollo 12',
-    name: 'Apollo 12 (Ocean of Storms / Surveyor 3)',
-    shortName: 'Ocean of Storms',
-    tier: 'SUITABLE',
-    latitude: -3.012,
-    longitude: -23.422,
-    suitabilityScore: 80.8,
-    aiConfidence: 97,
-    factors: {
-      terrain: 94,
-      waterIce: 20,
-      solarIllumination: 50,
-      radiationSafety: 72,
-      temperature: 70,
-      accessibility: 97
+    "id": "apollo_12",
+    "code": "Apollo 12",
+    "name": "Apollo 12 (Ocean of Storms / Surveyor 3)",
+    "shortName": "Ocean of Storms",
+    "tier": "SUITABLE",
+    "latitude": -3.012,
+    "longitude": -23.422,
+    "suitabilityScore": 80.8,
+    "aiConfidence": 97,
+    "factors": {
+      "terrain": 94,
+      "waterIce": 20,
+      "solarIllumination": 50,
+      "radiationSafety": 72,
+      "temperature": 65,
+      "accessibility": 97
     },
-    elevationMeters: -1520, // Real LOLA SLDEM2015
-    slopeDegrees: 2.1,      // Real LOLA Slope
-    illuminationPercent: 50.0,
-    waterIcePurityPercent: 0.1,
-    radiationLevelMsvPerYear: 380,
-    tempMinKelvin: 100,
-    tempMaxKelvin: 387,     // Real Diviner Max Temp
-    earthLineOfSightPercent: 100.0,
-    distanceToPsrMeters: 99000,
-    siteType: 'Mare Plain',
-    description: 'First pinpoint precision lunar landing site. Proved human capability to land within 160 meters of robotic Surveyor 3 lander.',
-    whyThisSite: [
-      { text: 'Smooth, predictable maria regolith for heavy touchdowns', type: 'positive' },
-      { text: 'Direct continuous Earth line-of-sight', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Conduct long-duration material degradation studies on retrieved components'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": -1520,
+    "slopeDegrees": 2.1,
+    "illuminationPercent": 50.0,
+    "waterIcePurityPercent": 0.4,
+    "radiationLevelMsvPerYear": 380,
+    "tempMinKelvin": 100,
+    "tempMaxKelvin": 385,
+    "earthLineOfSightPercent": 100.0,
+    "distanceToPsrMeters": 890000,
+    "siteType": "Mare Plain",
+    "description": "Precision touchdown site adjacent to Surveyor 3 robotic probe (November 1969). Flat basaltic terrain demonstrating pinpoint lunar landing capability.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_12 Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Demonstrated pinpoint touchdown accuracy within 160m of target",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_12 Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Extensive multi-year material degradation benchmark data from Surveyor 3",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_12 Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_12 Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Flat mare plain suitable for heavy industrial rocket transport",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Establish Long-Duration Material Exposure Testbed",
+      "Deploy equatorial automated rover depot",
+      "Construct solar farm with regenerative fuel cell backup"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Pete Conrad & Alan Bean / Apollo 12",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Apollo 12 Astronaut with Surveyor 3 Spacecraft",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 19. Apollo 14 (Fra Mauro Highlands)
   {
-    id: 'apollo_14',
-    code: 'Apollo 14',
-    name: 'Apollo 14 (Fra Mauro Highlands)',
-    shortName: 'Fra Mauro',
-    tier: 'SUITABLE',
-    latitude: -3.645,
-    longitude: -17.471,
-    suitabilityScore: 81.2,
-    aiConfidence: 96,
-    factors: {
-      terrain: 90,
-      waterIce: 22,
-      solarIllumination: 50,
-      radiationSafety: 73,
-      temperature: 71,
-      accessibility: 94
+    "id": "apollo_14",
+    "code": "Apollo 14",
+    "name": "Apollo 14 (Fra Mauro Highlands)",
+    "shortName": "Fra Mauro Highlands",
+    "tier": "SUITABLE",
+    "latitude": -3.645,
+    "longitude": -17.471,
+    "suitabilityScore": 81.2,
+    "aiConfidence": 96,
+    "factors": {
+      "terrain": 91,
+      "waterIce": 22,
+      "solarIllumination": 50,
+      "radiationSafety": 73,
+      "temperature": 66,
+      "accessibility": 95
     },
-    elevationMeters: -1100, // Real LOLA SLDEM2015
-    slopeDegrees: 3.4,      // Real LOLA Slope
-    illuminationPercent: 50.0,
-    waterIcePurityPercent: 0.2,
-    radiationLevelMsvPerYear: 375,
-    tempMinKelvin: 102,
-    tempMaxKelvin: 384,     // Real Diviner Max Temp
-    earthLineOfSightPercent: 100.0,
-    distanceToPsrMeters: 99000,
-    siteType: 'Mare Plain',
-    description: 'Explored the rim of Cone Crater and sampled deep Imbrium basin impact ejecta, providing fundamental constraints on lunar impact crater chronology.',
-    whyThisSite: [
-      { text: 'Well-characterized geological impact ejecta stratigraphy', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Establish regional seismic and geology field station'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": -1100,
+    "slopeDegrees": 3.4,
+    "illuminationPercent": 50.0,
+    "waterIcePurityPercent": 0.6,
+    "radiationLevelMsvPerYear": 375,
+    "tempMinKelvin": 105,
+    "tempMaxKelvin": 383,
+    "earthLineOfSightPercent": 100.0,
+    "distanceToPsrMeters": 870000,
+    "siteType": "Polar Plateau",
+    "description": "Imbrium impact ejecta blanket (February 1971). Rich in deep crustal lunar samples (KREEP materials) and ancient impact breccia.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_14 Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Deep crustal KREEP (Potassium, Rare Earth Elements, Phosphorus) deposits",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_14 Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Stable highland regolith suitable for subterranean habitat anchors",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_14 Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_14 Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Proven traverse corridors validated by Shepard and Mitchell",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Construct Rare Earth Element (REE) extraction lab",
+      "Deploy subsurface seismic array network",
+      "Install high-capacity heavy cargo landing pad"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Alan Shepard & Edgar Mitchell / Apollo 14",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Fra Mauro Crater Rim Ridge Ejecta Blanket",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 20. Apollo 15 (Hadley-Apennine)
   {
-    id: 'apollo_15',
-    code: 'Apollo 15',
-    name: 'Apollo 15 (Hadley-Apennine)',
-    shortName: 'Hadley-Apennine',
-    tier: 'SUITABLE',
-    latitude: 26.132,
-    longitude: 3.634,
-    suitabilityScore: 82.4,
-    aiConfidence: 97,
-    factors: {
-      terrain: 86,
-      waterIce: 22,
-      solarIllumination: 50,
-      radiationSafety: 74,
-      temperature: 72,
-      accessibility: 92
+    "id": "apollo_15",
+    "code": "Apollo 15",
+    "name": "Apollo 15 (Hadley-Apennine)",
+    "shortName": "Hadley-Apennine",
+    "tier": "SUITABLE",
+    "latitude": 26.132,
+    "longitude": 3.634,
+    "suitabilityScore": 82.4,
+    "aiConfidence": 97,
+    "factors": {
+      "terrain": 88,
+      "waterIce": 22,
+      "solarIllumination": 50,
+      "radiationSafety": 75,
+      "temperature": 66,
+      "accessibility": 93
     },
-    elevationMeters: -1800, // Real LOLA SLDEM2015
-    slopeDegrees: 4.8,      // Real LOLA Slope
-    illuminationPercent: 50.0,
-    waterIcePurityPercent: 0.2,
-    radiationLevelMsvPerYear: 370,
-    tempMinKelvin: 100,
-    tempMaxKelvin: 382,     // Real Diviner Max Temp
-    earthLineOfSightPercent: 100.0,
-    distanceToPsrMeters: 99000,
-    siteType: 'Mare Plain',
-    description: 'Dramatic landing site at the foot of the 4,500m Montes Apenninus and edge of the 300m deep Hadley Rille gorge. Source of the 4.1 billion year old Genesis Rock.',
-    whyThisSite: [
-      { text: 'High diversity of crustal and mantle geological exposures', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Construct robotic canyon exploration crane into Hadley Rille'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": -1800,
+    "slopeDegrees": 4.8,
+    "illuminationPercent": 50.0,
+    "waterIcePurityPercent": 0.7,
+    "radiationLevelMsvPerYear": 370,
+    "tempMinKelvin": 102,
+    "tempMaxKelvin": 384,
+    "earthLineOfSightPercent": 100.0,
+    "distanceToPsrMeters": 920000,
+    "siteType": "Mare Plain",
+    "description": "Spectacular geological junction at the base of the Apennine Mountains (5000m peaks) and Hadley Rille lava channel (July 1971). First Lunar Roving Vehicle (LRV) expedition.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_15 Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "Natural shielding provided by adjacent 5km Apennine Mountain massif",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_15 Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Hadley Rille collapsed lava tube offers structural habitat shelter options",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_15 Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_15 Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Rich ancient crustal Genesis Rock (anorthosite) sampling site",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Explore Hadley Rille lava tube for subterranean habitat construction",
+      "Establish deep-space mountain observatory",
+      "Deploy high-torque robotic crawler for rille descent"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / David Scott & James Irwin / Apollo 15",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Apollo 15 Lunar Roving Vehicle (LRV) at Mount Hadley",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 21. Apollo 16 (Descartes Highlands)
   {
-    id: 'apollo_16',
-    code: 'Apollo 16',
-    name: 'Apollo 16 (Descartes Highlands)',
-    shortName: 'Descartes Highlands',
-    tier: 'SUITABLE',
-    latitude: -8.973,
-    longitude: 15.498,
-    suitabilityScore: 82.0,
-    aiConfidence: 96,
-    factors: {
-      terrain: 88,
-      waterIce: 22,
-      solarIllumination: 50,
-      radiationSafety: 74,
-      temperature: 71,
-      accessibility: 93
+    "id": "apollo_16",
+    "code": "Apollo 16",
+    "name": "Apollo 16 (Descartes Highlands)",
+    "shortName": "Descartes Highlands",
+    "tier": "SUITABLE",
+    "latitude": -8.973,
+    "longitude": 15.498,
+    "suitabilityScore": 82.0,
+    "aiConfidence": 96,
+    "factors": {
+      "terrain": 89,
+      "waterIce": 22,
+      "solarIllumination": 50,
+      "radiationSafety": 74,
+      "temperature": 66,
+      "accessibility": 94
     },
-    elevationMeters: 1400, // Real LOLA SLDEM2015
-    slopeDegrees: 4.2,     // Real LOLA Slope
-    illuminationPercent: 50.0,
-    waterIcePurityPercent: 0.2,
-    radiationLevelMsvPerYear: 365,
-    tempMinKelvin: 105,
-    tempMaxKelvin: 383,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 100.0,
-    distanceToPsrMeters: 99000,
-    siteType: 'Polar Plateau',
-    description: 'Only Apollo landing in the central lunar highlands, confirming anorthosite impact breccia crustal composition.',
-    whyThisSite: [
-      { text: 'Highland anorthosite rich in aluminum and calcium for regolith glass construction', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Deploy ISRU regolith glass fiber sintering facility'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": 1400,
+    "slopeDegrees": 4.2,
+    "illuminationPercent": 50.0,
+    "waterIcePurityPercent": 0.5,
+    "radiationLevelMsvPerYear": 372,
+    "tempMinKelvin": 104,
+    "tempMaxKelvin": 382,
+    "earthLineOfSightPercent": 100.0,
+    "distanceToPsrMeters": 880000,
+    "siteType": "Polar Plateau",
+    "description": "Central lunar highlands plateau near Cayley Plains (April 1972). Proved that lunar highlands were formed by catastrophic impact events rather than volcanism.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_16 Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "High-elevation highland plateau with excellent radar line-of-sight",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_16 Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "High anorthosite content ideal for aluminum & silicon refining",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_16 Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_16 Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Stable solid bedrock foundation for pressurized base structures",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Build Highland Metallurgy and Sintering Facility",
+      "Install optical astronomical interferometer",
+      "Deploy autonomous regolith civil grading rovers"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / John Young & Charles Duke / Apollo 16",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "John Young Lunar Salute beside Lunar Module Orion",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 22. Apollo 17 (Taurus-Littrow Valley)
   {
-    id: 'apollo_17',
-    code: 'Apollo 17',
-    name: 'Apollo 17 (Taurus-Littrow Valley)',
-    shortName: 'Taurus-Littrow',
-    tier: 'SUITABLE',
-    latitude: 20.191,
-    longitude: 30.772,
-    suitabilityScore: 83.0,
-    aiConfidence: 98,
-    factors: {
-      terrain: 89,
-      waterIce: 24,
-      solarIllumination: 50,
-      radiationSafety: 75,
-      temperature: 72,
-      accessibility: 95
+    "id": "apollo_17",
+    "code": "Apollo 17",
+    "name": "Apollo 17 (Taurus-Littrow Valley)",
+    "shortName": "Taurus-Littrow",
+    "tier": "SUITABLE",
+    "latitude": 20.191,
+    "longitude": 30.772,
+    "suitabilityScore": 83.0,
+    "aiConfidence": 98,
+    "factors": {
+      "terrain": 90,
+      "waterIce": 24,
+      "solarIllumination": 50,
+      "radiationSafety": 76,
+      "temperature": 67,
+      "accessibility": 95
     },
-    elevationMeters: -2500, // Real LOLA SLDEM2015
-    slopeDegrees: 3.9,      // Real LOLA Slope
-    illuminationPercent: 50.0,
-    waterIcePurityPercent: 0.3,
-    radiationLevelMsvPerYear: 370,
-    tempMinKelvin: 100,
-    tempMaxKelvin: 384,     // Real Diviner Max Temp
-    earthLineOfSightPercent: 100.0,
-    distanceToPsrMeters: 99000,
-    siteType: 'Mare Plain',
-    description: 'Site of the final Apollo lunar expedition. Discovered pyroclastic orange glass beads indicative of deep explosive lunar volcanism.',
-    whyThisSite: [
-      { text: 'High concentrations of titanium and volatile pyroclastic glass beads', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Install automated pyroclastic glass extraction plant'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / PDS Ground Truth Survey',
-    galleryImages: [
+    "elevationMeters": -2500,
+    "slopeDegrees": 3.9,
+    "illuminationPercent": 50.0,
+    "waterIcePurityPercent": 0.8,
+    "radiationLevelMsvPerYear": 368,
+    "tempMinKelvin": 105,
+    "tempMaxKelvin": 384,
+    "earthLineOfSightPercent": 100.0,
+    "distanceToPsrMeters": 910000,
+    "siteType": "Mare Plain",
+    "description": "Deep scenic valley between the North and South Massifs (December 1972). Discovery of orange pyroclastic volcanic glass bead deposits (Shorty Crater) containing trapped volatile gases.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_17 Surface Regolith Touchdown Corridor",
-            "overlayText": ""
+        "text": "High natural radiation shielding from enclosing 2km massif canyon walls",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_17 Lunar Landing Vehicle",
-            "overlayText": "View Lander"
+        "text": "Volcanic orange glass deposits rich in volatile elements (zinc, lead, chlorine)",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_17 Surface Exploration Rover",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "apollo_17 Permanent Lunar Base Concept",
-            "overlayText": ""
+        "text": "Highest crewed exploration traverse distance (35.7 km) proven terrain",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Construct Taurus-Littrow Valley Deep Habitat Complex",
+      "Develop Pyroclastic Volcanic Glass Resource Extraction Facility",
+      "Establish long-range pressurized rover base terminal"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / Eugene Cernan & Harrison Schmitt (Geologist) / Apollo 17",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Harrison Schmitt at Taurus-Littrow Boulder Site",
+        "overlayText": ""
+      }
+    ]
   },
-
-  // 23. Artemis III Target (Shackleton-Malapert Ridge)
   {
-    id: 'artemis_3',
-    code: 'Artemis III',
-    name: 'Artemis III Target (Shackleton-Malapert Ridge)',
-    shortName: 'Artemis III Ridge',
-    tier: 'HIGHLY SUITABLE',
-    latitude: -89.50,
-    longitude: 130.0,
-    suitabilityScore: 93.8,
-    aiConfidence: 94,
-    factors: {
-      terrain: 94,
-      waterIce: 92,
-      solarIllumination: 95,
-      radiationSafety: 87,
-      temperature: 90,
-      accessibility: 91
+    "id": "artemis_3",
+    "code": "Artemis III",
+    "name": "Artemis III Target (Shackleton-Malapert Ridge)",
+    "shortName": "Artemis III Ridge Target",
+    "tier": "HIGHLY SUITABLE",
+    "latitude": -89.5,
+    "longitude": 130.0,
+    "suitabilityScore": 93.8,
+    "aiConfidence": 94,
+    "factors": {
+      "terrain": 94,
+      "waterIce": 92,
+      "solarIllumination": 95,
+      "radiationSafety": 87,
+      "temperature": 90,
+      "accessibility": 91
     },
-    elevationMeters: 4200, // Real LOLA SLDEM2015
-    slopeDegrees: 3.7,     // Real LOLA Slope
-    illuminationPercent: 94.5,
-    waterIcePurityPercent: 21.0,
-    radiationLevelMsvPerYear: 280,
-    tempMinKelvin: 175,
-    tempMaxKelvin: 222,    // Real Diviner Max Temp
-    earthLineOfSightPercent: 98.0,
-    distanceToPsrMeters: 310,
-    siteType: 'Crater Rim',
-    description: 'Designated landing region candidate for NASA Artemis III crewed mission (SpaceX Starship HLS). Bridges optimal power generation ridges with direct rover access to permanently shadowed ice deposits.',
-    whyThisSite: [
-      { text: 'Optimal multi-kilometer continuous solar illumination ridge', type: 'positive' },
-      { text: 'Low localized slope corridor suitable for Starship HLS touchdown', type: 'positive' },
-      { text: 'Immediate access to massive volatile water-ice deposits in adjacent shadow traps', type: 'positive' }
-    ],
-    missionRecommendations: [
-      'Deploy SpaceX Starship HLS cargo and crew landing zone',
-      'Install Artemis Base Camp foundation habitat and mobile power cart',
-      'Establish ISRU water purification pipeline'
-    ],
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    surfaceImageUrl: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80',
-    orbitalImageUrl: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80',
-    imageAttribution: 'NASA / SpaceX / Axiom Space / LROC NAC High-Res Mosaic',
-    galleryImages: [
+    "elevationMeters": 4200,
+    "slopeDegrees": 3.7,
+    "illuminationPercent": 94.5,
+    "waterIcePurityPercent": 21.0,
+    "radiationLevelMsvPerYear": 280,
+    "tempMinKelvin": 175,
+    "tempMaxKelvin": 222,
+    "earthLineOfSightPercent": 98.0,
+    "distanceToPsrMeters": 310,
+    "siteType": "Crater Rim",
+    "description": "Designated landing region candidate for NASA Artemis III crewed mission (SpaceX Starship HLS). Bridges optimal power generation ridges with direct rover access to permanently shadowed ice deposits.",
+    "whyThisSite": [
       {
-            "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "Astronauts on Artemis III South Pole Ridge Touchdown",
-            "overlayText": ""
+        "text": "Optimal multi-kilometer continuous solar illumination ridge",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "SpaceX Starship HLS Lunar Touchdown Vehicle",
-            "overlayText": "View Lander"
+        "text": "Low localized slope corridor suitable for Starship HLS touchdown",
+        "type": "positive"
       },
       {
-            "url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "NASA VIPER Volatile Scout Rover Traverse",
-            "overlayText": ""
-      },
-      {
-            "url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80",
-            "alt_text": "NASA Artemis III 13 Candidate Landing Zones",
-            "overlayText": ""
+        "text": "Immediate access to massive volatile water-ice deposits in adjacent shadow traps",
+        "type": "positive"
       }
-]
+    ],
+    "missionRecommendations": [
+      "Deploy SpaceX Starship HLS cargo and crew landing zone",
+      "Install Artemis Base Camp foundation habitat and mobile power cart",
+      "Establish ISRU water purification pipeline"
+    ],
+    "thumbnail": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "surfaceImageUrl": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+    "orbitalImageUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=800&q=80",
+    "imageAttribution": "NASA / SpaceX / Axiom Space / LROC NAC High-Res Mosaic",
+    "galleryImages": [
+      {
+        "url": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "Astronauts on Artemis III South Pole Ridge Touchdown",
+        "overlayText": ""
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+        "alt_text": "SpaceX Starship HLS Lunar Touchdown Vehicle",
+        "overlayText": "View Lander"
+      }
+    ]
   }
 ];
 
@@ -1581,14 +1513,12 @@ export const INITIAL_LUNAR_SITES = RAW_LUNAR_SITES.map(site => {
       suitability_tier: pred.suitability_tier,
       ai_rank: pred.ai_rank,
       score_delta_from_mcda: pred.score_delta,
-      model_version: aiPredictionsData.metadata?.model_version || 'xgb_lunar_v1.0',
+      model_version: aiPredictionsData.metadata?.model_version || 'rf_lunar_v2.4',
       model_r2: aiPredictionsData.metadata?.model_r2 || 0.9562,
-      model_mae: aiPredictionsData.metadata?.model_mae || 1.3007,
-      shap_top_features: pred.shap_top_features
+      model_rmse: aiPredictionsData.metadata?.model_rmse || 3.124
     }
   };
-}).sort((a, b) => b.suitabilityScore - a.suitabilityScore);
-
+});
 
 export const LUNAR_MISSIONS = [
   // =========================================================================
@@ -1641,333 +1571,173 @@ export const LUNAR_MISSIONS = [
   },
   {
     id: 'lupex_ch4',
-    name: 'Chandrayaan-4 / LUPEX (Connecting Ridge)',
+    name: 'Chandrayaan-4 / LUPEX (Connecting Ridge Target)',
     agency: 'ISRO / JAXA',
-    country: '🇮🇳 India & 🇯🇵 Japan',
+    country: '🇮🇳 India / 🇯🇵 Japan',
     category: 'isro',
     lat: -89.4,
     lon: 145.0,
-    zoom: 2.1,
-    date: 'Target 2028-2029',
-    craft: 'ISRO Heavy Lander + JAXA 350kg Cryo-Rover',
-    site: 'Shackleton-de Gerlache Connecting Ridge',
-    discovery: 'Subsurface drilling up to 1.5 meters into permanently shadowed cryogenic regolith to assess volatile hydrogen/water-ice quality and return samples to Earth.',
-    status: 'Planned Lunar Flight'
+    zoom: 2.0,
+    date: 'Target 2028-2030',
+    craft: '350kg JAXA Polar Rover + ISRO Heavy Lander',
+    site: 'Connecting Ridge / South Pole PSR Interface',
+    discovery: 'Planned in-situ volatile prospecting with 1.5-meter deep sub-surface drill and onboard chemical analysis for water ice purity quantification.',
+    status: 'In Development'
   },
-
   // =========================================================================
-  // NASA (National Aeronautics and Space Administration) Missions
+  // NASA Apollo Program (Ground-Truth Crewed Surface Bases)
   // =========================================================================
   {
     id: 'apollo_11',
     name: 'Apollo 11 (Statio Tranquillitatis)',
     agency: 'NASA',
-    country: '🇺🇸 United States',
-    category: 'nasa',
+    country: '🇺🇸 USA',
+    category: 'apollo',
     lat: 0.674,
     lon: 23.473,
     zoom: 2.3,
     date: 'July 20, 1969',
-    craft: 'Eagle Lunar Module (Neil Armstrong & Buzz Aldrin)',
+    craft: 'Lunar Module LM-5 Eagle (Armstrong & Aldrin)',
     site: 'Mare Tranquillitatis (Sea of Tranquility)',
-    discovery: 'First human footprints on the Moon. Returned 21.55 kg of basalt and breccia samples; deployed Laser Ranging Retroreflector (LRRR) that remains active today.',
-    status: 'Historic First Landing'
+    discovery: 'First human lunar landing. Returned 21.5 kg of titanium-rich basalt and breccia samples. Deployed EASEP seismometer and Laser Ranging Retroreflector (LRRR).',
+    status: 'Historic Monument'
   },
   {
     id: 'apollo_12',
     name: 'Apollo 12 (Ocean of Storms)',
     agency: 'NASA',
-    country: '🇺🇸 United States',
-    category: 'nasa',
+    country: '🇺🇸 USA',
+    category: 'apollo',
     lat: -3.012,
     lon: -23.422,
     zoom: 2.3,
     date: 'November 19, 1969',
-    craft: 'Intrepid LM (Pete Conrad & Alan Bean)',
-    site: 'Oceanus Procellarum / Surveyor 3 Site',
-    discovery: 'Pinpoint precision landing within 160m of robotic Surveyor 3 lander. Returned 34.3 kg of samples and parts of Surveyor 3 to analyze space weathering effects.',
-    status: 'Historic Precision Landing'
+    craft: 'LM-6 Intrepid (Conrad & Bean)',
+    site: 'Oceanus Procellarum',
+    discovery: 'Pinpoint precision landing 160m from Surveyor 3 probe. Deployed first complete ALSEP nuclear-powered geophysical station. Returned 34.3 kg of samples.',
+    status: 'Historic Site'
   },
   {
     id: 'apollo_14',
     name: 'Apollo 14 (Fra Mauro Highlands)',
     agency: 'NASA',
-    country: '🇺🇸 United States',
-    category: 'nasa',
+    country: '🇺🇸 USA',
+    category: 'apollo',
     lat: -3.645,
     lon: -17.471,
     zoom: 2.3,
     date: 'February 5, 1971',
-    craft: 'Antares LM (Alan Shepard & Edgar Mitchell)',
-    site: 'Fra Mauro Formation (Cone Crater)',
-    discovery: 'Explored rim of Cone Crater and sampled deep Imbrium basin impact ejecta. Returned 42.2 kg samples and deployed active seismic experiment.',
-    status: 'Highland Expedition'
+    craft: 'LM-8 Antares (Shepard & Mitchell)',
+    site: 'Fra Mauro Formation',
+    discovery: 'Explored Imbrium Basin impact ejecta blanket. Used Modular Equipment Transporter (MET). Returned 42.3 kg of deep crustal KREEP breccias.',
+    status: 'Historic Site'
   },
   {
     id: 'apollo_15',
     name: 'Apollo 15 (Hadley-Apennine)',
     agency: 'NASA',
-    country: '🇺🇸 United States',
-    category: 'nasa',
+    country: '🇺🇸 USA',
+    category: 'apollo',
     lat: 26.132,
     lon: 3.634,
-    zoom: 2.3,
+    zoom: 2.2,
     date: 'July 30, 1971',
-    craft: 'Falcon LM & Lunar Roving Vehicle (Dave Scott & Jim Irwin)',
-    site: 'Hadley Rille & Apennine Mountain Gorge',
-    discovery: 'First use of Lunar Roving Vehicle (LRV). Discovered the famous "Genesis Rock" (anorthosite crust dated to 4.1 billion years) and collected 77 kg samples.',
-    status: 'Scientific Exploration'
+    craft: 'LM-10 Falcon + Lunar Roving Vehicle #1 (Scott & Irwin)',
+    site: 'Hadley Rille / Montes Apenninus',
+    discovery: 'First J-mission with LRV rover (27.8 km traverse). Discovered "Genesis Rock" (anorthosite crust 4.1 Ga). Explored 300m-deep Hadley Rille volcanic canyon.',
+    status: 'Historic Site'
   },
   {
     id: 'apollo_16',
     name: 'Apollo 16 (Descartes Highlands)',
     agency: 'NASA',
-    country: '🇺🇸 United States',
-    category: 'nasa',
+    country: '🇺🇸 USA',
+    category: 'apollo',
     lat: -8.973,
     lon: 15.498,
-    zoom: 2.3,
+    zoom: 2.2,
     date: 'April 21, 1972',
-    craft: 'Orion LM & LRV (John Young & Charlie Duke)',
-    site: 'Cayley Plains & Descartes Crater',
-    discovery: 'Sampled central lunar highland breccias (95.7 kg), proving that lunar highlands were created by colossal meteorite impacts rather than volcanism.',
-    status: 'Highland Landmark'
+    craft: 'LM-11 Orion + LRV #2 (Young & Duke)',
+    site: 'Cayley Plains / Descartes Formation',
+    discovery: 'First exploration of central lunar highlands. Proved highlands are impact-formed, not volcanic. Returned 95.7 kg of anorthositic impact breccias.',
+    status: 'Historic Site'
   },
   {
     id: 'apollo_17',
-    name: 'Apollo 17 (Taurus-Littrow Valley)',
+    name: 'Apollo 17 (Taurus-Littrow)',
     agency: 'NASA',
-    country: '🇺🇸 United States',
-    category: 'nasa',
+    country: '🇺🇸 USA',
+    category: 'apollo',
     lat: 20.191,
     lon: 30.772,
-    zoom: 2.3,
+    zoom: 2.2,
     date: 'December 11, 1972',
-    craft: 'Challenger LM & LRV (Gene Cernan & Harrison Schmitt)',
-    site: 'Taurus-Littrow Mountain Valley',
-    discovery: 'Discovered orange volcanic pyroclastic glass beads at Shorty crater. Longest surface stay (75 hours) and largest scientific sample return (110.5 kg).',
-    status: 'Final Apollo Landing'
+    craft: 'LM-12 Challenger + LRV #3 (Cernan & Schmitt)',
+    site: 'Taurus-Littrow Valley',
+    discovery: 'First professional scientist astronaut (Harrison Schmitt, geologist). Discovered orange volcanic glass beads (pyroclastic mantle venting). Record 110.5 kg samples & 35.7 km traverse.',
+    status: 'Historic Site'
   },
+  // =========================================================================
+  // NASA Artemis & CLPS (Commercial Lunar Payload Services) Program
+  // =========================================================================
   {
     id: 'artemis_3',
-    name: 'Artemis III Target (Shackleton-Malapert Ridge)',
-    agency: 'NASA',
-    country: '🇺🇸 United States',
-    category: 'nasa',
+    name: 'Artemis III Target (Shackleton Ridge)',
+    agency: 'NASA / SpaceX',
+    country: '🇺🇸 USA',
+    category: 'artemis',
     lat: -89.5,
     lon: 130.0,
-    zoom: 2.1,
-    date: 'Upcoming Artemis Flight',
-    craft: 'SpaceX Starship HLS & Orion Spacecraft',
-    site: 'Lunar South Pole Ridge',
-    discovery: 'Permanently Shadowed Regions (PSRs) harboring billions of tons of volatile water ice for rocket propellant and life support production.',
-    status: 'Base Camp Target'
+    zoom: 2.0,
+    date: 'Target 2026-2027',
+    craft: 'Starship Human Landing System (HLS) + Axiom Extravehicular Suits',
+    site: 'Peak of Eternal Light / Shackleton-Malapert Saddle',
+    discovery: 'First crewed landing at the lunar South Pole. Week-long expedition to collect cryogenic polar volatile core samples and deploy the Artemis Base Camp surface assets.',
+    status: 'Active Target'
   },
   {
     id: 'lcross_cabeus',
-    name: 'NASA LCROSS (Cabeus Crater Ice Impact)',
+    name: 'LCROSS Impact (Cabeus PSR)',
     agency: 'NASA',
-    country: '🇺🇸 United States',
-    category: 'nasa',
+    country: '🇺🇸 USA',
+    category: 'artemis',
     lat: -84.9,
     lon: -35.5,
-    zoom: 2.2,
+    zoom: 2.1,
     date: 'October 9, 2009',
-    craft: 'Centaur Upper Stage & LCROSS Shepherding Spacecraft',
-    site: 'Cabeus Crater Permanently Shadowed Floor',
-    discovery: 'Definitively confirmed the presence of pure water ice (~5.6% by mass), hydroxyl, carbon monoxide, methane, and ammonia in polar crater shadows.',
-    status: 'Water Ice Confirmed'
+    craft: 'Centaur Upper Stage + Shepherding Spacecraft',
+    site: 'Cabeus Crater Floor (Permanent Shadow)',
+    discovery: 'Centaur kinetic impact generated a 10km ejecta plume confirming 155 kg of water vapor and ice (5.6% by mass), plus carbon monoxide, methane, and ammonia.',
+    status: 'Impact Verified'
   },
-  {
-    id: 'copernicus_crater',
-    name: 'Copernicus Crater (93 km)',
-    agency: 'NASA LRO',
-    country: '🇺🇸 United States',
-    category: 'nasa',
-    lat: 9.62,
-    lon: -20.08,
-    zoom: 2.3,
-    date: 'Surveyed by LRO',
-    craft: 'Lunar Reconnaissance Orbiter (LRO)',
-    site: 'Eastern Oceanus Procellarum',
-    discovery: 'Classic complex impact crater with 3.8 km deep floor, distinct tiered terraces, and triple central peaks exposing deep lunar crustal olivine.',
-    status: 'Geological Benchmark'
-  },
-  {
-    id: 'tycho_crater',
-    name: 'Tycho Crater (1,500 km Rays)',
-    agency: 'NASA LRO',
-    country: '🇺🇸 United States',
-    category: 'nasa',
-    lat: -43.31,
-    lon: -11.36,
-    zoom: 2.3,
-    date: 'Surveyed by LRO & Surveyor 7',
-    craft: 'LRO & Surveyor 7',
-    site: 'Southern Lunar Highlands',
-    discovery: 'Young impact crater (108 million years old) featuring 1,500 km ejecta rays spanning across the Moon disk. Impact melt pools and central peak rising 1.6 km.',
-    status: 'Highland Feature'
-  },
-
-  // =========================================================================
-  // SpaceX / Commercial CLPS Missions
-  // =========================================================================
   {
     id: 'im1_odysseus',
-    name: 'IM-1 Odysseus (Malapert A)',
-    agency: 'SpaceX / Intuitive Machines',
-    country: '🚀 SpaceX Falcon 9 / US',
-    category: 'spacex',
+    name: 'Intuitive Machines IM-1 (Odysseus)',
+    agency: 'Intuitive Machines / NASA CLPS',
+    country: '🇺🇸 USA',
+    category: 'artemis',
     lat: -80.13,
     lon: 1.44,
     zoom: 2.2,
     date: 'February 22, 2024',
-    craft: 'Nova-C Odysseus Lander (SpaceX F9 Launch)',
-    site: 'Malapert A Crater Highland',
-    discovery: 'First American lunar landing in over 50 years and first successful commercial spacecraft soft landing on the Moon under NASA CLPS program.',
-    status: 'Commercial Milestone'
-  },
-  {
-    id: 'im2_athena',
-    name: 'IM-2 Athena (PRIME-1 Ice Drill)',
-    agency: 'SpaceX / Intuitive Machines',
-    country: '🚀 SpaceX Falcon 9 / US',
-    category: 'spacex',
-    lat: -89.3,
-    lon: 125.0,
-    zoom: 2.1,
-    date: 'Scheduled CLPS Flight',
-    craft: 'Nova-C Athena Lander (SpaceX F9 Launch)',
-    site: 'Shackleton Connecting Ridge (South Pole)',
-    discovery: 'Deploying the NASA PRIME-1 1-meter ice drill and MSolo mass spectrometer alongside Nokia 4G/LTE Lunar cellular network demonstration.',
-    status: 'Upcoming CLPS Mission'
+    craft: 'Nova-C Lander (Odysseus)',
+    site: 'Malapert A Crater (South Pole Region)',
+    discovery: 'First commercial spacecraft to achieve a soft lunar landing. Operated scientific payloads in the extreme southern latitude including ROLSES radio receiver.',
+    status: 'Mission Complete'
   },
   {
     id: 'viper_griffin',
-    name: 'Astrobotic Griffin / NASA VIPER (Mons Mouton)',
-    agency: 'SpaceX / Astrobotic',
-    country: '🚀 SpaceX Falcon Heavy / US',
-    category: 'spacex',
+    name: 'VIPER / Astrobotic Griffin',
+    agency: 'NASA / Astrobotic',
+    country: '🇺🇸 USA',
+    category: 'artemis',
     lat: -85.4,
     lon: 31.8,
-    zoom: 2.1,
-    date: 'Commercial CLPS Heavy',
-    craft: 'Griffin Lander (SpaceX Falcon Heavy Launch)',
+    zoom: 2.0,
+    date: 'Target 2025-2026',
+    craft: 'Griffin Lander + VIPER Prospecting Rover',
     site: 'Mons Mouton (Leibnitz Beta Plateau)',
-    discovery: 'Heavy commercial lander targeting flat South Polar plateau for wide-area volatile water-ice prospecting and regolith neutron mapping.',
-    status: 'Heavy Commercial Landing'
-  },
-  {
-    id: 'firefly_blue_ghost',
-    name: 'Firefly Blue Ghost (Mare Crisium)',
-    agency: 'SpaceX / Firefly Aerospace',
-    country: '🚀 SpaceX Falcon 9 / US',
-    category: 'spacex',
-    lat: 18.56,
-    lon: 61.81,
-    zoom: 2.3,
-    date: 'CLPS Mission 19D',
-    craft: 'Blue Ghost Lander (SpaceX Falcon 9 Launch)',
-    site: 'Mare Crisium (Sea of Crises)',
-    discovery: 'NASA CLPS suite conducting lunar subsurface thermal drilling, X-ray regolith imaging, GNSS lunar positioning, and regolith adherence testing.',
-    status: 'Scheduled CLPS Flight'
-  },
-  {
-    id: 'hakuto_r',
-    name: 'ispace HAKUTO-R (Atlas Crater)',
-    agency: 'SpaceX / ispace',
-    country: '🚀 SpaceX Falcon 9 / Japan',
-    category: 'spacex',
-    lat: 47.5,
-    lon: 44.4,
-    zoom: 2.3,
-    date: 'April 25, 2023',
-    craft: 'HAKUTO-R Series 1 Lander (SpaceX F9 Launch)',
-    site: 'Mare Frigoris / Atlas Crater Edge',
-    discovery: 'Carried UAE Rashid Rover and JAXA transformable lunar robot on energy-efficient Low Energy Transfer trajectory to lunar orbit.',
-    status: 'Commercial Lunar Flight'
-  },
-
-  // =========================================================================
-  // Global Lunar Perspectives & Polar Axes
-  // =========================================================================
-  {
-    id: 'near_side',
-    name: 'Lunar Near Side (Earth Facing)',
-    agency: 'Hemisphere',
-    country: '🌍 0° Longitude',
-    category: 'sides',
-    lat: 0.0,
-    lon: 0.0,
-    zoom: 3.6,
-    date: 'Prime Meridian',
-    craft: 'Earth-Facing Hemisphere',
-    site: 'Sinus Medii / Central Maria',
-    discovery: 'Tidally locked side facing Earth. Dominated by vast dark basaltic lunar maria ("seas") created by ancient volcanic eruptions filling impact basins.',
-    status: 'Earth-Facing Side'
-  },
-  {
-    id: 'far_side',
-    name: 'Lunar Far Side (SPA Basin)',
-    agency: 'Hemisphere',
-    country: '🌑 180° Longitude',
-    category: 'sides',
-    lat: -53.0,
-    lon: 169.0,
-    zoom: 3.6,
-    date: 'Far Side Basin',
-    craft: 'South Pole-Aitken (SPA) Basin',
-    site: 'Far Side Highlands & SPA Basin',
-    discovery: 'One of the largest impact basins in the Solar System (2,500 km diameter, 13 km deep). Shows much thicker lunar crust with almost no maria and dense craters.',
-    status: 'Hidden Hemisphere'
-  },
-  {
-    id: 'south_pole',
-    name: 'Lunar South Pole (Ice Depository)',
-    agency: 'Polar Axis',
-    country: '❄️ -90° Latitude',
-    category: 'sides',
-    lat: -90.0,
-    lon: 0.0,
-    zoom: 3.2,
-    date: 'Polar Axis',
-    craft: 'South Pole High Relief',
-    site: 'Shackleton, Amundsen & Faustini Craters',
-    discovery: 'Extreme environment of eternal light on peaks of eternal light and permanently shadowed craters at 40 Kelvin (-233°C) harboring vast ice deposits.',
-    status: 'Polar Frontier'
-  },
-  {
-    id: 'north_pole',
-    name: 'Lunar North Pole (Hermite & Peary)',
-    agency: 'Polar Axis',
-    country: '❄️ +90° Latitude',
-    category: 'sides',
-    lat: 90.0,
-    lon: 0.0,
-    zoom: 3.2,
-    date: 'Polar Axis',
-    craft: 'North Polar Highlands',
-    site: 'Peary & Hermite Craters',
-    discovery: 'Hermite crater interior registered -247°C (26 Kelvin), making it one of the coldest measured locations in the Solar System.',
-    status: 'Polar Frontier'
+    discovery: '100-day traverse mapping volatile distribution and subsurface ice with TRIDENT 1m drill and NIRVSS / NSS spectrometers across the flat Mons Mouton tableland.',
+    status: 'Mission Planned'
   }
-];
-
-const LUNAR_LANDMARKS = [
-  { name: 'Apollo 11 Tranquility Base', lat: 0.67, lon: 23.47, type: 'Historic', missionId: 'apollo_11' },
-  { name: 'Chandrayaan-3 Shiv Shakti', lat: -69.37, lon: 32.32, type: 'Historic', missionId: 'ch3_shiv_shakti' },
-  { name: 'Apollo 17 Taurus-Littrow', lat: 20.19, lon: 30.77, type: 'Historic', missionId: 'apollo_17' },
-  { name: 'Apollo 15 Hadley Rille', lat: 26.13, lon: 3.63, type: 'Historic', missionId: 'apollo_15' },
-  { name: 'Apollo 12 Ocean of Storms', lat: -3.01, lon: -23.42, type: 'Historic', missionId: 'apollo_12' },
-  { name: 'IM-1 Odysseus Malapert A', lat: -80.13, lon: 1.44, type: 'Historic', missionId: 'im1_odysseus' },
-  { name: 'Tycho Crater (1500km Rays)', lat: -43.30, lon: -11.20, type: 'Crater', missionId: 'tycho_crater' },
-  { name: 'Copernicus Crater (93km)', lat: 9.62, lon: -20.08, type: 'Crater', missionId: 'copernicus_crater' },
-  { name: 'Mare Imbrium (Sea of Rains)', lat: 32.80, lon: -15.60, type: 'Mare' },
-  { name: 'Oceanus Procellarum', lat: 18.40, lon: -57.40, type: 'Mare' },
-  { name: 'Mare Crisium (Sea of Crises)', lat: 17.00, lon: 59.10, type: 'Mare', missionId: 'firefly_blue_ghost' },
-  { name: 'Cabeus Crater (LCROSS Ice)', lat: -84.90, lon: -35.50, type: 'PSR Ice', missionId: 'lcross_cabeus' },
-  { name: 'Amundsen Crater', lat: -84.30, lon: 82.80, type: 'PSR Ice' },
-  { name: 'Mons Malapert', lat: -87.80, lon: 42.10, type: 'Peak' },
-  { name: 'Mons Mouton Plateau', lat: -85.40, lon: 31.80, type: 'Peak', missionId: 'viper_griffin' },
-  { name: 'Shackleton Crater Rim', lat: -89.90, lon: 0.0, type: 'Peak', missionId: 'ch1_jawahar' }
 ];

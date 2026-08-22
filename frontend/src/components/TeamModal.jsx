@@ -62,11 +62,11 @@ const TEAM_MEMBERS = [
     avatar: 'https://avatars.githubusercontent.com/u/254096911?v=4',
     githubUrl: 'https://github.com/prafullbugadikattekar-commits',
     contributions: [
-      'XGBoost ML Habitat Suitability Model',
+      'Random Forest ML Habitat Suitability Model',
       'Topographical DEM & Slope Geospatial Pipeline',
       'MCDA Engine Algorithmic Weighting Integration'
     ],
-    skills: ['Python', 'XGBoost', 'Geospatial ML', 'SHAP Analysis', 'FastAPI']
+    skills: ['Python', 'Random Forest', 'Geospatial ML', 'SHAP Analysis', 'FastAPI']
   }
 ];
 
@@ -233,7 +233,7 @@ export const TeamModal = ({ isOpen = false, onClose = NOOP }) => {
             <div className="flex flex-wrap gap-2 text-[11px]">
               <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">React 18 + Vite</span>
               <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">Three.js / 3D Canvas</span>
-              <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">Python XGBoost ML</span>
+              <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">Python Random Forest ML</span>
               <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">NASA PDS / LRO DEM Geospatial</span>
               <span className="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">TailwindCSS</span>
             </div>

@@ -1,0 +1,8 @@
+node_id,name,latitude_deg,longitude_deg,lroc_wac_albedo,optical_maturation_omat,boulder_density_per_100m2,max_boulder_diameter_m,crater_density_per_km2,nac_submeter_coverage,lroc_target_nac_id,morphology_class,landing_hazard_risk
+N01,Shackleton Crater Rim Alpha (Artemis III Target),-89.28,15.4,0.185,0.165,0.8,1.2,42,1,M1115786064LR,Crisp Anorthositic Ridge with Low Boulder Density,Low (<1.5m obstacles)
+N02,Mons Malapert Plateau (Malapert Massif),-85.99,12.9,0.192,0.158,0.4,0.8,28,1,M1194682054LR,Smooth Elevated Highland Massif Plateau,Very Low (High Touchdown Safety)
+N03,Faustini Crater Rim Ridge,-87.14,76.98,0.174,0.172,1.1,1.8,56,1,M1127603958LR,Regolith-Covered Ridge with Interspersed Outcrops,Moderate
+N04,Connecting Ridge (Shackleton-de Gerlache),-89.44,222.7,0.18,0.16,0.6,0.9,35,1,M1148821948LR,Gentle Saddle Corridor for Rover Traverse,Low
+N05,Cabeus Crater LCROSS Impact Site,-84.9,-35.5,0.125,0.21,2.4,3.5,88,1,M1198293840LR,Degraded Shadowed Floor with Ejecta Debris,High (Requires Autonomous Hazard Avoidance)
+N06,Nobile Crater Rim (NASA VIPER Rover Zone),-85.2,53.5,0.188,0.162,0.7,1.0,38,1,M1174920148LR,Gentle Undulating Highland Plain,Low
+N07,Marius Hills Lava Tube Skylight,14.1,-56.8,0.095,0.245,3.8,5.2,62,1,M1225843051LR,Vertical Pit Crater Opening into Subsurface Cavern (65m depth),High Localized Hazard (Precision Landing Required)

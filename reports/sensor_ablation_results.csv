@@ -1,0 +1,6 @@
+Sensor_Configuration,N_Features,R2_Score,MAE_Points
+Model A (LOLA Altimetry Only),6,0.6674,3.543
+Model B (LOLA + Diviner Thermal),11,0.6642,3.554
+Model C (LOLA + Diviner + LEND Ice),14,0.6742,3.536
+Model D (+ LRO Illumination & LOS),19,0.6839,3.45
+Model E (All Multi-Sensors Unified),23,0.6823,3.452

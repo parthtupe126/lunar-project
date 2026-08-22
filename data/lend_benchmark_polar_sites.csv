@@ -1,0 +1,10 @@
+node_id,name,latitude_deg,longitude_deg,lend_epithermal_cps,neutron_suppression_index,weh_wt_pct,weh_ppm,water_ice_probability,volatiles_class,lend_instrument_notes
+N01,Shackleton Crater Floor (Cryogenic Basin),-89.9,0.0,2.85,0.38,5.4,5400,0.96,Super-Rich Cryogenic Volatile Ice,Deep neutron suppression dip in collimated CSETN detectors indicating extensive hydrogen enrichment.
+N02,Cabeus Crater (LCROSS Confirmed Impact),-84.9,-35.5,2.92,0.36,5.1,5100,0.94,Confirmed Water Ice + Ammonia/Methane,Directly validated by LCROSS impact plume (5.5% +/- 1.4% water equivalent).
+N03,Faustini Crater Cold Trap,-87.14,76.98,3.05,0.32,3.8,3800,0.88,High-Grade Subsurface Ice,Significant epithermal deficit spanning entire crater floor.
+N04,Haworth Crater Basin,-87.4,-5.2,2.98,0.34,4.8,4800,0.92,Super-Rich Cryogenic Volatile Ice,Permanent cryogenic trap with thick regolith hydrogen shielding.
+N05,Shoemaker Crater Floor,-88.1,44.9,3.12,0.3,3.6,3600,0.85,High-Grade Subsurface Ice,Prominent epithermal neutron absorption feature.
+N06,Nobile Crater Outcrop (VIPER Target),-85.2,53.5,3.28,0.26,2.4,2400,0.78,Accessible Regolith Volatiles,Heterogeneous hydrogen anomalies accessible to surface rover drilling.
+N07,Shackleton Crater Rim Alpha (Habitat Base),-89.28,15.4,3.85,0.12,0.43,432,0.35,Moderate Regolith Volatiles,Moderate hydrogen count on sunlit rim; 1.4 km from pure cryogenic floor reserves.
+N08,Mons Malapert Plateau (Solar Power Base),-85.99,12.9,4.1,0.08,0.25,250,0.2,Low Volatiles / Solar Array Ridge,Dry highland regolith with minimal volatile retention.
+N09,Marius Hills Lava Tube,14.1,-56.8,4.55,0.02,0.08,80,0.05,Dry Basaltic Mare,Equatorial baseline neutron flux; negligible free water hydrogen.

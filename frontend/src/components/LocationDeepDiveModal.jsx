@@ -217,7 +217,7 @@ export const LocationDeepDiveModal = ({
                   FULL SCIENTIFIC TELEMETRY PAGE
                 </span>
                 <span className="text-xs font-mono text-slate-400">
-                  Lat: {site.latitude?.toFixed(3)}° • Lon: {site.longitude?.toFixed(3)}°
+                  Lat: {site?.latitude != null ? Number(site.latitude).toFixed(3) : "—"}° • Lon: {site?.longitude != null ? Number(site.longitude).toFixed(3) : "—"}°
                 </span>
               </div>
               <h2 className="text-lg font-bold font-mono text-white mt-0.5 flex items-center gap-2">
@@ -805,8 +805,8 @@ export const LocationDeepDiveModal = ({
                     </div>
 
                     <div className="flex items-center gap-1.5">
-                      <span className="px-2 py-1 rounded bg-slate-800/80 text-slate-300">Lat: {site.latitude?.toFixed(2)}°</span>
-                      <span className="px-2 py-1 rounded bg-slate-800/80 text-slate-300">Lon: {site.longitude?.toFixed(2)}°</span>
+                      <span className="px-2 py-1 rounded bg-slate-800/80 text-slate-300">Lat: {site?.latitude != null ? Number(site.latitude).toFixed(2) : "—"}°</span>
+                      <span className="px-2 py-1 rounded bg-slate-800/80 text-slate-300">Lon: {site?.longitude != null ? Number(site.longitude).toFixed(2) : "—"}°</span>
                       <span className="px-2 py-1 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/30">Diam: {terrain.crater_diameter_km}km</span>
                     </div>
                   </div>
@@ -841,7 +841,7 @@ export const LocationDeepDiveModal = ({
                           {(site.code || 'SITE').toUpperCase()}-A
                         </span>
                         <span className="text-[10px] font-mono text-slate-200">
-                          Suitability: {(site.suitabilityScore / 10).toFixed(1)} / 10
+                          Suitability: {(Number(site?.suitabilityScore || 0) / 10).toFixed(1)} / 10
                         </span>
                       </div>
                     </div>
@@ -1003,7 +1003,7 @@ export const LocationDeepDiveModal = ({
                           <span className="w-2 h-2 rounded-full bg-emerald-400" />
                           <span>{site.name}</span>
                         </td>
-                        <td className="py-2 px-3 text-emerald-300">{(site.suitabilityScore / 10).toFixed(1)} / 10</td>
+                        <td className="py-2 px-3 text-emerald-300">{(Number(site?.suitabilityScore || 0) / 10).toFixed(1)} / 10</td>
                         <td className="py-2 px-3 text-cyan-300">High ({waterIce.ice_probability_pct}%)</td>
                         <td className="py-2 px-3 text-amber-300">Peak ({solar.annual_sunlight_pct}%)</td>
                         <td className="py-2 px-3 text-emerald-300">Flat ({terrain.slope_deg}°)</td>
@@ -1015,7 +1015,7 @@ export const LocationDeepDiveModal = ({
                         <tr key={d.id} className="hover:bg-slate-900/60 transition-colors text-slate-300">
                           <td className="py-2 px-3 text-slate-400">#{idx + 2}</td>
                           <td className="py-2 px-3">{d.name}</td>
-                          <td className="py-2 px-3 text-cyan-400">{(d.ai_ml_matrix.mcda_suitability_score / 10).toFixed(1)} / 10</td>
+                          <td className="py-2 px-3 text-cyan-400">{(Number(d?.ai_ml_matrix?.mcda_suitability_score || 0) / 10).toFixed(1)} / 10</td>
                           <td className="py-2 px-3">{d.water_ice.ice_probability_pct}%</td>
                           <td className="py-2 px-3">{d.solar_illumination.annual_sunlight_pct}%</td>
                           <td className="py-2 px-3">{d.terrain_dem.slope_deg}°</td>

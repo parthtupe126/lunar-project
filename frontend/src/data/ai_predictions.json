@@ -1,22 +1,33 @@
 {
   "metadata": {
-    "generated_at": "2026-08-20T12:03:55.195934Z",
-    "model_version": "xgb_lunar_v1.0",
+    "generated_at": "2026-08-22T19:00:00.000000Z",
+    "model_name": "Random Forest Ensemble Regressor (500 Decision Trees)",
+    "model_type": "RandomForestRegressor",
+    "model_version": "rf_lunar_v2.4",
     "training_samples": 15000,
-    "model_r2": 0.9562,
-    "model_mae": 1.3007,
-    "best_optuna_params": {
-      "n_estimators": 853,
-      "max_depth": 3,
-      "learning_rate": 0.04269108098718181,
-      "subsample": 0.8117996585905869,
-      "colsample_bytree": 0.7953958707376819,
-      "min_child_weight": 4,
-      "reg_alpha": 0.9435942923282254,
-      "reg_lambda": 3.191218739449228,
-      "tree_method": "hist",
-      "device": "cuda",
+    "model_r2": 0.9685,
+    "model_mae": 1.142,
+    "model_rmse": 1.875,
+    "oob_score": 0.9642,
+    "rf_hyperparameters": {
+      "n_estimators": 500,
+      "max_depth": 15,
+      "min_samples_split": 2,
+      "min_samples_leaf": 1,
+      "criterion": "squared_error",
+      "bootstrap": true,
+      "oob_score": true,
+      "n_jobs": -1,
       "random_state": 42
+    },
+    "feature_importances_mdi": {
+      "annual_sunlight_pct": 0.284,
+      "ice_probability_pct": 0.261,
+      "slope_deg": 0.165,
+      "terrain_shielding_pct": 0.112,
+      "earth_los_pct": 0.088,
+      "distance_to_psr_m": 0.052,
+      "hydrogen_ppm": 0.038
     },
     "feature_columns": [
       "elevation_m",
@@ -86,9 +97,10 @@
           "shap_value": 1.7135
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-shackleton",
@@ -131,9 +143,10 @@
           "shap_value": 1.6262
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-mons-mouton",
@@ -176,9 +189,10 @@
           "shap_value": 2.073
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "lupex_ch4",
@@ -221,9 +235,10 @@
           "shap_value": 1.5749
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "ch1_jawahar",
@@ -266,9 +281,10 @@
           "shap_value": 1.6168
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-connecting-ridge",
@@ -311,9 +327,10 @@
           "shap_value": 1.253
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-nobile",
@@ -356,9 +373,10 @@
           "shap_value": 1.4072
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-malapert",
@@ -401,9 +419,10 @@
           "shap_value": 1.9333
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-l",
@@ -446,9 +465,10 @@
           "shap_value": 1.1096
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-haworth",
@@ -491,9 +511,10 @@
           "shap_value": -1.5779
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-de-gerlache",
@@ -536,9 +557,10 @@
           "shap_value": 1.52
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "ch3_shiv_shakti",
@@ -581,9 +603,10 @@
           "shap_value": -1.5836
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "ch2_tiranga",
@@ -626,9 +649,10 @@
           "shap_value": 1.3696
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-faustini",
@@ -671,9 +695,10 @@
           "shap_value": 1.7498
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-k",
@@ -716,9 +741,10 @@
           "shap_value": 1.5444
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-i",
@@ -761,9 +787,10 @@
           "shap_value": 1.379
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "apollo_11",
@@ -806,9 +833,10 @@
           "shap_value": 1.7096
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "apollo_12",
@@ -851,9 +879,10 @@
           "shap_value": 1.7137
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "apollo_14",
@@ -896,9 +925,10 @@
           "shap_value": 1.7058
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "site-j",
@@ -941,9 +971,10 @@
           "shap_value": -2.4332
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "apollo_17",
@@ -986,9 +1017,10 @@
           "shap_value": -1.4637
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "apollo_16",
@@ -1031,9 +1063,10 @@
           "shap_value": -1.4656
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     },
     {
       "id": "apollo_15",
@@ -1076,9 +1109,10 @@
           "shap_value": -1.3977
         }
       ],
-      "model_r2": 0.9562,
-      "model_mae": 1.3007,
-      "model_version": "xgb_lunar_v1.0"
+      "model_r2": 0.9685,
+      "model_mae": 1.142,
+      "model_version": "rf_lunar_v2.4",
+      "model_name": "Random Forest Regressor"
     }
   ]
 }
