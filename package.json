@@ -7,7 +7,7 @@
     "dev": "vite frontend",
     "build": "vite build frontend",
     "preview": "vite preview frontend",
-    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:dev": "npm --prefix frontend run dev", 
     "frontend:build": "npm --prefix frontend run build"
   },
   "dependencies": {
