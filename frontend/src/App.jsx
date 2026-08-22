@@ -199,6 +199,9 @@ export function App() {
               setLayers={setLayers}
               filter={filter}
               setFilter={setFilter}
+              onFlyToCustomCoord={(simSite) => {
+                handleSelectSite(simSite);
+              }}
             />
           </div>
         )}

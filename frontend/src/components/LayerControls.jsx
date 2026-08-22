@@ -452,8 +452,8 @@ export const LayerControls = ({
           </div>
         </div>
 
-        {/* SECTION 3: CUSTOM COORDINATE & FACTOR PREDICTOR */}
-        <div className="bg-[#0B1120]/90 rounded-xl border border-purple-500/30 p-3 space-y-2.5 shadow-md">
+        {/* SECTION 3: CUSTOM COORDINATE & FACTOR SIMULATOR */}
+        <div className="bg-[#0B1120]/95 rounded-xl border border-purple-500/40 p-3 space-y-2.5 shadow-lg">
           <button
             type="button"
             onClick={() => {
@@ -471,7 +471,89 @@ export const LayerControls = ({
 
           {/* Collapsible Custom Input Controls */}
           {isSimulatorOpen && (
-            <div className="space-y-2 pt-1 border-t border-slate-800 text-[10px] font-mono animate-smooth-fade-in">
+            <div className="space-y-2.5 pt-2 border-t border-slate-800 text-[10px] font-mono animate-smooth-fade-in">
+              {/* Quick Coordinate Presets */}
+              <div>
+                <span className="text-[9px] text-slate-400 block mb-1 font-bold uppercase tracking-wider">
+                  Quick Coordinate Presets:
+                </span>
+                <div className="grid grid-cols-2 gap-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      soundManager.playClick();
+                      setCustomCoord({
+                        lat: -69.37,
+                        lon: 32.32,
+                        slope_deg: 4.5,
+                        annual_illumination_pct: 68,
+                        ice_prob: 0.15,
+                        radiation_shielding_pct: 75,
+                        earth_los_pct: 85
+                      });
+                    }}
+                    className="p-1 text-[9px] bg-slate-900 hover:bg-orange-950/60 text-slate-300 hover:text-orange-300 rounded border border-slate-800 transition-colors text-left truncate cursor-pointer"
+                  >
+                    🇮🇳 Shiv Shakti (-69.4°)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      soundManager.playClick();
+                      setCustomCoord({
+                        lat: -89.50,
+                        lon: 130.00,
+                        slope_deg: 3.8,
+                        annual_illumination_pct: 92,
+                        ice_prob: 0.40,
+                        radiation_shielding_pct: 82,
+                        earth_los_pct: 90
+                      });
+                    }}
+                    className="p-1 text-[9px] bg-slate-900 hover:bg-blue-950/60 text-slate-300 hover:text-cyan-300 rounded border border-slate-800 transition-colors text-left truncate cursor-pointer"
+                  >
+                    🇺🇸 Artemis III (-89.5°)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      soundManager.playClick();
+                      setCustomCoord({
+                        lat: -86.04,
+                        lon: -2.70,
+                        slope_deg: 6.2,
+                        annual_illumination_pct: 95,
+                        ice_prob: 0.10,
+                        radiation_shielding_pct: 88,
+                        earth_los_pct: 98
+                      });
+                    }}
+                    className="p-1 text-[9px] bg-slate-900 hover:bg-amber-950/60 text-slate-300 hover:text-amber-300 rounded border border-slate-800 transition-colors text-left truncate cursor-pointer"
+                  >
+                    🏔️ Malapert Peak (-86.0°)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      soundManager.playClick();
+                      setCustomCoord({
+                        lat: 0.67,
+                        lon: 23.47,
+                        slope_deg: 1.2,
+                        annual_illumination_pct: 50,
+                        ice_prob: 0.00,
+                        radiation_shielding_pct: 60,
+                        earth_los_pct: 100
+                      });
+                    }}
+                    className="p-1 text-[9px] bg-slate-900 hover:bg-emerald-950/60 text-slate-300 hover:text-emerald-300 rounded border border-slate-800 transition-colors text-left truncate cursor-pointer"
+                  >
+                    🇺🇸 Apollo 11 (+0.7°)
+                  </button>
+                </div>
+              </div>
+
+              {/* Coordinate Inputs */}
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-slate-400 block mb-0.5">Latitude (°)</label>
@@ -480,7 +562,7 @@ export const LayerControls = ({
                     step="0.01"
                     value={customCoord.lat}
                     onChange={(e) => setCustomCoord(prev => ({ ...prev, lat: parseFloat(e.target.value) || 0 }))}
-                    className="w-full bg-[#050811] border border-slate-700 rounded px-1.5 py-1 text-slate-200"
+                    className="w-full bg-[#050811] border border-slate-700 rounded px-1.5 py-1 text-slate-200 text-xs font-mono focus:outline-none focus:border-purple-400"
                   />
                 </div>
                 <div>
@@ -490,15 +572,16 @@ export const LayerControls = ({
                     step="0.01"
                     value={customCoord.lon}
                     onChange={(e) => setCustomCoord(prev => ({ ...prev, lon: parseFloat(e.target.value) || 0 }))}
-                    className="w-full bg-[#050811] border border-slate-700 rounded px-1.5 py-1 text-slate-200"
+                    className="w-full bg-[#050811] border border-slate-700 rounded px-1.5 py-1 text-slate-200 text-xs font-mono focus:outline-none focus:border-purple-400"
                   />
                 </div>
               </div>
 
+              {/* 1. Slope Slider */}
               <div>
                 <div className="flex justify-between text-slate-400 mb-0.5">
-                  <span>Slope: {customCoord.slope_deg}°</span>
-                  <span>Max Flatness: 0°</span>
+                  <span className="text-emerald-400 font-bold">Terrain Slope:</span>
+                  <span className="font-mono text-slate-200">{customCoord.slope_deg.toFixed(1)}° {customCoord.slope_deg > 12 ? '⚠️ High' : '✓ Safe'}</span>
                 </div>
                 <input
                   type="range"
@@ -511,13 +594,15 @@ export const LayerControls = ({
                 />
               </div>
 
+              {/* 2. Illumination Slider */}
               <div>
                 <div className="flex justify-between text-slate-400 mb-0.5">
-                  <span>Annual Illumination: {customCoord.annual_illumination_pct}%</span>
+                  <span className="text-amber-400 font-bold">Annual Sunlight:</span>
+                  <span className="font-mono text-slate-200">{customCoord.annual_illumination_pct}%</span>
                 </div>
                 <input
                   type="range"
-                  min="20"
+                  min="0"
                   max="100"
                   step="1"
                   value={customCoord.annual_illumination_pct}
@@ -526,9 +611,11 @@ export const LayerControls = ({
                 />
               </div>
 
+              {/* 3. Water Ice Probability Slider */}
               <div>
                 <div className="flex justify-between text-slate-400 mb-0.5">
-                  <span>Water Ice Prob: {(customCoord.ice_prob * 100).toFixed(0)}%</span>
+                  <span className="text-cyan-400 font-bold">Water Ice Volatiles:</span>
+                  <span className="font-mono text-slate-200">{(customCoord.ice_prob * 100).toFixed(0)}%</span>
                 </div>
                 <input
                   type="range"
@@ -542,16 +629,56 @@ export const LayerControls = ({
               </div>
 
               {/* Real-Time Live Result Box */}
-              <div className="mt-2 p-2 bg-[#050811] rounded-lg border border-purple-500/40 flex items-center justify-between">
-                <div>
-                  <div className="text-[9px] text-slate-400">PREDICTED SUSTAINABILITY</div>
-                  <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                    <span className="text-purple-300">{liveCustomPrediction.score} / 100</span>
+              <div className="p-2.5 bg-[#050811] rounded-lg border border-purple-500/50 space-y-2 shadow-inner">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-[9px] text-slate-400 uppercase font-bold">PREDICTED SUITABILITY</div>
+                    <div className="text-base font-bold text-white flex items-center gap-1.5">
+                      <span className="text-purple-300 font-mono">{liveCustomPrediction.score} / 100</span>
+                    </div>
                   </div>
+                  <span className={`text-[9px] px-2 py-0.5 rounded border font-bold ${liveCustomPrediction.badgeClass}`}>
+                    {liveCustomPrediction.riskClass}
+                  </span>
                 </div>
-                <span className={`text-[9px] px-1.5 py-0.5 rounded border font-bold ${liveCustomPrediction.badgeClass}`}>
-                  {liveCustomPrediction.riskClass}
-                </span>
+
+                {/* Derived Engineering Metrics */}
+                <div className="grid grid-cols-2 gap-1 pt-1.5 border-t border-slate-800 text-[9px] text-slate-300">
+                  <div>⚡ Power: <span className="font-bold text-amber-300">{((customCoord.annual_illumination_pct / 100) * 32.0).toFixed(1)} kW</span></div>
+                  <div>🧊 Water: <span className="font-bold text-cyan-300">{(customCoord.ice_prob * 24.5).toFixed(1)} MT/yr</span></div>
+                  <div>🛡️ Radiation: <span className="font-bold text-purple-300">{(100 - (customCoord.slope_deg * 1.5)).toFixed(0)}% Safe</span></div>
+                  <div>🛰️ Comms LOS: <span className="font-bold text-sky-300">{customCoord.lat < -80 ? '90.0%' : '100.0%'}</span></div>
+                </div>
+
+                {/* Action: Fly to Simulated Node */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    soundManager.playSelect();
+                    if (onFlyToCustomCoord) {
+                      onFlyToCustomCoord({
+                        id: `sim_${Date.now()}`,
+                        code: 'SIM-NODE',
+                        name: `Simulated Coordinate (${customCoord.lat > 0 ? '+' : ''}${customCoord.lat.toFixed(2)}°, ${customCoord.lon > 0 ? '+' : ''}${customCoord.lon.toFixed(2)}°)`,
+                        shortName: `SIM (${customCoord.lat.toFixed(1)}°, ${customCoord.lon.toFixed(1)}°)`,
+                        tier: liveCustomPrediction.riskClass,
+                        latitude: customCoord.lat,
+                        longitude: customCoord.lon,
+                        elevationMeters: 1200,
+                        suitabilityScore: parseFloat(liveCustomPrediction.score),
+                        aiConfidence: 96,
+                        slopeDegrees: customCoord.slope_deg,
+                        illuminationPercentage: customCoord.annual_illumination_pct,
+                        waterIceIndicator: customCoord.ice_prob > 0.3 ? 'High' : (customCoord.ice_prob > 0.1 ? 'Moderate' : 'Low'),
+                        siteType: customCoord.slope_deg > 8 ? 'Crater Rim' : 'Polar Plateau'
+                      });
+                    }
+                  }}
+                  className="w-full py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-lg text-xs font-mono font-bold flex items-center justify-center gap-1.5 shadow-glow-purple cursor-pointer transition-all active:scale-95"
+                >
+                  <Crosshair className="w-3.5 h-3.5" />
+                  <span>Project & Fly on 3D Globe</span>
+                </button>
               </div>
             </div>
           )}
