@@ -3,7 +3,7 @@
     "generated_at": "2026-08-22T19:00:00.000000Z",
     "model_name": "Random Forest Ensemble Regressor (500 Decision Trees)",
     "model_type": "RandomForestRegressor",
-    "model_version": "rf_lunar_v2.4",
+    "model_version": "rf_lunar_v1.0",
     "training_samples": 15000,
     "model_r2": 0.9685,
     "model_mae": 1.142,
@@ -99,7 +99,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -145,7 +145,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -191,7 +191,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -237,7 +237,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -283,7 +283,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -329,7 +329,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -375,7 +375,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -421,7 +421,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -467,7 +467,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -513,7 +513,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -559,7 +559,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -605,7 +605,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -651,7 +651,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -697,7 +697,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -743,7 +743,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -789,7 +789,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -835,7 +835,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -881,7 +881,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -927,7 +927,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -973,7 +973,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -1019,7 +1019,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -1065,7 +1065,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     },
     {
@@ -1111,7 +1111,7 @@
       ],
       "model_r2": 0.9685,
       "model_mae": 1.142,
-      "model_version": "rf_lunar_v2.4",
+      "model_version": "rf_lunar_v1.0",
       "model_name": "Random Forest Regressor"
     }
   ]

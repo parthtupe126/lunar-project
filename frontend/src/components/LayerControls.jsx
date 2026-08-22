@@ -620,7 +620,7 @@ export const LayerControls = ({
         <span className="flex items-center gap-1 text-cyan-400 font-bold">
           <Zap className="w-3 h-3" /> REAL-TIME LUNA-DSS
         </span>
-        <span className="text-slate-500">v2.4 Active</span>
+        <span className="text-slate-500">v1.0 Active</span>
       </div>
     </aside>
   );

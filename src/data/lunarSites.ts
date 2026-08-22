@@ -1514,7 +1514,7 @@ export const INITIAL_LUNAR_SITES: LunarSite[] = RAW_LUNAR_SITES.map(site => {
       suitability_tier: pred.suitability_tier,
       ai_rank: pred.ai_rank,
       score_delta_from_mcda: pred.score_delta,
-      model_version: aiPredictionsData.metadata?.model_version || 'rf_lunar_v2.4',
+      model_version: aiPredictionsData.metadata?.model_version || 'rf_lunar_v1.0',
       model_r2: aiPredictionsData.metadata?.model_r2 || 0.9562,
       model_rmse: aiPredictionsData.metadata?.model_rmse || 3.124
     }
