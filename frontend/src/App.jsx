@@ -162,6 +162,11 @@ export function App() {
   }, [rankedSites, filter]);
 
   const handleSelectSite = (site) => {
+    if (!site) return;
+    // If it's a simulated or custom site not yet in rankedSites, prepend it
+    if (!rankedSites.some(s => s.id === site.id)) {
+      setRankedSites(prev => [site, ...prev]);
+    }
     setSelectedSiteId(site.id);
   };
 
