@@ -990,8 +990,21 @@ function initMarkers() {
   // Nodes are drawn dynamically in 3D attached to the rotating Moon sphere in RotatingLunarGlobe3D
 }
 
+window.selectSite = function(idx) {
+  if (typeof idx !== 'number' || !NODES_DATA[idx]) return;
+  SELECTED_NODE_INDEX = idx;
+  const node = NODES_DATA[idx];
+  const rows = document.querySelectorAll('.score-row');
+  if (rows && rows.length) {
+    rows.forEach((r, i) => r.classList.toggle('score-row--active', i === idx));
+  }
+  updateSiteDetail(node);
+  openDeepDiveModal(node);
+};
+
 /* ─── LOCATION DEEP DIVE MODAL DASHBOARD ─── */
 function openDeepDiveModal(node) {
+  window.openDeepDiveModal = openDeepDiveModal;
   const modal = $('modal-deep-dive');
   if (!modal || !node) return;
 
