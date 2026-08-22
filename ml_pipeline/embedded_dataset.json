@@ -9,7 +9,7 @@
       "longitude": 15.4,
       "hemisphere": "South Pole",
       "grid_cell": "SP-01-A"
-    },
+    }, 
     "terrain_dem": {
       "elevation_m": 4120,
       "slope_deg": 4.2,
