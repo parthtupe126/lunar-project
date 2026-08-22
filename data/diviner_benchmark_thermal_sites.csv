@@ -1,0 +1,11 @@
+node_id,name,latitude_deg,longitude_deg,diviner_tmax_k,diviner_tmin_k,diviner_tavg_k,temp_range_k,cold_trap_flag,ice_stability_depth_cm,diviner_notes
+N01,Shackleton Crater Rim,-89.28,15.4,220.0,180.0,202.5,40.0,0,15.0,Sunlit peak on rim maintains stable temperatures between 180K and 220K.
+N02,Mons Malapert Plateau,-85.99,12.9,230.0,190.0,212.0,40.0,0,25.0,Peak of Eternal Light; very low diurnal fluctuation.
+N03,Faustini Crater Rim Ridge,-87.14,76.98,215.0,165.0,191.0,50.0,0,8.0,Immediate proximity to cryogenic cold traps.
+N04,Shackleton Crater Floor PSR,-89.9,0.0,88.0,38.0,52.0,50.0,1,0.0,Permanent cryogenic cold trap (<110K); surface water ice stable for >2 billion years.
+N05,Cabeus Crater LCROSS Impact Zone,-84.9,-35.5,95.0,42.0,58.0,53.0,1,0.0,Diviner-confirmed cold trap with verified water ice and volatile reserves.
+N06,Haworth Crater Interior,-87.4,-5.2,90.0,35.0,48.0,55.0,1,0.0,One of the coldest recorded locations in the solar system (35 Kelvin).
+N07,Shoemaker Crater PSR,-88.1,44.9,92.0,40.0,51.0,52.0,1,0.0,Deep cryogenic basin holding high hydrogen anomalies.
+N08,de Gerlache Rim Ridge,-88.5,-88.3,218.0,160.0,194.0,58.0,0,12.0,Moderate polar rim thermal regime.
+N09,Nobile Crater Outcrop (VIPER Target),-85.2,53.5,225.0,150.0,192.0,75.0,0,6.0,Micro-cold-traps interspersed with sunlit thermal zones.
+N10,Marius Hills Lava Tube Skylight,14.1,-56.8,290.0,265.0,277.0,25.0,0,999.0,Subsurface thermal stability (~ -20°C year-round) inside lava tube cavern.

@@ -1,0 +1,6 @@
+node_id,name,latitude_deg,longitude_deg,plagioclase_anorthosite_pct,pyroxene_pct,olivine_pct,ilmenite_tio2_pct,feo_iron_oxide_pct,thorium_ppm,m3_3um_h2o_band_depth,regolith_depth_m,isru_oxygen_potential_pct,geologic_unit,isru_industrial_utility
+N01,Shackleton Crater Rim Alpha (Highland Massif),-89.28,15.4,78.5,14.0,3.5,0.45,4.2,1.2,0.082,6.1,44.5,Ferroan Anorthositic Lunar Highlands (FAN),High aluminum/silicon extraction + oxygen reduction from regolith.
+N02,Mons Malapert Plateau (Malapert Massif Peak),-85.99,12.9,78.0,14.0,4.0,0.45,4.2,1.1,0.075,5.9,44.2,Pure Anorthositic Crustal Uplift (Pre-Nectarian),Structural habitat building ceramics and solar cell silicon feedstock.
+N03,Faustini Crater Cold Trap Floor,-87.14,76.98,32.0,38.0,8.0,0.45,4.2,1.4,0.165,6.0,43.8,Cryogenic Volatile-Rich Basin Breccia,Deep 3.0 um absorption indicating high surface/subsurface hydroxyl & water ice.
+N04,Cabeus Crater LCROSS Impact Site,-84.9,-35.5,34.5,36.0,7.5,0.5,4.5,1.5,0.188,7.2,44.0,Volatile-Impregnated South Pole-Aitken Basin Ejecta,"Highest PDS confirmed volatile signature (Water, CO, CO2, NH3)."
+N05,Oceanus Procellarum / Marius Hills (Mare Basalt),14.1,-56.8,22.0,52.0,12.0,6.8,18.5,4.8,0.012,4.5,41.5,High-Titanium Basaltic Mare (Procellarum KREEP Terrane),Super-rich Iron (18.5%) and Ilmenite/Titanium (6.8%) for metal smelting and solar cells.

@@ -1,0 +1,24 @@
+feature_name,sensor,unit,physics
+slope_deg,LOLA,Degrees,Surface gradient; critical for rover traversability & lander touchdown stability.
+log_slope,LOLA,Log(Deg+1),Compresses high-slope extremes for linearized split optimization.
+slope_safety_index,LOLA,Index (0-100),Engineering suitability based on Apollo/Artemis slope limits (<8 deg).
+elevation_m,LOLA,Meters,Altimetry above lunar 1737.4 km datum; elevated plateaus receive peak sunlight.
+roughness_m,LOLA,Meters,Hurst micro-topography roughness and boulder hazard proxy.
+local_relief_m,LOLA,Meters,Crater depth and rim elevation differential in 800m neighborhood.
+max_temp_k,Diviner,Kelvin,Peak daytime temperature; thermal limits for solar arrays & habitats.
+min_temp_k,Diviner,Kelvin,Minimum surface temperature; identifies cryogenic volatile traps (<110K).
+temp_range_k,Diviner,Kelvin,Diurnal thermal delta; high swings induce severe hardware fatigue.
+cryogenic_cold_trap_flag,Diviner,Binary,1 if Tmax < 110K where water ice remains stable for >2 billion years.
+thermal_stability_index,Diviner,Index (0-100),"Measures benign, low-swing thermal environments for long-term habitats."
+ice_prob,LEND/Mini-RF,Probability (0-1),Volatile ice presence certainty index from radar & neutron suppression.
+weh_wt_pct,LEND,Weight %,Water-Equivalent Hydrogen content in top 1 meter of lunar soil.
+volatile_resource_index,LEND,Index (0-100),ISRU propellant and life-support resource extraction viability.
+annual_illumination_pct,LRO Illum,% Sunlight,Fraction of lunar year illuminated by solar rays for energy capture.
+sunlight_fraction,LRO Illum,Fraction (0-1),Normalized annual solar availability.
+darkness_fraction,LRO Illum,Fraction (0-1),Battery & fuel-cell storage requirement sizing metric.
+solar_power_viability,LRO Illum,Binary,1 if annual illumination >= 75% enabling continuous power generation.
+earth_vis_pct,LRO Comm,% LOS,Direct-to-Earth Line-of-Sight visibility for telemetry & communications.
+communication_reliability_index,LRO Comm,Index (0-100),Low-latency Earth link reliability without orbital relay satellites.
+radiation_msv_yr,CRaTER,mSv/year,Annual Galactic Cosmic Ray & Solar Particle Event dosage.
+shielding_factor,Topography/CRaTER,Factor (0-1),Natural horizon shielding against deep-space radiation & micrometeorites.
+radiation_safety_index,CRaTER,Index (0-100),Biological safety index for astronaut crewed habitat modules.

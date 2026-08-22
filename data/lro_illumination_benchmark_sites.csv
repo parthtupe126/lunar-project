@@ -1,0 +1,9 @@
+node_id,name,latitude_deg,longitude_deg,annual_illumination_pct,sunlight_hours_yr,max_continuous_sunlight_hrs,max_continuous_darkness_hrs,psr_flag,direct_earth_vis_pct,solar_energy_yield_kwh_m2_yr,lighting_regime,solar_suitability
+N01,Shackleton Crater Rim Alpha (Peak A),-89.28,15.4,91.5,8015,1720,52,0,89.0,10900,Quasi-Permanent Sunlight (Peak of Eternal Light),Optimal for continuous Photovoltaic Power & Regenerative Fuel Cells.
+N02,Mons Malapert Plateau (Malapert Massif),-85.99,12.9,89.0,7796,1640,64,0,95.0,10600,High Elevated Plateau Lighting,Highest direct Earth communication visibility with minimal solar downtime.
+N03,Faustini Crater Rim Ridge,-87.14,76.98,82.4,7218,1560,76,0,76.5,9820,Extended Polar Daylight,Excellent solar power capture with easy access to adjacent shadow valleys.
+N04,Connecting Ridge (Shackleton-de Gerlache),-89.44,222.7,84.0,7358,1480,88,0,82.0,10010,High Altitude Ridge Illumination,Corridor for rover travel and habitat power microgrids.
+N05,de Gerlache Rim 1,-88.5,271.0,81.0,7095,1390,95,0,74.0,9650,Elevated Crater Rim Daylight,Stable solar power platform.
+N06,Shoemaker Crater Sunlit Ridge,-88.1,44.9,79.2,6938,1320,110,0,77.5,9430,Moderate Rim Illumination,Good secondary base site.
+N07,Shackleton Crater Floor PSR,-89.9,0.0,0.0,0,0,8760,1,0.0,0,Permanently Shadowed Region (Zero Direct Sunlight),Requires beamed power / nuclear SMR / umbilical power cables.
+N08,Cabeus Crater LCROSS Basin,-84.9,-35.5,0.0,0,0,8760,1,0.0,0,Permanently Shadowed Region (Zero Direct Sunlight),Cryogenic mining outpost powered from rim solar towers.

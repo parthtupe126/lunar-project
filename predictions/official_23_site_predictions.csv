@@ -1,0 +1,24 @@
+node_id,node_name,latitude_deg,longitude_deg,suitability_score,predicted_score,score_error,predicted_risk
+N01,Shackleton Crater Rim,-89.28,15.399999999999975,90.9,75.4,-15.5,High Suitability
+N02,Mons Malapert Plateau,-85.99,12.899999999999975,89.8,89.8,0.0,Very High Suitability
+N03,Faustini Rim A,-87.14,76.98000000000002,88.7,89.1,0.4,Very High Suitability
+N04,Connecting Ridge,-89.44,222.7,87.6,78.3,-9.3,High Suitability
+N05,de Gerlache Crater Rim,-88.5,271.7,86.5,59.8,-26.7,Moderate Suitability
+N06,Haworth Crater Rim,-87.4,354.9,85.4,58.7,-26.7,Moderate Suitability
+N07,Mons Mouton (Leibnitz),-84.5,327.9,84.3,56.4,-27.9,Moderate Suitability
+N08,Nobile Crater Rim,-85.2,53.5,83.2,83.2,0.0,Very High Suitability
+N09,Amundsen Crater Peak,-84.5,82.80000000000001,82.1,83.5,1.4,Very High Suitability
+N10,Marius Hills Lava Tube,14.12,303.24,81.0,55.0,-26.0,Moderate Suitability
+N11,Cabeus Crater,-84.9,324.5,79.9,43.4,-36.5,Low Suitability
+N12,Shoemaker Crater Rim,-88.1,44.89999999999998,78.8,83.7,4.9,Very High Suitability
+N13,Chandrayaan-3 Shiv Shakti,-69.373,32.31900000000002,77.7,39.0,-38.7,Low Suitability
+N14,Chandrayaan-1 Jawahar Point,-89.9,0.0,76.6,39.5,-37.1,Low Suitability
+N15,Chandrayaan-2 Tiranga Point,-70.9,22.779999999999973,75.5,51.2,-24.3,Moderate Suitability
+N16,Chandrayaan-4 / LUPEX Site,-89.1,115.0,74.4,62.3,-12.1,Moderate Suitability
+N17,Apollo 11 Tranquility Base,0.674,23.473000000000013,73.3,66.1,-7.2,High Suitability
+N18,Apollo 12 Ocean of Storms,-3.012,336.578,72.2,63.6,-8.6,Moderate Suitability
+N19,Apollo 14 Fra Mauro,-3.645,342.529,71.1,63.6,-7.5,Moderate Suitability
+N20,Apollo 15 Hadley Rille,26.132,3.634000000000015,70.0,66.0,-4.0,High Suitability
+N21,Apollo 16 Descartes Highlands,-8.973,15.49799999999999,68.9,62.6,-6.3,Moderate Suitability
+N22,Apollo 17 Taurus-Littrow,20.191,30.77199999999999,67.8,62.3,-5.5,Moderate Suitability
+N23,Artemis III Candidate Rim,-89.5,45.0,91.7,78.3,-13.4,High Suitability

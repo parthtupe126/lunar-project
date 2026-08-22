@@ -1,0 +1,30 @@
+{
+  "feature_columns": [
+    "slope_deg",
+    "log_slope",
+    "slope_safety_index",
+    "elevation_m",
+    "roughness_m",
+    "local_relief_m",
+    "max_temp_k",
+    "min_temp_k",
+    "temp_range_k",
+    "cryogenic_cold_trap_flag",
+    "thermal_stability_index",
+    "ice_prob",
+    "weh_wt_pct",
+    "volatile_resource_index",
+    "annual_illumination_pct",
+    "sunlight_fraction",
+    "darkness_fraction",
+    "solar_power_viability",
+    "earth_vis_pct",
+    "communication_reliability_index",
+    "radiation_msv_yr",
+    "shielding_factor",
+    "radiation_safety_index"
+  ],
+  "n_features": 23,
+  "target_reg": "suitability_score",
+  "target_cls": "is_viable_site"
+}
