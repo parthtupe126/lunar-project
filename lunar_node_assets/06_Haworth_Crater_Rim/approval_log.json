@@ -1,0 +1,52 @@
+{
+  "node_id": "06_Haworth_Crater_Rim",
+  "node_name": "Haworth Crater Rim North",
+  "coordinates": {
+    "latitude": -87.4,
+    "longitude": -5.1,
+    "bbox_delta_degrees": 0.1
+  },
+  "timestamp_utc": "2026-08-19T17:05:26.156694Z",
+  "status": "Approved",
+  "validation_criteria": {
+    "min_file_size_bytes": 512,
+    "required_layers_count": 3,
+    "expected_mime_types": [
+      "image/png",
+      "image/tiff"
+    ]
+  },
+  "layers": {
+    "LROC_WAC": {
+      "layer": "LROC_WAC",
+      "filename": "wac_global.png",
+      "url": "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/earth/moon_simp_cyl.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=LROC_WAC&STYLES=&SRS=EPSG%3A4326&BBOX=-5.200000%2C-87.500000%2C-5.000000%2C-87.300000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
+      "status": "Approved",
+      "http_code": 200,
+      "content_type": "image/png",
+      "file_size_bytes": 842,
+      "error": null
+    },
+    "LOLA_color": {
+      "layer": "LOLA_color",
+      "filename": "lola_sldem2015.tif",
+      "url": "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/earth/moon_simp_cyl.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=LOLA_color&STYLES=&SRS=EPSG%3A4326&BBOX=-5.200000%2C-87.500000%2C-5.000000%2C-87.300000&WIDTH=512&HEIGHT=512&FORMAT=image%2Ftiff",
+      "status": "Approved",
+      "http_code": 200,
+      "content_type": "image/tiff",
+      "file_size_bytes": 787480,
+      "error": null
+    },
+    "LOLA_bw": {
+      "layer": "LOLA_bw",
+      "filename": "lola_sldem2015_slope.png",
+      "url": "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/earth/moon_simp_cyl.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=LOLA_bw&STYLES=&SRS=EPSG%3A4326&BBOX=-5.200000%2C-87.500000%2C-5.000000%2C-87.300000&WIDTH=512&HEIGHT=512&FORMAT=image%2Fpng",
+      "status": "Approved",
+      "http_code": 200,
+      "content_type": "image/png",
+      "file_size_bytes": 8996,
+      "error": null
+    }
+  },
+  "summary": "All 3 layers verified and approved."
+}

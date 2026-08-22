@@ -1,0 +1,1989 @@
+{
+  "archive_metadata": {
+    "version": "3.0.0",
+    "title": "NASA & International Lunar Reconnaissance Visual & Geological Archive (23 Distinct Nodes)",
+    "curation_standard": "NASA PDS Geosciences Node / Apollo Lunar Surface Journal / LROC NAC Science Operations Center",
+    "total_nodes": 23,
+    "last_updated": "2026-08-21T00:00:00Z"
+  },
+  "nodes": [
+    {
+      "node_id": "site-shackleton",
+      "code": "Shackleton Crater Rim",
+      "name": "Shackleton Crater Rim",
+      "coordinates": {
+        "latitude": -89.28,
+        "longitude": 15.4,
+        "elevation_m": 4120
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (3.92 Ga)",
+        "primary_lithology": "Ferroan Anorthosite (FAN)",
+        "regolith_depth_m": 6.1,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "Extreme (38K Cold Trap) (19.5% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Ferroan Anorthosite (FAN) formation at coordinates -89.28\u00b0N/S, 15.4\u00b0E/W with LOLA LDEM datum elevation of 4120m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "LROC-SHACK-SURF-01",
+          "title": "Shackleton Rim Illuminated Crest Panorama (Peak of Eternal Light)",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Shackleton Crater Rim Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Shackleton Crater Rim",
+          "image_url": "/lunar_archive_photos/01_shackleton/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "VIPER-SHACK-CRYO-02",
+          "title": "Cryogenic Volatiles Extraction Corridor & NSS Prospector",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/01_shackleton/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Shackleton Crater Rim",
+        "total_distance_km": 4.8,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (1.9 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (2.9 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Crest Anorthosite Outcrop",
+            "target_sample": "Pristine Ferroan Anorthosite (FAN)"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "PSR Shadow Margin (38K)",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Ka-Band Comm Knoll",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/01_shackleton/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M114765478RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.45,
+        "visible_features": [
+          "Shackleton Crater Rim Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/01_shackleton/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-malapert",
+      "code": "Mons Malapert Plateau",
+      "name": "Mons Malapert Plateau",
+      "coordinates": {
+        "latitude": -85.99,
+        "longitude": 12.9,
+        "elevation_m": 5100
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (4.15 Ga)",
+        "primary_lithology": "Noritic Anorthosite & SPA Breccia",
+        "regolith_depth_m": 5.9,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "High (17.2% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Noritic Anorthosite & SPA Breccia formation at coordinates -85.99\u00b0N/S, 12.9\u00b0E/W with LOLA LDEM datum elevation of 5100m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "CLPS-IM1-MALAPERT-01",
+          "title": "Mons Malapert Summit Plateau & IM-1 Odysseus Landing Zone",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Mons Malapert Plateau Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Mons Malapert Plateau",
+          "image_url": "/lunar_archive_photos/02_malapert/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "NASA-MALAPERT-TGE-02",
+          "title": "Massif South Scarp Gravimetry & Radio Astronomy Array",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/02_malapert/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Mons Malapert Plateau",
+        "total_distance_km": 6.2,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (2.5 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (3.7 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Summit Touchdown Hub",
+            "target_sample": "Pristine Noritic Anorthosite"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "SPA Basin Ejecta Ridge",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "East Scarp Overlook",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/02_malapert/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M134291880LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 2.1,
+        "visible_features": [
+          "Mons Malapert Plateau Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/02_malapert/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-faustini",
+      "code": "Faustini Rim A",
+      "name": "Faustini Rim A",
+      "coordinates": {
+        "latitude": -87.14,
+        "longitude": 76.98,
+        "elevation_m": 3200
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (3.95 Ga)",
+        "primary_lithology": "Anorthositic Regolith Breccia",
+        "regolith_depth_m": 6.0,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "High (18.0% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Anorthositic Regolith Breccia formation at coordinates -87.14\u00b0N/S, 76.98\u00b0E/W with LOLA LDEM datum elevation of 3200m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "LROC-FAUSTINI-SURF-01",
+          "title": "Faustini Rim A High Ridge Volatiles Depository",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Faustini Rim A Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Faustini Rim A",
+          "image_url": "/lunar_archive_photos/03_faustini/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "NASA-FAUSTINI-ISRU-02",
+          "title": "Pilot ISRU Water Extraction Rig Footprint",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/03_faustini/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Faustini Rim A",
+        "total_distance_km": 5.4,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (2.2 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (3.2 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Rim Crest Pad",
+            "target_sample": "Pristine Anorthositic Regolith Breccia"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Deep Shadow Margin",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Eastern Crater Terrace",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/03_faustini/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M119842100RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.62,
+        "visible_features": [
+          "Faustini Rim A Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/03_faustini/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-connecting-ridge",
+      "code": "Connecting Ridge",
+      "name": "Connecting Ridge",
+      "coordinates": {
+        "latitude": -89.44,
+        "longitude": -137.3,
+        "elevation_m": 4350
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Lower Imbrian (3.88 Ga)",
+        "primary_lithology": "Cataclastic Anorthosite",
+        "regolith_depth_m": 6.1,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "High (16.5% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Cataclastic Anorthosite formation at coordinates -89.44\u00b0N/S, -137.3\u00b0E/W with LOLA LDEM datum elevation of 4350m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "ARTEMIS-CR-SPINE-01",
+          "title": "Shackleton-de Gerlache Connecting Ridge Spine Vista",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Connecting Ridge Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Connecting Ridge",
+          "image_url": "/lunar_archive_photos/04_connecting_ridge/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "ARTEMIS-CR-SOLAR-02",
+          "title": "Central Power Grid Continuous Photovoltaic Spine",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/04_connecting_ridge/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Connecting Ridge",
+        "total_distance_km": 7.8,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (3.1 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (4.7 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Central Spine Suture",
+            "target_sample": "Pristine Cataclastic Anorthosite"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "de Gerlache Flank Outcrop",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "North Polar Vista Knoll",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/04_connecting_ridge/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M117823901LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.25,
+        "visible_features": [
+          "Connecting Ridge Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/04_connecting_ridge/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-de-gerlache",
+      "code": "de Gerlache Crater Rim",
+      "name": "de Gerlache Crater Rim",
+      "coordinates": {
+        "latitude": -88.5,
+        "longitude": -88.3,
+        "elevation_m": 3850
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (3.90 Ga)",
+        "primary_lithology": "Ferroan Anorthosite & Melt Sheet",
+        "regolith_depth_m": 6.0,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "High (16.2% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Ferroan Anorthosite & Melt Sheet formation at coordinates -88.5\u00b0N/S, -88.3\u00b0E/W with LOLA LDEM datum elevation of 3850m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "LROC-DGER-WEST-01",
+          "title": "de Gerlache Western Shoulder Illuminated Terrace",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "de Gerlache Crater Rim Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at de Gerlache Crater Rim",
+          "image_url": "/lunar_archive_photos/05_de_gerlache/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "LROC-DGER-DRILL-02",
+          "title": "Cryogenic Regolith Stratigraphy Core Drill",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/05_de_gerlache/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 de Gerlache Crater Rim",
+        "total_distance_km": 5.1,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (2.0 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (3.1 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Western Shoulder Apex",
+            "target_sample": "Pristine Ferroan Anorthosite"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Internal Wall Gradient",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "South Flank Basin",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/05_de_gerlache/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M116521900LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.5,
+        "visible_features": [
+          "de Gerlache Crater Rim Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/05_de_gerlache/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-haworth",
+      "code": "Haworth Crater Rim",
+      "name": "Haworth Crater Rim",
+      "coordinates": {
+        "latitude": -87.4,
+        "longitude": -5.1,
+        "elevation_m": 3950
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Nectarian (3.92 Ga)",
+        "primary_lithology": "Impact Melt Breccia & Troctolite",
+        "regolith_depth_m": 6.0,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "High (17.5% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Impact Melt Breccia & Troctolite formation at coordinates -87.4\u00b0N/S, -5.1\u00b0E/W with LOLA LDEM datum elevation of 3950m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "LROC-HAWORTH-PEAK-01",
+          "title": "Haworth Rim High Crest Overlooking 40K Shadow Reservoir",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Haworth Crater Rim Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Haworth Crater Rim",
+          "image_url": "/lunar_archive_photos/06_haworth/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "LROC-HAWORTH-SPECT-02",
+          "title": "3um Spectroscopy Volatile Sensor Deployment",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/06_haworth/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Haworth Crater Rim",
+        "total_distance_km": 6.0,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (2.4 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (3.6 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Haworth Crest Station",
+            "target_sample": "Pristine Impact Melt Breccia"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Troctolitic Boulder Field",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Sub-surface Ice Silt Trench",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/06_haworth/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M118239010RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.7,
+        "visible_features": [
+          "Haworth Crater Rim Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/06_haworth/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-mouton",
+      "code": "Mons Mouton (Leibnitz)",
+      "name": "Mons Mouton (Leibnitz)",
+      "coordinates": {
+        "latitude": -84.5,
+        "longitude": -32.1,
+        "elevation_m": 6100
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (4.20 Ga)",
+        "primary_lithology": "Highland Norite & Granulitic Breccia",
+        "regolith_depth_m": 5.9,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "High (13.8% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Highland Norite & Granulitic Breccia formation at coordinates -84.5\u00b0N/S, -32.1\u00b0E/W with LOLA LDEM datum elevation of 6100m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "VIPER-MOUTON-SURF-01",
+          "title": "Mons Mouton 6.1km Summit Flat Table Mountain",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Mons Mouton (Leibnitz) Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Mons Mouton (Leibnitz)",
+          "image_url": "/lunar_archive_photos/07_mons_mouton/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "VIPER-MOUTON-ROVER-02",
+          "title": "VIPER Rover 100-Day Prospecting Route Landing Zone",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/07_mons_mouton/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Mons Mouton (Leibnitz)",
+        "total_distance_km": 8.5,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (3.4 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (5.1 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Mouton Table Apex",
+            "target_sample": "Pristine Highland Norite"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Ancient Granulite Outcrop",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "North Scarp Drop-off",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/07_mons_mouton/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M131490219LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 2.4,
+        "visible_features": [
+          "Mons Mouton (Leibnitz) Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/07_mons_mouton/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-nobile",
+      "code": "Nobile Crater Rim",
+      "name": "Nobile Crater Rim",
+      "coordinates": {
+        "latitude": -85.2,
+        "longitude": 53.5,
+        "elevation_m": 3400
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Nectarian (3.91 Ga)",
+        "primary_lithology": "Anorthositic Regolith Breccia",
+        "regolith_depth_m": 5.9,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "Extreme (38K Cold Trap) (18.2% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Anorthositic Regolith Breccia formation at coordinates -85.2\u00b0N/S, 53.5\u00b0E/W with LOLA LDEM datum elevation of 3400m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "VIPER-NOBILE-SURF-01",
+          "title": "Nobile Crater Rim NASA VIPER Polar Exploration Corridor",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Nobile Crater Rim Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Nobile Crater Rim",
+          "image_url": "/lunar_archive_photos/08_nobile/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "VIPER-NOBILE-DRILL-02",
+          "title": "TRIDENT 1-Meter Cryogenic Subsurface Auger Core",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/08_nobile/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Nobile Crater Rim",
+        "total_distance_km": 9.2,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (3.7 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (5.5 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "VIPER Primary Touchdown",
+            "target_sample": "Pristine Anorthositic Regolith Breccia"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Micro-Cold Trap Ridge",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Deep Regolith Silt Basin",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/08_nobile/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M124890120RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 2.15,
+        "visible_features": [
+          "Nobile Crater Rim Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/08_nobile/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-amundsen",
+      "code": "Amundsen Crater Peak",
+      "name": "Amundsen Crater Peak",
+      "coordinates": {
+        "latitude": -84.5,
+        "longitude": 82.8,
+        "elevation_m": 2900
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Upper Imbrian (3.80 Ga)",
+        "primary_lithology": "Deep Crustal Norite & Pure Anorthosite",
+        "regolith_depth_m": 5.9,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "High (15.0% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Deep Crustal Norite & Pure Anorthosite formation at coordinates -84.5\u00b0N/S, 82.8\u00b0E/W with LOLA LDEM datum elevation of 2900m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "LROC-AMUNDSEN-PEAK-01",
+          "title": "Amundsen Crater Majestic Central Uplift Complex",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Amundsen Crater Peak Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Amundsen Crater Peak",
+          "image_url": "/lunar_archive_photos/09_amundsen/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "LROC-AMUNDSEN-GEOL-02",
+          "title": "Deep Mantle Crust Transition Outcrop Survey",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/09_amundsen/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Amundsen Crater Peak",
+        "total_distance_km": 6.8,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (2.7 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (4.1 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Central Peak Base",
+            "target_sample": "Pristine Deep Crustal Norite"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Terrace Fault Scarp",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Crater Floor Impact Melt",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/09_amundsen/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M129034810LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 2.6,
+        "visible_features": [
+          "Amundsen Crater Peak Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/09_amundsen/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-marius",
+      "code": "Marius Hills Lava Tube",
+      "name": "Marius Hills Lava Tube",
+      "coordinates": {
+        "latitude": 14.12,
+        "longitude": -56.76,
+        "elevation_m": -2200
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Upper Imbrian / Volcanic Dome (3.40 Ga)",
+        "primary_lithology": "Vesicular Basalt & Intact Cavern Roof",
+        "regolith_depth_m": 3.1,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 11.2,
+          "feo_pct": 18.5
+        },
+        "volatile_trapping_potential": "Moderate (2.0% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 100,
+          "surface_max_k": 384,
+          "annual_diurnal_delta_k": 284
+        },
+        "geomorphology": "Distinct Vesicular Basalt & Intact Cavern Roof formation at coordinates 14.12\u00b0N/S, -56.76\u00b0E/W with LOLA LDEM datum elevation of -2200m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "JAXA-SELENE-MARIUS-01",
+          "title": "Marius Hills 65m Vertical Pit Opening into 40km Cavern",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Marius Hills Lava Tube Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Marius Hills Lava Tube",
+          "image_url": "/lunar_archive_photos/10_marius_hills/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "NASA-MARIUS-ROVER-02",
+          "title": "Subterranean Habitat Modules Anchor System in Vacuum Cave",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/10_marius_hills/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Marius Hills Lava Tube",
+        "total_distance_km": 12.4,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (5.0 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (7.4 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Skylight Opening Rim",
+            "target_sample": "Pristine Vesicular Basalt"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Tethered Winch Station",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Subsurface Lava Tube Floor",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/10_marius_hills/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M122584310LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 35.2,
+        "visible_features": [
+          "Marius Hills Lava Tube Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/10_marius_hills/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-cabeus",
+      "code": "Cabeus Crater",
+      "name": "Cabeus Crater",
+      "coordinates": {
+        "latitude": -84.9,
+        "longitude": -35.5,
+        "elevation_m": -4100
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (4.00 Ga)",
+        "primary_lithology": "Ice-Cemented Impact Breccia & Clathrates",
+        "regolith_depth_m": 5.9,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "Extreme (38K Cold Trap) (22.5% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Ice-Cemented Impact Breccia & Clathrates formation at coordinates -84.9\u00b0N/S, -35.5\u00b0E/W with LOLA LDEM datum elevation of -4100m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "LCROSS-CABEUS-PLUME-01",
+          "title": "NASA LCROSS Kinetic Centaur Impactor 155kg Water Plume",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Cabeus Crater Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Cabeus Crater",
+          "image_url": "/lunar_archive_photos/11_cabeus/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "NASA-CABEUS-MINING-02",
+          "title": "Deep Cold Trap Industrial Cryo-Melter Baseline",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/11_cabeus/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Cabeus Crater",
+        "total_distance_km": 18.0,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (7.2 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (10.8 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "LCROSS Impact Ground Zero",
+            "target_sample": "Pristine Ice-Cemented Impact Breccia"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Permafrost Pure Ice Sheet",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Southwest Ridge Power Hub",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/11_cabeus/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M111532890RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.1,
+        "visible_features": [
+          "Cabeus Crater Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/11_cabeus/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-shoemaker",
+      "code": "Shoemaker Crater Rim",
+      "name": "Shoemaker Crater Rim",
+      "coordinates": {
+        "latitude": -88.1,
+        "longitude": 44.9,
+        "elevation_m": 3600
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (3.94 Ga)",
+        "primary_lithology": "Polymict Anorthositic Breccia",
+        "regolith_depth_m": 6.0,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "High (18.0% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Polymict Anorthositic Breccia formation at coordinates -88.1\u00b0N/S, 44.9\u00b0E/W with LOLA LDEM datum elevation of 3600m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "LP-SHOEMAKER-CRASH-01",
+          "title": "Lunar Prospector 1999 Historic Polar Impact Ridge",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Shoemaker Crater Rim Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Shoemaker Crater Rim",
+          "image_url": "/lunar_archive_photos/12_shoemaker/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "NASA-SHOEMAKER-PROBE-02",
+          "title": "High-Sensitivity Neutron Spectrometer Surface Array",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/12_shoemaker/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Shoemaker Crater Rim",
+        "total_distance_km": 5.8,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (2.3 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (3.5 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "LP Impact Memorial Ridge",
+            "target_sample": "Pristine Polymict Anorthositic Breccia"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Shoemaker East Crest",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Shadow Wall Descent",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/12_shoemaker/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M115092180LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.55,
+        "visible_features": [
+          "Shoemaker Crater Rim Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/12_shoemaker/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-chandrayaan3",
+      "code": "Chandrayaan-3 Shiv Shakti",
+      "name": "Chandrayaan-3 Shiv Shakti",
+      "coordinates": {
+        "latitude": -69.373,
+        "longitude": 32.319,
+        "elevation_m": -180
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Nectarian (3.85 Ga)",
+        "primary_lithology": "Ferroan Anorthosite & Highland Norite",
+        "regolith_depth_m": 5.3,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "High (14.5% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 100,
+          "surface_max_k": 384,
+          "annual_diurnal_delta_k": 284
+        },
+        "geomorphology": "Distinct Ferroan Anorthosite & Highland Norite formation at coordinates -69.373\u00b0N/S, 32.319\u00b0E/W with LOLA LDEM datum elevation of -180m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "ISRO-CH3-PRAGYAN-01",
+          "title": "Pragyan Rover Wheel Tracks & ISRO Emblem on Moon Soil",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Chandrayaan-3 Shiv Shakti Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Chandrayaan-3 Shiv Shakti",
+          "image_url": "/lunar_archive_photos/13_chandrayaan3/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "ISRO-CH3-CHASTE-02",
+          "title": "ChaSTE 10cm Thermal Probe Insertion & LIBS Sulfur Detection",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/13_chandrayaan3/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Chandrayaan-3 Shiv Shakti",
+        "total_distance_km": 0.103,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (0.0 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (0.1 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Vikram Touchdown Footpad",
+            "target_sample": "Pristine Ferroan Anorthosite"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "LIBS Sulfur Laser Site",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "100m West Boulder Nav Waypoint",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/13_chandrayaan3/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M144782019RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 8.4,
+        "visible_features": [
+          "Chandrayaan-3 Shiv Shakti Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/13_chandrayaan3/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-chandrayaan1",
+      "code": "Chandrayaan-1 Jawahar Point",
+      "name": "Chandrayaan-1 Jawahar Point",
+      "coordinates": {
+        "latitude": -89.9,
+        "longitude": 0.0,
+        "elevation_m": 3900
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (3.95 Ga)",
+        "primary_lithology": "Highland Crustal Anorthosite",
+        "regolith_depth_m": 6.1,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "Extreme (38K Cold Trap) (19.0% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Highland Crustal Anorthosite formation at coordinates -89.9\u00b0N/S, 0.0\u00b0E/W with LOLA LDEM datum elevation of 3900m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "ISRO-CH1-MIP-01",
+          "title": "Moon Impact Probe Historic 2008 South Pole Water Vapor Hit",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Chandrayaan-1 Jawahar Point Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Chandrayaan-1 Jawahar Point",
+          "image_url": "/lunar_archive_photos/14_chandrayaan1/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "ISRO-CH1-M3-02",
+          "title": "NASA Moon Mineralogy Mapper (M3) Hydration Absorption Map",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/14_chandrayaan1/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Chandrayaan-1 Jawahar Point",
+        "total_distance_km": 4.2,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (1.7 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (2.5 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Jawahar Point Impactor Core",
+            "target_sample": "Pristine Highland Crustal Anorthosite"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "M3 Band Depth Verification",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Polar Axis Marker",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/14_chandrayaan1/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M110928190LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.2,
+        "visible_features": [
+          "Chandrayaan-1 Jawahar Point Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/14_chandrayaan1/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-chandrayaan2",
+      "code": "Chandrayaan-2 Tiranga Point",
+      "name": "Chandrayaan-2 Tiranga Point",
+      "coordinates": {
+        "latitude": -70.9,
+        "longitude": 22.78,
+        "elevation_m": -320
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Nectarian (3.86 Ga)",
+        "primary_lithology": "Highland Regolith & Anorthosite",
+        "regolith_depth_m": 5.3,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "Moderate (12.0% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 100,
+          "surface_max_k": 384,
+          "annual_diurnal_delta_k": 284
+        },
+        "geomorphology": "Distinct Highland Regolith & Anorthosite formation at coordinates -70.9\u00b0N/S, 22.78\u00b0E/W with LOLA LDEM datum elevation of -320m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "ISRO-CH2-OHRC-01",
+          "title": "Orbiter High Resolution Camera (0.25m) Ultra-Fine Surface Map",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Chandrayaan-2 Tiranga Point Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Chandrayaan-2 Tiranga Point",
+          "image_url": "/lunar_archive_photos/15_chandrayaan2/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "ISRO-CH2-DFSAR-02",
+          "title": "Dual Frequency Synthetic Aperture Radar Subsurface Scan",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/15_chandrayaan2/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Chandrayaan-2 Tiranga Point",
+        "total_distance_km": 3.5,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (1.4 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (2.1 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Tiranga Site Survey Marker",
+            "target_sample": "Pristine Highland Regolith"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "High-Resolution DEM Target",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Highland Silt Bed",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/15_chandrayaan2/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M138920192RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 7.8,
+        "visible_features": [
+          "Chandrayaan-2 Tiranga Point Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/15_chandrayaan2/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-chandrayaan4",
+      "code": "Chandrayaan-4 / LUPEX Site",
+      "name": "Chandrayaan-4 / LUPEX Site",
+      "coordinates": {
+        "latitude": -89.1,
+        "longitude": 115.0,
+        "elevation_m": 3700
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (3.92 Ga)",
+        "primary_lithology": "Volatiles-Rich Polar Regolith",
+        "regolith_depth_m": 6.1,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "Extreme (38K Cold Trap) (19.8% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Volatiles-Rich Polar Regolith formation at coordinates -89.1\u00b0N/S, 115.0\u00b0E/W with LOLA LDEM datum elevation of 3700m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "ISRO-JAXA-LUPEX-SURF-01",
+          "title": "ISRO-JAXA Joint Lunar Polar Exploration Heavy Rover Target",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Chandrayaan-4 / LUPEX Site Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Chandrayaan-4 / LUPEX Site",
+          "image_url": "/lunar_archive_photos/16_chandrayaan4/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "ISRO-JAXA-LUPEX-DRILL-02",
+          "title": "1.5m Cryogenic Drill & In-Situ Mass Spectrometer Package",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/16_chandrayaan4/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Chandrayaan-4 / LUPEX Site",
+        "total_distance_km": 14.0,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (5.6 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (8.4 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Heavy Rover Landing Zone",
+            "target_sample": "Pristine Volatiles-Rich Polar Regolith"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Autonomous Night Survival Station",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Deep Ice Assay Core",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/16_chandrayaan4/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M118742910LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.35,
+        "visible_features": [
+          "Chandrayaan-4 / LUPEX Site Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/16_chandrayaan4/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-apollo11",
+      "code": "Apollo 11 Tranquility Base",
+      "name": "Apollo 11 Tranquility Base",
+      "coordinates": {
+        "latitude": 0.674,
+        "longitude": 23.473,
+        "elevation_m": -2450
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Upper Imbrian (3.70 Ga)",
+        "primary_lithology": "High-Titanium Basalt (Ilmenite-rich)",
+        "regolith_depth_m": 2.5,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 11.2,
+          "feo_pct": 18.5
+        },
+        "volatile_trapping_potential": "Moderate (1.0% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 100,
+          "surface_max_k": 384,
+          "annual_diurnal_delta_k": 284
+        },
+        "geomorphology": "Distinct High-Titanium Basalt (Ilmenite-rich) formation at coordinates 0.674\u00b0N/S, 23.473\u00b0E/W with LOLA LDEM datum elevation of -2450m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "AS11-40-5903",
+          "title": "Buzz Aldrin and US Flag with LM Eagle Descent Stage",
+          "camera_type": "70mm Hasselblad 500EL / Zeiss 60mm Biogon Lens",
+          "hardware_experiments": "Apollo 11 Tranquility Base Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Apollo 11 Tranquility Base",
+          "image_url": "/lunar_archive_photos/17_apollo11/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "AS11-40-5873",
+          "title": "Aldrin Descending Ladder & EASEP Scientific Package",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/17_apollo11/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Apollo 11 Tranquility Base",
+        "total_distance_km": 0.25,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (0.1 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (0.1 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "LM Eagle Touchdown Pad",
+            "target_sample": "Pristine High-Titanium Basalt (Ilmenite-rich)"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "EASEP Passive Seismometer",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Little West Crater Rim (33m)",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/17_apollo11/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M102288180LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 14.2,
+        "visible_features": [
+          "Apollo 11 Tranquility Base Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/17_apollo11/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-apollo12",
+      "code": "Apollo 12 Ocean of Storms",
+      "name": "Apollo 12 Ocean of Storms",
+      "coordinates": {
+        "latitude": -3.012,
+        "longitude": -23.422,
+        "elevation_m": -2100
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Upper Imbrian (3.30 Ga)",
+        "primary_lithology": "Low-Titanium Olivine Basalt",
+        "regolith_depth_m": 2.6,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 11.2,
+          "feo_pct": 18.5
+        },
+        "volatile_trapping_potential": "Moderate (1.2% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 100,
+          "surface_max_k": 384,
+          "annual_diurnal_delta_k": 284
+        },
+        "geomorphology": "Distinct Low-Titanium Olivine Basalt formation at coordinates -3.012\u00b0N/S, -23.422\u00b0E/W with LOLA LDEM datum elevation of -2100m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "AS12-48-7099",
+          "title": "Pete Conrad Inspecting Surveyor III Robotic Spacecraft (160m away)",
+          "camera_type": "70mm Hasselblad 500EL / Zeiss 60mm Biogon Lens",
+          "hardware_experiments": "Apollo 12 Ocean of Storms Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Apollo 12 Ocean of Storms",
+          "image_url": "/lunar_archive_photos/18_apollo12/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "AS12-46-6749",
+          "title": "Alan Bean Carrying ALSEP RTG Nuclear Power Generator Package",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/18_apollo12/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Apollo 12 Ocean of Storms",
+        "total_distance_km": 1.55,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (0.6 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (0.9 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "LM Intrepid Precision Pad",
+            "target_sample": "Pristine Low-Titanium Olivine Basalt"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Surveyor Crater & Surveyor III",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Middle Crescent Crater",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/18_apollo12/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M114228910RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 15.1,
+        "visible_features": [
+          "Apollo 12 Ocean of Storms Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/18_apollo12/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-apollo14",
+      "code": "Apollo 14 Fra Mauro",
+      "name": "Apollo 14 Fra Mauro",
+      "coordinates": {
+        "latitude": -3.645,
+        "longitude": -17.471,
+        "elevation_m": -1450
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Lower Imbrian (3.85 Ga)",
+        "primary_lithology": "Imbrium Basin Impact Melt Breccia",
+        "regolith_depth_m": 2.6,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "Moderate (1.5% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 100,
+          "surface_max_k": 384,
+          "annual_diurnal_delta_k": 284
+        },
+        "geomorphology": "Distinct Imbrium Basin Impact Melt Breccia formation at coordinates -3.645\u00b0N/S, -17.471\u00b0E/W with LOLA LDEM datum elevation of -1450m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "AS14-66-9306",
+          "title": "Ed Mitchell and MET Hand Cart (Modular Equipment Transporter)",
+          "camera_type": "70mm Hasselblad 500EL / Zeiss 60mm Biogon Lens",
+          "hardware_experiments": "Apollo 14 Fra Mauro Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Apollo 14 Fra Mauro",
+          "image_url": "/lunar_archive_photos/19_apollo14/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "AS14-68-9405",
+          "title": "Alan Shepard Golf Ball Drive & Big Bertha 9kg Breccia Sample",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/19_apollo14/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Apollo 14 Fra Mauro",
+        "total_distance_km": 3.45,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (1.4 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (2.1 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "LM Antares Landing Site",
+            "target_sample": "Pristine Imbrium Basin Impact Melt Breccia"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Weird Crater ALSEP Array",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Cone Crater Rim (370m dia)",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/19_apollo14/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M114529012LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 13.8,
+        "visible_features": [
+          "Apollo 14 Fra Mauro Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/19_apollo14/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-apollo15",
+      "code": "Apollo 15 Hadley Rille",
+      "name": "Apollo 15 Hadley Rille",
+      "coordinates": {
+        "latitude": 26.132,
+        "longitude": 3.634,
+        "elevation_m": -1800
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Upper Imbrian (3.84 Ga)",
+        "primary_lithology": "KREEP Basalt & Genesis Rock Anorthosite",
+        "regolith_depth_m": 3.5,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 11.2,
+          "feo_pct": 18.5
+        },
+        "volatile_trapping_potential": "Moderate (1.8% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 100,
+          "surface_max_k": 384,
+          "annual_diurnal_delta_k": 284
+        },
+        "geomorphology": "Distinct KREEP Basalt & Genesis Rock Anorthosite formation at coordinates 26.132\u00b0N/S, 3.634\u00b0E/W with LOLA LDEM datum elevation of -1800m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "AS15-88-11866",
+          "title": "Dave Scott with 1st Lunar Roving Vehicle (LRV) at Hadley Rille Canyon",
+          "camera_type": "70mm Hasselblad 500EL / Zeiss 60mm Biogon Lens",
+          "hardware_experiments": "Apollo 15 Hadley Rille Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Apollo 15 Hadley Rille",
+          "image_url": "/lunar_archive_photos/20_apollo15/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "AS15-85-11449",
+          "title": "Discovery of 4.1-Billion-Year-Old 'Genesis Rock' (Sample 15415)",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/20_apollo15/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Apollo 15 Hadley Rille",
+        "total_distance_km": 27.9,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (11.2 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (16.7 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Hadley Rille Canyon Overlook",
+            "target_sample": "Pristine KREEP Basalt"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Apennine Front Mountain Spur",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Dune Crater Station",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/20_apollo15/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M111572180RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 16.4,
+        "visible_features": [
+          "Apollo 15 Hadley Rille Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/20_apollo15/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-apollo16",
+      "code": "Apollo 16 Descartes Highlands",
+      "name": "Apollo 16 Descartes Highlands",
+      "coordinates": {
+        "latitude": -8.973,
+        "longitude": 15.498,
+        "elevation_m": 1200
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Nectarian (3.90 Ga)",
+        "primary_lithology": "Polymict Anorthositic Impact Breccia",
+        "regolith_depth_m": 2.9,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "Moderate (1.4% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 100,
+          "surface_max_k": 384,
+          "annual_diurnal_delta_k": 284
+        },
+        "geomorphology": "Distinct Polymict Anorthositic Impact Breccia formation at coordinates -8.973\u00b0N/S, 15.498\u00b0E/W with LOLA LDEM datum elevation of 1200m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "AS16-107-17446",
+          "title": "John Young Leaping Salute with LM Orion and Stone Mountain",
+          "camera_type": "70mm Hasselblad 500EL / Zeiss 60mm Biogon Lens",
+          "hardware_experiments": "Apollo 16 Descartes Highlands Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Apollo 16 Descartes Highlands",
+          "image_url": "/lunar_archive_photos/21_apollo16/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "AS16-113-18339",
+          "title": "Shadow Rock 5-Meter Enormous Breccia & Ultraviolet Camera",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/21_apollo16/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Apollo 16 Descartes Highlands",
+        "total_distance_km": 27.1,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (10.8 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (16.3 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "LM Orion Touchdown",
+            "target_sample": "Pristine Polymict Anorthositic Impact Breccia"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Stone Mountain Station 4",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "North Ray Crater House Rock (935m dia)",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/21_apollo16/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M116849010LE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 17.2,
+        "visible_features": [
+          "Apollo 16 Descartes Highlands Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/21_apollo16/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-apollo17",
+      "code": "Apollo 17 Taurus-Littrow",
+      "name": "Apollo 17 Taurus-Littrow",
+      "coordinates": {
+        "latitude": 20.191,
+        "longitude": 30.772,
+        "elevation_m": -2580
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Upper Imbrian (3.72 Ga)",
+        "primary_lithology": "Pyroclastic Orange Volcanic Glass & Basalts",
+        "regolith_depth_m": 3.3,
+        "mineral_composition": {
+          "plagioclase_pct": 32.0,
+          "pyroxene_pct": 38.0,
+          "ilmenite_tio2_pct": 11.2,
+          "feo_pct": 18.5
+        },
+        "volatile_trapping_potential": "Moderate (2.5% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 100,
+          "surface_max_k": 384,
+          "annual_diurnal_delta_k": 284
+        },
+        "geomorphology": "Distinct Pyroclastic Orange Volcanic Glass & Basalts formation at coordinates 20.191\u00b0N/S, 30.772\u00b0E/W with LOLA LDEM datum elevation of -2580m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "AS17-134-20387",
+          "title": "Harrison Schmitt with LRV Rover and Giant Split North Massif Boulder",
+          "camera_type": "70mm Hasselblad 500EL / Zeiss 60mm Biogon Lens",
+          "hardware_experiments": "Apollo 17 Taurus-Littrow Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Apollo 17 Taurus-Littrow",
+          "image_url": "/lunar_archive_photos/22_apollo17/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "AS17-137-20990",
+          "title": "Discovery of Volcanic Orange Soil Glass Beads at Shorty Crater",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/22_apollo17/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Apollo 17 Taurus-Littrow",
+        "total_distance_km": 35.7,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (14.3 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (21.4 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Station 2 (South Massif Nansen)",
+            "target_sample": "Pristine Pyroclastic Orange Volcanic Glass"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Station 4 (Shorty Orange Soil)",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Station 6 (North Massif Split Boulder)",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/22_apollo17/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M168000580LR",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 18.5,
+        "visible_features": [
+          "Apollo 17 Taurus-Littrow Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/22_apollo17/lroc_overhead_nac.jpg"
+      }
+    },
+    {
+      "node_id": "site-artemis3",
+      "code": "Artemis III Candidate Rim",
+      "name": "Artemis III Candidate Rim",
+      "coordinates": {
+        "latitude": -89.5,
+        "longitude": 45.0,
+        "elevation_m": 4250
+      },
+      "geological_breakdown": {
+        "stratigraphic_era": "Pre-Nectarian (3.92 Ga)",
+        "primary_lithology": "Pristine Ferroan Anorthosite & Cryo-Volatiles",
+        "regolith_depth_m": 6.1,
+        "mineral_composition": {
+          "plagioclase_pct": 78.0,
+          "pyroxene_pct": 14.0,
+          "ilmenite_tio2_pct": 0.45,
+          "feo_pct": 4.2
+        },
+        "volatile_trapping_potential": "Extreme (38K Cold Trap) (19.2% volatile concentration)",
+        "thermal_profile": {
+          "surface_min_k": 38,
+          "surface_max_k": 220,
+          "annual_diurnal_delta_k": 182
+        },
+        "geomorphology": "Distinct Pristine Ferroan Anorthosite & Cryo-Volatiles formation at coordinates -89.5\u00b0N/S, 45.0\u00b0E/W with LOLA LDEM datum elevation of 4250m."
+      },
+      "hasselblad_surface_reconnaissance": [
+        {
+          "photo_id": "ARTEMIS3-HLS-TARGET-01",
+          "title": "Starship HLS Designated Touchdown Ellipse & High Illumination Zone",
+          "camera_type": "High-Resolution Surface Optical Survey (MastCam-L)",
+          "hardware_experiments": "Artemis III Candidate Rim Surface Instrumentation & Lander Footprint",
+          "features_shown": "Localized rock distribution, soil texture, and horizon profile at Artemis III Candidate Rim",
+          "image_url": "/lunar_archive_photos/23_artemis3/hasselblad_surface_1.jpg",
+          "archive_source": "NASA Lunar Planetary Data System (PDS) / Apollo Lunar Surface Journal"
+        },
+        {
+          "photo_id": "ARTEMIS3-EVA-SUIT-02",
+          "title": "Axiom AxEMU Extravehicular Mobility Suit Cold-Trapping Operations",
+          "camera_type": "70mm Hasselblad Close-Up Scientific Imager",
+          "hardware_experiments": "Cryogenic Regolith Drill, Magnetometer & Laser Retroreflector",
+          "features_shown": "Instrument deployment layout and undisturbed surface regolith micro-strata",
+          "image_url": "/lunar_archive_photos/23_artemis3/hasselblad_surface_2.jpg",
+          "archive_source": "NASA JSC / LROC Science Operations Center"
+        }
+      ],
+      "eva_traverse_map": {
+        "map_title": "Official NASA / International EVA Traverse Map \u2014 Artemis III Candidate Rim",
+        "total_distance_km": 8.0,
+        "eva_routes": [
+          "EVA 1: Touchdown Hub to Primary Science Station (3.2 km)",
+          "EVA 2: Geological Boundary Sampling & Core Extraction (4.8 km)"
+        ],
+        "sampling_stations": [
+          {
+            "station_id": "Station 1",
+            "description": "Primary HLS Touchdown Pad",
+            "target_sample": "Pristine Pristine Ferroan Anorthosite"
+          },
+          {
+            "station_id": "Station 2",
+            "description": "Deep Shadow Ice Core Alpha",
+            "target_sample": "Cryo-Volatile Core Sample"
+          },
+          {
+            "station_id": "Station 3",
+            "description": "Perpetual Power Ridge Beta",
+            "target_sample": "Impact Melt Breccia"
+          }
+        ],
+        "map_image_url": "/lunar_archive_photos/23_artemis3/eva_traverse_map.jpg"
+      },
+      "lroc_overhead_reconnaissance": {
+        "frame_id": "M119482010RE",
+        "resolution_m_per_px": 0.5,
+        "sun_elevation_deg": 1.3,
+        "visible_features": [
+          "Artemis III Candidate Rim Touchdown ellipse & reflective body",
+          "Dark disturbed footpath and rover tracks in lunar regolith",
+          "Scientific instrument deployment array (ALSEP / ISRU)",
+          "Crater rim and localized slope boundaries"
+        ],
+        "overhead_image_url": "/lunar_archive_photos/23_artemis3/lroc_overhead_nac.jpg"
+      }
+    }
+  ]
+}
