@@ -323,14 +323,6 @@
           Diviner IR
         </button>
         <div class="viz-toolbar-spacer"></div>
-        <!-- Rotation Toggle Button -->
-        <button class="rotation-toggle-btn" id="btn-rotation-toggle" title="Toggle Moon Rotation" aria-pressed="true">
-          <svg class="rotation-icon" id="rotation-icon" width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-            <path d="M6.5 1.5A5 5 0 1 1 2 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-            <path d="M1.5 3.5L2 6.5l3-0.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span id="rotation-label">Stop Rotation</span>
-        </button>
         <div class="coord-display mono" id="coord-display" aria-live="polite">
           <span class="coord-label">TARGET</span>
           <span class="coord-value">Lunar South Pole</span>
@@ -813,10 +805,8 @@
   </div>
 </div>
 
-<script src="app.js"></script>
-<!-- Three.js r128 + GLTFLoader + Moon 3D module -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="moon3d.js"></script>
 </body>
 </html>

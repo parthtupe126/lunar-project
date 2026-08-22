@@ -17,18 +17,31 @@
   var MOON_RADIUS = 2.2;
   var STAR_COUNT  = 2200;
 
-  /* ─── SITE MARKER DEFINITIONS (lat/lon in degrees) ─── */
+  /* ─── SITE MARKER DEFINITIONS (23 Authentic Lunar Nodes) ─── */
   var MARKER_SITES = [
-    // 01 — Darker Blue
-    { id: '01', name: 'Shackleton Crater Rim', lat: -89.28, lon:  15.40, color: '#0077AA', siteIndex: 0 },
-    // 02 — Darker Green
-    { id: '02', name: 'Faulkes Crater',         lat: -75.20, lon:  30.80, color: '#008844', siteIndex: 1 },
-    // 03 — Darker Orange
-    { id: '03', name: 'Malapert Massif',         lat: -86.60, lon: -10.90, color: '#BB5511', siteIndex: 2 },
-    // 04 — Darker Magenta
-    { id: '04', name: 'Peak Near Shackleton',    lat: -88.30, lon:  15.10, color: '#B31166', siteIndex: 3 },
-    // 05 — Darker Gold
-    { id: '05', name: 'Aristarchus Plateau',     lat:  23.70, lon:  47.00, color: '#B39900', siteIndex: 4 },
+    { id: '01', name: 'Shackleton Crater Rim',       lat: -89.28, lon:   15.40, color: '#00CFFF', siteIndex: 0 },
+    { id: '02', name: 'Mons Malapert',               lat: -86.00, lon:    0.00, color: '#00E87A', siteIndex: 1 },
+    { id: '03', name: 'Faustini Rim A',              lat: -87.10, lon:   67.00, color: '#FF7B1C', siteIndex: 2 },
+    { id: '04', name: 'Connecting Ridge',            lat: -89.40, lon:  220.00, color: '#FF3CA0', siteIndex: 3 },
+    { id: '05', name: 'de Gerlache Rim',             lat: -88.50, lon:  -88.30, color: '#FFD700', siteIndex: 4 },
+    { id: '06', name: 'Haworth Crater Rim',          lat: -87.50, lon:   -5.00, color: '#9D4EDD', siteIndex: 5 },
+    { id: '07', name: 'Mons Mouton',                 lat: -84.50, lon:  -31.00, color: '#00F5D4', siteIndex: 6 },
+    { id: '08', name: 'Nobile Crater Rim',           lat: -85.20, lon:   53.00, color: '#FF007F', siteIndex: 7 },
+    { id: '09', name: 'Amundsen Crater',             lat: -84.50, lon:   82.80, color: '#FF9E00', siteIndex: 8 },
+    { id: '10', name: 'Marius Hills Lava Tube',      lat:  14.20, lon:  -56.70, color: '#70E000', siteIndex: 9 },
+    { id: '11', name: 'Cabeus Crater',               lat: -84.90, lon:  -35.50, color: '#3A86FF', siteIndex: 10 },
+    { id: '12', name: 'Shoemaker Crater Rim',        lat: -88.10, lon:   45.00, color: '#8338EC', siteIndex: 11 },
+    { id: '13', name: 'Chandrayaan-3 Shiv Shakti',   lat: -69.37, lon:   32.35, color: '#FF006E', siteIndex: 12 },
+    { id: '14', name: 'Chandrayaan-1 Jawahar Pt',    lat: -89.90, lon:    0.00, color: '#FB5607', siteIndex: 13 },
+    { id: '15', name: 'Chandrayaan-2 Tiranga Pt',    lat: -70.90, lon:   22.70, color: '#FFBE0B', siteIndex: 14 },
+    { id: '16', name: 'Chandrayaan-4 LUPEX',         lat: -89.00, lon:   90.00, color: '#06D6A0', siteIndex: 15 },
+    { id: '17', name: 'Apollo 11 Tranquility Base',  lat:   0.67, lon:   23.47, color: '#118AB2', siteIndex: 16 },
+    { id: '18', name: 'Apollo 12 Ocean of Storms',   lat:  -3.01, lon:  -23.42, color: '#073B4C', siteIndex: 17 },
+    { id: '19', name: 'Apollo 14 Fra Mauro',         lat:  -3.65, lon:  -17.47, color: '#E07A5F', siteIndex: 18 },
+    { id: '20', name: 'Apollo 15 Hadley Apennine',   lat:  26.13, lon:    3.63, color: '#F4A261', siteIndex: 19 },
+    { id: '21', name: 'Apollo 16 Descartes High',    lat:  -8.97, lon:   15.50, color: '#2A9D8F', siteIndex: 20 },
+    { id: '22', name: 'Apollo 17 Taurus-Littrow',    lat:  20.19, lon:   30.77, color: '#E76F51', siteIndex: 21 },
+    { id: '23', name: 'Artemis III Ridge Target',    lat: -89.80, lon:    0.00, color: '#6A0572', siteIndex: 22 },
   ];
 
   /* ─── Convert lat/lon to XYZ on a sphere ─── */
@@ -505,17 +518,17 @@
     });
     moonPivot.add(new THREE.Mesh(limbGeo, limbMat));
 
-    /* ── Lighting: simulate deep-space solar illumination ── */
-    // Primary: warm high-intensity solar directional
-    var sun = new THREE.DirectionalLight(0xFFF9F0, 3.4);
-    sun.position.set(-3.5, 1.5, 4.5); // Moved sun to the left to cast more shadow on the right side
+    /* ── Lighting: realistic deep-space lunar illumination ── */
+    // Primary: bright pure solar light
+    var sun = new THREE.DirectionalLight(0xFFFDF4, 3.2);
+    sun.position.set(-3.2, 1.8, 4.2);
     scene.add(sun);
-    // Secondary: very faint earthshine from opposite side
-    var earthshine = new THREE.DirectionalLight(0x2244AA, 0.08); // Reduced to maintain shadow depth
-    earthshine.position.set(5, -1, -3);
+    // Earthshine: soft atmospheric blue reflection from Earth
+    var earthshine = new THREE.DirectionalLight(0x4477BB, 0.22);
+    earthshine.position.set(4.5, -1.0, -3.0);
     scene.add(earthshine);
-    // Ambient: near-zero — only for crater shadow detail
-    scene.add(new THREE.AmbientLight(0x080C18, 0.22)); // Reduced for deeper shadows
+    // Ambient: soft space ambient to illuminate dark craters gracefully
+    scene.add(new THREE.AmbientLight(0x1E2638, 0.45));
 
 
     /* ── Markers (attached to moonPivot so they rotate with the moon) ── */
@@ -560,7 +573,7 @@
       if (hits.length > 0) {
         var s = hits[0].object.userData.site;
         renderer.domElement.style.cursor = 'pointer';
-        tip.innerHTML = '<strong style="color:#4B8BF4">' + s.name + '</strong><br>Lat: ' + s.lat + '&deg; &nbsp; Lon: ' + s.lon + '&deg;';
+        tip.innerHTML = '<strong style="color:' + (s.color || '#4B8BF4') + '">' + s.name + '</strong><br>Lat: ' + s.lat + '&deg; &nbsp; Lon: ' + s.lon + '&deg;';
         tip.style.display = 'block';
         var rect = container.getBoundingClientRect();
         tip.style.left = (e.clientX - rect.left + 14) + 'px';
@@ -720,55 +733,17 @@
     }
     animate();
 
-    /* ── Apply materials + maximum anisotropic filtering to kill zoom blur ── */
+    /* ── Apply materials + maximum anisotropic filtering for realistic rendering ── */
     function applyMoonMaterial(model) {
       var maxAniso = renderer.capabilities.getMaxAnisotropy();
-      
-      // Generate a high-frequency regolith noise texture for extreme zoom detail
-      var regolithTex = (function() {
-        var c = document.createElement('canvas');
-        c.width = c.height = 256;
-        var ctx = c.getContext('2d');
-        var img = ctx.createImageData(256, 256);
-        for (var i = 0; i < img.data.length; i += 4) {
-          var v = 160 + Math.random() * 95; // high-contrast granular noise
-          img.data[i] = img.data[i+1] = img.data[i+2] = v;
-          img.data[i+3] = 255;
-        }
-        ctx.putImageData(img, 0, 0);
-        var tex = new THREE.CanvasTexture(c);
-        tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-        tex.repeat.set(300, 300); // tile heavily across the sphere
-        tex.anisotropy = maxAniso;
-        tex.minFilter = THREE.LinearMipmapLinearFilter;
-        return tex;
-      })();
-
       model.traverse(function(child) {
         if (!child.isMesh) return;
-        if (child.userData.isDetail) return; // Fix: prevent infinite loop
-        
-        // Overlay the micro-texture to fix blur at max zoom
-        var detailMat = new THREE.MeshBasicMaterial({
-          map: regolithTex,
-          transparent: true,
-          opacity: 0.25,
-          blending: THREE.MultiplyBlending,
-          depthWrite: false,
-          polygonOffset: true,
-          polygonOffsetFactor: -1,
-          polygonOffsetUnits: -1
-        });
-        var detailMesh = new THREE.Mesh(child.geometry, detailMat);
-        detailMesh.userData.isDetail = true;
-        child.add(detailMesh);
-
         if (child.material) {
-          child.material.roughness       = 0.94;  // real regolith is near-Lambertian
+          child.material.roughness       = 0.72;  // satin lunar regolith sheen
           child.material.metalness       = 0.00;
           child.material.envMapIntensity = 0.0;
 
-          // Apply max anisotropy to every texture — this is what eliminates zoom blur
+          // Apply max anisotropy to every texture map
           var maps = ['map','normalMap','roughnessMap','metalnessMap','aoMap','emissiveMap','bumpMap'];
           maps.forEach(function(key) {
             if (child.material[key]) {
@@ -825,10 +800,47 @@
       );
     }
 
+    function createProceduralMoon() {
+      var maxAniso = renderer.capabilities.getMaxAnisotropy();
+      var bumpTex = buildBumpTexture(1024);
+      bumpTex.anisotropy = maxAniso;
+
+      var texLoader = new THREE.TextureLoader();
+      texLoader.load(
+        './3d_models/textures/Material.001_baseColor.jpeg',
+        function(nasaTex) {
+          nasaTex.anisotropy = maxAniso;
+          nasaTex.encoding = THREE.sRGBEncoding;
+          var moonGeo = new THREE.SphereGeometry(MOON_RADIUS, 96, 96);
+          var moonMat = new THREE.MeshStandardMaterial({
+            map: nasaTex, bumpMap: bumpTex, bumpScale: 0.08,
+            roughness: 0.76, metalness: 0.00,
+          });
+          var moonMesh = new THREE.Mesh(moonGeo, moonMat);
+          moonMesh.userData.isMoonMesh = true;
+          moonPivot.add(moonMesh);
+          hideLoading();
+        },
+        undefined,
+        function() {
+          var moonTex = buildMoonTexture(2048);
+          moonTex.anisotropy = maxAniso;
+          var moonGeo = new THREE.SphereGeometry(MOON_RADIUS, 96, 96);
+          var moonMat = new THREE.MeshStandardMaterial({
+            map: moonTex, bumpMap: bumpTex, bumpScale: 0.08,
+            roughness: 0.82, metalness: 0.00,
+          });
+          var moonMesh = new THREE.Mesh(moonGeo, moonMat);
+          moonMesh.userData.isMoonMesh = true;
+          moonPivot.add(moonMesh);
+          hideLoading();
+        }
+      );
+    }
+
     if (typeof THREE.GLTFLoader !== 'undefined') {
-      // Attempt full-resolution first (moon.glb — 53 MB, maximum detail)
       if (loadingTextEl && loadingTextEl.nodeType === 3) {
-        loadingTextEl.textContent = 'LOADING NASA MOON MODEL (HIGH RES)…';
+        loadingTextEl.textContent = 'LOADING REALISTIC NASA MOON MODEL…';
       }
       var loader = new THREE.GLTFLoader();
       loader.load(
@@ -837,7 +849,7 @@
         function(xhr) {
           if (xhr.total && loadingTextEl && loadingTextEl.nodeType === 3) {
             var pct = Math.round(xhr.loaded / xhr.total * 100);
-            loadingTextEl.textContent = 'LOADING HIGH-RES NASA MODEL… ' + pct + '%';
+            loadingTextEl.textContent = 'LOADING REALISTIC NASA MODEL… ' + pct + '%';
           }
         },
         function(err) {
@@ -846,26 +858,19 @@
         }
       );
     } else {
-      useFallbackMoon();
-      hideLoading();
-    }
-
-    /* Procedural fallback (used if GLTFLoader absent or GLB fails) */
-    function useFallbackMoon() {
-      var moonTex = buildMoonTexture(2048);
-      var bumpTex = buildBumpTexture(1024);
-      var moonGeo = new THREE.SphereGeometry(MOON_RADIUS, 96, 96);
-      var moonMat = new THREE.MeshStandardMaterial({
-        map: moonTex, bumpMap: bumpTex, bumpScale: 0.14,
-        roughness: 0.92, metalness: 0.00,
-      });
-      moonPivot.add(new THREE.Mesh(moonGeo, moonMat));
+      createProceduralMoon();
     }
 
     window.moon3d = {
       focusSite: function(idx) {
         var s = MARKER_SITES[idx];
         if (!s) return;
+        var normLon = s.lon;
+        while (normLon > 180) normLon -= 360;
+        while (normLon < -180) normLon += 360;
+        rotX = -(s.lat * Math.PI) / 180;
+        rotY = -(normLon * Math.PI) / 180;
+        velX = 0; velY = 0;
       },
       toggleRotation: function() {
         autoRotate = !autoRotate;
@@ -873,6 +878,36 @@
       },
       isRotating: function() {
         return autoRotate;
+      },
+      setVisualizationMode: function(mode) {
+        moonPivot.traverse(function(child) {
+          if (!child.isMesh || child.userData.isDetail) return;
+          if (child.material) {
+            var m = (mode || '').toLowerCase();
+            if (m.indexOf('nasa') !== -1 || m === 'nasa8k') {
+              child.material.color.setHex(0xffffff);
+              child.material.emissive.setHex(0x000000);
+              renderer.toneMappingExposure = 1.15;
+            } else if (m.indexOf('high') !== -1 || m.indexOf('contrast') !== -1) {
+              child.material.color.setHex(0xe2e8f0);
+              child.material.emissive.setHex(0x1e293b);
+              renderer.toneMappingExposure = 1.85;
+            } else if (m.indexOf('lola') !== -1 || m.indexOf('topo') !== -1) {
+              child.material.color.setHex(0x3b82f6);
+              child.material.emissive.setHex(0x1e3a8a);
+              renderer.toneMappingExposure = 1.40;
+            } else if (m.indexOf('ice') !== -1 || m.indexOf('water') !== -1) {
+              child.material.color.setHex(0x06b6d4);
+              child.material.emissive.setHex(0x164e63);
+              renderer.toneMappingExposure = 1.45;
+            } else if (m.indexOf('diviner') !== -1 || m.indexOf('ir') !== -1) {
+              child.material.color.setHex(0xf97316);
+              child.material.emissive.setHex(0x7c2d12);
+              renderer.toneMappingExposure = 1.50;
+            }
+            child.material.needsUpdate = true;
+          }
+        });
       }
     };
   }
