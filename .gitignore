@@ -8,7 +8,7 @@ frontend/node_modules/
 dist/
 frontend/dist/
 build/
-
+ 
 # Environment variables
 .env
 .env.local
