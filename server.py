@@ -91,17 +91,15 @@ def run_validation(data):
     return report
 
 class LunarAPIHandler(SimpleHTTPRequestHandler):
-    protocol_version = "HTTP/1.0"
-
     def send_json_response(self, data, status=200):
         body = json.dumps(data, indent=2).encode('utf-8')
         self.send_response(status)
         self.send_header('Content-Type', 'application/json; charset=utf-8')
         self.send_header('Content-Length', str(len(body)))
+        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
-        self.send_header('Connection', 'close')
         self.end_headers()
         self.wfile.write(body)
 
