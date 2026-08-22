@@ -330,49 +330,36 @@
       </div>
 
       <!-- Lunar Visualization -->
-      <div class="lunar-viz" id="lunar-viz" role="img" aria-label="Lunar surface visualization - South Polar region" style="position:relative;">
+      <div class="lunar-viz" id="lunar-viz" role="img" aria-label="Lunar surface 3D visualization" style="position:relative; cursor: grab;">
         <canvas id="lunar-canvas" aria-hidden="true"></canvas>
 
-        <!-- Site Markers overlay -->
-        <div class="site-markers" id="site-markers" aria-hidden="true">
-          <!-- Marker 01: Shackleton Crater Rim -->
-          <div class="site-marker site-marker--active" id="marker-01" style="left: 52%; top: 36%;"
-               role="button" tabindex="0" aria-label="Site 01: Shackleton Crater Rim, 81% suitability" data-site="0">
-            <div class="marker-pulse"></div>
-            <div class="marker-pin"></div>
-            <div class="marker-label">
-              <span class="marker-id">01</span>
-            </div>
-            <div class="marker-tooltip">
-              <strong>Shackleton Crater Rim</strong>
-              <span class="mono">81%</span>
-            </div>
-          </div>
-          <!-- Marker 02: Faulkes -->
-          <div class="site-marker" id="marker-02" style="left: 58%; top: 52%;"
-               role="button" tabindex="0" aria-label="Site 02: Faulkes Crater, 76% suitability" data-site="1">
-            <div class="marker-pin"></div>
-            <div class="marker-label">
-              <span class="marker-id">02</span>
-            </div>
-            <div class="marker-tooltip">
-              <strong>Faulkes Crater</strong>
-              <span class="mono">76%</span>
-            </div>
-          </div>
-          <!-- Marker 03: Malapert -->
-          <div class="site-marker" id="marker-03" style="left: 44%; top: 68%;"
-               role="button" tabindex="0" aria-label="Site 03: Malapert Massif, 72% suitability" data-site="2">
-            <div class="marker-pin"></div>
-            <div class="marker-label">
-              <span class="marker-id">03</span>
-            </div>
-            <div class="marker-tooltip">
-              <strong>Malapert Massif</strong>
-              <span class="mono">72%</span>
-            </div>
-          </div>
+        <!-- 3D Globe Navigation HUD -->
+        <div class="globe-nav-controls" id="globe-nav-controls">
+          <button class="globe-ctrl-btn globe-ctrl-btn--active" id="btn-toggle-rotate" title="Play/Pause Auto-Rotation (Space)">❚❚</button>
+          <button class="globe-ctrl-btn" id="btn-reset-view" title="Reset View (R)">↺</button>
+          <button class="globe-ctrl-btn" id="btn-zoom-in" title="Zoom In (+)">+</button>
+          <button class="globe-ctrl-btn" id="btn-zoom-out" title="Zoom Out (-)">−</button>
+          <button class="globe-ctrl-btn" id="btn-debug-hud" title="Toggle 3D Debug HUD (D)">⎇</button>
         </div>
+
+        <!-- 3D Debug HUD Overlay -->
+        <div class="debug-hud" id="debug-hud">
+          <div class="debug-hud-title">
+            <span>3D SPHERICAL DEBUGGER</span>
+            <span style="font-size: 9px; color: #64748B;">v2.4</span>
+          </div>
+          <div class="debug-row"><span class="debug-key">Target Node:</span><span class="debug-val" id="dbg-node">N01 Shackleton</span></div>
+          <div class="debug-row"><span class="debug-key">Latitude:</span><span class="debug-val" id="dbg-lat">-89.280°</span></div>
+          <div class="debug-row"><span class="debug-key">Longitude:</span><span class="debug-val" id="dbg-lon">15.400°</span></div>
+          <div class="debug-row"><span class="debug-key">3D Cartesian X:</span><span class="debug-val" id="dbg-x">0.000</span></div>
+          <div class="debug-row"><span class="debug-key">3D Cartesian Y:</span><span class="debug-val" id="dbg-y">0.000</span></div>
+          <div class="debug-row"><span class="debug-key">3D Cartesian Z:</span><span class="debug-val" id="dbg-z">0.000</span></div>
+          <div class="debug-row"><span class="debug-key">Moon Rotation:</span><span class="debug-val" id="dbg-rot">0.0°</span></div>
+          <div class="debug-row"><span class="debug-key">Visibility:</span><span class="debug-val" id="dbg-vis">FRONT (VISIBLE)</span></div>
+        </div>
+
+        <!-- Site Markers overlay (dynamically populated & projected from 3D Moon) -->
+        <div class="site-markers" id="site-markers" aria-hidden="true"></div>
 
         <!-- Measurement arc overlay -->
         <div class="measurement-overlay" id="measurement-overlay" aria-hidden="true">

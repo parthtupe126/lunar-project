@@ -906,6 +906,91 @@ input, select {
 .geo-label--bottom-right { bottom: 12px; right: 12px; }
 .geo-label--top-right { top: 12px; right: 12px; }
 
+/* ─── 3D GLOBE NAVIGATION CONTROLS & DEBUG HUD ─── */
+.globe-nav-controls {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(11, 17, 32, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 8px;
+  padding: 4px 6px;
+  backdrop-filter: blur(8px);
+  z-index: 20;
+}
+
+.globe-ctrl-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #94A3B8;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.globe-ctrl-btn:hover {
+  background: #1E293B;
+  color: #38BDF8;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.globe-ctrl-btn--active {
+  background: rgba(2, 132, 199, 0.3);
+  color: #38BDF8;
+  border-color: #0284C7;
+}
+
+.debug-hud {
+  position: absolute;
+  top: 50px;
+  right: 16px;
+  width: 280px;
+  background: rgba(7, 11, 20, 0.94);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: #E2E8F0;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  z-index: 25;
+  display: none;
+}
+
+.debug-hud--visible {
+  display: block;
+}
+
+.debug-hud-title {
+  font-weight: 700;
+  color: #38BDF8;
+  border-bottom: 1px solid #1E293B;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.debug-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+}
+
+.debug-key { color: #64748B; }
+.debug-val { color: #34D399; font-weight: 600; }
+
 /* ─── EXPLORE NAV ─── */
 .explore-nav {
   display: flex;

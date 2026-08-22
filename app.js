@@ -391,13 +391,53 @@ function renderProvenance(node) {
   `;
 }
 
-/* ─── CANVAS LUNAR GLOBE RENDERER ─── */
-class LunarRenderer {
+/* ─── 3D ROTATING LUNAR GLOBE & GEOGRAPHIC NODE HIERARCHY ─── */
+class RotatingLunarGlobe3D {
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
+    
+    // Viewing & Rotation Parameters
+    this.rotationAngle = 0;              // Polar axis rotation (longitude phi)
+    this.pitchTilt = 55 * Math.PI / 180; // Pitch angle to tilt South Polar region toward viewer
+    this.zoom = 1.0;
+    this.isAutoRotating = true;
+    this.rotationSpeed = 0.0035;         // Smooth rotation speed
+    
+    // Interaction State
+    this.isDragging = false;
+    this.lastMouseX = 0;
+    this.lastMouseY = 0;
+    this.hoveredNode = null;
+    this.showDebug = false;
+    this.vizMode = 'hc';                 // 'nasa', 'hc', 'lola', 'ice', 'ir'
+    
+    // Surface Landmark Craters & Albedo Features (Geographically anchored)
+    this.lunarFeatures = [
+      { name: 'South Pole-Aitken Basin', lat: -70.0, lon: 180.0, r: 0.38, type: 'basin', depth: 0.65 },
+      { name: 'Oceanus Procellarum', lat: 18.4, lon: 302.6, r: 0.30, type: 'mare', depth: 0.55 },
+      { name: 'Mare Imbrium', lat: 32.8, lon: 344.4, r: 0.24, type: 'mare', depth: 0.58 },
+      { name: 'Mare Serenitatis', lat: 28.0, lon: 17.5, r: 0.18, type: 'mare', depth: 0.50 },
+      { name: 'Mare Tranquillitatis', lat: 8.5, lon: 31.4, r: 0.20, type: 'mare', depth: 0.52 },
+      { name: 'Mare Crisium', lat: 17.0, lon: 59.1, r: 0.14, type: 'mare', depth: 0.55 },
+      { name: 'Tycho Crater', lat: -43.3, lon: 348.8, r: 0.09, type: 'crater', depth: 0.90, rays: true },
+      { name: 'Copernicus Crater', lat: 9.6, lon: 339.9, r: 0.08, type: 'crater', depth: 0.85, rays: true },
+      { name: 'Aristarchus Plateau', lat: 23.7, lon: 312.6, r: 0.06, type: 'crater', depth: 0.95 },
+      { name: 'Cabeus Crater', lat: -84.9, lon: 324.5, r: 0.07, type: 'psr', depth: 0.85 },
+      { name: 'Shackleton Rim', lat: -89.3, lon: 15.4, r: 0.05, type: 'shackleton', depth: 0.95 },
+      { name: 'Amundsen Crater', lat: -84.5, lon: 85.6, r: 0.07, type: 'crater', depth: 0.75 }
+    ];
+
+    this.setupInteractions();
+    this.setupVizModes();
+    this.setupGlobeControls();
     this.resize();
+    
     window.addEventListener('resize', () => this.resize());
+    
+    // Start continuous 60fps animation loop
+    this.animate = this.animate.bind(this);
+    requestAnimationFrame(this.animate);
   }
 
   resize() {
@@ -413,190 +453,541 @@ class LunarRenderer {
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     this.W = w;
     this.H = h;
-    this.draw();
+    this.cx = w / 2;
+    this.cy = h / 2;
+    this.radius = Math.min(w, h) * 0.42 * this.zoom;
   }
 
-  draw() {
-    const { ctx, W, H } = this;
+  setupInteractions() {
+    const viz = this.canvas.parentElement;
+    if (!viz) return;
+
+    // Mouse Drag to Rotate
+    viz.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.globe-nav-controls') || e.target.closest('.debug-hud')) return;
+      this.isDragging = true;
+      this.lastMouseX = e.clientX;
+      this.lastMouseY = e.clientY;
+      viz.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      const rect = this.canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      if (this.isDragging) {
+        const dx = e.clientX - this.lastMouseX;
+        const dy = e.clientY - this.lastMouseY;
+        this.rotationAngle += dx * 0.006;
+        this.pitchTilt = Math.max(0.1, Math.min(Math.PI * 0.48, this.pitchTilt - dy * 0.005));
+        this.lastMouseX = e.clientX;
+        this.lastMouseY = e.clientY;
+      } else {
+        // Hit test nodes on mouse move
+        this.checkHover(mouseX, mouseY);
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (this.isDragging) {
+        this.isDragging = false;
+        viz.style.cursor = 'grab';
+      }
+    });
+
+    // Click to Select Node & Open Deep Dive
+    viz.addEventListener('click', (e) => {
+      if (e.target.closest('.globe-nav-controls') || e.target.closest('.debug-hud')) return;
+      const rect = this.canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      const hit = this.getNodeAtScreen(mouseX, mouseY);
+      if (hit) {
+        const fullIdx = NODES_DATA.findIndex(n => n.node_id === hit.node.node_id);
+        if (fullIdx !== -1) {
+          SELECTED_NODE_INDEX = fullIdx;
+          $$('.score-row').forEach((r, i) => r.classList.toggle('score-row--active', i === fullIdx));
+          updateSiteDetail(hit.node);
+          openDeepDiveModal(hit.node);
+        }
+      }
+    });
+
+    // Mouse Wheel Zoom
+    viz.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const zoomFactor = e.deltaY < 0 ? 1.08 : 0.92;
+      this.zoom = Math.max(0.65, Math.min(2.5, this.zoom * zoomFactor));
+      this.radius = Math.min(this.W, this.H) * 0.42 * this.zoom;
+    }, { passive: false });
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+      if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        this.toggleRotation();
+      } else if (e.key === 'r' || e.key === 'R') {
+        this.resetView();
+      } else if (e.key === 'd' || e.key === 'D') {
+        this.toggleDebugHUD();
+      } else if (e.key === '+' || e.key === '=') {
+        this.zoom = Math.min(2.5, this.zoom * 1.15);
+        this.radius = Math.min(this.W, this.H) * 0.42 * this.zoom;
+      } else if (e.key === '-' || e.key === '_') {
+        this.zoom = Math.max(0.65, this.zoom / 1.15);
+        this.radius = Math.min(this.W, this.H) * 0.42 * this.zoom;
+      }
+    });
+  }
+
+  setupVizModes() {
+    const btns = $$('.viz-mode-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('viz-mode-btn--active'));
+        btn.classList.add('viz-mode-btn--active');
+        this.vizMode = btn.dataset.mode || 'hc';
+      });
+    });
+  }
+
+  setupGlobeControls() {
+    const btnRotate = $('btn-toggle-rotate');
+    const btnReset = $('btn-reset-view');
+    const btnIn = $('btn-zoom-in');
+    const btnOut = $('btn-zoom-out');
+    const btnDebug = $('btn-debug-hud');
+
+    if (btnRotate) btnRotate.addEventListener('click', () => this.toggleRotation());
+    if (btnReset) btnReset.addEventListener('click', () => this.resetView());
+    if (btnIn) btnIn.addEventListener('click', () => {
+      this.zoom = Math.min(2.5, this.zoom * 1.2);
+      this.radius = Math.min(this.W, this.H) * 0.42 * this.zoom;
+    });
+    if (btnOut) btnOut.addEventListener('click', () => {
+      this.zoom = Math.max(0.65, this.zoom / 1.2);
+      this.radius = Math.min(this.W, this.H) * 0.42 * this.zoom;
+    });
+    if (btnDebug) btnDebug.addEventListener('click', () => this.toggleDebugHUD());
+  }
+
+  toggleRotation() {
+    this.isAutoRotating = !this.isAutoRotating;
+    const btn = $('btn-toggle-rotate');
+    if (btn) {
+      btn.textContent = this.isAutoRotating ? '❚❚' : '▷';
+      btn.classList.toggle('globe-ctrl-btn--active', this.isAutoRotating);
+    }
+  }
+
+  resetView() {
+    this.rotationAngle = 0;
+    this.pitchTilt = 55 * Math.PI / 180;
+    this.zoom = 1.0;
+    this.radius = Math.min(this.W, this.H) * 0.42;
+  }
+
+  toggleDebugHUD() {
+    this.showDebug = !this.showDebug;
+    const hud = $('debug-hud');
+    const btn = $('btn-debug-hud');
+    if (hud) hud.classList.toggle('debug-hud--visible', this.showDebug);
+    if (btn) btn.classList.toggle('globe-ctrl-btn--active', this.showDebug);
+  }
+
+  /* ─── 3D SPHERICAL COORDINATE CONVERSION ─── */
+  projectSphericalTo3D(latDeg, lonDeg, customRadius) {
+    const R = customRadius || this.radius;
+    const latRad = latDeg * Math.PI / 180;
+    const lonRad = lonDeg * Math.PI / 180;
+
+    // 3D Cartesian coordinates on sphere:
+    // x0: East-West along equator
+    // y0: North-South polar axis
+    // z0: Prime Meridian depth
+    const x0 = R * Math.cos(latRad) * Math.sin(lonRad);
+    const y0 = R * Math.sin(latRad);
+    const z0 = R * Math.cos(latRad) * Math.cos(lonRad);
+
+    // 1. Rotate around Polar (Y) axis by rotationAngle (phi)
+    const cosP = Math.cos(this.rotationAngle);
+    const sinP = Math.sin(this.rotationAngle);
+    const x1 = x0 * cosP + z0 * sinP;
+    const y1 = y0;
+    const z1 = -x0 * sinP + z0 * cosP;
+
+    // 2. Pitch tilt around X axis by pitchTilt (theta)
+    const cosT = Math.cos(this.pitchTilt);
+    const sinT = Math.sin(this.pitchTilt);
+    const x2 = x1;
+    const y2 = y1 * cosT - z1 * sinT;
+    const z2 = y1 * sinT + z1 * cosT;
+
+    return {
+      x0, y0, z0,               // Raw spherical Cartesian
+      x: x2, y: y2, z: z2,       // Transformed 3D coordinates
+      screenX: this.cx + x2,
+      screenY: this.cy - y2,
+      isVisible: z2 > -R * 0.05 // True if on front hemisphere facing camera
+    };
+  }
+
+  getNodeAtScreen(sx, sy) {
+    const nodes = getFilteredNodes();
+    for (let i = nodes.length - 1; i >= 0; i--) {
+      const node = nodes[i];
+      const pos = this.projectSphericalTo3D(node.coordinates.latitude, node.coordinates.longitude, this.radius * 1.015);
+      if (pos.isVisible) {
+        const dx = sx - pos.screenX;
+        const dy = sy - pos.screenY;
+        const hitRadius = 18;
+        if (dx * dx + dy * dy <= hitRadius * hitRadius) {
+          return { node, pos, index: i };
+        }
+      }
+    }
+    return null;
+  }
+
+  checkHover(sx, sy) {
+    const hit = this.getNodeAtScreen(sx, sy);
+    this.hoveredNode = hit ? hit.node : null;
+    const viz = this.canvas.parentElement;
+    if (viz && !this.isDragging) {
+      viz.style.cursor = hit ? 'pointer' : 'grab';
+    }
+  }
+
+  /* ─── MAIN ANIMATION LOOP ─── */
+  animate() {
+    if (this.isAutoRotating) {
+      this.rotationAngle += this.rotationSpeed;
+      if (this.rotationAngle >= Math.PI * 2) {
+        this.rotationAngle -= Math.PI * 2;
+      }
+    }
+
+    this.render();
+    this.updateDebugHUD();
+    requestAnimationFrame(this.animate);
+  }
+
+  render() {
+    const { ctx, W, H, cx, cy, radius } = this;
     ctx.clearRect(0, 0, W, H);
 
-    const cx = W / 2;
-    const cy = H / 2;
-    const r = Math.min(W, H) * 0.43;
+    // 1. Deep Space Atmosphere Rim Glow
+    const rimGlow = ctx.createRadialGradient(cx, cy, radius * 0.96, cx, cy, radius * 1.08);
+    rimGlow.addColorStop(0, 'rgba(56, 189, 248, 0.12)');
+    rimGlow.addColorStop(0.5, 'rgba(30, 58, 138, 0.06)');
+    rimGlow.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius * 1.08, 0, Math.PI * 2);
+    ctx.fillStyle = rimGlow;
+    ctx.fill();
 
-    // Base Moon Gradient
-    const moonGrad = ctx.createRadialGradient(
-      cx - r * 0.28, cy - r * 0.22, r * 0.05,
-      cx, cy, r
-    );
-    moonGrad.addColorStop(0.00, '#D8DADC');
-    moonGrad.addColorStop(0.12, '#BCBFC3');
-    moonGrad.addColorStop(0.28, '#9EA2A8');
-    moonGrad.addColorStop(0.48, '#7A7F88');
-    moonGrad.addColorStop(0.65, '#585E68');
-    moonGrad.addColorStop(0.80, '#363C46');
-    moonGrad.addColorStop(0.90, '#1E2530');
-    moonGrad.addColorStop(1.00, '#0A0F18');
-
+    // 2. Base 3D Spherical Moon Body
     ctx.save();
     ctx.beginPath();
-    ctx.arc(cx, cy, r, 0, Math.PI * 2);
-    ctx.fillStyle = moonGrad;
-    ctx.fill();
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
     ctx.clip();
 
-    // Craters & Shadow Layers
-    this.drawCraters(ctx, cx, cy, r);
-
-    // Deep South Polar Shadow
-    const polarShadow = ctx.createRadialGradient(cx, cy + r * 0.5, r * 0.1, cx, cy + r * 0.7, r * 0.65);
-    polarShadow.addColorStop(0, 'rgba(0,0,0,0)');
-    polarShadow.addColorStop(0.4, 'rgba(0,0,0,0.2)');
-    polarShadow.addColorStop(1.0, 'rgba(0,0,0,0.7)');
-    ctx.fillStyle = polarShadow;
-    ctx.fillRect(0, 0, W, H);
+    this.drawMoonSphereBody(ctx, cx, cy, radius);
+    this.drawCoordinateGrid(ctx, radius);
+    this.drawLunarFeatures(ctx, radius);
+    this.drawTerminatorShadow(ctx, cx, cy, radius);
 
     ctx.restore();
 
-    // Outer glow rim
-    const rimGlow = ctx.createRadialGradient(cx, cy, r * 0.97, cx, cy, r * 1.06);
-    rimGlow.addColorStop(0, 'rgba(180,195,220,0.08)');
-    rimGlow.addColorStop(0.5, 'rgba(120,145,180,0.04)');
-    rimGlow.addColorStop(1, 'rgba(0,0,0,0)');
+    // 3. Spherical Edge Limb Ring
     ctx.beginPath();
-    ctx.arc(cx, cy, r * 1.06, 0, Math.PI * 2);
-    ctx.fillStyle = rimGlow;
-    ctx.fill();
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = this.vizMode === 'ice' ? 'rgba(56, 189, 248, 0.6)' :
+                      this.vizMode === 'lola' ? 'rgba(52, 211, 153, 0.5)' :
+                      this.vizMode === 'ir' ? 'rgba(244, 63, 94, 0.5)' : 'rgba(203, 213, 225, 0.3)';
+    ctx.stroke();
+
+    // 4. Render All 23 Geographically Anchored Nodes
+    this.drawNodes(ctx, radius);
   }
 
-  drawCraters(ctx, cx, cy, r) {
-    const craters = [
-      { x: 0.08, y: -0.15, r: 0.28, depth: 0.55, type: 'basin' },
-      { x: -0.22, y: 0.18, r: 0.20, depth: 0.45, type: 'basin' },
-      { x: 0.30, y: 0.05, r: 0.16, depth: 0.50, type: 'basin' },
-      { x: -0.10, y: -0.35, r: 0.09, depth: 0.65, type: 'crater' },
-      { x: 0.35, y: -0.30, r: 0.07, depth: 0.70, type: 'crater' },
-      { x: -0.40, y: -0.08, r: 0.08, depth: 0.60, type: 'crater' },
-      { x: 0.18, y: 0.38, r: 0.10, depth: 0.55, type: 'crater' },
-      { x: 0.04, y: 0.22, r: 0.14, depth: 0.95, type: 'shackleton' }
-    ];
+  drawMoonSphereBody(ctx, cx, cy, radius) {
+    const mode = this.vizMode;
+    let baseGrad;
 
-    craters.forEach(c => {
-      const px = cx + c.x * r;
-      const py = cy + c.y * r;
-      const cr = c.r * r;
+    if (mode === 'nasa') {
+      // Natural 8K Lunar Albedo Shading
+      baseGrad = ctx.createRadialGradient(cx - radius * 0.3, cy - radius * 0.25, radius * 0.05, cx, cy, radius);
+      baseGrad.addColorStop(0.00, '#E2E8F0');
+      baseGrad.addColorStop(0.25, '#CBD5E1');
+      baseGrad.addColorStop(0.55, '#94A3B8');
+      baseGrad.addColorStop(0.85, '#475569');
+      baseGrad.addColorStop(1.00, '#0F172A');
+    } else if (mode === 'lola') {
+      // LOLA Topographic False Color
+      baseGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      baseGrad.addColorStop(0.00, '#F8FAFC');
+      baseGrad.addColorStop(0.20, '#F59E0B');
+      baseGrad.addColorStop(0.45, '#10B981');
+      baseGrad.addColorStop(0.70, '#0284C7');
+      baseGrad.addColorStop(1.00, '#1E1B4B');
+    } else if (mode === 'ice') {
+      // Water Ice Neutron Absorption Mode
+      baseGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      baseGrad.addColorStop(0.00, '#06B6D4');
+      baseGrad.addColorStop(0.35, '#0E7490');
+      baseGrad.addColorStop(0.70, '#1E293B');
+      baseGrad.addColorStop(1.00, '#090D16');
+    } else if (mode === 'ir') {
+      // Diviner Thermal Infrared Map
+      baseGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      baseGrad.addColorStop(0.00, '#EF4444');
+      baseGrad.addColorStop(0.30, '#F59E0B');
+      baseGrad.addColorStop(0.65, '#8B5CF6');
+      baseGrad.addColorStop(1.00, '#0F172A');
+    } else {
+      // High-Contrast Polar Topography
+      baseGrad = ctx.createRadialGradient(cx - radius * 0.25, cy - radius * 0.2, radius * 0.05, cx, cy, radius);
+      baseGrad.addColorStop(0.00, '#FFFFFF');
+      baseGrad.addColorStop(0.18, '#E2E8F0');
+      baseGrad.addColorStop(0.40, '#94A3B8');
+      baseGrad.addColorStop(0.70, '#334155');
+      baseGrad.addColorStop(0.92, '#1E293B');
+      baseGrad.addColorStop(1.00, '#050811');
+    }
 
-      if (c.type === 'basin') {
-        const bg = ctx.createRadialGradient(px - cr * 0.25, py - cr * 0.2, cr * 0.1, px, py, cr);
-        bg.addColorStop(0, `rgba(60,65,72,${c.depth * 0.4})`);
-        bg.addColorStop(0.8, `rgba(30,35,42,${c.depth * 0.35})`);
-        bg.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = baseGrad;
+    ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
+  }
+
+  drawCoordinateGrid(ctx, radius) {
+    ctx.save();
+    ctx.lineWidth = 0.8;
+    ctx.strokeStyle = this.vizMode === 'ice' ? 'rgba(56, 189, 248, 0.18)' : 'rgba(148, 163, 184, 0.14)';
+
+    // Latitude Circles (Equator, ±30°, ±60°, ±80°, -85°)
+    const latitudes = [0, -30, -60, -75, -85, 30, 60];
+    latitudes.forEach(lat => {
+      ctx.beginPath();
+      let started = false;
+      for (let lon = 0; lon <= 360; lon += 6) {
+        const p = this.projectSphericalTo3D(lat, lon, radius);
+        if (p.isVisible) {
+          if (!started) { ctx.moveTo(p.screenX, p.screenY); started = true; }
+          else { ctx.lineTo(p.screenX, p.screenY); }
+        } else {
+          started = false;
+        }
+      }
+      ctx.stroke();
+    });
+
+    // Longitude Meridians (Every 30 degrees)
+    for (let lon = 0; lon < 360; lon += 30) {
+      ctx.beginPath();
+      let started = false;
+      for (let lat = -90; lat <= 90; lat += 4) {
+        const p = this.projectSphericalTo3D(lat, lon, radius);
+        if (p.isVisible) {
+          if (!started) { ctx.moveTo(p.screenX, p.screenY); started = true; }
+          else { ctx.lineTo(p.screenX, p.screenY); }
+        } else {
+          started = false;
+        }
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  drawLunarFeatures(ctx, radius) {
+    this.lunarFeatures.forEach(f => {
+      const p = this.projectSphericalTo3D(f.lat, f.lon, radius);
+      if (!p.isVisible) return;
+
+      const fRadius = f.r * radius * (0.8 + 0.2 * (p.z / radius));
+      
+      if (f.type === 'basin' || f.type === 'mare') {
+        const mareGrad = ctx.createRadialGradient(p.screenX, p.screenY, fRadius * 0.1, p.screenX, p.screenY, fRadius);
+        mareGrad.addColorStop(0.0, 'rgba(15, 23, 42, 0.7)');
+        mareGrad.addColorStop(0.7, 'rgba(30, 41, 59, 0.4)');
+        mareGrad.addColorStop(1.0, 'rgba(0, 0, 0, 0)');
         ctx.beginPath();
-        ctx.arc(px, py, cr, 0, Math.PI * 2);
-        ctx.fillStyle = bg;
+        ctx.arc(p.screenX, p.screenY, fRadius, 0, Math.PI * 2);
+        ctx.fillStyle = mareGrad;
         ctx.fill();
       } else {
-        const cg = ctx.createRadialGradient(px + cr * 0.15, py - cr * 0.15, 0, px, py, cr);
-        cg.addColorStop(0.0, `rgba(15,18,24,${c.depth * 0.85})`);
-        cg.addColorStop(0.82, `rgba(35,38,45,${c.depth * 0.4})`);
-        cg.addColorStop(0.90, `rgba(180,185,192,${c.depth * 0.15})`);
-        cg.addColorStop(1.0, 'rgba(0,0,0,0)');
+        // High-Relief Impact Crater
+        const crGrad = ctx.createRadialGradient(
+          p.screenX + fRadius * 0.2, p.screenY - fRadius * 0.2, 0,
+          p.screenX, p.screenY, fRadius
+        );
+        crGrad.addColorStop(0.0, 'rgba(2, 6, 23, 0.95)');
+        crGrad.addColorStop(0.7, 'rgba(15, 23, 42, 0.6)');
+        crGrad.addColorStop(0.88, 'rgba(226, 232, 240, 0.35)');
+        crGrad.addColorStop(1.0, 'rgba(0, 0, 0, 0)');
         ctx.beginPath();
-        ctx.arc(px, py, cr, 0, Math.PI * 2);
-        ctx.fillStyle = cg;
+        ctx.arc(p.screenX, p.screenY, fRadius, 0, Math.PI * 2);
+        ctx.fillStyle = crGrad;
         ctx.fill();
       }
     });
+  }
+
+  drawTerminatorShadow(ctx, cx, cy, radius) {
+    // Dynamic 3D lighting shadow (Moon phase illumination)
+    const shadowGrad = ctx.createRadialGradient(
+      cx + radius * 0.45, cy + radius * 0.45, radius * 0.1,
+      cx, cy, radius
+    );
+    shadowGrad.addColorStop(0, 'rgba(0,0,0,0)');
+    shadowGrad.addColorStop(0.55, 'rgba(2, 6, 23, 0.25)');
+    shadowGrad.addColorStop(0.85, 'rgba(2, 6, 23, 0.65)');
+    shadowGrad.addColorStop(1.00, 'rgba(0, 0, 0, 0.92)');
+    ctx.fillStyle = shadowGrad;
+    ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
+  }
+
+  /* ─── 3D GEOGRAPHIC NODE RENDERING ─── */
+  drawNodes(ctx, radius) {
+    const nodes = getFilteredNodes();
+    const selectedNode = getSelectedNode();
+    const time = performance.now() * 0.003;
+
+    // Draw all visible nodes
+    nodes.forEach((node, i) => {
+      const isSelected = selectedNode && node.node_id === selectedNode.node_id;
+      const isHovered = this.hoveredNode && node.node_id === this.hoveredNode.node_id;
+      
+      // Spherical 3D Projection (anchored slightly above surface at 1.012 * radius)
+      const p = this.projectSphericalTo3D(
+        node.coordinates.latitude,
+        node.coordinates.longitude,
+        radius * 1.012
+      );
+
+      if (!p.isVisible) return; // Completely occluded behind the Moon!
+
+      const depthFactor = Math.max(0.3, Math.min(1.0, (p.z + radius * 0.2) / (radius * 1.2)));
+      const baseColor = isSelected ? '#38BDF8' :
+                        node.ai_suitability.score >= 85 ? '#34D399' :
+                        node.ai_suitability.score >= 75 ? '#60A5FA' : '#FBBF24';
+
+      ctx.save();
+      ctx.translate(p.screenX, p.screenY);
+      ctx.globalAlpha = depthFactor;
+
+      // 1. Pulsating Radar Beacon Ring
+      if (isSelected || isHovered) {
+        const pulseR = 14 + Math.sin(time * 3) * 6;
+        ctx.beginPath();
+        ctx.arc(0, 0, pulseR, 0, Math.PI * 2);
+        ctx.strokeStyle = baseColor;
+        ctx.lineWidth = 1.5;
+        ctx.globalAlpha = depthFactor * (0.3 + 0.4 * (1 - (pulseR - 14) / 6));
+        ctx.stroke();
+
+        // Crosshair Target Brackets
+        ctx.strokeStyle = '#38BDF8';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(-18, 0); ctx.lineTo(-11, 0);
+        ctx.moveTo(11, 0);  ctx.lineTo(18, 0);
+        ctx.moveTo(0, -18); ctx.lineTo(0, -11);
+        ctx.moveTo(0, 11);  ctx.lineTo(0, 18);
+        ctx.stroke();
+      }
+
+      // 2. Node Pin Disc & Border
+      ctx.globalAlpha = depthFactor;
+      ctx.beginPath();
+      ctx.arc(0, 0, isSelected ? 10 : 7.5, 0, Math.PI * 2);
+      ctx.fillStyle = isSelected ? 'rgba(2, 132, 199, 0.9)' : 'rgba(11, 17, 32, 0.85)';
+      ctx.fill();
+      ctx.lineWidth = isSelected ? 2.0 : 1.2;
+      ctx.strokeStyle = baseColor;
+      ctx.stroke();
+
+      // 3. Node ID Numerical Badge
+      ctx.fillStyle = isSelected ? '#FFFFFF' : '#E2E8F0';
+      ctx.font = `bold ${isSelected ? 9.5 : 8}px monospace`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(node.node_id.replace('N', ''), 0, 0.5);
+
+      // 4. Hover Tooltip
+      if (isHovered || isSelected) {
+        const titleText = `${node.node_id}: ${node.node_name}`;
+        const scoreText = `Score: ${node.ai_suitability.score.toFixed(1)}% (Lat: ${node.coordinates.latitude > 0 ? '+' : ''}${node.coordinates.latitude.toFixed(1)}°, Lon: ${node.coordinates.longitude.toFixed(1)}°)`;
+        
+        ctx.font = 'bold 11px sans-serif';
+        const tw = Math.max(ctx.measureText(titleText).width, ctx.measureText(scoreText).width) + 18;
+        const th = 38;
+        const tx = -tw / 2;
+        const ty = -th - 16;
+
+        ctx.fillStyle = 'rgba(7, 11, 20, 0.95)';
+        ctx.strokeStyle = '#38BDF8';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(tx, ty, tw, th, 6);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'left';
+        ctx.fillText(titleText, tx + 9, ty + 15);
+        ctx.font = '9.5px monospace';
+        ctx.fillStyle = '#38BDF8';
+        ctx.fillText(scoreText, tx + 9, ty + 29);
+      }
+
+      ctx.restore();
+    });
+  }
+
+  updateDebugHUD() {
+    if (!this.showDebug) return;
+    const selected = getSelectedNode();
+    if (!selected) return;
+
+    const p = this.projectSphericalTo3D(
+      selected.coordinates.latitude,
+      selected.coordinates.longitude,
+      this.radius * 1.012
+    );
+
+    const elNode = $('dbg-node');
+    const elLat = $('dbg-lat');
+    const elLon = $('dbg-lon');
+    const elX = $('dbg-x');
+    const elY = $('dbg-y');
+    const elZ = $('dbg-z');
+    const elRot = $('dbg-rot');
+    const elVis = $('dbg-vis');
+
+    const degRot = ((this.rotationAngle * 180 / Math.PI) % 360).toFixed(1);
+
+    if (elNode) elNode.textContent = `${selected.node_id} ${selected.node_name}`;
+    if (elLat) elLat.textContent = `${selected.coordinates.latitude > 0 ? '+' : ''}${selected.coordinates.latitude.toFixed(3)}°`;
+    if (elLon) elLon.textContent = `${selected.coordinates.longitude.toFixed(3)}°`;
+    if (elX) elX.textContent = p.x.toFixed(2);
+    if (elY) elY.textContent = p.y.toFixed(2);
+    if (elZ) elZ.textContent = p.z.toFixed(2);
+    if (elRot) elRot.textContent = `${degRot}°`;
+    if (elVis) {
+      elVis.textContent = p.isVisible ? 'FRONT (VISIBLE)' : 'BACK (OCCLUDED)';
+      elVis.style.color = p.isVisible ? '#34D399' : '#F87171';
+    }
   }
 }
 
-/* ─── MAP MARKERS & CLICK-TO-OPEN DASHBOARD ─── */
+/* ─── MAP MARKERS WRAPPER FOR BACKWARD COMPATIBILITY ─── */
 function initMarkers() {
-  const container = $('site-markers');
-  if (!container) return;
-
-  const filtered = getFilteredNodes();
-  container.innerHTML = '';
-
-  filtered.forEach((node, idx) => {
-    const marker = document.createElement('div');
-    const isActive = idx === SELECTED_NODE_INDEX;
-    marker.className = `site-marker ${isActive ? 'site-marker--active' : ''}`;
-    marker.id = `marker-${node.node_id}`;
-    marker.setAttribute('role', 'button');
-    marker.setAttribute('tabindex', '0');
-    marker.setAttribute('data-index', idx);
-
-    const lat = node.coordinates.latitude;
-    const lon = node.coordinates.longitude;
-    
-    // Normalize longitude to range [-180, +180] deg
-    let normLon = lon;
-    while (normLon > 180) normLon -= 360;
-    while (normLon < -180) normLon += 360;
-
-    // Convert to radians
-    const phi = (lat * Math.PI) / 180.0;
-    const lambda = (normLon * Math.PI) / 180.0;
-
-    // Orthographic Spherical Projection centered at (0° lat, 0° lon) Nearside
-    // X: West (-), East (+) | Y: South (-), North (+) | Z: Nearside Depth (+)
-    const x = Math.cos(phi) * Math.sin(lambda);
-    const y = Math.sin(phi);
-
-    // Moon disc is centered at (50%, 50%) with radius 41.5%
-    let leftPct = 50.0 + (x * 41.5);
-    let topPct  = 50.0 - (y * 41.5);
-
-    // For South Polar sites (Lat <= -80°), spread around the South Pole limb
-    if (lat <= -80.0) {
-      const polarDist = Math.abs(lat + 90.0); // 0° at pole to 10° at 80°S
-      const polarRad = (normLon * Math.PI) / 180.0;
-      const southPoleBaseY = 41.5;
-      const spreadX = (polarDist / 10.0) * 14.0 * Math.sin(polarRad);
-      const spreadY = (polarDist / 10.0) * 5.0 * Math.cos(polarRad);
-      leftPct = 50.0 + (x * 32.0) + spreadX;
-      topPct = 50.0 + southPoleBaseY - 2.5 + spreadY;
-    }
-
-    // Keep within visible bounds
-    leftPct = Math.max(6, Math.min(94, leftPct));
-    topPct = Math.max(6, Math.min(94, topPct));
-
-    marker.style.left = `${leftPct.toFixed(1)}%`;
-    marker.style.top = `${topPct.toFixed(1)}%`;
-
-    marker.innerHTML = `
-      <div class="marker-pulse"></div>
-      <div class="marker-pin"></div>
-      <div class="marker-label">
-        <span class="marker-id">${node.node_id.replace('N', '')}</span>
-      </div>
-      <div class="marker-tooltip">
-        <strong>${node.node_name}</strong>
-        <span class="mono">${node.coordinates.short_formatted}</span>
-        <span class="mono" style="color: #38BDF8;">Score: ${node.ai_suitability.score.toFixed(1)}%</span>
-      </div>
-    `;
-
-    const selectAndOpen = () => {
-      SELECTED_NODE_INDEX = idx;
-      $$('.site-marker').forEach((m, i) => m.classList.toggle('site-marker--active', i === idx));
-      $$('.score-row').forEach((r, i) => r.classList.toggle('score-row--active', i === idx));
-      updateSiteDetail(node);
-      openDeepDiveModal(node);
-    };
-
-    marker.addEventListener('click', selectAndOpen);
-    marker.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        selectAndOpen();
-      }
-    });
-
-    container.appendChild(marker);
-  });
+  // Nodes are drawn dynamically in 3D attached to the rotating Moon sphere in RotatingLunarGlobe3D
 }
 
 /* ─── LOCATION DEEP DIVE MODAL DASHBOARD ─── */
@@ -1098,7 +1489,7 @@ function initFullscreen() {
 /* ─── MAIN INITIALIZATION ─── */
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = $('lunar-canvas');
-  if (canvas) new LunarRenderer(canvas);
+  if (canvas) window.LUNAR_GLOBE = new RotatingLunarGlobe3D(canvas);
 
   initPresets();
   initSliders();
