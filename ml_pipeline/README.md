@@ -1,17 +1,17 @@
-# ?? Lunar Habitat AI — ML Pipeline
+# ?? Lunar Habitat AI â€” ML Pipeline
 
 > **XGBoost-based Habitat Suitability Predictor** trained on 23 real lunar sites.
-> MitWPU Hackathon · Google Colab Edition
+> MitWPU Hackathon Â· Google Colab Edition
 
 ---
 
 ## ?? Folder Structure
-
+ 
 ```
 ml_pipeline/
 +-- Lunar_Habitat_Training.ipynb   # ?? Main training notebook (run on Google Colab)
 +-- embedded_dataset.json          # ?? 23-site scientific dataset (input to notebook)
-+-- ai_predictions.json            # ?? Model output — AI scores for all 23 sites
++-- ai_predictions.json            # ?? Model output â€” AI scores for all 23 sites
 +-- apply_predictions.py           # ?? Merges ai_predictions.json ? React frontend data
 +-- embed_dataset.py               # ???  Dev utility: re-embeds dataset into the notebook
 +-- README.md                      # ?? This file
@@ -21,11 +21,11 @@ ml_pipeline/
 
 ## ?? Quick Start (Run the ML Model)
 
-### Step 1 — Open the Notebook in Google Colab
+### Step 1 â€” Open the Notebook in Google Colab
 
 1. Go to https://colab.research.google.com
 2. Upload `Lunar_Habitat_Training.ipynb`
-   *(the dataset is already embedded — no extra upload needed)*
+   *(the dataset is already embedded â€” no extra upload needed)*
 3. **Runtime ? Change runtime type ? T4 GPU**
 4. **Runtime ? Run all**
 
@@ -34,17 +34,17 @@ The notebook will:
 - Load the 23 real lunar site dataset (embedded directly in the notebook)
 - Download & sample the 8 GB LOLA Global DEM for real topographic elevation data
 - Engineer features & build a ~15,000-sample augmented training set
-- Train an XGBoost model (Optuna-tuned, R² ˜ 0.956, MAE ˜ 1.30)
+- Train an XGBoost model (Optuna-tuned, RÂ² Ëœ 0.956, MAE Ëœ 1.30)
 - Run inference on all 23 sites
 - Compute SHAP feature importance
 - Export **`ai_predictions.json`**
 
-### Step 2 — Download `ai_predictions.json`
+### Step 2 â€” Download `ai_predictions.json`
 
 After the notebook finishes, download `ai_predictions.json` from the Colab
 file panel and place it in `ml_pipeline/`.
 
-### Step 3 — Merge Predictions into the Frontend
+### Step 3 â€” Merge Predictions into the Frontend
 
 ```bash
 # From the project root:
@@ -73,13 +73,13 @@ pip install -r requirements.txt
 
 | Attribute        | Value                                                     |
 |------------------|-----------------------------------------------------------|
-| Algorithm        | XGBoost (GPU — `tree_method: hist`, `device: cuda`)       |
+| Algorithm        | XGBoost (GPU â€” `tree_method: hist`, `device: cuda`)       |
 | Tuning           | Optuna (100 trials)                                       |
 | Training samples | ~15,000 (synthetic augmentation of 23 real sites)         |
-| R² score         | **0.9562**                                                |
+| RÂ² score         | **0.9562**                                                |
 | MAE              | **1.30 points**                                           |
 | Features         | 23 lunar science features                                 |
-| Target           | `mcda_suitability_score` (0–100)                          |
+| Target           | `mcda_suitability_score` (0â€“100)                          |
 
 ### Feature Columns
 
@@ -102,7 +102,7 @@ into every site in `src/data/lunar_scientific_dataset.json`:
 
 | Field injected                          | Description                        |
 |-----------------------------------------|------------------------------------|
-| `ai_ml_matrix.mcda_suitability_score`  | XGBoost predicted score (0–100)    |
+| `ai_ml_matrix.mcda_suitability_score`  | XGBoost predicted score (0â€“100)    |
 | `ai_ml_matrix.ai_confidence_pct`       | Model confidence %                 |
 | `ai_ml_matrix.suitability_tier`        | HIGHLY SUITABLE / SUITABLE / etc.  |
 | `ai_ml_matrix.ai_rank`                 | Rank among all 23 sites            |
@@ -142,6 +142,6 @@ These backup files are gitignored.
 | Dataset                    | Source                                      |
 |----------------------------|---------------------------------------------|
 | LOLA Global DEM (118 m/px) | NASA / USGS PDS                             |
-| Lunar scientific dataset   | ISRO · NASA · JAXA mission data             |
+| Lunar scientific dataset   | ISRO Â· NASA Â· JAXA mission data             |
 | Chandrayaan-1/2/3 in-situ  | ISRO public mission archives                |
 | Apollo mission benchmarks  | NASA Apollo Surface Journal                 |
