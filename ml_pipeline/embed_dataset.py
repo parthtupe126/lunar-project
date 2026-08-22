@@ -4,7 +4,7 @@ import json
 with open('ml_pipeline/embedded_dataset.json', 'r', encoding='utf-8') as f:
     raw_json_str = f.read()
 
-# Load the existing notebook
+# Load the existing notebook 
 with open('ml_pipeline/Lunar_Habitat_Training.ipynb', 'r', encoding='utf-8') as f:
     nb = json.load(f)
 
