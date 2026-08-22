@@ -557,43 +557,7 @@ export const LayerControls = ({
           )}
         </div>
 
-        {/* SECTION 4: 3D DATA LAYERS */}
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <Layers className="w-4 h-4 text-blue-400" />
-            <h2 className="text-xs font-mono font-bold tracking-wider text-slate-200 uppercase">
-              3D MAP LAYERS
-            </h2>
-          </div>
-
-          <div className="bg-[#0B1120]/80 p-2.5 rounded-xl border border-slate-800/80 space-y-1.5 shadow-inner">
-            {LAYER_ITEMS.map((item) => (
-              <label
-                key={item.key}
-                className="flex items-center justify-between p-1 rounded-lg hover:bg-slate-800/50 cursor-pointer transition-colors"
-              >
-                <div className="flex items-center gap-2 text-xs font-medium text-slate-300">
-                  {item.icon}
-                  <span>{item.label}</span>
-                </div>
-                
-                {/* Modern Toggle Switch */}
-                <div className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    aria-label={`Toggle ${item.label} layer`}
-                    checked={layers[item.key]}
-                    onChange={() => toggleLayer(item.key)}
-                    className="sr-only peer"
-                  />
-                  <div className="w-8 h-4 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:bg-cyan-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-transform border border-slate-700" />
-                </div>
-              </label>
-            ))}
-          </div>
-        </div>
-
-        {/* SECTION 5: SITE FILTER */}
+        {/* CRITERIA FILTER */}
         <div>
           <div className="flex items-center gap-2 mb-2">
             <Filter className="w-4 h-4 text-purple-400" />
